@@ -26,9 +26,11 @@ namespace Fluent.Calculations.Tests.Calculation
             Foo = Number.Zero,
             Bar = Number.Zero;
 
-        private Number FooBar => Is(() => Foo + Bar);
+        Condition ByBoo => Is(() => Foo > Bar);
 
-        private Number FooBarTotal => Is(() => Foo + FooBar);
+        Number FooBar => Is(() => ByBoo ? Foo + Bar : Foo - Bar);
+
+        Number FooBarTotal => Is(() => Foo + FooBar);
 
         public override Number Return() => FooBarTotal;
     }

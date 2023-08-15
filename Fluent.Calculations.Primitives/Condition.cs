@@ -21,10 +21,5 @@ public class Condition : Value
 
     public static Condition False([CallerMemberName] string expressionName = "") => new Condition(expressionName, 0);
 
-    public override IValue ToExpressionResult(IValue expressionResult, string expressionName, string expressionBody) =>
-        new Condition(expressionName,
-            expressionBody,
-            expressionResult.PrimitiveValue,
-            expressionResult.Arguments,
-            expressionResult.Tags);
+    public override IValue ToExpressionResult(CreateValueArgs args) => new Condition(args);
 }

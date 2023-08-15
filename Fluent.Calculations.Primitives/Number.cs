@@ -3,11 +3,7 @@ namespace Fluent.Calculations.Primitives;
 
 public class Number : Value
 {
-    // TODO: Explore new static member interfaces for operator overloads
-    // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-11.0/static-abstracts-in-interfaces#interfaces-as-type-arguments
     public static Number Zero => Number.Of(0, "Zero");
-
-    public static Number operator +(Number a, Number b) => a.Add(a, b);
 
     public static Number From(decimal value, [CallerMemberName] string expressionName = "") => Number.Of(value, expressionName);
 
@@ -15,39 +11,41 @@ public class Number : Value
     {
     }
 
-    public Number Add(Number a, Number b) => new Number(CreateValueArgs.Compose(
-        "Math:Add",
-        $"{a}+{b}",
-         a.PrimitiveValue + b.PrimitiveValue)
-        .WithArguments(a, b));
+    public Number(): base("Zero", 0) { }
 
-    public Number Divide(Number a, Number b) => new Number(CreateValueArgs.Compose(
-        "Math:Divide",
-        $"{a}/{b}",
-        a.PrimitiveValue / b.PrimitiveValue)
-        .WithArguments(a, b));
+    public static Number operator -(Number a, Number b) => a.Substract(b);
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => new Number(CreateValueArgs.Compose(
-        fieldName,
-        $"{primitiveValue}",
-        primitiveValue));
+    public static Number operator +(Number a, Number b) => a.Add(b);
 
+    public static Number operator /(Number a, Number b) => a.Divide(b);
+
+    public static Number operator *(Number a, Number b) => a.Multiply(b);
 
     public static Condition operator >(Number a, Number b) => new Condition(CreateValueArgs.Compose(
-        "Logic:GreaterThan",
-        $"{a}>{b}",
+        "GreaterThan", $"{a} > {b}",
          Convert.ToDecimal(a.PrimitiveValue > b.PrimitiveValue))
         .WithArguments(a, b));
 
     public static Condition operator <(Number a, Number b) => new Condition(CreateValueArgs.Compose(
-        "Logic:LessThan",
-        $"{a}>{b}",
+        "LessThan", $"{a} > {b}",
          Convert.ToDecimal(a.PrimitiveValue < b.PrimitiveValue))
         .WithArguments(a, b));
 
-    public override IValue ToExpressionResult(IValue expressionResult, string expressionName, string expressionBody) => new Number(CreateValueArgs.Compose(
-        expressionName,
-        expressionBody,
-        expressionResult.PrimitiveValue)
-        .WithArguments(expressionResult.Arguments));
+    public Number Add(Number value) => Return(value, "Add", $"{this} + {value}", (a, b) => a + b);
+
+    public Number Substract(Number value) => Return(value, "Substract", $"{this} - {value}", (a, b) => a - b);
+
+    public Number Multiply(Number value) => Return(value, "Multiply", $"{this} * {value}", (a, b) => a * b);
+
+    public Number Divide(Number value) => Return(value, "Divide", $"{this} / {value}", (a, b) => a / b);
+
+    public TValue Return<TValue>(TValue value, string operatorName, string operationBody, Func<decimal, decimal, decimal> calcFunc)
+        where TValue : IValue => (TValue)value.ToExpressionResult(CreateValueArgs
+            .Compose(operatorName, operationBody, calcFunc(this.PrimitiveValue, value.PrimitiveValue))
+            .WithArguments(this, value));
+
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => new Number(CreateValueArgs.Compose(
+        fieldName, $"{primitiveValue}", primitiveValue));
+
+    public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
 }

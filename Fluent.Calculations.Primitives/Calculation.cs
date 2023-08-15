@@ -1,8 +1,14 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
-public abstract class Calculation<TResult> : IValue where TResult : class, IValue
+public abstract class Calculation<TResult> : IValue where TResult : class, IValue, new()
 {
+    public Calculation()
+    {
+        
+    }
+
     Dictionary<string, IValue> valueAmountResults = new Dictionary<string, IValue>();
 
     public List<string> Tags => new List<string>();
@@ -31,7 +37,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
     {
         var publicFields = this.GetType()
             .GetFields()
-            .Where(fieldInfo => fieldInfo.IsPublic 
+            .Where(fieldInfo => fieldInfo.IsPublic
             && typeof(IName).IsAssignableFrom(fieldInfo.FieldType))
             .Select(fieldInfo => new
             {
@@ -44,20 +50,10 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
     public abstract TResult Return();
 
-    public IValue ToExpressionResult(IValue lastOperationResult, string expressionName, string expressionn)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected Condition Is(Func<Condition> condition, [CallerMemberName] string expressionName = "")
-    {
-        // TODO:
-        //condition.Name = expressionName;
-        return condition();
-    }
+    public IValue ToExpressionResult(CreateValueArgs args) => new TResult().ToExpressionResult(args);
 
     protected ExpressionResultValue Is<ExpressionResultValue>(
-        Func<ExpressionResultValue> expression,
+        Expression<Func<ExpressionResultValue>> expression,
         [CallerMemberName] string name = "",
         [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
     {
@@ -65,9 +61,12 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
-        ExpressionResultValue result = expression();
+        Func<ExpressionResultValue> function = expression.Compile();
+        ExpressionResultValue result = function.Invoke();
 
-        IValue value = result.ToExpressionResult(result, prefixedName, AdjustLambdaPrefix(lambdaExpressionBody));
+        IValue value = result.ToExpressionResult(CreateValueArgs
+            .Compose(prefixedName, AdjustLambdaPrefix(lambdaExpressionBody), result.PrimitiveValue)
+            .WithArguments(result.Arguments));
 
         valueAmountResults.Add(prefixedName, value);
 

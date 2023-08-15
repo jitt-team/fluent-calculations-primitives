@@ -51,7 +51,7 @@ public abstract class Value : IValue, IName
 
     public TagsList Tags { get; } = TagsList.Empty;
 
-    public abstract IValue ToExpressionResult(IValue expressionResult, string expressionName, string expressionBody);
+    public abstract IValue ToExpressionResult(CreateValueArgs args);
 
     void IName.Set(string name) => this.Name = name;
 
