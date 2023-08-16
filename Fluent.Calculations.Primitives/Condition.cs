@@ -3,6 +3,8 @@ namespace Fluent.Calculations.Primitives;
 
 public class Condition : Value
 {
+    public override string ToString() => $"{Name}:{IsTrue}";
+
     public Condition(string name, decimal primitiveValue) : base(name, primitiveValue) { }
 
     public Condition(string expressionName, string expressionBody, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :

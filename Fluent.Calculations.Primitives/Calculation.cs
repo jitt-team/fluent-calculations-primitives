@@ -4,6 +4,8 @@ namespace Fluent.Calculations.Primitives;
 
 public abstract class Calculation<TResult> : IValue where TResult : class, IValue, new()
 {
+    private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
+
     public Calculation()
     {
         
@@ -61,17 +63,17 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
-        Func<ExpressionResultValue> function = expression.Compile();
-        ExpressionResultValue result = function.Invoke();
+        ExpressionNode expressionPart = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
+        ExpressionResultValue result = expression.Compile().Invoke();
 
         IValue value = result.ToExpressionResult(CreateValueArgs
-            .Compose(prefixedName, AdjustLambdaPrefix(lambdaExpressionBody), result.PrimitiveValue)
+            .Compose(prefixedName, expressionPart.Body, result.PrimitiveValue)
             .WithArguments(result.Arguments));
 
         valueAmountResults.Add(prefixedName, value);
 
         return (ExpressionResultValue)value;
-
-        string AdjustLambdaPrefix(string body) => body.Replace("() => ", "= ");
     }
+
+    
 }
