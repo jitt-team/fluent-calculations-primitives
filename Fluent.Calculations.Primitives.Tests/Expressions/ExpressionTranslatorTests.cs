@@ -2,11 +2,11 @@
 
 namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
-    public class ExpressionPartTranslatorTests
+    public class ExpressionTranslatorTests
     {
         private readonly ITestOutputHelper output;
 
-        public ExpressionPartTranslatorTests(ITestOutputHelper output) => this.output = output;
+        public ExpressionTranslatorTests(ITestOutputHelper output) => this.output = output;
 
         [Fact]
         public void test()

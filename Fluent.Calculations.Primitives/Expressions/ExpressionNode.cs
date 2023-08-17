@@ -16,5 +16,7 @@
             Body = body;
             return this;
         }
+
+        public virtual ArgumentsList Arguments => ArgumentsList.Empty;
     }
 }

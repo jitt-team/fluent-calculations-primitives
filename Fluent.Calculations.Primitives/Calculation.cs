@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
@@ -66,9 +67,12 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         ExpressionNode expressionPart = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
         ExpressionResultValue result = expression.Compile().Invoke();
 
+        ArgumentsList argumentsList = expressionPart.Arguments.Any()
+            ? expressionPart.Arguments : result.Arguments;
+
         IValue value = result.ToExpressionResult(CreateValueArgs
             .Compose(prefixedName, expressionPart, result.PrimitiveValue)
-            .WithArguments(result.Arguments));
+            .WithArguments(argumentsList));
 
         valueAmountResults.Add(prefixedName, value);
 

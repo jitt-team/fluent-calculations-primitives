@@ -10,8 +10,8 @@ namespace Fluent.Calculations.Tests.Calculation
         {
             var calculation = new FooBarCalculation
             {
-                Foo = Number.Of(2),
-                Bar = Number.Of(3)
+                ConstantOne = Number.Of(2),
+                ConstantTwo = Number.Of(3)
             };
 
             Number result = calculation.Calculate();
@@ -23,15 +23,15 @@ namespace Fluent.Calculations.Tests.Calculation
     internal class FooBarCalculation : Calculation<Number>
     {
         public Number
-            Foo = Number.Zero,
-            Bar = Number.Zero;
+            ConstantOne = Number.Zero,
+            ConstantTwo = Number.Zero;
 
-        Condition ByBoo = Condition.True(); //> Is(() => Foo > Bar);
+        Condition Comparison => Is(() => ConstantOne > ConstantTwo);
 
-        Number FooBar => Is(() => ByBoo ? Foo : Bar);
+        Number Condtitional => Is(() => Comparison ? ConstantOne : ConstantTwo);
 
-        // Number FooBarTotal => Is(() => Foo + FooBar);
+        Number Math => Is(() => ConstantOne + Condtitional);
 
-        public override Number Return() => FooBar;
+        public override Number Return() => Math;
     }
 }

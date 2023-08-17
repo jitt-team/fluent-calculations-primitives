@@ -17,5 +17,7 @@
         public IValue IfTrue { get; set; }
 
         public IValue IfFalse { get; set; }
+
+        public override ArgumentsList Arguments => ArgumentsList.CreateFrom(new[] { Condition, IfTrue, IfFalse });
     }
 }

@@ -7,7 +7,8 @@ namespace Fluent.Calculations.Primitives
     {
         public ExpressionNode Translate<ExpressionResultValue>(Expression<Func<ExpressionResultValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
         {
-            return TryTranslate(expression, AdjustLambdaPrefix(lambdaExpressionBody));
+            return TryTranslate(expression, AdjustLambdaPrefix(lambdaExpressionBody))
+                .WithBody(AdjustLambdaPrefix(lambdaExpressionBody)); // TODO: incorporate into Node
         }
 
         private ExpressionNode TryTranslate<ExpressionResulType>(Expression<Func<ExpressionResulType>> expression, string lambdaExpressionBody) where ExpressionResulType : class, IValue
