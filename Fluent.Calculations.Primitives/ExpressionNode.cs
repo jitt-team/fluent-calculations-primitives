@@ -11,6 +11,8 @@
             Body = body;
             return this;
         }
+
+        public virtual ArgumentsList Arguments { get; private set; } = ArgumentsList.Empty;
     }
 
     public class ExpressionNodeConditional : ExpressionNode
@@ -25,5 +27,7 @@
         public IValue IfTrue { get; set; }
 
         public IValue IfFalse { get; set; }
+
+        public override ArgumentsList Arguments => ArgumentsList.CreateFrom(new[] { Condition, IfTrue, IfFalse });
     }
 }
