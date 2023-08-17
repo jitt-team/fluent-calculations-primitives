@@ -4,7 +4,7 @@
     {
         public string Name { get; private set; } = "NotProvided";
 
-        public string Expresion { get; private set; } = "NotProvided";
+        public ExpressionNode Expresion { get; private set; } = ExpressionNode.Default;
 
         public decimal PrimitiveValue { get; private set; }
 
@@ -14,7 +14,7 @@
 
         public TagsList Tags { get; private set; } = TagsList.Empty;
 
-        internal static CreateValueArgs Compose(string name, string expression, decimal value) =>
+        internal static CreateValueArgs Compose(string name, ExpressionNode expression, decimal value) =>
             new CreateValueArgs
             {
                 Name = name,

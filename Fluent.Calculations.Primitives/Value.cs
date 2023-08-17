@@ -9,10 +9,10 @@ public abstract class Value : IValue, IName
         IsConstant = true;
     }
 
-    public Value(string expressionName, string expressionBody, decimal primitiveValue, ArgumentsList arguments, TagsList tags)
+    public Value(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags)
     {
         Name = expressionName;
-        Expresion = expressionBody;
+        Expresion = expressionNode;
         PrimitiveValue = primitiveValue;
         Arguments = arguments;
         Tags = tags;
@@ -41,7 +41,7 @@ public abstract class Value : IValue, IName
 
     public string Name { get; private set; }
 
-    public string Expresion { get; }
+    public ExpressionNode Expresion { get; }
 
     public decimal PrimitiveValue { get; private set; }
 

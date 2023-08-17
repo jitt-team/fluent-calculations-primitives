@@ -7,10 +7,10 @@ namespace Fluent.Calculations.Primitives
     {
         public ExpressionNode Translate<ExpressionResultValue>(Expression<Func<ExpressionResultValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
         {
-            return TryTranslate(expression).WithBody(AdjustLambdaPrefix(lambdaExpressionBody));
+            return TryTranslate(expression, AdjustLambdaPrefix(lambdaExpressionBody));
         }
 
-        private ExpressionNode TryTranslate<ExpressionResulType>(Expression<Func<ExpressionResulType>> expression) where ExpressionResulType : class, IValue
+        private ExpressionNode TryTranslate<ExpressionResulType>(Expression<Func<ExpressionResulType>> expression, string lambdaExpressionBody) where ExpressionResulType : class, IValue
         {
             // TODO : Transalte various expressions to easy to read structure
             // TODO : Extend support of more syntaxes here
@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives
                 IValue ifFalseValue = GetExpressionValue<IValue>(conditionalExpression.IfFalse);
                 Condition condition = GetExpressionValue<Condition>(conditionalExpression.Test);
 
-                return new ExpressionNodeConditional
+                return new ExpressionNodeConditional(lambdaExpressionBody)
                 {
                     IfTrue = ifTrueValue,
                     IfFalse = ifFalseValue,

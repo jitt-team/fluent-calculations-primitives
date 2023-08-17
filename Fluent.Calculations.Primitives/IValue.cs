@@ -4,7 +4,7 @@ public interface IValue
 {
     string Name { get; }
 
-    string Expresion { get; }
+    ExpressionNode Expresion { get; }
 
     decimal PrimitiveValue { get; }
 

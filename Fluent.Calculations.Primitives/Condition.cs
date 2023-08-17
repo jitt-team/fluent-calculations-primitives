@@ -7,8 +7,8 @@ public class Condition : Value
 
     public Condition(string name, decimal primitiveValue) : base(name, primitiveValue) { }
 
-    public Condition(string expressionName, string expressionBody, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :
-        base(expressionName, expressionBody, primitiveValue, arguments, tags)
+    public Condition(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :
+        base(expressionName, expressionNode, primitiveValue, arguments, tags)
     { }
 
     public Condition(CreateValueArgs createValueArgs) : base(createValueArgs)

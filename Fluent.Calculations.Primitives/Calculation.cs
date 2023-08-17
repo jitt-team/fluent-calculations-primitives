@@ -19,7 +19,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
     public IList<IValue> Arguments => Is(() => Calculate(), Expresion.GetType().Name).Arguments;
 
-    public string Expresion { get; set; } = "TODO";
+    public ExpressionNode Expresion { get; set; } = ExpressionNode.Default;
 
     public string Name { get; set; } = "TODO";
 
@@ -67,7 +67,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         ExpressionResultValue result = expression.Compile().Invoke();
 
         IValue value = result.ToExpressionResult(CreateValueArgs
-            .Compose(prefixedName, expressionPart.Body, result.PrimitiveValue)
+            .Compose(prefixedName, expressionPart, result.PrimitiveValue)
             .WithArguments(result.Arguments));
 
         valueAmountResults.Add(prefixedName, value);
