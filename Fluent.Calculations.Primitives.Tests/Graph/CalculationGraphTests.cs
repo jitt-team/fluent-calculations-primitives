@@ -1,6 +1,8 @@
 using DotNetGraph.Compilation;
 using DotNetGraph.Core;
 using DotNetGraph.Extensions;
+using FluentAssertions;
+using Newtonsoft.Json.Linq;
 
 namespace Fluent.Calculations.Primitives.Tests.Graph
 {
@@ -9,18 +11,46 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
         [Fact]
         public async Task Test()
         {
-            DotGraph directedGraph = new DotGraph().WithIdentifier("FooGraph").Directed();
-            DotNode fooNode = new DotNode()
-                .WithIdentifier("FooBar")
-                .WithShape(DotNodeShape.Rectangle)
-                .WithLabel(ToHtmlNode(
-                        "MyTestFinalResultNumber",
-                        "FirstTestNumber + MyTestResultNumber",
-                        "7.0"), isHtml: true);
+            Number result = new FooBarCalculation
+            {
+                ChildDeduction = Number.Of(200),
+                NumberOfChildren = Number.Of(3),
+                MinimumNumberOfChildren = Number.Of(2),
+                GrossSalary = Number.Of(1000)
+            }
+            .Calculate();
 
-            directedGraph.Add(fooNode);
+            await RenderGraph(result);
+        }
 
-            await SaveToDot(directedGraph);
+        private async Task RenderGraph(IValue value)
+        {
+            DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
+            ToNode(value, graph);
+            await SaveToDot(graph);
+        }
+
+        private DotNode ToNode(IValue value, DotGraph graph)
+        {
+            var parent = new DotNode()
+                 .WithIdentifier(value.Name)
+                 .WithShape(DotNodeShape.Rectangle)
+                 .WithLabel(ToHtmlNode(
+                         $"{value.Name}",
+                         System.Web.HttpUtility.HtmlEncode($"{value.Expresion.Body}"),
+                         $"{value.ToString()}"),
+                         isHtml: true);
+
+            graph.Add(parent);
+            foreach (IValue item in value.Arguments)
+            {
+                var child = ToNode(item, graph);
+                var edge = new DotEdge().From(child).To(parent);
+                graph.Add(child);
+                graph.Add(edge);
+            }
+
+            return parent;
         }
 
         private string ToHtmlNode(string name, string expression, string value)
@@ -45,6 +75,25 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
             File.WriteAllText("graph.dot", result);
 
 
+        }
+
+        internal class FooBarCalculation : Calculation<Number>
+        {
+            public Number
+                ChildDeduction = Number.Zero,
+                NumberOfChildren = Number.Zero,
+                MinimumNumberOfChildren = Number.Zero,
+                GrossSalary = Number.Zero;
+
+            Condition HasEnoughChildren => Is(() => NumberOfChildren > MinimumNumberOfChildren);
+
+            Number TotalChildrenDeduction => Is(() => ChildDeduction * NumberOfChildren);
+
+            Number AppliedChildDeduction => Is(() => HasEnoughChildren ? TotalChildrenDeduction : Number.Zero);
+
+            Number TaxableSalary => Is(() => GrossSalary - AppliedChildDeduction);
+
+            public override Number Return() => TaxableSalary;
         }
     }
 }
