@@ -17,6 +17,15 @@
             return this;
         }
 
-        public virtual ArgumentsList Arguments => ArgumentsList.Empty;
+        public virtual ArgumentsList Arguments { get; internal set; } = ArgumentsList.Empty;
+
+        public ExpressionNode WithArguments(IValue[] arguments)
+        {
+            Arguments = new ArgumentsList(arguments);
+            return this;
+        }
+
+        public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b).ToArray());
+
     }
 }

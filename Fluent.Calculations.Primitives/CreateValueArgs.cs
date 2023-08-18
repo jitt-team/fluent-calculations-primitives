@@ -23,15 +23,6 @@
                 IsConstant = false
             };
 
-        public CreateValueArgs WithArguments(ArgumentsList argumentsList)
-        {
-            Arguments = argumentsList;
-            return this;
-        }
-        public CreateValueArgs WithArguments(IValue[] arguments) => WithArguments(ArgumentsList.CreateFrom(arguments));
-
-        public CreateValueArgs WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b).ToArray());
-
         public CreateValueArgs WithTags(params Tag[] tags)
         {
             Tags = new TagsList(tags);

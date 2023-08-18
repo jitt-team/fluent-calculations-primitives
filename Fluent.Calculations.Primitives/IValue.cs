@@ -4,13 +4,11 @@ public interface IValue
 {
     string Name { get; }
 
-    ExpressionNode Expresion { get; }
-
     decimal PrimitiveValue { get; }
 
     bool IsConstant { get; }
 
-    ArgumentsList Arguments { get; }
+    ExpressionNode Expresion { get; }
 
     TagsList Tags { get; }
 

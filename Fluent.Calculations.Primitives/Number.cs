@@ -11,7 +11,7 @@ public class Number : Value
     {
     }
 
-    public Number(): base("Zero", 0) { }
+    public Number() : base("Zero", 0) { }
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
@@ -21,28 +21,29 @@ public class Number : Value
 
     public static Number operator *(Number left, Number right) => left.Multiply(right);
 
-    public static Condition operator >(Number a, Number b) => new Condition(CreateValueArgs.Compose(
-        "GreaterThan", ExpressionNodeComparison.Create($"{a} > {b}"),
-         Convert.ToDecimal(a.PrimitiveValue > b.PrimitiveValue))
-        .WithArguments(a, b));
+    public static Condition operator >(Number left, Number right) => new Condition(CreateValueArgs.Compose(
+        "GreaterThan", ExpressionNodeComparison.Create($"{left} > {right}").WithArguments(left, right),
+         Convert.ToDecimal(left.PrimitiveValue > right.PrimitiveValue)));
 
-    public static Condition operator <(Number a, Number b) => new Condition(CreateValueArgs.Compose(
-        "LessThan", ExpressionNodeComparison.Create($"{a} > {b}"),
-         Convert.ToDecimal(a.PrimitiveValue < b.PrimitiveValue))
-        .WithArguments(a, b));
+    public static Condition operator <(Number left, Number right) => new Condition(CreateValueArgs.Compose(
+        "LessThan", ExpressionNodeComparison.Create($"{left} > {right}").WithArguments(left, right),
+         Convert.ToDecimal(left.PrimitiveValue < right.PrimitiveValue)));
 
-    public Number Add(Number value) => Return(value, "Add", ExpressionNodeMath.Create($"{this} + {value}"), (a, b) => a + b);
+    public Number Add(Number value) => Return(value, "Add",
+        ExpressionNodeMath.Create($"{this} + {value}").WithArguments(this, value), (a, b) => a + b);
 
-    public Number Substract(Number value) => Return(value, "Substract", ExpressionNodeMath.Create($"{this} - {value}"), (a, b) => a - b);
+    public Number Substract(Number value) => Return(value, "Substract",
+        ExpressionNodeMath.Create($"{this} - {value}").WithArguments(this, value), (a, b) => a - b);
 
-    public Number Multiply(Number value) => Return(value, "Multiply", ExpressionNodeMath.Create($"{this} * {value}"), (a, b) => a * b);
+    public Number Multiply(Number value) => Return(value, "Multiply",
+        ExpressionNodeMath.Create($"{this} * {value}").WithArguments(this, value), (a, b) => a * b);
 
-    public Number Divide(Number value) => Return(value, "Divide", ExpressionNodeMath.Create($"{this} / {value}"), (a, b) => a / b);
+    public Number Divide(Number value) => Return(value, "Divide",
+        ExpressionNodeMath.Create($"{this} / {value}").WithArguments(this, value), (a, b) => a / b);
 
     public TValue Return<TValue>(TValue value, string operatorName, ExpressionNode operationNode, Func<decimal, decimal, decimal> calcFunc)
         where TValue : IValue => (TValue)value.ToExpressionResult(CreateValueArgs
-            .Compose(operatorName, operationNode, calcFunc(this.PrimitiveValue, value.PrimitiveValue))
-            .WithArguments(this, value));
+            .Compose(operatorName, operationNode, calcFunc(this.PrimitiveValue, value.PrimitiveValue)));
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => new Number(CreateValueArgs.Compose(
         fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));

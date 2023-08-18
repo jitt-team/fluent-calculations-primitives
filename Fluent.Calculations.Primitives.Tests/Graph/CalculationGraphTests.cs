@@ -42,7 +42,7 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
                          isHtml: true);
 
             graph.Add(parent);
-            foreach (IValue item in value.Arguments)
+            foreach (IValue item in value.Expresion.Arguments)
             {
                 var child = ToNode(item, graph);
                 var edge = new DotEdge().From(child).To(parent);

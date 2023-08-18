@@ -14,7 +14,6 @@ public abstract class Value : IValue, IName
         Name = expressionName;
         Expresion = expressionNode;
         PrimitiveValue = primitiveValue;
-        Arguments = arguments;
         Tags = tags;
         IsConstant = false;
     }
@@ -26,7 +25,6 @@ public abstract class Value : IValue, IName
         PrimitiveValue = value.PrimitiveValue;
         IsConstant = value.IsConstant;
         Tags = new TagsList(value.Tags);
-        Arguments = new ArgumentsList(value.Arguments);
     }
 
     protected Value(CreateValueArgs createValueArgs)
@@ -36,7 +34,6 @@ public abstract class Value : IValue, IName
         PrimitiveValue = createValueArgs.PrimitiveValue;
         IsConstant = createValueArgs.IsConstant;
         Tags = createValueArgs.Tags;
-        Arguments = createValueArgs.Arguments;
     }
 
     public string Name { get; private set; }
@@ -46,8 +43,6 @@ public abstract class Value : IValue, IName
     public decimal PrimitiveValue { get; private set; }
 
     public bool IsConstant { get; private set; }
-
-    public ArgumentsList Arguments { get; } = ArgumentsList.Empty;
 
     public TagsList Tags { get; } = TagsList.Empty;
 

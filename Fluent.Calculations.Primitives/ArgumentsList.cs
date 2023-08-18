@@ -14,4 +14,5 @@ public class ArgumentsList : List<IValue>
     internal static ArgumentsList Empty => new ArgumentsList();
 
     internal static ArgumentsList CreateFrom(IValue[] arguments) => new ArgumentsList(arguments);
+
 }

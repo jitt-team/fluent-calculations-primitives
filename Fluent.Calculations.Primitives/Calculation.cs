@@ -18,15 +18,11 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
     public decimal PrimitiveValue => Is(() => Calculate(), Expresion.GetType().Name).PrimitiveValue;
 
-    public IList<IValue> Arguments => Is(() => Calculate(), Expresion.GetType().Name).Arguments;
-
-    public ExpressionNode Expresion { get; set; } = ExpressionNode.Default;
+    public ExpressionNode Expresion => Is(() => Calculate(), Expresion.GetType().Name).Expresion;
 
     public string Name { get; set; } = "TODO";
 
     public bool IsConstant => false;
-
-    ArgumentsList IValue.Arguments => Return().Arguments;
 
     TagsList IValue.Tags => Return().Tags;
 
@@ -64,15 +60,13 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
-        ExpressionNode expressionPart = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
+        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
         ExpressionResultValue result = expression.Compile().Invoke();
-
-        ArgumentsList argumentsList = expressionPart.Arguments.Any()
-            ? expressionPart.Arguments : result.Arguments;
+        if(!expressionNode.Arguments.Any())
+            expressionNode.Arguments.AddRange(result.Expresion.Arguments);
 
         IValue value = result.ToExpressionResult(CreateValueArgs
-            .Compose(prefixedName, expressionPart, result.PrimitiveValue)
-            .WithArguments(argumentsList));
+            .Compose(prefixedName, expressionNode, result.PrimitiveValue));
 
         valueAmountResults.Add(prefixedName, value);
 
