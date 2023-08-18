@@ -5,6 +5,8 @@ public class Condition : Value
 {
     public override string ToString() => $"{Name}:{IsTrue}";
 
+    public Condition() : base("False", 0) { }
+
     public Condition(string name, decimal primitiveValue) : base(name, primitiveValue) { }
 
     public Condition(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :

@@ -73,8 +73,6 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
 
             // Save it to a file
             File.WriteAllText("graph.dot", result);
-
-
         }
 
         internal class FooBarCalculation : Calculation<Number>

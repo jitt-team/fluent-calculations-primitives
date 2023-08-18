@@ -21,29 +21,41 @@ public class Number : Value
 
     public static Number operator *(Number left, Number right) => left.Multiply(right);
 
-    public static Condition operator >(Number left, Number right) => new Condition(CreateValueArgs.Compose(
-        "GreaterThan", ExpressionNodeComparison.Create($"{left} > {right}").WithArguments(left, right),
-         Convert.ToDecimal(left.PrimitiveValue > right.PrimitiveValue)));
+    public static Condition operator >(Number left, Number right) => left.GreaterThan(right);
 
-    public static Condition operator <(Number left, Number right) => new Condition(CreateValueArgs.Compose(
-        "LessThan", ExpressionNodeComparison.Create($"{left} > {right}").WithArguments(left, right),
-         Convert.ToDecimal(left.PrimitiveValue < right.PrimitiveValue)));
+    public static Condition operator <(Number left, Number right) => left.LessThan(right);
 
-    public Number Add(Number value) => Return(value, "Add",
-        ExpressionNodeMath.Create($"{this} + {value}").WithArguments(this, value), (a, b) => a + b);
+    public static Condition operator ==(Number left, Number right) => left.IsEqual(right);
 
-    public Number Substract(Number value) => Return(value, "Substract",
-        ExpressionNodeMath.Create($"{this} - {value}").WithArguments(this, value), (a, b) => a - b);
+    public static Condition operator !=(Number left, Number right) => left.NotEqual(right);
 
-    public Number Multiply(Number value) => Return(value, "Multiply",
-        ExpressionNodeMath.Create($"{this} * {value}").WithArguments(this, value), (a, b) => a * b);
+    private Condition IsEqual(Number value) => Return<Condition, bool>(value, "==", (a, b) => a == b);
 
-    public Number Divide(Number value) => Return(value, "Divide",
-        ExpressionNodeMath.Create($"{this} / {value}").WithArguments(this, value), (a, b) => a / b);
+    private Condition NotEqual(Number value) => Return<Condition, bool>(value, "!=", (a, b) => a != b);
 
-    public TValue Return<TValue>(TValue value, string operatorName, ExpressionNode operationNode, Func<decimal, decimal, decimal> calcFunc)
-        where TValue : IValue => (TValue)value.ToExpressionResult(CreateValueArgs
-            .Compose(operatorName, operationNode, calcFunc(this.PrimitiveValue, value.PrimitiveValue)));
+    private Condition LessThan(Number value) => Return<Condition, bool>(value, "<", (a, b) => a < b);
+
+    private Condition GreaterThan(Number value) => Return<Condition, bool>(value, ">", (a, b) => a > b);
+
+    public Number Add(Number value) => Return<Number, decimal>(value, "+", (a, b) => a + b);
+
+    public Number Substract(Number value) => Return<Number, decimal>(value, "-", (a, b) => a - b);
+
+    public Number Multiply(Number value) => Return<Number, decimal>(value, "*", (a, b) => a * b);
+
+    public Number Divide(Number value) => Return<Number, decimal>(value, "/", (a, b) => a / b);
+
+    public ValueType Return<ValueType, PrimitiveType>(
+        IValue right,
+        string languageOperator,
+        Func<decimal, decimal, PrimitiveType> calcFunc,
+        [CallerMemberName] string operatorName = "")
+        where ValueType : IValue, new()
+    {
+        ExpressionNode operationNode = ExpressionNodeMath.Create($"{this} {languageOperator} {right}").WithArguments(this, right);
+        return (ValueType)new ValueType().ToExpressionResult(CreateValueArgs
+            .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this.PrimitiveValue, right.PrimitiveValue))));
+    }
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => new Number(CreateValueArgs.Compose(
         fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
