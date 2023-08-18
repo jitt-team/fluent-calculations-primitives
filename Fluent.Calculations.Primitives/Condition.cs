@@ -17,6 +17,9 @@ public class Condition : Value
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
+    //TODO refactor 1/0 acrobatics
+    public static explicit operator Condition(bool condition) => new Condition("tbd", condition ? 1 : 0);
+
     public bool IsTrue => PrimitiveValue > 0;
 
     public static Condition True([CallerMemberName] string expressionName = "") => new Condition(expressionName, 1);

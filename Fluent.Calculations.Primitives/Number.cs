@@ -11,7 +11,7 @@ public class Number : Value
     {
     }
 
-    public Number(): base("Zero", 0) { }
+    public Number() : base("Zero", 0) { }
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
@@ -29,6 +29,16 @@ public class Number : Value
     public static Condition operator <(Number a, Number b) => new Condition(CreateValueArgs.Compose(
         "LessThan", ExpressionNodeComparison.Create($"{a} > {b}"),
          Convert.ToDecimal(a.PrimitiveValue < b.PrimitiveValue))
+        .WithArguments(a, b));
+
+    public static Condition operator ==(Number a, Number b) => new Condition(CreateValueArgs.Compose(
+       "Equal", ExpressionNodeComparison.Create($"{a} == {b}"),
+        Convert.ToDecimal(a.PrimitiveValue == b.PrimitiveValue))
+       .WithArguments(a, b));
+
+    public static Condition operator !=(Number a, Number b) => new Condition(CreateValueArgs.Compose(
+        "Not Equal", ExpressionNodeComparison.Create($"{a} != {b}"),
+        Convert.ToDecimal(a.PrimitiveValue != b.PrimitiveValue))
         .WithArguments(a, b));
 
     public Number Add(Number value) => Return(value, "Add", ExpressionNodeMath.Create($"{this} + {value}"), (a, b) => a + b);
