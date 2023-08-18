@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using System.Net.Mail;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
@@ -8,9 +7,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
     private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
 
     public Calculation()
-    {
-        
-    }
+    { }
 
     Dictionary<string, IValue> valueAmountResults = new Dictionary<string, IValue>();
 
@@ -62,7 +59,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
         ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
         ExpressionResultValue result = expression.Compile().Invoke();
-        if(!expressionNode.Arguments.Any())
+        if (!expressionNode.Arguments.Any())
             expressionNode.Arguments.AddRange(result.Expresion.Arguments);
 
         IValue value = result.ToExpressionResult(CreateValueArgs
@@ -73,5 +70,5 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         return (ExpressionResultValue)value;
     }
 
-    
+
 }

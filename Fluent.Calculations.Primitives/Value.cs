@@ -1,4 +1,6 @@
-﻿namespace Fluent.Calculations.Primitives;
+﻿using System.Runtime.CompilerServices;
+
+namespace Fluent.Calculations.Primitives;
 
 public abstract class Value : IValue, IName
 {
@@ -51,4 +53,16 @@ public abstract class Value : IValue, IName
     void IName.Set(string name) => this.Name = name;
 
     public override string ToString() => $"{Name}: {PrimitiveValue:0.00}";
+
+    public ResultType Return<ResultType, ResultPrimitiveType>(
+    IValue right,
+    string languageOperator,
+    Func<IValue, IValue, ResultPrimitiveType> calcFunc,
+    [CallerMemberName] string operatorName = "")
+    where ResultType : IValue, new()
+    {
+        ExpressionNode operationNode = ExpressionNodeMath.Create($"{this} {languageOperator} {right}").WithArguments(this, right);
+        return (ResultType)new ResultType().ToExpressionResult(CreateValueArgs
+            .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+    }
 }

@@ -16,6 +16,13 @@ public class Condition : Value
     public Condition(CreateValueArgs createValueArgs) : base(createValueArgs)
     {
     }
+    public static bool operator true(Condition x) => x.IsTrue;
+
+    public static bool operator false(Condition x) => !x.IsTrue;
+
+    public static Condition operator &(Condition left, Condition right) => left.ReturnCondition(right, "&", (a, b) => a & b);
+
+    public static Condition operator |(Condition left, Condition right) => left.ReturnCondition(right, "|", (a, b) => a | b);
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
@@ -27,6 +34,9 @@ public class Condition : Value
     public static Condition True([CallerMemberName] string expressionName = "") => new Condition(expressionName, 1);
 
     public static Condition False([CallerMemberName] string expressionName = "") => new Condition(expressionName, 0);
+
+    private Condition ReturnCondition(IValue value, string languageOperator, Func<bool, bool, bool> compareFunc) =>
+        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc((Condition)a, (Condition)b));
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Condition(args);
 }

@@ -25,40 +25,42 @@ public class Number : Value
 
     public static Condition operator <(Number left, Number right) => left.LessThan(right);
 
+    public static Condition operator >=(Number left, Number right) => left.GreaterThanOrEqual(right);
+
+    public static Condition operator <=(Number left, Number right) => left.LessThanOrEqual(right);
+
     public static Condition operator ==(Number left, Number right) => left.IsEqual(right);
 
     public static Condition operator !=(Number left, Number right) => left.NotEqual(right);
 
-    private Condition IsEqual(Number value) => Return<Condition, bool>(value, "==", (a, b) => a == b);
+    private Condition IsEqual(Number value) => ReturnCondition(value, "==", (a, b) => a == b);
 
-    private Condition NotEqual(Number value) => Return<Condition, bool>(value, "!=", (a, b) => a != b);
+    private Condition NotEqual(Number value) => ReturnCondition(value, "!=", (a, b) => a != b);
 
-    private Condition LessThan(Number value) => Return<Condition, bool>(value, "<", (a, b) => a < b);
+    private Condition LessThan(Number value) => ReturnCondition(value, "<", (a, b) => a < b);
 
-    private Condition GreaterThan(Number value) => Return<Condition, bool>(value, ">", (a, b) => a > b);
+    private Condition GreaterThan(Number value) => ReturnCondition(value, ">", (a, b) => a > b);
 
-    public Number Add(Number value) => Return<Number, decimal>(value, "+", (a, b) => a + b);
+    private Condition LessThanOrEqual(Number value) => ReturnCondition(value, "<=", (a, b) => a <= b);
 
-    public Number Substract(Number value) => Return<Number, decimal>(value, "-", (a, b) => a - b);
+    private Condition GreaterThanOrEqual(Number value) => ReturnCondition(value, ">=", (a, b) => a >= b);
 
-    public Number Multiply(Number value) => Return<Number, decimal>(value, "*", (a, b) => a * b);
+    public Number Add(Number value) => ReturnNumber(value, "+", (a, b) => a + b);
 
-    public Number Divide(Number value) => Return<Number, decimal>(value, "/", (a, b) => a / b);
+    public Number Substract(Number value) => ReturnNumber(value, "-", (a, b) => a - b);
 
-    public ValueType Return<ValueType, PrimitiveType>(
-        IValue right,
-        string languageOperator,
-        Func<decimal, decimal, PrimitiveType> calcFunc,
-        [CallerMemberName] string operatorName = "")
-        where ValueType : IValue, new()
-    {
-        ExpressionNode operationNode = ExpressionNodeMath.Create($"{this} {languageOperator} {right}").WithArguments(this, right);
-        return (ValueType)new ValueType().ToExpressionResult(CreateValueArgs
-            .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this.PrimitiveValue, right.PrimitiveValue))));
-    }
+    public Number Multiply(Number value) => ReturnNumber(value, "*", (a, b) => a * b);
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => new Number(CreateValueArgs.Compose(
-        fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
+    public Number Divide(Number value) => ReturnNumber(value, "/", (a, b) => a / b);
+
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => 
+        new Number(CreateValueArgs.Compose(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
+
+    private Condition ReturnCondition(IValue value, string languageOperator, Func<decimal, decimal, bool> compareFunc) =>
+        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue));
+
+    private Number ReturnNumber(IValue value, string languageOperator, Func<decimal, decimal, decimal> compareFunc) =>
+        Return<Number, decimal>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue));
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
 }

@@ -26,9 +26,14 @@ namespace Fluent.Calculations.Tests.Calculation
             ConstantOne = Number.Zero,
             ConstantTwo = Number.Zero;
 
+        public Condition
+            FeatureOn = Condition.True();
+
         Condition Comparison => Is(() => ConstantOne > ConstantTwo);
 
-        Number Condtitional => Is(() => Comparison ? ConstantOne : ConstantTwo);
+        Condition FinalDecision => Is(() => FeatureOn && Comparison);
+
+        Number Condtitional => Is(() => FinalDecision ? ConstantOne : ConstantTwo);
 
         Number Math => Is(() => ConstantOne + Condtitional);
 
