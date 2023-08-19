@@ -30,6 +30,12 @@ internal class ExpressionTranslator
             };
 
         }
+        else if (expression.Body.NodeType == ExpressionType.Add)
+        {
+            BinaryExpression binaryExpression = (BinaryExpression)expression.Body;
+            return ExpressionNodeMath.Create(""); ;
+
+        }
 
         return ExpressionNode.Default;
     }

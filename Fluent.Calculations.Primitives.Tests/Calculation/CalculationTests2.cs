@@ -32,7 +32,7 @@ namespace Fluent.Calculations.Tests.Calculation
         public Condition
             FeatureOn = Condition.True();
 
-        Number Final => Is(() => FeatureOn ? ConstantOne + ConstantTwo : ConstantTwo);
+        Number Final => Is(() => ConstantOne + ConstantTwo);
 
         public override Number Return() => Final;
     }

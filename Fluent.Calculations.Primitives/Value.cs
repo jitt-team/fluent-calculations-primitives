@@ -56,14 +56,34 @@ public abstract class Value : IValue, IName
 
     public ResultType Return<ResultType, ResultPrimitiveType>(
     IValue right,
-    string languageOperator,
     Func<IValue, IValue, ResultPrimitiveType> calcFunc,
     string operatorName)
     where ResultType : IValue, new()
     {
         ExpressionNode operationNode = ExpressionNodeMath
-            .Create($"{this} {languageOperator} {right}").WithArguments(this, right);
+            .Create($"{this} {ToLanguageOperator(operatorName)} {right}").WithArguments(this, right);
         return (ResultType)new ResultType().ToExpressionResult(CreateValueArgs
             .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+    }
+
+    private string ToLanguageOperator(string operatorName)
+    {
+        switch (operatorName)
+        {
+            case "And": return "&";
+            case "Or": return "|";
+            case "IsEqual": return "==";
+            case "NotEqual": return "!=";
+            case "LessThan": return "<";
+            case "GreaterThan": return ">";
+            case "LessThanOrEqual": return "<=";
+            case "GreaterThanOrEqual": return ">=";
+            case "Add": return "+";
+            case "Substract": return "-";
+            case "Multiply": return "*";
+            case "Divide": return "/";
+            default: return "#unknown_operator#";
+        }
+
     }
 }
