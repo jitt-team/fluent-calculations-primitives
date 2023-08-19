@@ -12,21 +12,15 @@ public class ConditionTests
     [Fact]
     public void greater_than_should_work()
     {
-        var result = Number.Of(10) > Number.Of(1);
-
-        result.Should().BeOfType<Condition>();
-
-        ((bool)result).Should().BeTrue();
+        Condition result = Number.Of(10) > Number.Of(1);
+        result.IsTrue.Should().BeTrue();
     }
 
     [Fact]
     public void less_than_should_work()
     {
-        var result = Number.Of(10) < Number.Of(1);
-
-        result.Should().BeOfType<Condition>();
-
-        ((bool)result).Should().BeFalse();
+        Condition result = Number.Of(10) < Number.Of(1);
+        result.IsTrue.Should().BeFalse();
     }
 
     [Fact]
