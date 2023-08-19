@@ -23,7 +23,7 @@ internal class ExpressionTranslator
             IValue ifFalseValue = GetExpressionValue<IValue>(conditionalExpression.IfFalse);
             Condition condition = GetExpressionValue<Condition>(conditionalExpression.Test);
 
-            var result = new ExpressionNodeConditional3(lambdaExpressionBody)
+            var result = new ExpressionNodeConditional(lambdaExpressionBody)
             {
                 IfTrue = ifTrueValue,
                 IfFalse = ifFalseValue,

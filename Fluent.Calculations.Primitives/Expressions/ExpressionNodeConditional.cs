@@ -1,8 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 
-public class ExpressionNodeConditional3 : ExpressionNode
+public class ExpressionNodeConditional : ExpressionNode
 {
-    internal ExpressionNodeConditional3(string body) : base(body) { }
+    internal ExpressionNodeConditional(string body) : base(body) { }
 
     public Condition Condition { get; set; } = Condition.False();
 
