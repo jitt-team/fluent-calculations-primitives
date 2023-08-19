@@ -4,26 +4,10 @@ namespace Fluent.Calculations.Primitives.Tests.Conditions;
 public class ConditionTests
 {
     [Fact]
-    public void should_be_true_0()
-    {
-        bool result = Condition.True();
-
-        //works only with explicit casting
-        result.Should().Be(true);
-
-        //this one is goint to fail
-        //Condition.True().Should().Be(true);
-    }
+    public void should_be_true() => Condition.True().IsTrue.Should().BeTrue();
 
     [Fact]
-    public void should_be_true() =>
-       //As uses is operator under the hood which we can not override
-       //Condition.False().As<bool>().Should().BeFalse();
-       ((bool)Condition.False()).Should().BeFalse();
-
-    [Fact]
-    public void should_be_false() =>
-        ((bool)Condition.True()).Should().BeTrue();
+    public void should_be_false() => Condition.False().IsTrue.Should().BeFalse();
 
     [Fact]
     public void greater_than_should_work()
