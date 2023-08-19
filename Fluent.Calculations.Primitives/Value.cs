@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Fluent.Calculations.Primitives;
+﻿namespace Fluent.Calculations.Primitives;
 
 public abstract class Value : IValue, IName
 {
@@ -55,15 +53,18 @@ public abstract class Value : IValue, IName
     public override string ToString() => $"{Name}: {PrimitiveValue:0.00}";
 
     public ResultType Return<ResultType, ResultPrimitiveType>(
-    IValue right,
-    Func<IValue, IValue, ResultPrimitiveType> calcFunc,
-    string operatorName)
-    where ResultType : IValue, new()
+            IValue right,
+            Func<IValue, IValue, ResultPrimitiveType> calcFunc,
+            string operatorName) where ResultType : IValue, new()
     {
         ExpressionNode operationNode = ExpressionNodeMath
-            .Create($"{this} {ToLanguageOperator(operatorName)} {right}").WithArguments(this, right);
+            .Create(ComposeBinaryExpressionBody())
+            .WithArguments(this, right);
+
         return (ResultType)new ResultType().ToExpressionResult(CreateValueArgs
             .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+
+        string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }
 
     private string ToLanguageOperator(string operatorName)
@@ -84,6 +85,5 @@ public abstract class Value : IValue, IName
             case "Divide": return "/";
             default: return "#unknown_operator#";
         }
-
     }
 }

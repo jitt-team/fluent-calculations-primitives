@@ -59,11 +59,11 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
         ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
         ExpressionResultValue result = expression.Compile().Invoke();
+
         if (!expressionNode.Arguments.Any())
             expressionNode.Arguments.AddRange(result.Expresion.Arguments);
 
-        IValue value = result.ToExpressionResult(CreateValueArgs
-            .Compose(prefixedName, expressionNode, result.PrimitiveValue));
+        IValue value = result.ToExpressionResult(CreateValueArgs.Compose(prefixedName, expressionNode, result.PrimitiveValue));
 
         valueAmountResults.Add(prefixedName, value);
 
