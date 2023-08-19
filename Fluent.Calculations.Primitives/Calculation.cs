@@ -24,26 +24,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
     TagsList IValue.Tags => Return().Tags;
 
-    public TResult Calculate()
-    {
-        SyncPublicFieldNames();
-        return Return();
-    }
-
-    private void SyncPublicFieldNames()
-    {
-        var publicFields = this.GetType()
-            .GetFields()
-            .Where(fieldInfo => fieldInfo.IsPublic
-            && typeof(IName).IsAssignableFrom(fieldInfo.FieldType))
-            .Select(fieldInfo => new
-            {
-                Value = fieldInfo.GetValue(this) as IName,
-                FieldName = fieldInfo.Name
-            }).ToList();
-
-        publicFields.ForEach(field => field?.Value?.Set(field.FieldName));
-    }
+    public TResult Calculate() => Return();
 
     public abstract TResult Return();
 

@@ -33,15 +33,26 @@ internal class ExpressionTranslator
             return result;
 
         }
-        else if (expression.Body.NodeType == ExpressionType.Add)
+        else if (BinaryExpressionTypes.Contains(expression.Body.NodeType))
         {
             BinaryExpression binaryExpression = (BinaryExpression)expression.Body;
-            return ExpressionNodeMath.Create(""); ;
-
+            GetExpressionValue<IValue>(binaryExpression.Left);
+            GetExpressionValue<IValue>(binaryExpression.Right);
         }
 
         return ExpressionNode.Default;
     }
+
+    ExpressionType[] BinaryExpressionTypes = new[] {
+        ExpressionType.Add,
+        ExpressionType.Subtract,
+        ExpressionType.Multiply,
+        ExpressionType.Divide,
+        ExpressionType.GreaterThan,
+        ExpressionType.LessThan,
+        ExpressionType.GreaterThanOrEqual,
+        ExpressionType.LessThanOrEqual
+    };
 
     private ExpressionResulType GetExpressionValue<ExpressionResulType>(Expression expression) where ExpressionResulType : class, IValue
     {
