@@ -2,9 +2,11 @@
 {
     public class ExpressionNode
     {
+        public override string ToString() => Body;
+
         internal ExpressionNode(string body)
         {
-            Body = Body;
+            Body = body;
         }
 
         internal static ExpressionNode Default => new ExpressionNode("");

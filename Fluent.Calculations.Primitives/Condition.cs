@@ -5,9 +5,14 @@ public class Condition : Value
 {
     public override string ToString() => $"{Name}:{IsTrue}";
 
-    public Condition() : base("False", 0) { }
+    public Condition() : base("False", 0) { 
+        
+    }
 
-    public Condition(string name, decimal primitiveValue) : base(name, primitiveValue) { }
+    public Condition(string expressionName, decimal primitiveValue) : base(expressionName, primitiveValue) {
+
+        Expresion = new ExpressionNodeConstant(Convert.ToBoolean(primitiveValue).ToString());
+    }
 
     public Condition(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :
         base(expressionName, expressionNode, primitiveValue, arguments, tags)
@@ -35,8 +40,9 @@ public class Condition : Value
 
     public static Condition False([CallerMemberName] string expressionName = "") => new Condition(expressionName, 0);
 
-    private Condition ReturnCondition(IValue value, string languageOperator, Func<bool, bool, bool> compareFunc) =>
-        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc((Condition)a, (Condition)b));
+    private Condition ReturnCondition(IValue value, string languageOperator, Func<bool, bool, bool> compareFunc, 
+        [CallerMemberName] string operatorName = "") =>
+        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Condition(args);
 }

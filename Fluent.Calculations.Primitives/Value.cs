@@ -40,7 +40,7 @@ public abstract class Value : IValue, IName
 
     public string Name { get; private set; }
 
-    public ExpressionNode Expresion { get; }
+    public ExpressionNode Expresion { get; protected set; }
 
     public decimal PrimitiveValue { get; private set; }
 
@@ -58,10 +58,11 @@ public abstract class Value : IValue, IName
     IValue right,
     string languageOperator,
     Func<IValue, IValue, ResultPrimitiveType> calcFunc,
-    [CallerMemberName] string operatorName = "")
+    string operatorName)
     where ResultType : IValue, new()
     {
-        ExpressionNode operationNode = ExpressionNodeMath.Create($"{this} {languageOperator} {right}").WithArguments(this, right);
+        ExpressionNode operationNode = ExpressionNodeMath
+            .Create($"{this} {languageOperator} {right}").WithArguments(this, right);
         return (ResultType)new ResultType().ToExpressionResult(CreateValueArgs
             .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
     }

@@ -56,11 +56,11 @@ public class Number : Value
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") => 
         new Number(CreateValueArgs.Compose(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
 
-    private Condition ReturnCondition(IValue value, string languageOperator, Func<decimal, decimal, bool> compareFunc) =>
-        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue));
+    private Condition ReturnCondition(IValue value, string languageOperator, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
+        Return<Condition, bool>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
-    private Number ReturnNumber(IValue value, string languageOperator, Func<decimal, decimal, decimal> compareFunc) =>
-        Return<Number, decimal>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue));
+    private Number ReturnNumber(IValue value, string languageOperator, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
+        Return<Number, decimal>(value, languageOperator, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
 }

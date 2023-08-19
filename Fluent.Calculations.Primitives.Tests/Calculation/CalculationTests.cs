@@ -33,7 +33,7 @@ namespace Fluent.Calculations.Tests.Calculation
 
         Condition FinalDecision => Is(() => FeatureOn && Comparison);
 
-        Number Condtitional => Is(() => FinalDecision ? ConstantOne : ConstantTwo);
+        Number Condtitional => Is(() => FinalDecision ? ConstantOne + ConstantOne : ConstantTwo);
 
         Number Math => Is(() => ConstantOne + Condtitional);
 

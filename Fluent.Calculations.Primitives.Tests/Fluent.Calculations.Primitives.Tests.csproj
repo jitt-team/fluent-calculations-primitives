@@ -24,13 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fluent.Calculations.DotNetGraph\Fluent.Calculations.DotNetGraph.csproj" />
     <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="DotNetGraph">
-      <HintPath>DotNetGraph.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
