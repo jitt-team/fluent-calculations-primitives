@@ -3,15 +3,18 @@ namespace Fluent.Calculations.Primitives;
 
 public class Number : Value
 {
-    public static Number Zero => Number.Of(0, "Zero");
+    public override string ToString() => $"{Name}:{PrimitiveValue:0.00}";
 
-    public static Number From(decimal value, [CallerMemberName] string expressionName = "") => Number.Of(value, expressionName);
+    public Number() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create($"0"), 0)) { }
 
     public Number(CreateValueArgs createValueArgs) : base(createValueArgs)
     {
     }
 
-    public Number() : base("Zero", 0) { }
+    public static Number Zero => new Number();
+
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
+        new Number(CreateValueArgs.Compose(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
@@ -52,9 +55,6 @@ public class Number : Value
     public Number Multiply(Number value) => ReturnNumber(value, (a, b) => a * b);
 
     public Number Divide(Number value) => ReturnNumber(value, (a, b) => a / b);
-
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
-        new Number(CreateValueArgs.Compose(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
 
     private Condition ReturnCondition(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Condition, bool>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);

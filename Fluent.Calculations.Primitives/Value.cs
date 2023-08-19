@@ -2,47 +2,24 @@
 
 public abstract class Value : IValue, IName
 {
-    protected Value(string name, decimal primitiveValue)
-    {
-        Name = name;
-        PrimitiveValue = primitiveValue;
-        IsConstant = true;
-    }
-
-    public Value(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags)
-    {
-        Name = expressionName;
-        Expresion = expressionNode;
-        PrimitiveValue = primitiveValue;
-        Tags = tags;
-        IsConstant = false;
-    }
-
-    protected Value(Value value)
-    {
-        Name = value.Name;
-        Expresion = value.Expresion;
-        PrimitiveValue = value.PrimitiveValue;
-        IsConstant = value.IsConstant;
-        Tags = new TagsList(value.Tags);
-    }
+    private Value() { }
 
     protected Value(CreateValueArgs createValueArgs)
     {
         Name = createValueArgs.Name;
-        Expresion = createValueArgs.Expresion;
         PrimitiveValue = createValueArgs.PrimitiveValue;
         IsConstant = createValueArgs.IsConstant;
+        Expresion = createValueArgs.Expresion;
         Tags = createValueArgs.Tags;
     }
 
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
 
-    public ExpressionNode Expresion { get; protected set; }
+    public ExpressionNode Expresion { get; protected set; } = ExpressionNode.Default;
 
-    public decimal PrimitiveValue { get; private set; }
+    public decimal PrimitiveValue { get; private set; } = 0;
 
-    public bool IsConstant { get; private set; }
+    public bool IsConstant { get; private set; } = true;
 
     public TagsList Tags { get; } = TagsList.Empty;
 

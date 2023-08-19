@@ -57,17 +57,29 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
-        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
         ExpressionResultValue result = expression.Compile().Invoke();
+        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
 
         if (!expressionNode.Arguments.Any())
             expressionNode.Arguments.AddRange(result.Expresion.Arguments);
+
+        foreach (IValue arg in expressionNode.Arguments)
+            if (!valueAmountResults.ContainsKey(arg.Name))
+                valueAmountResults.Add(arg.Name, arg);
 
         IValue value = result.ToExpressionResult(CreateValueArgs.Compose(prefixedName, expressionNode, result.PrimitiveValue));
 
         valueAmountResults.Add(prefixedName, value);
 
         return (ExpressionResultValue)value;
+
+        string EnrichExpressionBody(string expression, IValue value)
+        {
+            string enrichedExpression = expression;
+            foreach (IValue argument in value.Expresion.Arguments)
+                enrichedExpression = enrichedExpression.Replace(argument.Name, argument.ToString());
+            return enrichedExpression;
+        }
     }
 
 

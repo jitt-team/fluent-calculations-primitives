@@ -1,4 +1,5 @@
-﻿using Xunit.Abstractions;
+﻿using System.Linq.Expressions;
+using Xunit.Abstractions;
 
 namespace Fluent.Calculations.Primitives.Tests.Expressions
 {

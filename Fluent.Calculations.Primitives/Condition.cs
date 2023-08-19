@@ -5,23 +5,15 @@ public class Condition : Value
 {
     public override string ToString() => $"{Name}:{IsTrue}";
 
-    public Condition() : base("False", 0)
-    {
-
-    }
-
-    public Condition(string expressionName, decimal primitiveValue) : base(expressionName, primitiveValue)
-    {
-        Expresion = new ExpressionNodeConstant(Convert.ToBoolean(primitiveValue).ToString());
-    }
-
-    public Condition(string expressionName, ExpressionNode expressionNode, decimal primitiveValue, ArgumentsList arguments, TagsList tags) :
-        base(expressionName, expressionNode, primitiveValue, arguments, tags)
-    { }
-
-    public Condition(CreateValueArgs createValueArgs) : base(createValueArgs)
+    public Condition() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create(false.ToString()), 0))
     {
     }
+
+    public Condition(CreateValueArgs createValueArgs) : base(createValueArgs) { }
+
+    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Compose(expressionName, ExpressionNodeConstant.Create(true.ToString()), 1));
+
+    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Compose(expressionName, ExpressionNodeConstant.Create(false.ToString()), 0));
 
     public static bool operator true(Condition condition) => condition.IsTrue;
 
@@ -33,14 +25,7 @@ public class Condition : Value
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    //TODO refactor 1/0 acrobatics
-    public static explicit operator Condition(bool condition) => new Condition("tbd", condition ? 1 : 0);
-
     public bool IsTrue => PrimitiveValue > 0;
-
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(expressionName, 1);
-
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(expressionName, 0);
 
     private Condition And(Condition value) => this.ReturnCondition(value, (a, b) => a & b);
 
