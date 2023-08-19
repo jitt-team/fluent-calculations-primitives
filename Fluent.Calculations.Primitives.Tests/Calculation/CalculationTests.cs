@@ -35,8 +35,8 @@ namespace Fluent.Calculations.Tests.Calculation
 
         Number Condtitional => Is(() => FinalDecision ? ConstantOne + ConstantOne : ConstantTwo);
 
-        Number Math => Is(() => ConstantOne + Condtitional);
+        Number MyMath => Is(() => ConstantOne + Condtitional);
 
-        public override Number Return() => Math;
+        public override Number Return() => MyMath;
     }
 }

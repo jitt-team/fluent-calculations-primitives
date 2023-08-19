@@ -1,13 +1,14 @@
-﻿using System.Linq.Expressions;
+﻿
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives;
+namespace Fluent.Calculations.Primitives.Expressions;
 
 internal class ExpressionTranslator
 {
     public ExpressionNode Translate<ExpressionResultValue>(Expression<Func<ExpressionResultValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
     {
-        return TryTranslate(expression, AdjustLambdaPrefix(lambdaExpressionBody))
-            .WithBody(AdjustLambdaPrefix(lambdaExpressionBody)); // TODO: incorporate into Node
+        return TryTranslate(expression, lambdaExpressionBody)
+            .WithBody(lambdaExpressionBody); // TODO: incorporate into Node
     }
 
     private ExpressionNode TryTranslate<ExpressionResulType>(Expression<Func<ExpressionResulType>> expression, string lambdaExpressionBody) where ExpressionResulType : class, IValue
@@ -22,12 +23,14 @@ internal class ExpressionTranslator
             IValue ifFalseValue = GetExpressionValue<IValue>(conditionalExpression.IfFalse);
             Condition condition = GetExpressionValue<Condition>(conditionalExpression.Test);
 
-            return new ExpressionNodeConditional(lambdaExpressionBody)
+            var result = new ExpressionNodeConditional3(lambdaExpressionBody)
             {
                 IfTrue = ifTrueValue,
                 IfFalse = ifFalseValue,
                 Condition = condition
             };
+
+            return result;
 
         }
         else if (expression.Body.NodeType == ExpressionType.Add)
@@ -57,13 +60,10 @@ internal class ExpressionTranslator
         object? expressionResultObj = DynamicInvoke(memberExpression ?? expression);
         // Don't rename inline calculations
         // TODO : make it cleaner
-        if(!string.IsNullOrWhiteSpace(memberName))
+        if (!string.IsNullOrWhiteSpace(memberName))
             (expressionResultObj as IName)?.Set(memberName);
         return expressionResultObj as ExpressionResulType;
 
         object? DynamicInvoke(Expression body) => Expression.Lambda(body).Compile().DynamicInvoke();
     }
-
-    private string AdjustLambdaPrefix(string body) => body.Replace("() => ", "= ");
-
 }

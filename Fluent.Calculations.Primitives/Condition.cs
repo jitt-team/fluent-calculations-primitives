@@ -1,9 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Fluent.Calculations.Primitives.Expressions;
+using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
 public class Condition : Value
 {
-    public override string ToString() => $"{Name}:{IsTrue}";
+    public override string ToString() => $"{Name}";
 
     public Condition() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create(false.ToString()), 0))
     {

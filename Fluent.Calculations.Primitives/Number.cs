@@ -1,9 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Fluent.Calculations.Primitives.Expressions;
+using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
 public class Number : Value
 {
-    public override string ToString() => $"{Name}:{PrimitiveValue:0.00}";
+    public override string ToString() => $"{Name}";
 
     public Number() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create($"0"), 0)) { }
 

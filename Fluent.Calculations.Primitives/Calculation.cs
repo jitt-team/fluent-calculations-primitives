@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Fluent.Calculations.Primitives.Expressions;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
@@ -13,9 +14,9 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
     public List<string> Tags => new List<string>();
 
-    public decimal PrimitiveValue => Is(() => Calculate(), Expresion.GetType().Name).PrimitiveValue;
+    public decimal PrimitiveValue => Is(() => Calculate(), Expression.GetType().Name).PrimitiveValue;
 
-    public ExpressionNode Expresion => Is(() => Calculate(), Expresion.GetType().Name).Expresion;
+    public ExpressionNode Expression => Is(() => Calculate(), Expression.GetType().Name).Expression;
 
     public string Name { get; set; } = "TODO";
 
@@ -53,15 +54,16 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         [CallerMemberName] string name = "",
         [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
     {
-        string prefixedName = $"ƒ:{name}";
+        string lambdaExpressionBodyAdjusted = AdjustLambdaPrefix(lambdaExpressionBody);
+        string prefixedName = $"{name} = {lambdaExpressionBodyAdjusted}";
         if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
         ExpressionResultValue result = expression.Compile().Invoke();
-        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBody);
+        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBodyAdjusted);
 
         if (!expressionNode.Arguments.Any())
-            expressionNode.Arguments.AddRange(result.Expresion.Arguments);
+            expressionNode.Arguments.AddRange(result.Expression.Arguments);
 
         foreach (IValue arg in expressionNode.Arguments)
             if (!valueAmountResults.ContainsKey(arg.Name))
@@ -73,13 +75,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
 
         return (ExpressionResultValue)value;
 
-        string EnrichExpressionBody(string expression, IValue value)
-        {
-            string enrichedExpression = expression;
-            foreach (IValue argument in value.Expresion.Arguments)
-                enrichedExpression = enrichedExpression.Replace(argument.Name, argument.ToString());
-            return enrichedExpression;
-        }
+        string AdjustLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
 

@@ -1,13 +1,12 @@
-﻿namespace Fluent.Calculations.Primitives
+﻿namespace Fluent.Calculations.Primitives.Expressions;
+
+public class ExpressionNodeConstant : ExpressionNode
 {
-    public class ExpressionNodeConstant : ExpressionNode
+    internal ExpressionNodeConstant(string body) : base(body)
     {
-        internal ExpressionNodeConstant(string body) : base(body)
-        {
-
-        }
-
-        internal static ExpressionNode Create(string operationBody) => new ExpressionNodeConstant(operationBody);
 
     }
+
+    internal static ExpressionNode Create(string operationBody) => new ExpressionNodeConstant(operationBody);
+
 }

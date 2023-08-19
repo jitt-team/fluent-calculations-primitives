@@ -1,6 +1,4 @@
-﻿using Fluent.Calculations.Primitives;
-
-namespace Fluent.Calculation.Graph
+﻿namespace Fluent.Calculations.Primitives
 {
     public class CalculationGraph
     {

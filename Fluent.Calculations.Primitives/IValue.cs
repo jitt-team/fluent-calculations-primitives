@@ -1,4 +1,6 @@
-﻿namespace Fluent.Calculations.Primitives;
+﻿using Fluent.Calculations.Primitives.Expressions;
+
+namespace Fluent.Calculations.Primitives;
 
 public interface IValue
 {
@@ -8,7 +10,7 @@ public interface IValue
 
     bool IsConstant { get; }
 
-    ExpressionNode Expresion { get; }
+    ExpressionNode Expression { get; }
 
     TagsList Tags { get; }
 

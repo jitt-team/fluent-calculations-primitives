@@ -21,12 +21,12 @@ namespace Fluent.Calculations.DotNetGraph
                  .WithShape(DotNodeShape.Rectangle)
                  .WithLabel(ToHtmlNode(
                          $"{value.Name}",
-                         System.Web.HttpUtility.HtmlEncode($"{value.Expresion.Body}"),
+                         System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
                          $"{value.ToString()}"),
                          isHtml: true);
 
             graph.Add(parent);
-            foreach (IValue item in value.Expresion.Arguments)
+            foreach (IValue item in value.Expression.Arguments)
             {
                 var child = ToNode(item, graph);
                 var edge = new DotEdge().From(child).To(parent);

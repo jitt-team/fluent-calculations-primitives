@@ -1,7 +1,10 @@
-﻿namespace Fluent.Calculations.Primitives;
+﻿using Fluent.Calculations.Primitives.Expressions;
+
+namespace Fluent.Calculations.Primitives;
 
 public abstract class Value : IValue, IName
 {
+    public override string ToString() => $"{Name}";
     private Value() { }
 
     protected Value(CreateValueArgs createValueArgs)
@@ -9,13 +12,13 @@ public abstract class Value : IValue, IName
         Name = createValueArgs.Name;
         PrimitiveValue = createValueArgs.PrimitiveValue;
         IsConstant = createValueArgs.IsConstant;
-        Expresion = createValueArgs.Expresion;
+        Expression = createValueArgs.Expresion;
         Tags = createValueArgs.Tags;
     }
 
     public string Name { get; private set; } = string.Empty;
 
-    public ExpressionNode Expresion { get; protected set; } = ExpressionNode.Default;
+    public ExpressionNode Expression { get; protected set; } = ExpressionNode.Default;
 
     public decimal PrimitiveValue { get; private set; } = 0;
 
@@ -26,8 +29,6 @@ public abstract class Value : IValue, IName
     public abstract IValue ToExpressionResult(CreateValueArgs args);
 
     void IName.Set(string name) => this.Name = name;
-
-    public override string ToString() => $"{Name}: {PrimitiveValue:0.00}";
 
     public ResultType Return<ResultType, ResultPrimitiveType>(
             IValue right,
