@@ -17,12 +17,12 @@ namespace Fluent.Calculations.DotNetGraph
         private DotNode ToNode(IValue value, DotGraph graph)
         {
             var parent = new DotNode()
-                 .WithIdentifier(value.Name)
+                 .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
                  .WithShape(DotNodeShape.Rectangle)
                  .WithLabel(ToHtmlNode(
-                         $"{value.Name}",
+                         System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
                          System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
-                         $"{value.ToString()}"),
+                         System.Web.HttpUtility.HtmlEncode($"{value.PrimitiveValue:0.00}")),
                          isHtml: true);
 
             graph.Add(parent);

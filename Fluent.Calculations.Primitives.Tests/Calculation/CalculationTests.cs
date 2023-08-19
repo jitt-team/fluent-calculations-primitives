@@ -1,4 +1,5 @@
-﻿using Fluent.Calculations.Primitives;
+﻿using Fluent.Calculations.DotNetGraph;
+using Fluent.Calculations.Primitives;
 using FluentAssertions;
 
 namespace Fluent.Calculations.Tests.Calculation
@@ -6,7 +7,7 @@ namespace Fluent.Calculations.Tests.Calculation
     public class CalculationTests
     {
         [Fact]
-        public void Test()
+        public async Task Test()
         {
             var calculation = new FooBarCalculation
             {
@@ -15,6 +16,8 @@ namespace Fluent.Calculations.Tests.Calculation
             };
 
             Number result = calculation.Calculate();
+
+            await new CalculationGraphRenderer().Render(result);
 
             result.Should().NotBeNull();
         }

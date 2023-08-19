@@ -37,7 +37,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
     {
         string lambdaExpressionBodyAdjusted = AdjustLambdaPrefix(lambdaExpressionBody);
         string prefixedName = $"{name} = {lambdaExpressionBodyAdjusted}";
-        if (valueAmountResults.TryGetValue(prefixedName, out IValue cachedValue))
+        if (valueAmountResults.TryGetValue(name, out IValue cachedValue))
             return (ExpressionResultValue)cachedValue;
 
         ExpressionResultValue result = expression.Compile().Invoke();
@@ -50,9 +50,9 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
             if (!valueAmountResults.ContainsKey(arg.Name))
                 valueAmountResults.Add(arg.Name, arg);
 
-        IValue value = result.ToExpressionResult(CreateValueArgs.Compose(prefixedName, expressionNode, result.PrimitiveValue));
+        IValue value = result.ToExpressionResult(CreateValueArgs.Compose(name, expressionNode, result.PrimitiveValue));
 
-        valueAmountResults.Add(prefixedName, value);
+        valueAmountResults.Add(name, value);
 
         return (ExpressionResultValue)value;
 
