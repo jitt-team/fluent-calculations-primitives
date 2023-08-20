@@ -9,7 +9,7 @@ namespace Fluent.Calculations.Tests.Calculation
         [Fact]
         public async Task Test()
         {
-            var calculation = new FooBarCalculation2
+            var calculation = new MyCalculation
             {
                 ConstantOne = Number.Of(2),
                 ConstantTwo = Number.Of(3)
@@ -23,17 +23,17 @@ namespace Fluent.Calculations.Tests.Calculation
         }
     }
 
-    internal class FooBarCalculation2 : Calculation<Number>
+    internal class MyCalculation : Calculation<Number>
     {
         public Number
-            ConstantOne = Number.Zero,
-            ConstantTwo = Number.Zero;
+            ConstantOne = Number.Of(2),
+            ConstantTwo = Number.Of(3);
 
         public Condition
-            FeatureOn = Condition.True();
+            MyCondition = Condition.True();
 
-        Number Final => Is(() => ConstantOne + ConstantTwo);
+        Number MyResult => Is(() => MyCondition ? ConstantOne : ConstantTwo);
 
-        public override Number Return() => Final;
+        public override Number Return() => MyResult;
     }
 }
