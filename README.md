@@ -36,6 +36,15 @@ Fluent Calculations is a set of libraries for building traceable calculations an
 ```
 
 
+## Roadmap & TODOs
+- Explore new static member interfaces for operator overloads
+  - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-11.0/static-abstracts-in-interfaces#interfaces-as-type-arguments
+ 
+## License
+
+[GNU General Public License v3.0](https://github.com/jitt-team/fluent-calculations-primitives/blob/2ada80ea405e5ce6198ef1a8973dc23a83bc20c1/LICENSE)
+
+
 ## Authors
 
 - [@edgars-pivovarenoks](https://www.github.com/edgars-pivovarenoks)
