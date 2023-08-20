@@ -2,6 +2,11 @@
 ![Logo](https://github.com/jitt-team/jitt-me/blob/main/assets/fluent.calculations.git.top.banner.med.png?raw=true)
 
 
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+
+
+
+
 # Fluent Calculations
 
 Fluent Calculations is a set of libraries for building traceable calculations and logic.
@@ -17,6 +22,14 @@ Fluent Calculations is a set of libraries for building traceable calculations an
 
 
 
+## Get Started
+
+Fluent.Calculations can be installed using the Nuget package manager or the `dotnet` CLI.
+
+```
+dotnet add package Fluent.Calculations.Primitives
+```
+    
 ## Usage/Examples
 
 ```c#
