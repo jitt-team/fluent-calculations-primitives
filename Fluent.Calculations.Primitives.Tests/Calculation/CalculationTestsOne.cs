@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace Fluent.Calculations.Tests.Calculation
 {
-    public class CalculationTests
+    public class CalculationTestsOne
     {
         [Fact]
         public async Task Test()
