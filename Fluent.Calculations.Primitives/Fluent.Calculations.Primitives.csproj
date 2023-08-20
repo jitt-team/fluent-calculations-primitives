@@ -6,6 +6,21 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Fluent Calculations Primitives</Title>
+    <Authors>Fluent Calculaitons Team</Authors>
+    <Company>JITT</Company>
+    <Product>Fluent Calculations (Primitives)</Product>
+    <Description>Fluent Calculations is a set of libraries for building traceable calculations and logic.</Description>
+    <Copyright>JITT</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/jitt-team/fluent-calculations-primitives</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.github\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
