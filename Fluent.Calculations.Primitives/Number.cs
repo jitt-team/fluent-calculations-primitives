@@ -1,5 +1,4 @@
 ﻿using Fluent.Calculations.Primitives.Expressions;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
