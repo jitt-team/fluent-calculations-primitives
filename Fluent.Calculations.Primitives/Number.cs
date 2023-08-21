@@ -60,6 +60,7 @@ public class Number : Value
     private Condition ReturnCondition(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Condition, bool>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
+    // TODO: Can we leverage this as a Generic Math aka to creare reusable component to compose IValue results but letting the ACTUAL logic open for inheriting classes?
     private Number ReturnNumber(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
