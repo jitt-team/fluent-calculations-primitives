@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "master", "initial-poc", "feature/*" ]
+    branches: [ "main", "feature/*" ]
   pull_request:
-    branches: [  "master", "initial-poc", "feature/*"  ]
+    branches: [  "main", "feature/*"  ]
 
 jobs:
   build:
