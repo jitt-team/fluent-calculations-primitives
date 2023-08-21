@@ -31,6 +31,14 @@ jobs:
       run: dotnet test --no-build --configuration Release --verbosity normal
     - name: Pack
       run: dotnet pack  --no-build --configuration Release --output ${{ env.NuGetDirectory }}
+    
+    # Publish the NuGet package as an artifact, so they can be used in the following jobs
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
       
   publish_nuget:
     # Publish only when creating a GitHub Release
@@ -43,7 +51,7 @@ jobs:
       # Download the NuGet package created in the previous job
       - uses: actions/download-artifact@v3
         with:
-          name: build
+          name: nuget
           path: ${{ env.NuGetDirectory }}
 
       # Install the .NET SDK indicated in the global.json file
