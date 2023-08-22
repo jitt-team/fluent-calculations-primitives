@@ -32,9 +32,9 @@ public class Condition : Value,
 
     public static Condition operator |(Condition left, Condition right) => left.Or(right);
 
-    public static Condition operator ==(Condition? left, Condition? right) => left.IsEqualToRight(right);
+    public static Condition operator ==(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left)).IsEqualToRight(right);
 
-    public static Condition operator !=(Condition? left, Condition? right) => left.NotEqualToRight(right);
+    public static Condition operator !=(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left));
 
     public static Condition operator ^(Condition left, Condition right) => left.ExlusiveOr(right);
 
@@ -44,9 +44,9 @@ public class Condition : Value,
 
     private Condition ExlusiveOr(Condition value) => ReturnCondition(value, (a, b) => a ^ b);
 
-    private Condition IsEqualToRight(Condition? value) => ReturnCondition(value, (a, b) => a == b); // TODO: Handle null
+    private Condition IsEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a == b); 
 
-    private Condition NotEqualToRight(Condition? value) => ReturnCondition(value, (a, b) => a != b);  // TODO: Handle null
+    private Condition NotEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a != b);  
 
     private Condition And(Condition value) => ReturnCondition(value, (a, b) => a & b);
 
@@ -61,4 +61,6 @@ public class Condition : Value,
     public override bool Equals(object? obj) => Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    protected static Condition EnforceNotNull(Condition? condition, string argumentName) => condition ?? throw new ArgumentNullException(nameof(condition));
 }
