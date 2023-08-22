@@ -18,6 +18,7 @@
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
     <PackageProjectUrl>https://www.nuget.org/packages/Fluent.Calculations.Primitives</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

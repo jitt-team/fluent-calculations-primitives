@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [  "main", "feature/*"  ]
 
+env:
+  NuGetDirectory: ${{github.workspace}}/nuget
+
 jobs:
   build:
 
@@ -27,6 +30,44 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --configuration Release --verbosity normal
+    - name: Pack
+      run: dotnet pack  --no-build --configuration Release --output ${{ env.NuGetDirectory }}
+    
+    # Publish the NuGet package as an artifact, so they can be used in the following jobs
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+      
+  publish_nuget:
+    # Publish only when creating a GitHub Release
+    # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+    # You can update this logic if you want to manage releases differently
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+      # Download the NuGet package created in the previous job
+      - uses: actions/download-artifact@v3
+        with:
+          name: nuget
+          path: ${{ env.NuGetDirectory }}
+
+      # Install the .NET SDK indicated in the global.json file
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+
+      # Publish all NuGet packages to NuGet.org
+      # Use --skip-duplicate to prevent errors if a package with the same version already exists.
+      # If you retry a failed workflow, already published packages will be skipped without error.
+      - name: Publish NuGet package
+        shell: pwsh
+        run: |
+          foreach($file in Get-ChildItem -Path ${{ env.NuGetDirectory }} -Recurse -Include *.nupkg) {
+              dotnet nuget push $file --api-key "${{ secrets.fluent_calculations_primitives_pat }}" --source https://api.nuget.org/v3/index.json --skip-duplicate              
+          }
