@@ -5,13 +5,13 @@ namespace Fluent.Calculations.Primitives.Expressions;
 
 internal class ExpressionTranslator
 {
-    public ExpressionNode Translate<ExpressionResultValue>(Expression<Func<ExpressionResultValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
+    public ExpressionNode Translate<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where TExpressionResulValue : class, IValue
     {
         return TryTranslate(expression, lambdaExpressionBody)
             .WithBody(lambdaExpressionBody); // TODO: incorporate into Node
     }
 
-    private ExpressionNode TryTranslate<ExpressionResulType>(Expression<Func<ExpressionResulType>> expression, string lambdaExpressionBody) where ExpressionResulType : class, IValue
+    private ExpressionNode TryTranslate<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression, string lambdaExpressionBody) where TExpressionResulValue : class, IValue
     {
         // TODO : Transalte various expressions to easy to read structure
         // TODO : Extend support of more syntaxes here
@@ -66,15 +66,18 @@ internal class ExpressionTranslator
         else
             targetExpression = expression;
 
-        MemberExpression memberExpression = targetExpression as MemberExpression;
-        var memberName = memberExpression?.Member?.Name;
-        object? expressionResultObj = DynamicInvoke(memberExpression ?? expression);
+        MemberExpression? memberExpression = targetExpression as MemberExpression;
+        string? memberName = memberExpression?.Member?.Name;
+        object expressionResultObj = DynamicInvoke(memberExpression ?? expression);
         // Don't rename inline calculations
         // TODO : make it cleaner
         if (!string.IsNullOrWhiteSpace(memberName))
-            (expressionResultObj as IName)?.Set(memberName);
-        return expressionResultObj as ExpressionResulType;
+            ((IName)expressionResultObj).Set(memberName);
 
-        object? DynamicInvoke(Expression body) => Expression.Lambda(body).Compile().DynamicInvoke();
+        return (ExpressionResulType)expressionResultObj;
+
+        object DynamicInvoke(Expression body) => EnsureNotNull(Expression.Lambda(body).Compile().DynamicInvoke(), body);
+         
+        object EnsureNotNull(object? obj, Expression body) => obj ?? throw new InvalidOperationException(@$"Expression ""{body}"" resulted in Null");
     }
 }

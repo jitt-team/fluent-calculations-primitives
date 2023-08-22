@@ -6,9 +6,9 @@ public class ExpressionNodeConditional : ExpressionNode
 
     public Condition Condition { get; set; } = Condition.False();
 
-    public IValue IfTrue { get; set; }
+    public IValue IfTrue { get; set; } = Condition.False();
 
-    public IValue IfFalse { get; set; }
+    public IValue IfFalse { get; set; } = Condition.False();
 
     public override ArgumentsList Arguments => ArgumentsList.CreateFrom(new[] { Condition, IfTrue, IfFalse });
 }
