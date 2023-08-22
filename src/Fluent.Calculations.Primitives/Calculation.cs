@@ -37,7 +37,7 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
     {
         string lambdaExpressionBodyAdjusted = AdjustLambdaPrefix(lambdaExpressionBody);
         string prefixedName = $"{name} = {lambdaExpressionBodyAdjusted}";
-        if (valueAmountResults.TryGetValue(name, out IValue cachedValue))
+        if (valueAmountResults.TryGetValue(name, out IValue? cachedValue))
             return (ExpressionResultValue)cachedValue;
 
         ExpressionResultValue result = expression.Compile().Invoke();

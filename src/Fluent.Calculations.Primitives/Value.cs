@@ -5,6 +5,7 @@ namespace Fluent.Calculations.Primitives;
 public abstract class Value : IValue, IName
 {
     public override string ToString() => $"{Name}";
+
     private Value() { }
 
     protected Value(CreateValueArgs createValueArgs)
@@ -44,6 +45,12 @@ public abstract class Value : IValue, IName
 
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }
+
+    public bool Eqauls(IValue? value) => value == null ? false : PrimitiveValue.Equals(value.PrimitiveValue);
+
+    public override bool Equals(object? obj) => Equals(obj as IValue);
+
+    public override int GetHashCode() => PrimitiveValue.GetHashCode();
 
     private string ToLanguageOperator(string operatorName)
     {
