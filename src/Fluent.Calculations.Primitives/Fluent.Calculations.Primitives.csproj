@@ -8,16 +8,28 @@
     <Title>Fluent Calculations Primitives</Title>
     <Authors>Fluent Calculaitons Team</Authors>
     <Company>JITT</Company>
-    <Product>Fluent Calculations (Primitives)</Product>
-    <Description>Fluent Calculations is a set of libraries for building traceable calculations and logic.</Description>
+    <Product>Fluent Calculations Primitives</Product>
+    <Description>Fluent Calculations is a set of libraries for building traceable calculations and logic. Primitives library provides foundation for future domain specific implementations.</Description>
     <Copyright>JITT</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/jitt-team/fluent-calculations-primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <ApplicationIcon>fluent-calculations-icon.ico</ApplicationIcon>
+    <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
+    <PackageProjectUrl>https://www.nuget.org/packages/Fluent.Calculations.Primitives</PackageProjectUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="fluent-calculations-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\.github\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\assets\fluent-calculations-logo-128x128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
