@@ -1,11 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>0.0.1</Version>
+    <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives</PackageProjectUrl>
+    <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/jitt-team/fluent-calculations-primitives</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>JITT</Copyright>
+    <Authors>Fluent Calculaitons Team</Authors>
+    <Company>JITT</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.github\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\assets\fluent-calculations-logo-128x128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />

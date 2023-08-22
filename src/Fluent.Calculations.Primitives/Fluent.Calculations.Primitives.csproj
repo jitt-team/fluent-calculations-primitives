@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -16,7 +16,7 @@
     <RepositoryType>git</RepositoryType>
     <ApplicationIcon>fluent-calculations-icon.ico</ApplicationIcon>
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
-    <PackageProjectUrl>https://www.nuget.org/packages/Fluent.Calculations.Primitives</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives/wiki</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Version>0.0.1</Version>
   </PropertyGroup>
