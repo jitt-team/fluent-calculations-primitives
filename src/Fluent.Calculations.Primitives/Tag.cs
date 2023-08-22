@@ -2,6 +2,6 @@
 {
     public class Tag
     {
-        public string Name { get; }
+        public string Name { get; } = "Undefined";
     }
 }

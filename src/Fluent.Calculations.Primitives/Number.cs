@@ -65,4 +65,8 @@ public class Number : Value
         Return<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
+
+    public override bool Equals(object? obj) => Equals(obj as IValue);
+
+    public override int GetHashCode() => base.GetHashCode();
 }
