@@ -13,6 +13,7 @@
     <Copyright>JITT</Copyright>
     <Authors>Fluent Calculations Team</Authors>
     <Company>JITT</Company>
+    <Description>A bridge between Fluent.Calculations.Primitives and DotNetGraph</Description>
   </PropertyGroup>
 
   <ItemGroup>
