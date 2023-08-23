@@ -18,7 +18,7 @@
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
     <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives/wiki</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.0.4-alpha</Version>
+    <Version>1.0.6-alpha</Version>
   </PropertyGroup>
 
   <ItemGroup>
