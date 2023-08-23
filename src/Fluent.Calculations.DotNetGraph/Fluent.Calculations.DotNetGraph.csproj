@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.0.3-alpha</Version>
+    <Version>0.0.5-alpha</Version>
     <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives</PackageProjectUrl>
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
