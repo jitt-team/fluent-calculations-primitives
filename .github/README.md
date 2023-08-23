@@ -1,5 +1,5 @@
 
-![Logo](https://github.com/jitt-team/jitt-me/blob/main/assets/fluent.calculations.git.top.banner.med.png?raw=true)
+![Logo](https://raw.githubusercontent.com/jitt-team/jitt-me/main/assets/fluent.calculations.git.top.banner.med.png)
 
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
