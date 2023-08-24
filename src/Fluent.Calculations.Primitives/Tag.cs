@@ -2,6 +2,8 @@
 {
     public class Tag
     {
-        public string Name { get; } = "Undefined";
+        private Tag() { }
+        public static Tag Create(string name) => new Tag { Name = name };
+        public string Name { get; private set; } = "Undefined";
     }
 }

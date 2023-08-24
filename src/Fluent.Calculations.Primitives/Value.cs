@@ -8,6 +8,15 @@ public abstract class Value : IValue, IName
 
     private Value() { }
 
+    public Value(Value value)
+    {
+        Name = value.Name;
+        Expression = value.Expression;
+        PrimitiveValue = value.PrimitiveValue;
+        IsConstant = value.IsConstant;
+        Tags = value.Tags;
+    }
+
     protected Value(CreateValueArgs createValueArgs)
     {
         Name = createValueArgs.Name;

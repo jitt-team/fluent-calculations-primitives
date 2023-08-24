@@ -8,6 +8,10 @@ public class Number : Value
 
     public Number() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create($"0"), 0)) { }
 
+    public Number(Number number) : base(number)
+    {     
+    }
+
     public Number(CreateValueArgs createValueArgs) : base(createValueArgs)
     {
     }
