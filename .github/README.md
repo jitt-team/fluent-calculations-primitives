@@ -1,6 +1,12 @@
 
 ![Logo](https://raw.githubusercontent.com/jitt-team/jitt-me/main/assets/fluent.calculations.git.top.banner.med.png)
 
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=jitt-team_fluent-calculations-primitives)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=jitt-team_fluent-calculations-primitives)](https://sonarcloud.io/summary/new_code?id=jitt-team_fluent-calculations-primitives)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jitt-team_fluent-calculations-primitives&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jitt-team_fluent-calculations-primitives)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jitt-team_fluent-calculations-primitives&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jitt-team_fluent-calculations-primitives)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
