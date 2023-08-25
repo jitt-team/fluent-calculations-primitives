@@ -2,6 +2,10 @@
 {
     public class Tag
     {
-        public string Name { get; } = "Undefined";
+        public required string Name { get; init; }
+
+        private Tag() { }
+
+        public static Tag Create(string name) => new() { Name = name };
     }
 }
