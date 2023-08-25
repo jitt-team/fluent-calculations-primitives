@@ -6,7 +6,22 @@ public abstract class Value : IValue, IName
 {
     public override string ToString() => $"{Name}";
 
-    private Value() { }
+    public string Name { get; private set; }
+
+    public ExpressionNode Expression { get; init; } 
+
+    public decimal PrimitiveValue { get; init; }
+
+    public bool IsConstant { get; init; }
+
+    public TagsList Tags { get; init; }
+
+    private Value()
+    {
+        Name = "Undefined";
+        Expression = ExpressionNode.Default;
+        Tags = TagsList.Empty;
+    }
 
     public Value(Value value)
     {
@@ -26,19 +41,9 @@ public abstract class Value : IValue, IName
         Tags = createValueArgs.Tags;
     }
 
-    public string Name { get; private set; } = string.Empty;
-
-    public ExpressionNode Expression { get; protected set; } = ExpressionNode.Default;
-
-    public decimal PrimitiveValue { get; private set; } = 0;
-
-    public bool IsConstant { get; private set; } = true;
-
-    public TagsList Tags { get; } = TagsList.Empty;
-
     public abstract IValue ToExpressionResult(CreateValueArgs args);
 
-    void IName.Set(string name) => this.Name = name;
+    void IName.Set(string name) => Name = name;
 
     public ResultType Return<ResultType, ResultPrimitiveType>(
             IValue right,
