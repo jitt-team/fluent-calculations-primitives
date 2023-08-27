@@ -6,10 +6,10 @@ namespace Fluent.Calculations.Primitives.Expressions;
 
 internal class ExpressionTranslator
 {
-    public ExpressionNode Translate<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression, [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where TExpressionResulValue : class, IValue
+    public ExpressionNode Translate<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression, [CallerArgumentExpression("expression")] string expressionBody = "") where TExpressionResulValue : class, IValue
     {
-        return TryTranslate(expression, lambdaExpressionBody)
-            .WithBody(lambdaExpressionBody); // TODO: incorporate into Node
+        return TryTranslate(expression, expressionBody)
+            .WithBody(expressionBody); // TODO: incorporate into Node
     }
 
     private ExpressionNode TryTranslate<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression, string lambdaExpressionBody) where TExpressionResulValue : class, IValue
