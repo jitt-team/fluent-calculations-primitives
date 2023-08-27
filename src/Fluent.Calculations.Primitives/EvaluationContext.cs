@@ -8,7 +8,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private const string Undefined = "Undefined";
 
     private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
-    private readonly EvaluationCache evaluationCache = new EvaluationCache();
+    private readonly ExpressionResultCache resultCache = new ExpressionResultCache();
 
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
@@ -29,22 +29,22 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
 
         if (!lambdaExpressionBody.Equals(Undefined) &&
-            evaluationCache.ContainsKey(lambdaExpressionBodyAdjusted))
-            return (ExpressionResultValue)evaluationCache.GetByKey(lambdaExpressionBodyAdjusted);
+            resultCache.ContainsKey(lambdaExpressionBodyAdjusted))
+            return (ExpressionResultValue)resultCache.GetByKey(lambdaExpressionBodyAdjusted);
 
         ExpressionResultValue value = EvaluateInternal(expression, name, lambdaExpressionBodyAdjusted);
 
-        evaluationCache.Add(lambdaExpressionBodyAdjusted, value);
+        resultCache.Add(lambdaExpressionBodyAdjusted, value);
 
         return value;
     }
 
     public ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
-       Expression<Func<ExpressionResultValue>> expression, string name, string lambdaExpressionBodyAdjusted)
+       Expression<Func<ExpressionResultValue>> expression, string name, string expressionBody)
            where ExpressionResultValue : class, IValue, new()
     {
         ExpressionResultValue plainResult = expression.Compile().Invoke();
-        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBodyAdjusted);
+        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, expressionBody);
 
         if (!expressionNode.Arguments.Any())
             expressionNode.Arguments.AddRange(plainResult.Expression.Arguments);

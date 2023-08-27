@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives
 {
-    internal class EvaluationCache
+    internal class ExpressionResultCache
     {
         private readonly Dictionary<string, IValue> evalueatedExpressionResults = new Dictionary<string, IValue>();
 
