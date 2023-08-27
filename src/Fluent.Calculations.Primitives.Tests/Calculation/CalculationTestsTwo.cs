@@ -17,7 +17,7 @@ namespace Fluent.Calculations.Tests.Calculation
 
             Number result = calculation.Calculate();
 
-            await new CalculationGraphRenderer().Render(result);
+            await new CalculationGraphRenderer("graph2.dot").Render(result);
 
             result.Should().NotBeNull();
         }

@@ -7,6 +7,13 @@ namespace Fluent.Calculations.DotNetGraph
 {
     public class CalculationGraphRenderer
     {
+        private readonly string graphFileName;
+
+        public CalculationGraphRenderer(string graphFileName)
+        {
+            this.graphFileName = graphFileName;
+        }
+
         public async Task Render(IValue value)
         {
             DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
@@ -56,7 +63,7 @@ namespace Fluent.Calculations.DotNetGraph
             var result = writer.GetStringBuilder().ToString();
 
             // Save it to a file
-            File.WriteAllText("graph.dot", result);
+            File.WriteAllText(graphFileName, result);
         }
     }
 }
