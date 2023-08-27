@@ -39,7 +39,7 @@ dotnet add package Fluent.Calculations.Primitives
 ## Usage/Examples
 
 ```c#
-    internal class MyCalculation : Calculation<Number>
+    internal class MyCalculation : EvaluationContext<Number>
     {
         public Number
             ConstantOne = Number.Of(2),
@@ -48,7 +48,7 @@ dotnet add package Fluent.Calculations.Primitives
         public Condition
             MyCondition = Condition.True();
 
-        Number MyResult => Is(() => MyCondition ? ConstantOne : ConstantTwo);
+        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
 
         public override Number Return() => MyResult;
     }
