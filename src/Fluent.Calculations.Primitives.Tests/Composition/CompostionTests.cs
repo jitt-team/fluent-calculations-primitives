@@ -43,7 +43,7 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
 
         private Money MoneyCalcMethod()
         {
-            Scope<Money> Calculation = new Scope<Money>();
+            EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
 
             Money
                 MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
@@ -54,7 +54,7 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
 
         private Money FunctionToScopeImpicit()
         {
-            Scope<Money> Calculation = new Scope<Money>();
+            EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
 
             Money
                 MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
@@ -65,8 +65,8 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
 
         private Money MoneyCalcMethodMixedScopes()
         {
-            Scope<Money> Calculation1 = new Scope<Money>();
-            Scope<Money> Calculation2 = new Scope<Money>();
+            EvaluationContext<Money> Calculation1 = new EvaluationContext<Money>();
+            EvaluationContext<Money> Calculation2 = new EvaluationContext<Money>();
 
             Money
                 MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
@@ -82,7 +82,7 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
 
         private Money MoneyCalcFunction()
         {
-            Scope<Money> Calculation = new Scope<Money>(calculation =>
+            EvaluationContext<Money> Calculation = new EvaluationContext<Money>(calculation =>
             {
                 Money
                      MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
@@ -97,7 +97,7 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
 
     public class MoneyCalc
     {
-        private Scope<Money> Calculation = new Scope<Money>();
+        private EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
 
         Money
             MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
@@ -106,7 +106,7 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
         public Money GetResult() => Calculation.Evaluate(() => MoneyOne + MoneyTwo);
     }
 
-    public class MoneyCalcInherited : Scope<Money>
+    public class MoneyCalcInherited : EvaluationContext<Money>
     {
         Money
             MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,

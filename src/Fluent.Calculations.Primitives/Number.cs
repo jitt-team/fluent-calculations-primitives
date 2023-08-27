@@ -68,7 +68,7 @@ public class Number : Value
     private Number ReturnNumber(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
-    public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
+    public override IValue Compose(CreateValueArgs args) => new Number(args);
 
     public override IValue Default => Zero;
 

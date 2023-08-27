@@ -23,7 +23,7 @@ namespace Fluent.Calculations.Tests.Calculation
         }
     }
 
-    internal class MyCalculation : Scope<Number>
+    internal class MyCalculation : EvaluationContext<Number>
     {
         public Number
             ConstantOne = Number.Of(2),

@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives.Expressions;
@@ -56,6 +57,12 @@ internal class ExpressionTranslator
 
     private ExpressionResulType GetExpressionValue<ExpressionResulType>(Expression expression) where ExpressionResulType : class, IValue
     {
+        // TODO : Resolve expressions until hit "MemberAccess" type
+        // TODO : Resolve/Set name only in "MemberAccess" expression bodies
+        // TODO : Cache resolved member names
+        // TODO : Don't try to DynamicInvoke for known/cached members
+        // TODO : Ensure DynamicInvoke doesn't happen on full expressions as it will unnecessary slow thing down
+        // TODO : Measure performance penalty compared to plain operations
         Expression targetExpression;
 
         if (expression.NodeType == ExpressionType.Convert)
@@ -69,6 +76,7 @@ internal class ExpressionTranslator
         MemberExpression? memberExpression = targetExpression as MemberExpression;
         string? memberName = memberExpression?.Member?.Name;
         object expressionResultObj = DynamicInvoke(memberExpression ?? expression);
+        
         // Don't rename inline calculations
         // TODO : make it cleaner
         if (!string.IsNullOrWhiteSpace(memberName))
@@ -76,8 +84,12 @@ internal class ExpressionTranslator
 
         return (ExpressionResulType)expressionResultObj;
 
-        object DynamicInvoke(Expression body) => EnsureNotNull(Expression.Lambda(body).Compile().DynamicInvoke(), body);
-         
+        object DynamicInvoke(Expression body)
+        {
+            Debug.WriteLine(body.ToString());
+            return EnsureNotNull(Expression.Lambda(body).Compile().DynamicInvoke(), body);
+        }
+
         object EnsureNotNull(object? obj, Expression body) => obj ?? throw new InvalidOperationException(@$"Expression ""{body}"" resulted in Null");
     }
 }

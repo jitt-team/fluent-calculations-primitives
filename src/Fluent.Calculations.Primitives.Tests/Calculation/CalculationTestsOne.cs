@@ -23,7 +23,7 @@ namespace Fluent.Calculations.Tests.Calculation
         }
     }
 
-    internal class FooBarCalculation : Scope<Number>
+    internal class FooBarCalculation : EvaluationContext<Number>
     {
         public Number
             ConstantOne = Number.Zero,

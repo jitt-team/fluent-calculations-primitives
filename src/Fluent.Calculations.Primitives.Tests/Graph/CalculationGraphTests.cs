@@ -19,7 +19,7 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
             await new CalculationGraphRenderer().Render(result);
         }
 
-        internal class FooBarCalculation : Scope<Number>
+        internal class FooBarCalculation : EvaluationContext<Number>
         {
             public Number
                 ChildDeduction = Number.Zero,
