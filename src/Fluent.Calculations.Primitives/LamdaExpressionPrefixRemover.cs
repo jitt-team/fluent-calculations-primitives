@@ -1,9 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives;
 
-public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
+internal static class LamdaExpressionPrefixRemover
 {
-    internal class LamdaExpressionPrefixRemover
-    {
-        public static string RemovePrefix(string body) => body.Replace("() => ", "");
-    }
+    public static string RemovePrefix(string body) => body.Replace("() => ", "");
 }
