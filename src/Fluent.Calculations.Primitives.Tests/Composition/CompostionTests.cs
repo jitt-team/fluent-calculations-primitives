@@ -33,6 +33,14 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
             result.Should().NotBeNull();
         }
 
+
+        [Fact]
+        public void SimpleFunctionMixedScopes()
+        {
+            Money result = MoneyCalcMethodMixedScopes();
+            result.Should().NotBeNull();
+        }
+
         private Money MoneyCalcMethod()
         {
             Scope<Money> Calculation = new Scope<Money>();
@@ -42,6 +50,34 @@ namespace Fluent.Calculations.Primitives.Tests.Inheritance
                 MoneyTwo = ToMoney.Amount(Number.Of(20)).EUR;
 
             return Calculation.Evaluate(() => MoneyOne + MoneyTwo);
+        }
+
+        private Money FunctionToScopeImpicit()
+        {
+            Scope<Money> Calculation = new Scope<Money>();
+
+            Money
+                MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
+                MoneyTwo = ToMoney.Amount(Number.Of(20)).EUR;
+
+            return Calculation.Evaluate(() => MoneyOne + MoneyTwo);
+        }
+
+        private Money MoneyCalcMethodMixedScopes()
+        {
+            Scope<Money> Calculation1 = new Scope<Money>();
+            Scope<Money> Calculation2 = new Scope<Money>();
+
+            Money
+                MoneyOne = ToMoney.Amount(Number.Of(10)).EUR,
+                MoneyTwo = ToMoney.Amount(Number.Of(20)).EUR,
+                MoneyThree = ToMoney.Amount(Number.Of(10)).EUR,
+                MoneyFour = ToMoney.Amount(Number.Of(10)).EUR;
+
+            Money Calc1 = Calculation1.Evaluate(() => MoneyOne + MoneyTwo);
+            Money Calc2 = Calculation2.Evaluate(() => MoneyThree + MoneyFour);
+
+            return Calculation2.Evaluate(() => Calc1 + Calc2);
         }
 
         private Money MoneyCalcFunction()

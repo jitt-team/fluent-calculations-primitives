@@ -21,5 +21,7 @@ public class Money : Number
     public static Money operator +(Money left, Money right) => new Money(left.Add(right), left.Currency);
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Money(args, Currency);
+
+    public override IValue Default => new Money(Currency.None);
 }
 

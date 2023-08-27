@@ -14,5 +14,7 @@ public interface IValue
 
     TagsList Tags { get; }
 
-    abstract IValue ToExpressionResult(CreateValueArgs args);
+    IValue ToExpressionResult(CreateValueArgs args);
+
+    IValue Default { get; }
 }

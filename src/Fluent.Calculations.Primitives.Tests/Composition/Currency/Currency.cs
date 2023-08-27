@@ -2,7 +2,8 @@
 
 public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
 {
-    public static Currency None => new Currency("None");
+    private const string NoneCorrencyCode = "None";
+    public static Currency None => new Currency(NoneCorrencyCode);
 
     // TODO: We could support alternate currency codes all at once to have highly compatible comparisions
     public string Code { get; }
@@ -29,6 +30,9 @@ public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
     {
         if (string.IsNullOrWhiteSpace(currencyCode))
             throw new ArgumentNullException(nameof(currencyCode));
+
+        if (currencyCode.Equals(NoneCorrencyCode))
+            return currencyCode;
 
         if (currencyCode.Length != 3)
             throw new ArgumentException("", nameof(currencyCode));

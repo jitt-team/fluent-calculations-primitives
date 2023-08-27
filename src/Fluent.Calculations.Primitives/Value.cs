@@ -43,6 +43,8 @@ public abstract class Value : IValue, IName
 
     public abstract IValue ToExpressionResult(CreateValueArgs args);
 
+    public abstract IValue Default { get; }
+
     void IName.Set(string name) => Name = name;
 
     public ResultType Return<ResultType, ResultPrimitiveType>(

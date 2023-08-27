@@ -17,6 +17,8 @@ public class Condition : Value,
 
     public bool IsTrue => PrimitiveValue > 0;
 
+    public override IValue Default => False();
+
     public static bool operator true(Condition condition) => condition.IsTrue;
 
     public static bool operator false(Condition condition) => !condition.IsTrue;

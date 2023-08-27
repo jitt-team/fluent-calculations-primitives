@@ -3,10 +3,11 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
-public class Scope<TResult> where TResult : class, IValue, new()
+public partial class Scope<TResult> where TResult : class, IValue, new()
 {
     private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
-    private readonly Dictionary<string, IValue> valueAmountResults = new Dictionary<string, IValue>();
+    private readonly EvaluationCache evaluationCache = new EvaluationCache();
+
     private Func<Scope<TResult>, TResult>? calculationFunc;
 
     public Scope() { }
@@ -15,39 +16,29 @@ public class Scope<TResult> where TResult : class, IValue, new()
 
     public TResult Calculate() => calculationFunc?.Invoke(this) ?? Return();
 
-    public virtual TResult Return() { return default(TResult); }
-
-    public IValue ToExpressionResult(CreateValueArgs args) => new TResult().ToExpressionResult(args);
+    public virtual TResult Return() { return (TResult)new TResult().Default; }
 
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
         Expression<Func<ExpressionResultValue>> expression,
-        [CallerMemberName] string name = "",
-        [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
+        [CallerMemberName] string name = "Undefined",
+        [CallerArgumentExpression("expression")] string lambdaExpressionBody = "Undefined") 
+            where ExpressionResultValue : class, IValue, new()
     {
         string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
 
-        if (valueAmountResults.TryGetValue(name, out IValue? cachedValue))
-            return (ExpressionResultValue)cachedValue;
+        if (evaluationCache.ContainsKey(lambdaExpressionBodyAdjusted))
+            return (ExpressionResultValue)evaluationCache.GetByKey(lambdaExpressionBodyAdjusted);
 
-        ExpressionResultValue result = expression.Compile().Invoke();
+        ExpressionResultValue expresionResult = expression.Compile().Invoke();
         ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, lambdaExpressionBodyAdjusted);
 
         if (!expressionNode.Arguments.Any())
-            expressionNode.Arguments.AddRange(result.Expression.Arguments);
+            expressionNode.Arguments.AddRange(expresionResult.Expression.Arguments);
 
-        foreach (IValue arg in expressionNode.Arguments)
-            if (!valueAmountResults.ContainsKey(arg.Name))
-                valueAmountResults.Add(arg.Name, arg);
+        IValue value = expresionResult.ToExpressionResult(CreateValueArgs.Compose(name, expressionNode, expresionResult.PrimitiveValue));
 
-        IValue value = result.ToExpressionResult(CreateValueArgs.Compose(name, expressionNode, result.PrimitiveValue));
-
-        valueAmountResults.Add(name, value);
+        evaluationCache.Add(lambdaExpressionBodyAdjusted, value);
 
         return (ExpressionResultValue)value;
-    }
-
-    internal class LamdaExpressionPrefixRemover
-    {
-        public static string RemovePrefix(string body) => body.Replace("() => ", "");
     }
 }

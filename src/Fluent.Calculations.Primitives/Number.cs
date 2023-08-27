@@ -70,6 +70,8 @@ public class Number : Value
 
     public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
 
+    public override IValue Default => Zero;
+
     public override bool Equals(object? obj) => Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
