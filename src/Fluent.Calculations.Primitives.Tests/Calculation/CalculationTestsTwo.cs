@@ -17,13 +17,13 @@ namespace Fluent.Calculations.Tests.Calculation
 
             Number result = calculation.Calculate();
 
-            await new CalculationGraphRenderer().Render(result);
+            await new CalculationGraphRenderer("graph2.dot").Render(result);
 
             result.Should().NotBeNull();
         }
     }
 
-    internal class MyCalculation : Calculation<Number>
+    internal class MyCalculation : EvaluationContext<Number>
     {
         public Number
             ConstantOne = Number.Of(2),
@@ -32,7 +32,7 @@ namespace Fluent.Calculations.Tests.Calculation
         public Condition
             MyCondition = Condition.True();
 
-        Number MyResult => Is(() => MyCondition ? ConstantOne : ConstantTwo);
+        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
 
         public override Number Return() => MyResult;
     }

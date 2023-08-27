@@ -17,13 +17,13 @@ namespace Fluent.Calculations.Tests.Calculation
 
             Number result = calculation.Calculate();
 
-            await new CalculationGraphRenderer().Render(result);
+            await new CalculationGraphRenderer("graph3.dot").Render(result);
 
             result.Should().NotBeNull();
         }
     }
 
-    internal class FooBarCalculation : Calculation<Number>
+    internal class FooBarCalculation : EvaluationContext<Number>
     {
         public Number
             ConstantOne = Number.Zero,
@@ -32,13 +32,13 @@ namespace Fluent.Calculations.Tests.Calculation
         public Condition
             FeatureOn = Condition.True();
 
-        Condition Comparison => Is(() => ConstantOne > ConstantTwo);
+        Condition Comparison => Evaluate(() => ConstantOne > ConstantTwo);
 
-        Condition FinalDecision => Is(() => FeatureOn && Comparison);
+        Condition FinalDecision => Evaluate(() => FeatureOn && Comparison);
 
-        Number Condtitional => Is(() => FinalDecision ? ConstantOne + ConstantOne : ConstantTwo);
+        Number Condtitional => Evaluate(() => FinalDecision ? ConstantOne + ConstantOne : ConstantTwo);
 
-        Number MyMath => Is(() => ConstantOne + Condtitional);
+        Number MyMath => Evaluate(() => ConstantOne + Condtitional);
 
         public override Number Return() => MyMath;
     }

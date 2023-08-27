@@ -6,7 +6,7 @@ public class Number : Value
 {   
     public override string ToString() => $"{Name}";
 
-    public Number() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create($"0"), 0)) { }
+    public Number() : this(CreateValueArgs.Compose("Zero", ExpressionNodeConstant.Create($"0"), 0)) { }
 
     public Number(Number number) : base(number)
     {     
@@ -68,7 +68,9 @@ public class Number : Value
     private Number ReturnNumber(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
-    public override IValue ToExpressionResult(CreateValueArgs args) => new Number(args);
+    public override IValue Compose(CreateValueArgs args) => new Number(args);
+
+    public override IValue Default => Zero;
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 

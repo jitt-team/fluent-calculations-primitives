@@ -41,7 +41,9 @@ public abstract class Value : IValue, IName
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue ToExpressionResult(CreateValueArgs args);
+    public abstract IValue Compose(CreateValueArgs args);
+
+    public abstract IValue Default { get; }
 
     void IName.Set(string name) => Name = name;
 
@@ -54,7 +56,7 @@ public abstract class Value : IValue, IName
             .Create(ComposeBinaryExpressionBody())
             .WithArguments(this, right);
 
-        return (ResultType)new ResultType().ToExpressionResult(CreateValueArgs
+        return (ResultType)new ResultType().Compose(CreateValueArgs
             .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
 
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";

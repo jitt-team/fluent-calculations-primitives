@@ -17,6 +17,8 @@ public class Condition : Value,
 
     public bool IsTrue => PrimitiveValue > 0;
 
+    public override IValue Default => False();
+
     public static bool operator true(Condition condition) => condition.IsTrue;
 
     public static bool operator false(Condition condition) => !condition.IsTrue;
@@ -56,7 +58,7 @@ public class Condition : Value,
         [CallerMemberName] string operatorName = "") =>
         Return<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue ToExpressionResult(CreateValueArgs args) => new Condition(args);
+    public override IValue Compose(CreateValueArgs args) => new Condition(args);
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 
