@@ -1,4 +1,4 @@
-﻿namespace Fluent.Calculations.Primitives
+﻿namespace Fluent.Calculations.Primitives.Expressions
 {
     internal class ExpressionResultCache
     {
