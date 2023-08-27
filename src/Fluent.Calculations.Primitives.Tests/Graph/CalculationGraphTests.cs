@@ -19,7 +19,7 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
             await new CalculationGraphRenderer().Render(result);
         }
 
-        internal class FooBarCalculation : Calculation<Number>
+        internal class FooBarCalculation : Scope<Number>
         {
             public Number
                 ChildDeduction = Number.Zero,
@@ -27,13 +27,13 @@ namespace Fluent.Calculations.Primitives.Tests.Graph
                 MinimumNumberOfChildren = Number.Zero,
                 GrossSalary = Number.Zero;
 
-            Condition HasEnoughChildren => Is(() => NumberOfChildren > MinimumNumberOfChildren);
+            Condition HasEnoughChildren => Evaluate(() => NumberOfChildren > MinimumNumberOfChildren);
 
-            Number TotalChildrenDeduction => Is(() => ChildDeduction * NumberOfChildren);
+            Number TotalChildrenDeduction => Evaluate(() => ChildDeduction * NumberOfChildren);
 
-            Number AppliedChildDeduction => Is(() => HasEnoughChildren ? TotalChildrenDeduction : Number.Zero);
+            Number AppliedChildDeduction => Evaluate(() => HasEnoughChildren ? TotalChildrenDeduction : Number.Zero);
 
-            Number TaxableSalary => Is(() => GrossSalary - AppliedChildDeduction);
+            Number TaxableSalary => Evaluate(() => GrossSalary - AppliedChildDeduction);
 
             public override Number Return() => TaxableSalary;
         }

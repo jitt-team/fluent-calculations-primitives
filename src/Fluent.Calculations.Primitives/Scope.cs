@@ -3,40 +3,29 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
 
-public abstract class Calculation<TResult> : IValue where TResult : class, IValue, new()
+public class Scope<TResult> where TResult : class, IValue, new()
 {
     private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
+    private readonly Dictionary<string, IValue> valueAmountResults = new Dictionary<string, IValue>();
+    private Func<Scope<TResult>, TResult>? calculationFunc;
 
-    public Calculation()
-    { }
+    public Scope() { }
 
-    Dictionary<string, IValue> valueAmountResults = new Dictionary<string, IValue>();
+    public Scope(Func<Scope<TResult>, TResult> func) => calculationFunc = func;
 
-    public List<string> Tags => new List<string>();
+    public TResult Calculate() => calculationFunc?.Invoke(this) ?? Return();
 
-    public decimal PrimitiveValue => Is(() => Calculate(), Expression.GetType().Name).PrimitiveValue;
-
-    public ExpressionNode Expression => Is(() => Calculate(), Expression.GetType().Name).Expression;
-
-    public string Name { get; set; } = "TODO";
-
-    public bool IsConstant => false;
-
-    TagsList IValue.Tags => Return().Tags;
-
-    public TResult Calculate() => Return();
-
-    public abstract TResult Return();
+    public virtual TResult Return() { return default(TResult); }
 
     public IValue ToExpressionResult(CreateValueArgs args) => new TResult().ToExpressionResult(args);
 
-    protected ExpressionResultValue Is<ExpressionResultValue>(
+    public ExpressionResultValue Evaluate<ExpressionResultValue>(
         Expression<Func<ExpressionResultValue>> expression,
         [CallerMemberName] string name = "",
         [CallerArgumentExpression("expression")] string lambdaExpressionBody = "") where ExpressionResultValue : class, IValue
     {
-        string lambdaExpressionBodyAdjusted = AdjustLambdaPrefix(lambdaExpressionBody);
-        string prefixedName = $"{name} = {lambdaExpressionBodyAdjusted}";
+        string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
+
         if (valueAmountResults.TryGetValue(name, out IValue? cachedValue))
             return (ExpressionResultValue)cachedValue;
 
@@ -55,9 +44,10 @@ public abstract class Calculation<TResult> : IValue where TResult : class, IValu
         valueAmountResults.Add(name, value);
 
         return (ExpressionResultValue)value;
-
-        string AdjustLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-
+    internal class LamdaExpressionPrefixRemover
+    {
+        public static string RemovePrefix(string body) => body.Replace("() => ", "");
+    }
 }

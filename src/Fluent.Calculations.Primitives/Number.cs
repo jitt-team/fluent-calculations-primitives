@@ -6,7 +6,7 @@ public class Number : Value
 {   
     public override string ToString() => $"{Name}";
 
-    public Number() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create($"0"), 0)) { }
+    public Number() : this(CreateValueArgs.Compose("Zero", ExpressionNodeConstant.Create($"0"), 0)) { }
 
     public Number(Number number) : base(number)
     {     

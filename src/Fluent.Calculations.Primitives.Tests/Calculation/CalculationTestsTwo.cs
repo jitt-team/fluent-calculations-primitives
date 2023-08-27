@@ -23,7 +23,7 @@ namespace Fluent.Calculations.Tests.Calculation
         }
     }
 
-    internal class MyCalculation : Calculation<Number>
+    internal class MyCalculation : Scope<Number>
     {
         public Number
             ConstantOne = Number.Of(2),
@@ -32,7 +32,7 @@ namespace Fluent.Calculations.Tests.Calculation
         public Condition
             MyCondition = Condition.True();
 
-        Number MyResult => Is(() => MyCondition ? ConstantOne : ConstantTwo);
+        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
 
         public override Number Return() => MyResult;
     }
