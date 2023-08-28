@@ -1,4 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+
 using Fluent.Calculations.Primitives.Expressions;
 
 public class CreateValueArgs

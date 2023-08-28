@@ -1,6 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 
-namespace Fluent.Calculations.Finance;
+namespace Fluent.Calculations.Primitives.Tests.Composition;
 
 public class MoneyBuilder
 {

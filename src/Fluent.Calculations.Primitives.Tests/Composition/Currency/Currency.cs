@@ -1,4 +1,4 @@
-﻿namespace Fluent.Calculations.Finance;
+﻿namespace Fluent.Calculations.Primitives.Tests.Composition;
 
 public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
 {

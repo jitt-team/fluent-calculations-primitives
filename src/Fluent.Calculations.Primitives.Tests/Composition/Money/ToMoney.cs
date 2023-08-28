@@ -1,6 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Finance;
+namespace Fluent.Calculations.Primitives.Tests.Composition;
 
 public static class ToMoney
 {

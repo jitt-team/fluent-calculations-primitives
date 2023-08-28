@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
-
-namespace Fluent.Calculations.Finance;
+﻿namespace Fluent.Calculations.Primitives.Tests.Composition;
+using Fluent.Calculations.Primitives.BaseTypes;
 
 public class Money : Number
 {

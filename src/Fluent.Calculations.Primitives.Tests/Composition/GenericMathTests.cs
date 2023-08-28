@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
