@@ -1,10 +1,10 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives;
 
-public class Condition : Value, 
+public class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
@@ -47,9 +47,9 @@ public class Condition : Value,
 
     private Condition ExlusiveOr(Condition value) => ReturnCondition(value, (a, b) => a ^ b);
 
-    private Condition IsEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a == b); 
+    private Condition IsEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a == b);
 
-    private Condition NotEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a != b);  
+    private Condition NotEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a != b);
 
     private Condition And(Condition value) => ReturnCondition(value, (a, b) => a & b);
 

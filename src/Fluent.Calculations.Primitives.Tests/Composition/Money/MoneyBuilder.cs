@@ -1,4 +1,5 @@
-﻿using Fluent.Calculations.Primitives;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+
 namespace Fluent.Calculations.Finance;
 
 public class MoneyBuilder

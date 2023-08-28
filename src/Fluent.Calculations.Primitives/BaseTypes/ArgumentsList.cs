@@ -1,4 +1,6 @@
-﻿namespace Fluent.Calculations.Primitives;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+
+namespace Fluent.Calculations.Primitives;
 
 public class ArgumentsList : List<IValue>
 {

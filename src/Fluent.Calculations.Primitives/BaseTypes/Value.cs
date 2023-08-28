@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
-
-namespace Fluent.Calculations.Primitives;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 
 public abstract class Value : IValue, IName
 {
@@ -8,7 +7,7 @@ public abstract class Value : IValue, IName
 
     public string Name { get; private set; }
 
-    public ExpressionNode Expression { get; init; } 
+    public ExpressionNode Expression { get; init; }
 
     public decimal PrimitiveValue { get; init; }
 

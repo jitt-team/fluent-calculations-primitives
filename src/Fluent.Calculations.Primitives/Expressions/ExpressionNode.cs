@@ -1,4 +1,6 @@
-﻿namespace Fluent.Calculations.Primitives.Expressions;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+
+namespace Fluent.Calculations.Primitives.Expressions;
 
 public class ExpressionNode
 {

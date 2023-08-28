@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using Fluent.Calculations.Primitives.BaseTypes;
+
 namespace Fluent.Calculations.Primitives.Expressions;
 
 internal class ExpressionTranslator

@@ -1,23 +1,23 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives;
 
-public class Number : Value, 
-    IAdditionOperators<Number,Number, Number>,
-    ISubtractionOperators<Number,Number,Number>,
+public class Number : Value,
+    IAdditionOperators<Number, Number, Number>,
+    ISubtractionOperators<Number, Number, Number>,
     IMultiplyOperators<Number, Number, Number>,
-    IDivisionOperators<Number,Number, Number>,
+    IDivisionOperators<Number, Number, Number>,
     IComparisonOperators<Number, Number, Condition>,
     IEqualityOperators<Number, Number, Condition>
-{   
+{
     public override string ToString() => $"{Name}";
 
     public Number() : this(CreateValueArgs.Compose("Zero", ExpressionNodeConstant.Create($"0"), 0)) { }
 
     public Number(Number number) : base(number)
-    {     
+    {
     }
 
     public Number(CreateValueArgs createValueArgs) : base(createValueArgs)

@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
-
-namespace Fluent.Calculations.Primitives;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 
 public interface IValue
 {

@@ -1,4 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
