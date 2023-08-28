@@ -1,4 +1,5 @@
 ﻿using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 namespace Fluent.Calculations.Primitives;
@@ -9,7 +10,7 @@ public class Condition : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Condition() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create(false.ToString()), 0))
+    public Condition() : this(CreateValueArgs.Compose("NaN", ExpressionNodeConstant.Create(false.ToString()), 0))
     {
     }
 
@@ -34,9 +35,9 @@ public class Condition : Value,
 
     public static Condition operator |(Condition left, Condition right) => left.Or(right);
 
-    public static Condition operator ==(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left)).IsEqualToRight(right);
+    public static Condition operator ==(Condition? left, Condition? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
-    public static Condition operator !=(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left));
+    public static Condition operator !=(Condition? left, Condition? right) => Enforce.NotNull(left).NotEqualToRight(right);
 
     public static Condition operator ^(Condition left, Condition right) => left.ExlusiveOr(right);
 
@@ -46,9 +47,9 @@ public class Condition : Value,
 
     private Condition ExlusiveOr(Condition value) => ReturnCondition(value, (a, b) => a ^ b);
 
-    private Condition IsEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a == b); 
+    private Condition IsEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a == b); 
 
-    private Condition NotEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a != b);  
+    private Condition NotEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a != b);  
 
     private Condition And(Condition value) => ReturnCondition(value, (a, b) => a & b);
 
@@ -63,6 +64,4 @@ public class Condition : Value,
     public override bool Equals(object? obj) => Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
-
-    protected static Condition EnforceNotNull(Condition? condition, string argumentName) => condition ?? throw new ArgumentNullException(nameof(condition));
 }
