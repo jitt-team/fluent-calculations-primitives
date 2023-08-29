@@ -23,6 +23,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="....\**" />
+    <EmbeddedResource Remove="....\**" />
+    <None Remove="....\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="fluent-calculations-icon.ico" />
   </ItemGroup>
 
@@ -35,10 +41,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="....\.github\" />
   </ItemGroup>
 
 </Project>

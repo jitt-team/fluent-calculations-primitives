@@ -15,16 +15,14 @@ namespace Fluent.Calculations.Primitives.Tests.GenericMath
         [Fact]
         public void TestDecimal()
         {
-            //decimal
-            //    One = 1,
-            //    Two = 2,
-            //    Three = 3;
+            decimal
+                One = 1,
+                Two = 2,
+                Three = 3;
 
-            //bool Condition = true;
+            decimal sum = GenericMathExamples.GenericCalculation(One, Two, Three);
 
-            //decimal sum = GenericMathExamples.GenericCalculation(One, Two, Three, Condition);
-
-            //sum.Should().Be(7m);
+            sum.Should().Be(7m);
         }
 
         [Fact]
@@ -37,9 +35,7 @@ namespace Fluent.Calculations.Primitives.Tests.GenericMath
                 Two = Number.Of(2),
                 Three = Number.Of(3);
 
-            Condition Condition = Condition.True();
-
-            Number sum = ctx.Evaluate(() => GenericMathExamples.GenericCalculation(One, Two, Three, Condition));
+            Number sum = ctx.Evaluate(() => GenericMathExamples.GenericCalculation(One, Two, Three));
 
             sum.Should().Be(Number.Of(6m));
         }
@@ -47,17 +43,13 @@ namespace Fluent.Calculations.Primitives.Tests.GenericMath
 
     public class GenericMathExamples
     {
-        public static TNumber GenericCalculation<TNumber, TCondition>(TNumber valueOne, TNumber valueTwo, TNumber valueThree, TCondition condition)
+        public static TNumber GenericCalculation<TNumber>(TNumber valueOne, TNumber valueTwo, TNumber valueThree)
             where TNumber :
                 IAdditionOperators<TNumber, TNumber, TNumber>,
                 IMultiplyOperators<TNumber, TNumber, TNumber>
-            where TCondition :
-                IEqualityOperators<TCondition, TCondition, TCondition>,
-                IBitwiseOperators<TCondition, TCondition, TCondition>
         {
 
             TNumber result = valueOne + valueTwo * valueThree;
-
             return result;
         }
     }
