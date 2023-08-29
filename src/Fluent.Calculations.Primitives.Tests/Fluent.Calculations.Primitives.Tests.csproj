@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="BaseTypes\Number\" />
-    <Folder Include="GenericMath\" />
   </ItemGroup>
 
 </Project>
