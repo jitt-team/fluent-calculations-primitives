@@ -1,12 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Tests.Composition;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fluent.Calculations.Primitives.Tests.GenericMath
 {
