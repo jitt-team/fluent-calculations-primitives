@@ -2,9 +2,9 @@
 
 using Fluent.Calculations.Primitives.Expressions;
 
-public class CreateValueArgs
+public sealed class CreateValueArgs
 {
-    public string Name { get; private set; } = "NotProvided";
+    public string Name { get; private set; } = "NaN";
 
     public ExpressionNode Expresion { get; private set; } = ExpressionNode.Default;
 
@@ -16,7 +16,7 @@ public class CreateValueArgs
 
     public TagsList Tags { get; private set; } = TagsList.Empty;
 
-    internal static CreateValueArgs Compose(string name, ExpressionNode expression, decimal value) =>
+    public static CreateValueArgs Compose(string name, ExpressionNode expression, decimal value) =>
         new CreateValueArgs
         {
             Name = name,

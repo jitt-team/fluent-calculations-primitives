@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-public class ArgumentsList : List<IValue>
+public sealed class ArgumentsList : List<IValue>
 {
     private ArgumentsList()
     {
