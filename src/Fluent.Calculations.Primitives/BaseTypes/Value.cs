@@ -51,12 +51,11 @@ public abstract class Value : IValue, IName
             Func<IValue, IValue, ResultPrimitiveType> calcFunc,
             string operatorName) where ResultType : IValue, new()
     {
-        ExpressionNode operationNode = ExpressionNodeBinaryExpression
+        ExpressionNode expressionNode = ExpressionNodeBinaryExpression
             .Create(ComposeBinaryExpressionBody())
             .WithArguments(this, right);
 
-        return (ResultType)new ResultType().Create(CreateValueArgs
-            .Create(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+        return (ResultType)new ResultType().Create(CreateValueArgs.Create(operatorName, expressionNode, Convert.ToDecimal(calcFunc(this, right))));
 
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }

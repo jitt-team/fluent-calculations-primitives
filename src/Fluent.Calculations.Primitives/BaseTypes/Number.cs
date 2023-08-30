@@ -24,10 +24,10 @@ public class Number : Value,
     {
     }
 
-    public static Number Zero => new Number();
+    public static Number Zero => new();
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
-        new Number(CreateValueArgs.Create(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
+        new(CreateValueArgs.Create(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
