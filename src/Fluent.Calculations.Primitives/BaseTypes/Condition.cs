@@ -4,7 +4,7 @@ using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-public class Condition : Value,
+public sealed class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
