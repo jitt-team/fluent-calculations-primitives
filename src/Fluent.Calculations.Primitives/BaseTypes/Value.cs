@@ -18,7 +18,7 @@ public abstract class Value : IValue, IName
     private Value()
     {
         Name = "NaN";
-        Expression = ExpressionNode.Default;
+        Expression = ExpressionNode.None;
         Tags = TagsCollection.Empty;
     }
 
@@ -36,7 +36,7 @@ public abstract class Value : IValue, IName
         Name = createValueArgs.Name;
         PrimitiveValue = createValueArgs.PrimitiveValue;
         IsConstant = createValueArgs.IsConstant;
-        Expression = createValueArgs.Expresion;
+        Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }
 

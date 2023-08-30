@@ -6,7 +6,7 @@ public class CreateValueArgs
 {
     public string Name { get; private set; } = "NaN";
 
-    public ExpressionNode Expresion { get; private set; } = ExpressionNode.Default;
+    public ExpressionNode Expression { get; private set; } = ExpressionNode.None;
 
     public decimal PrimitiveValue { get; private set; }
 
@@ -20,7 +20,7 @@ public class CreateValueArgs
         new CreateValueArgs
         {
             Name = name,
-            Expresion = expression,
+            Expression = expression,
             PrimitiveValue = value,
             IsConstant = false
         };

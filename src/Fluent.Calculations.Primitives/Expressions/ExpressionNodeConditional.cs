@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 
 public class ExpressionNodeConditional : ExpressionNode
 {
-    internal ExpressionNodeConditional(string body) : base(body) { }
+    internal ExpressionNodeConditional(string body) : base(body, ExpressionNodeType.Conditional) { }
 
     public Condition Condition { get; set; } = Condition.False();
 

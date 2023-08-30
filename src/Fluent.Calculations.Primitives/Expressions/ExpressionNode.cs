@@ -2,26 +2,30 @@
 
 namespace Fluent.Calculations.Primitives.Expressions;
 
-public class ExpressionNode
+public  class ExpressionNode
 {
     public override string ToString() => $"{Body}";
 
-    internal ExpressionNode(string body)
+    internal static ExpressionNode None => new ExpressionNode("NaN", ExpressionNodeType.None) ;
+
+    internal ExpressionNode(string body, ExpressionNodeType type)
     {
         Body = body;
+        Type = type;
+        Arguments = ArgumentsCollection.Empty;
     }
 
-    internal static ExpressionNode Default => new ExpressionNode("");
+    public string Body { get; private set; }
 
-    public string Body { get; private set; } = "";
+    public ExpressionNodeType Type { get; }
+
+    public virtual ArgumentsCollection Arguments { get; internal set; }
 
     internal ExpressionNode WithBody(string body)
     {
         Body = body;
         return this;
     }
-
-    public virtual ArgumentsCollection Arguments { get; internal set; } = ArgumentsCollection.Empty;
 
     public ExpressionNode WithArguments(IValue[] arguments)
     {
