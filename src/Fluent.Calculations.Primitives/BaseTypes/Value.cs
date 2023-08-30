@@ -46,12 +46,12 @@ public abstract class Value : IValue, IName
 
     void IName.Set(string name) => Name = name;
 
-    public ResultType Return<ResultType, ResultPrimitiveType>(
+    public ResultType HandleBinaryExpression<ResultType, ResultPrimitiveType>(
             IValue right,
             Func<IValue, IValue, ResultPrimitiveType> calcFunc,
             string operatorName) where ResultType : IValue, new()
     {
-        ExpressionNode operationNode = ExpressionNodeMath
+        ExpressionNode operationNode = ExpressionNodeBinaryExpression
             .Create(ComposeBinaryExpressionBody())
             .WithArguments(this, right);
 

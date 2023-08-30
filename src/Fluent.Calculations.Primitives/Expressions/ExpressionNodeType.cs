@@ -5,7 +5,7 @@
         None,
         Comparision,
         Conditional,
-        Constan,
-        Math
+        Constant,
+        BinaryExpression
     }
 }
