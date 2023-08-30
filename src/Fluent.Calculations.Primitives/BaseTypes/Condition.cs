@@ -61,7 +61,7 @@ public sealed class Condition : Value,
 
     public override IValue Create(CreateValueArgs args) => new Condition(args);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj) => base.Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
 }
