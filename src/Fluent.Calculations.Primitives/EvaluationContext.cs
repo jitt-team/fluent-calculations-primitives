@@ -1,8 +1,8 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
+﻿namespace Fluent.Calculations.Primitives;
+using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives;
 
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {

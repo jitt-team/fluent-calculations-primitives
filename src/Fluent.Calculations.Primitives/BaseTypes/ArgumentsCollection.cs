@@ -1,7 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
-
 using System.Collections;
-
 
 public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
 {
