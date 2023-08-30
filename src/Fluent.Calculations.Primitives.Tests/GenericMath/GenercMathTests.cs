@@ -31,7 +31,7 @@ namespace Fluent.Calculations.Primitives.Tests.GenericMath
 
             Number sum = ctx.Evaluate(() => GenericMathExamples.GenericCalculation(One, Two, Three));
 
-            sum.Should().Be(Number.Of(6m));
+            sum.Should().Be(Number.Of(7m));
         }
     }
 
