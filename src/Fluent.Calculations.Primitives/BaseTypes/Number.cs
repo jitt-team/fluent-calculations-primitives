@@ -14,7 +14,7 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(CreateValueArgs.Compose("Zero", ExpressionNodeConstant.Create($"0"), 0)) { }
+    public Number() : this(CreateValueArgs.Create("Zero", ExpressionNodeConstant.Create($"0"), 0)) { }
 
     public Number(Number number) : base(number)
     {
@@ -27,7 +27,7 @@ public class Number : Value,
     public static Number Zero => new Number();
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
-        new Number(CreateValueArgs.Compose(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
+        new Number(CreateValueArgs.Create(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
@@ -76,7 +76,7 @@ public class Number : Value,
     private Number ReturnNumber(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         Return<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
-    public override IValue Compose(CreateValueArgs args) => new Number(args);
+    public override IValue Create(CreateValueArgs args) => new Number(args);
 
     public override IValue Default => Zero;
 

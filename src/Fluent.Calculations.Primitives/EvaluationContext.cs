@@ -50,6 +50,6 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         if (!expressionNode.Arguments.Any())
             expressionNode.Arguments.AddRange(plainResult.Expression.Arguments);
 
-        return (ExpressionResultValue)plainResult.Compose(CreateValueArgs.Compose(name, expressionNode, plainResult.PrimitiveValue));
+        return (ExpressionResultValue)plainResult.Create(CreateValueArgs.Create(name, expressionNode, plainResult.PrimitiveValue));
     }
 }

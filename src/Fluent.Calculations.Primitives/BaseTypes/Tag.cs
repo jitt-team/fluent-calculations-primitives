@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-public class Tag
+public sealed class Tag
 {
     public required string Name { get; init; }
 

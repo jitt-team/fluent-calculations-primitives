@@ -11,9 +11,9 @@ public interface IValue
 
     ExpressionNode Expression { get; }
 
-    TagsList Tags { get; }
+    TagsCollection Tags { get; }
 
-    IValue Compose(CreateValueArgs args);
+    IValue Create(CreateValueArgs args);
 
     IValue Default { get; }
 }

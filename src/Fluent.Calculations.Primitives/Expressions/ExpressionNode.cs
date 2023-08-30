@@ -21,11 +21,11 @@ public class ExpressionNode
         return this;
     }
 
-    public virtual ArgumentsList Arguments { get; internal set; } = ArgumentsList.Empty;
+    public virtual ArgumentsCollection Arguments { get; internal set; } = ArgumentsCollection.Empty;
 
     public ExpressionNode WithArguments(IValue[] arguments)
     {
-        Arguments = new ArgumentsList(arguments);
+        Arguments = new ArgumentsCollection(arguments);
         return this;
     }
 

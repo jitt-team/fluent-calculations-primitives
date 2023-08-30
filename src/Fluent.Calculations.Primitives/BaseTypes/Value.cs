@@ -13,13 +13,13 @@ public abstract class Value : IValue, IName
 
     public bool IsConstant { get; init; }
 
-    public TagsList Tags { get; init; }
+    public TagsCollection Tags { get; init; }
 
     private Value()
     {
         Name = "Undefined";
         Expression = ExpressionNode.Default;
-        Tags = TagsList.Empty;
+        Tags = TagsCollection.Empty;
     }
 
     public Value(Value value)
@@ -40,7 +40,7 @@ public abstract class Value : IValue, IName
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue Compose(CreateValueArgs args);
+    public abstract IValue Create(CreateValueArgs args);
 
     public abstract IValue Default { get; }
 
@@ -55,8 +55,8 @@ public abstract class Value : IValue, IName
             .Create(ComposeBinaryExpressionBody())
             .WithArguments(this, right);
 
-        return (ResultType)new ResultType().Compose(CreateValueArgs
-            .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+        return (ResultType)new ResultType().Create(CreateValueArgs
+            .Create(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
 
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }

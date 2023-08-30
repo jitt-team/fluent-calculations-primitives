@@ -12,11 +12,11 @@ public class CreateValueArgs
 
     public bool IsConstant { get; private set; }
 
-    public ArgumentsList Arguments { get; private set; } = ArgumentsList.Empty;
+    public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
 
-    public TagsList Tags { get; private set; } = TagsList.Empty;
+    public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
-    internal static CreateValueArgs Compose(string name, ExpressionNode expression, decimal value) =>
+    internal static CreateValueArgs Create(string name, ExpressionNode expression, decimal value) =>
         new CreateValueArgs
         {
             Name = name,
@@ -27,7 +27,7 @@ public class CreateValueArgs
 
     public CreateValueArgs WithTags(params Tag[] tags)
     {
-        Tags = new TagsList(tags);
+        Tags = new TagsCollection(tags);
         return this;
     }
 }
