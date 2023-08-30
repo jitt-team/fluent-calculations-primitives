@@ -17,7 +17,7 @@ public abstract class Value : IValue, IName
 
     private Value()
     {
-        Name = "Undefined";
+        Name = "NaN";
         Expression = ExpressionNode.Default;
         Tags = TagsCollection.Empty;
     }

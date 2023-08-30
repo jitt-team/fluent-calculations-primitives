@@ -4,7 +4,7 @@ using Fluent.Calculations.Primitives.Expressions;
 
 public class CreateValueArgs
 {
-    public string Name { get; private set; } = "NotProvided";
+    public string Name { get; private set; } = "NaN";
 
     public ExpressionNode Expresion { get; private set; } = ExpressionNode.Default;
 

@@ -4,17 +4,17 @@ namespace Fluent.Calculations.Primitives.Expressions
 {
     internal class ExpressionResultCache
     {
-        private readonly Dictionary<string, IValue> evalueatedExpressionResults = new Dictionary<string, IValue>();
+        private readonly Dictionary<string, IValue> cache = new Dictionary<string, IValue>();
 
-        internal void Add(IValue value) => evalueatedExpressionResults.Add(value.Name, value);
+        internal void Add(IValue value) => cache.Add(value.Name, value);
 
-        internal void Add(string name, IValue value) => evalueatedExpressionResults.Add(name, value);
+        internal void Add(string name, IValue value) => cache.Add(name, value);
 
-        internal bool ContainsKey(string name) => evalueatedExpressionResults.ContainsKey(name);
+        internal bool ContainsKey(string name) => cache.ContainsKey(name);
 
         internal bool TryGetValue(string lambdaExpressionBodyAdjusted, out IValue? cachedValue) =>
-            evalueatedExpressionResults.TryGetValue(lambdaExpressionBodyAdjusted, out cachedValue);
+            cache.TryGetValue(lambdaExpressionBodyAdjusted, out cachedValue);
 
-        internal IValue GetByKey(string name) => evalueatedExpressionResults[name];
+        internal IValue GetByKey(string name) => cache[name];
     }
 }
