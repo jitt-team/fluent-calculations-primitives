@@ -72,7 +72,6 @@ public class Number : Value,
     private Condition HandleConditionOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
         HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
-    // TODO: Can we leverage this as a Generic Math aka to creare reusable component to compose IValue results but letting the ACTUAL logic open for inheriting classes?
     private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
 
