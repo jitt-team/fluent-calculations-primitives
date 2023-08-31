@@ -24,7 +24,6 @@ public sealed class Condition : Value,
 
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
-
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
     public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, ExpressionNodeConstant.Create(true.ToString()), 1));
