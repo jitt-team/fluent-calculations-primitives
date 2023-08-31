@@ -60,9 +60,13 @@ public abstract class Value : IValue, IName
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }
 
-    public bool Eqauls(IValue? value) => value == null ? false : PrimitiveValue.Equals(value.PrimitiveValue);
+    public bool Equals(IValue? value) => value != null && PrimitiveValue.Equals(value.PrimitiveValue);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj)
+    {
+        if (obj is not IValue value) return false;
+        return Equals(value);
+    }
 
     public override int GetHashCode() => PrimitiveValue.GetHashCode();
 
