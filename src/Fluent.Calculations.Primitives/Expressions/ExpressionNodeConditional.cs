@@ -1,4 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.BaseTypes;
 
 public class ExpressionNodeConditional : ExpressionNode
 {
@@ -10,5 +11,5 @@ public class ExpressionNodeConditional : ExpressionNode
 
     public IValue IfFalse { get; set; } = Condition.False();
 
-    public override ArgumentsList Arguments => ArgumentsList.CreateFrom(new[] { Condition, IfTrue, IfFalse });
+    public override ArgumentsCollection Arguments => ArgumentsCollection.CreateFrom(new[] { Condition, IfTrue, IfFalse });
 }

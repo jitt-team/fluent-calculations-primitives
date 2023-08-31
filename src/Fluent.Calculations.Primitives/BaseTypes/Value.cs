@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
-
-namespace Fluent.Calculations.Primitives;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 
 public abstract class Value : IValue, IName
 {
@@ -8,19 +7,19 @@ public abstract class Value : IValue, IName
 
     public string Name { get; private set; }
 
-    public ExpressionNode Expression { get; init; } 
+    public ExpressionNode Expression { get; init; }
 
     public decimal PrimitiveValue { get; init; }
 
     public bool IsConstant { get; init; }
 
-    public TagsList Tags { get; init; }
+    public TagsCollection Tags { get; init; }
 
     private Value()
     {
-        Name = "Undefined";
+        Name = "NaN";
         Expression = ExpressionNode.Default;
-        Tags = TagsList.Empty;
+        Tags = TagsCollection.Empty;
     }
 
     public Value(Value value)
@@ -41,7 +40,7 @@ public abstract class Value : IValue, IName
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue Compose(CreateValueArgs args);
+    public abstract IValue Create(CreateValueArgs args);
 
     public abstract IValue Default { get; }
 
@@ -56,15 +55,19 @@ public abstract class Value : IValue, IName
             .Create(ComposeBinaryExpressionBody())
             .WithArguments(this, right);
 
-        return (ResultType)new ResultType().Compose(CreateValueArgs
-            .Compose(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
+        return (ResultType)new ResultType().Create(CreateValueArgs
+            .Create(operatorName, operationNode, Convert.ToDecimal(calcFunc(this, right))));
 
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }
 
-    public bool Eqauls(IValue? value) => value == null ? false : PrimitiveValue.Equals(value.PrimitiveValue);
+    public bool Equals(IValue? value) => value != null && PrimitiveValue.Equals(value.PrimitiveValue);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj)
+    {
+        if (obj is not IValue value) return false;
+        return Equals(value);
+    }
 
     public override int GetHashCode() => PrimitiveValue.GetHashCode();
 

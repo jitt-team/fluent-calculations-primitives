@@ -1,5 +1,6 @@
-﻿using Fluent.Calculations.Primitives;
-namespace Fluent.Calculations.Finance;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+
+namespace Fluent.Calculations.Primitives.Tests.Composition;
 
 public class MoneyBuilder
 {

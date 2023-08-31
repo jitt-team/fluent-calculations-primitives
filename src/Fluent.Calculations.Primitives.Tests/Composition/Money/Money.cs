@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives;
-
-namespace Fluent.Calculations.Finance;
+﻿namespace Fluent.Calculations.Primitives.Tests.Composition;
+using Fluent.Calculations.Primitives.BaseTypes;
 
 public class Money : Number
 {
@@ -20,7 +19,7 @@ public class Money : Number
 
     public static Money operator +(Money left, Money right) => new Money(left.Add(right), left.Currency);
 
-    public override IValue Compose(CreateValueArgs args) => new Money(args, Currency);
+    public override IValue Create(CreateValueArgs args) => new Money(args, Currency);
 
     public override IValue Default => new Money(Currency.None);
 }

@@ -28,4 +28,8 @@
     <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BaseTypes\Number\" />
+  </ItemGroup>
+
 </Project>

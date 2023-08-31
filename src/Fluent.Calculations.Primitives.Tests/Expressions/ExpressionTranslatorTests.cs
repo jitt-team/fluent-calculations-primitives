@@ -1,4 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using Xunit.Abstractions;
 
 namespace Fluent.Calculations.Primitives.Tests.Expressions

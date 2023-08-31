@@ -18,9 +18,15 @@
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
     <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives/wiki</PackageProjectUrl>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>1.0.10-alpha</Version>
+    <Version>1.0.11-alpha</Version>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="....\**" />
+    <EmbeddedResource Remove="....\**" />
+    <None Remove="....\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="fluent-calculations-icon.ico" />
@@ -35,10 +41,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="....\.github\" />
   </ItemGroup>
 
 </Project>

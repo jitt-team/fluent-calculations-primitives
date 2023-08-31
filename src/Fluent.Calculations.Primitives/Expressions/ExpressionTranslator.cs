@@ -1,8 +1,8 @@
-﻿
+﻿namespace Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.BaseTypes;
 
 internal class ExpressionTranslator
 {

@@ -1,15 +1,16 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-namespace Fluent.Calculations.Primitives;
 
-public class Condition : Value, 
+public sealed class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
     public override string ToString() => $"{Name}";
 
-    public Condition() : this(CreateValueArgs.Compose("Default", ExpressionNodeConstant.Create(false.ToString()), 0))
+    public Condition() : this(CreateValueArgs.Create("NaN", ExpressionNodeConstant.Create(false.ToString()), 0))
     {
     }
 
@@ -26,17 +27,17 @@ public class Condition : Value,
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Compose(expressionName, ExpressionNodeConstant.Create(true.ToString()), 1));
+    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, ExpressionNodeConstant.Create(true.ToString()), 1));
 
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Compose(expressionName, ExpressionNodeConstant.Create(false.ToString()), 0));
+    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, ExpressionNodeConstant.Create(false.ToString()), 0));
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 
     public static Condition operator |(Condition left, Condition right) => left.Or(right);
 
-    public static Condition operator ==(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left)).IsEqualToRight(right);
+    public static Condition operator ==(Condition? left, Condition? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
-    public static Condition operator !=(Condition? left, Condition? right) => EnforceNotNull(left, nameof(left));
+    public static Condition operator !=(Condition? left, Condition? right) => Enforce.NotNull(left).NotEqualToRight(right);
 
     public static Condition operator ^(Condition left, Condition right) => left.ExlusiveOr(right);
 
@@ -46,9 +47,9 @@ public class Condition : Value,
 
     private Condition ExlusiveOr(Condition value) => ReturnCondition(value, (a, b) => a ^ b);
 
-    private Condition IsEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a == b); 
+    private Condition IsEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a == b);
 
-    private Condition NotEqualToRight(Condition? value) => ReturnCondition(EnforceNotNull(value, nameof(value)), (a, b) => a != b);  
+    private Condition NotEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a != b);
 
     private Condition And(Condition value) => ReturnCondition(value, (a, b) => a & b);
 
@@ -58,11 +59,9 @@ public class Condition : Value,
         [CallerMemberName] string operatorName = "") =>
         Return<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue Compose(CreateValueArgs args) => new Condition(args);
+    public override IValue Create(CreateValueArgs args) => new Condition(args);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj) => base.Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
-
-    protected static Condition EnforceNotNull(Condition? condition, string argumentName) => condition ?? throw new ArgumentNullException(nameof(condition));
 }

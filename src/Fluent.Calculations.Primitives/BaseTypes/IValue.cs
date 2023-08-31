@@ -1,6 +1,5 @@
-﻿using Fluent.Calculations.Primitives.Expressions;
-
-namespace Fluent.Calculations.Primitives;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 
 public interface IValue
 {
@@ -12,9 +11,9 @@ public interface IValue
 
     ExpressionNode Expression { get; }
 
-    TagsList Tags { get; }
+    TagsCollection Tags { get; }
 
-    IValue Compose(CreateValueArgs args);
+    IValue Create(CreateValueArgs args);
 
     IValue Default { get; }
 }
