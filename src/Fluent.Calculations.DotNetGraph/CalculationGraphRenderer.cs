@@ -2,6 +2,8 @@
 using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
+
 namespace Fluent.Calculations.DotNetGraph;
 
 public class CalculationGraphRenderer
@@ -22,16 +24,9 @@ public class CalculationGraphRenderer
 
     private DotNode ToNode(IValue value, DotGraph graph)
     {
-        var parent = new DotNode()
-             .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
-             .WithShape(DotNodeShape.Rectangle)
-             .WithLabel(ToHtmlNode(
-                     System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
-                     System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
-                     System.Web.HttpUtility.HtmlEncode($"{value.PrimitiveValue:0.00}")),
-                     isHtml: true);
-
+        var parent = ComposeDotNodeByType(value);
         graph.Add(parent);
+
         foreach (IValue item in value.Expression.Arguments)
         {
             var child = ToNode(item, graph);
@@ -41,6 +36,39 @@ public class CalculationGraphRenderer
         }
 
         return parent;
+    }
+
+    private DotNode ComposeDotNodeByType(IValue value)
+    {
+        switch (value.Expression.Type)
+        {
+            case ExpressionNodeType.None:
+                break;
+            case ExpressionNodeType.Comparision:
+                break;
+            case ExpressionNodeType.Conditional:
+                break;
+            case ExpressionNodeType.Constant:
+                break;
+            case ExpressionNodeType.BinaryExpression:
+                break;
+            default:
+                return ComposeDotNodeDefault(value);
+        }
+
+        return ComposeDotNodeDefault(value);
+    }
+
+    private DotNode ComposeDotNodeDefault(IValue value)
+    {
+        return new DotNode()
+              .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
+              .WithShape(DotNodeShape.Rectangle)
+              .WithLabel(ToHtmlNode(
+                      System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
+                      System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
+                      System.Web.HttpUtility.HtmlEncode($"{value.PrimitiveValue:0.00}")),
+                      isHtml: true);
     }
 
     private string ToHtmlNode(string name, string expression, string value)

@@ -8,7 +8,7 @@ public  class ExpressionNode
 
     internal static ExpressionNode None => new ExpressionNode("NaN", ExpressionNodeType.None) ;
 
-    internal ExpressionNode(string body, ExpressionNodeType type)
+    public ExpressionNode(string body, string type)
     {
         Body = body;
         Type = type;
@@ -17,7 +17,7 @@ public  class ExpressionNode
 
     public string Body { get; private set; }
 
-    public ExpressionNodeType Type { get; }
+    public string Type { get; }
 
     public virtual ArgumentsCollection Arguments { get; internal set; }
 
