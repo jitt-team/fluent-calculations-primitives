@@ -9,11 +9,11 @@ public abstract class Value : IValue, IName, IEndResult
 
     public ExpressionNode Expression { get; init; }
 
-    public decimal PrimitiveValue { get; init; }
+    public decimal Primitive { get; init; }
 
-    public bool IsConstant { get; init; }
+    public bool IsInput { get; init; }
 
-    public bool IsEndResult { get; private set; }
+    public bool IsOutput { get; private set; }
 
     public TagsCollection Tags { get; init; }
 
@@ -28,16 +28,16 @@ public abstract class Value : IValue, IName, IEndResult
     {
         Name = value.Name;
         Expression = value.Expression;
-        PrimitiveValue = value.PrimitiveValue;
-        IsConstant = value.IsConstant;
+        Primitive = value.Primitive;
+        IsInput = value.IsInput;
         Tags = value.Tags;
     }
 
     protected Value(CreateValueArgs createValueArgs)
     {
         Name = createValueArgs.Name;
-        PrimitiveValue = createValueArgs.PrimitiveValue;
-        IsConstant = createValueArgs.IsConstant;
+        Primitive = createValueArgs.PrimitiveValue;
+        IsInput = createValueArgs.IsConstant;
         Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }
@@ -48,9 +48,9 @@ public abstract class Value : IValue, IName, IEndResult
 
     void IName.Set(string name) => Name = name;
 
-    TValue IEndResult.AsEndResult<TValue>()
+    IValue IEndResult.AsEndResult()
     {
-        IsEndResult = true;
+        IsOutput = true;
         return this;
     }
 
@@ -68,7 +68,7 @@ public abstract class Value : IValue, IName, IEndResult
         string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
     }
 
-    public bool Equals(IValue? value) => value != null && PrimitiveValue.Equals(value.PrimitiveValue);
+    public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
 
     public override bool Equals(object? obj)
     {
@@ -76,7 +76,7 @@ public abstract class Value : IValue, IName, IEndResult
         return Equals(value);
     }
 
-    public override int GetHashCode() => PrimitiveValue.GetHashCode();
+    public override int GetHashCode() => Primitive.GetHashCode();
 
     private string ToLanguageOperator(string operatorName)
     {

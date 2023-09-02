@@ -63,11 +63,13 @@ public class CalculationGraphRenderer
     {
         return new DotNode()
               .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
-              .WithShape(DotNodeShape.Rectangle)
+              .WithShape(value.IsOutput ? DotNodeShape.MSquare : 
+                                value.IsInput ? DotNodeShape.MDiamond : 
+                                        DotNodeShape.Rectangle)
               .WithLabel(ToHtmlNode(
                       System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
                       System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
-                      System.Web.HttpUtility.HtmlEncode($"{value.PrimitiveValue:0.00}")),
+                      System.Web.HttpUtility.HtmlEncode($"{value.Primitive:0.00}")),
                       isHtml: true);
     }
 
