@@ -9,6 +9,8 @@ public interface IValue
 
     bool IsConstant { get; }
 
+    bool IsEndResult { get; }
+
     ExpressionNode Expression { get; }
 
     TagsCollection Tags { get; }

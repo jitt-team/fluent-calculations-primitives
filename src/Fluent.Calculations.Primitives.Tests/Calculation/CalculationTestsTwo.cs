@@ -16,7 +16,7 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
                 ConstantTwo = Number.Of(3)
             };
 
-            Number result = calculation.Calculate();
+            Number result = calculation.ToResult();
 
             await new CalculationGraphRenderer("graph2.dot").Render(result);
 

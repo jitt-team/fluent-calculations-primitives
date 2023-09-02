@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
-public abstract class Value : IValue, IName
+public abstract class Value : IValue, IName, IEndResult
 {
     public override string ToString() => $"{Name}";
 
@@ -12,6 +12,8 @@ public abstract class Value : IValue, IName
     public decimal PrimitiveValue { get; init; }
 
     public bool IsConstant { get; init; }
+
+    public bool IsEndResult { get; private set; }
 
     public TagsCollection Tags { get; init; }
 
@@ -45,6 +47,12 @@ public abstract class Value : IValue, IName
     public abstract IValue Default { get; }
 
     void IName.Set(string name) => Name = name;
+
+    TValue IEndResult.AsEndResult<TValue>()
+    {
+        IsEndResult = true;
+        return this;
+    }
 
     public ResultType HandleBinaryExpression<ResultType, ResultPrimitiveType>(
             IValue right,

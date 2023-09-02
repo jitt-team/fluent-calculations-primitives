@@ -17,7 +17,17 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) => calculationFunc = func;
 
-    public TResult Calculate() => calculationFunc?.Invoke(this) ?? Return();
+    public TResult ToResult()
+    {
+        TResult result;
+
+        if (calculationFunc != null)
+            result = calculationFunc.Invoke(this);
+        else
+            result = Return();
+
+        return ((IEndResult)result).AsEndResult<TResult>();
+    }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }
 

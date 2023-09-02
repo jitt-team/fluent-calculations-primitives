@@ -41,7 +41,7 @@ internal class ExpressionTranslator
             GetExpressionValue<IValue>(binaryExpression.Right);
         }
 
-        return ExpressionNode.Default;
+        return ExpressionNode.None;
     }
 
     ExpressionType[] BinaryExpressionTypes = new[] {
