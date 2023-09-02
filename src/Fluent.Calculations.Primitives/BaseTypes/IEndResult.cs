@@ -2,6 +2,6 @@
 {
     internal interface IEndResult
     {
-        TValue AsEndResult<TValue>();
+        IValue AsEndResult();
     }
 }

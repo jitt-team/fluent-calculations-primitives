@@ -70,10 +70,10 @@ public class Number : Value,
     public Number Divide(Number right) => HandleNumberOperation(right, (a, b) => a / b);
 
     private Condition HandleConditionOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
-        HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
+        HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
     private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
-        HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.PrimitiveValue, b.PrimitiveValue), operatorName);
+        HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
     public override IValue Create(CreateValueArgs args) => new Number(args);
 

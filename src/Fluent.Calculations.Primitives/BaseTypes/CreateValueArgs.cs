@@ -16,12 +16,12 @@ public class CreateValueArgs
 
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
-    internal static CreateValueArgs Create(string name, ExpressionNode expression, decimal value) =>
+    internal static CreateValueArgs Create(string name, ExpressionNode expression, decimal primitiveValue) =>
         new CreateValueArgs
         {
             Name = name,
             Expression = expression,
-            PrimitiveValue = value,
+            PrimitiveValue = primitiveValue,
             IsConstant = false
         };
 

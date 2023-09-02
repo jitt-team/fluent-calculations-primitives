@@ -16,7 +16,7 @@ public sealed class Condition : Value,
 
     public Condition(CreateValueArgs createValueArgs) : base(createValueArgs) { }
 
-    public bool IsTrue => PrimitiveValue > 0;
+    public bool IsTrue => Primitive > 0;
 
     public override IValue Default => False();
 

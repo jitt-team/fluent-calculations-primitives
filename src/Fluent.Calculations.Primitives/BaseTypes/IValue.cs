@@ -5,11 +5,11 @@ public interface IValue
 {
     string Name { get; }
 
-    decimal PrimitiveValue { get; }
+    decimal Primitive { get; }
 
-    bool IsConstant { get; }
+    bool IsInput { get; }
 
-    bool IsEndResult { get; }
+    bool IsOutput { get; }
 
     ExpressionNode Expression { get; }
 
