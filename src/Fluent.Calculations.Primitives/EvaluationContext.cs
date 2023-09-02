@@ -21,7 +21,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IEndResult)result).AsEndResult();
+        return (TResult)((IValueOrigin)result).MarkAsEndResult();
     }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }

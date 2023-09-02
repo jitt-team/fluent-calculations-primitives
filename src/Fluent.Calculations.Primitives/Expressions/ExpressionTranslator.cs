@@ -76,11 +76,14 @@ internal class ExpressionTranslator
         MemberExpression? memberExpression = targetExpression as MemberExpression;
         string? memberName = memberExpression?.Member?.Name;
         object expressionResultObj = DynamicInvoke(memberExpression ?? expression);
-        
+
         // Don't rename inline calculations
         // TODO : make it cleaner
         if (!string.IsNullOrWhiteSpace(memberName))
+        {
             ((IName)expressionResultObj).Set(memberName);
+            ((IValueOrigin)expressionResultObj).MarkAsInput();
+        }
 
         return (ExpressionResulType)expressionResultObj;
 
