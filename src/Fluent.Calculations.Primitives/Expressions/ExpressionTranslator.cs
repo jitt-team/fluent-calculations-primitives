@@ -39,6 +39,13 @@ internal class ExpressionTranslator
             BinaryExpression binaryExpression = (BinaryExpression)expression.Body;
             GetExpressionValue<IValue>(binaryExpression.Left);
             GetExpressionValue<IValue>(binaryExpression.Right);
+
+            var result = new ExpressionNodeBinaryExpression(lambdaExpressionBody)
+            {
+                // TODO : Capture left/right
+            };
+
+            return result;
         }
 
         return ExpressionNode.None;
