@@ -24,7 +24,7 @@ public class Number : Value,
     {
     }
 
-    public static Number Zero => new();
+    public static Number Zero => new() { IsInput = true };
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
         new(CreateValueArgs.Create(fieldName, ExpressionNodeConstant.Create($"{primitiveValue}"), primitiveValue));

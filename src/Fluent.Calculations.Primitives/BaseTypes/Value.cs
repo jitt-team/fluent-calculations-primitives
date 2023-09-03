@@ -11,7 +11,7 @@ public abstract class Value : IValue, IName, IValueOrigin
 
     public decimal Primitive { get; init; }
 
-    public bool IsInput { get; private set; }
+    public bool IsInput { get; protected set; }
 
     public bool IsOutput { get; private set; }
 

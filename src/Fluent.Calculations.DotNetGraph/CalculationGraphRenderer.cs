@@ -18,21 +18,35 @@ public class CalculationGraphRenderer
     public async Task Render(IValue value)
     {
         DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
-        ToNode(value, graph);
+        DotSubgraph inputsCluster = new DotSubgraph()
+            .WithIdentifier("cluster_0")
+            .WithLabel("Input Parameters")
+            .WithColor(DotColor.LightGray)
+            .WithStyle(DotSubgraphStyle.Filled);
+
+        graph.Add(inputsCluster);
+        ToNode(value, graph, inputsCluster);
         await SaveToDot(graph);
     }
 
-    private DotNode ToNode(IValue value, DotGraph graph)
+    private DotNode ToNode(IValue value, DotGraph graph, DotSubgraph inputsCluster)
     {
-        var parent = ComposeDotNodeByType(value);
-        graph.Add(parent);
+        DotNode parent = ComposeDotNodeByType(value);
+        AddNode(parent, value);
 
-        foreach (IValue item in value.Expression.Arguments)
+        foreach (IValue childValue in value.Expression.Arguments)
         {
-            var child = ToNode(item, graph);
-            var edge = new DotEdge().From(child).To(parent);
-            graph.Add(child);
+            DotNode child = ToNode(childValue, graph, inputsCluster);
+            DotEdge edge = new DotEdge().From(child).To(parent);
             graph.Add(edge);
+        }
+
+        void AddNode(DotNode node, IValue value)
+        {
+            if (value.IsInput)
+                inputsCluster.Add(node);
+            else
+                graph.Add(node);
         }
 
         return parent;
@@ -63,9 +77,9 @@ public class CalculationGraphRenderer
     {
         return new DotNode()
               .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
-              .WithShape(value.IsOutput ? DotNodeShape.MSquare : 
-                                value.IsInput ? DotNodeShape.MDiamond : 
-                                        DotNodeShape.Rectangle)
+              .WithShape(value.IsOutput ? "ellipse" :
+                                value.IsInput ? "parallelogram" :
+                                        "Rectangle")
               .WithLabel(ToHtmlNode(
                       System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
                       System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),

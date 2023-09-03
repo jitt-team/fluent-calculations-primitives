@@ -82,7 +82,9 @@ internal class ExpressionTranslator
         if (!string.IsNullOrWhiteSpace(memberName))
         {
             ((IName)expressionResultObj).Set(memberName);
-            ((IValueOrigin)expressionResultObj).MarkAsInput();
+
+            if(memberExpression?.Member.MemberType == System.Reflection.MemberTypes.Field)
+                ((IValueOrigin)expressionResultObj).MarkAsInput();
         }
 
         return (ExpressionResulType)expressionResultObj;
