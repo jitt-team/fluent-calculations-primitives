@@ -3,6 +3,8 @@ using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using System.Linq.Expressions;
+using System.Web;
 
 namespace Fluent.Calculations.DotNetGraph;
 
@@ -77,24 +79,25 @@ public class CalculationGraphRenderer
     {
         return new DotNode()
               .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
-              .WithShape(value.IsOutput ? "ellipse" :
+              .WithShape(ShapyByValueType())
+              .WithLabel(ToHtmlNode(value), isHtml: true);
+
+        string ShapyByValueType() => value.IsOutput ? "ellipse" :
                                 value.IsInput ? "parallelogram" :
-                                        "Rectangle")
-              .WithLabel(ToHtmlNode(
-                      System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
-                      System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
-                      System.Web.HttpUtility.HtmlEncode($"{value.Primitive:0.00}")),
-                      isHtml: true);
+                                        "Rectangle";
     }
 
-    private string ToHtmlNode(string name, string expression, string value)
+    private string ToHtmlNode(IValue value)
     {
         return $@"<table border=""0"">
-                    <tr><td align=""left""><b>{name}</b></td></tr>
-                    <tr><td align=""left"">{expression}</td></tr>
-                    <tr><td align=""left"">{value}</td></tr>
+                    <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
+                    {ExpressionBlockIfRequired()}
+                    <tr><td align=""left"">{value.Primitive:0.00}</td></tr>
                 </table>";
 
+        string ExpressionBlockIfRequired() => value.IsInput ? string.Empty : InputExpressionBlock();
+        string InputExpressionBlock() => $@"<tr><td align=""left"">{Html(value.Expression.Body)}</td></tr>";
+        string Html(string value) => HttpUtility.HtmlEncode(value);
     }
 
     private async Task SaveToDot(DotGraph graph)
