@@ -39,9 +39,16 @@ internal class ExpressionTranslator
             BinaryExpression binaryExpression = (BinaryExpression)expression.Body;
             GetExpressionValue<IValue>(binaryExpression.Left);
             GetExpressionValue<IValue>(binaryExpression.Right);
+
+            var result = new ExpressionNodeBinaryExpression(lambdaExpressionBody)
+            {
+                // TODO : Capture left/right
+            };
+
+            return result;
         }
 
-        return ExpressionNode.Default;
+        return ExpressionNode.None;
     }
 
     ExpressionType[] BinaryExpressionTypes = new[] {
@@ -76,11 +83,16 @@ internal class ExpressionTranslator
         MemberExpression? memberExpression = targetExpression as MemberExpression;
         string? memberName = memberExpression?.Member?.Name;
         object expressionResultObj = DynamicInvoke(memberExpression ?? expression);
-        
+
         // Don't rename inline calculations
         // TODO : make it cleaner
         if (!string.IsNullOrWhiteSpace(memberName))
+        {
             ((IName)expressionResultObj).Set(memberName);
+
+            if(memberExpression?.Member.MemberType == System.Reflection.MemberTypes.Field)
+                ((IValueOrigin)expressionResultObj).MarkAsInput();
+        }
 
         return (ExpressionResulType)expressionResultObj;
 

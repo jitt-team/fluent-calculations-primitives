@@ -15,7 +15,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
                 MinimumNumberOfChildren = Number.Of(2),
                 GrossSalary = Number.Of(1000)
             }
-            .Calculate();
+            .ToResult();
 
             await new CalculationGraphRenderer("graph1.dot").Render(result);
         }

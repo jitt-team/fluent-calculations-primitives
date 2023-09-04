@@ -2,7 +2,18 @@
 using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
+using System.Web;
+
 namespace Fluent.Calculations.DotNetGraph;
+
+public class DotNodeBlock
+{
+    public bool IsValue { get; set; }
+    public DotNode FirstNode { get; set; }
+    public DotEdge ConnectorEdge { get; set; }
+    public DotNode LastNode { get; set; }
+}
 
 public class CalculationGraphRenderer
 {
@@ -16,42 +27,134 @@ public class CalculationGraphRenderer
     public async Task Render(IValue value)
     {
         DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
-        ToNode(value, graph);
+        DotSubgraph inputsCluster = new DotSubgraph()
+            .WithIdentifier("cluster_0")
+            .WithLabel("INPUT PARAMETERS")
+            .WithColor(DotColor.LightSkyBlue)
+            .WithStyle(DotSubgraphStyle.Filled);
+
+        graph.Add(inputsCluster);
+        ToNode(value, graph, inputsCluster);
         await SaveToDot(graph);
     }
 
-    private DotNode ToNode(IValue value, DotGraph graph)
+    private DotNodeBlock ToNode(IValue value, DotGraph graph, DotSubgraph inputsCluster)
     {
-        var parent = new DotNode()
-             .WithIdentifier(System.Web.HttpUtility.HtmlEncode(value.Name))
-             .WithShape(DotNodeShape.Rectangle)
-             .WithLabel(ToHtmlNode(
-                     System.Web.HttpUtility.HtmlEncode($"{value.Name}"),
-                     System.Web.HttpUtility.HtmlEncode($"{value.Expression.Body}"),
-                     System.Web.HttpUtility.HtmlEncode($"{value.PrimitiveValue:0.00}")),
-                     isHtml: true);
+        DotNodeBlock parentNode = ComposeDotNodeByType(value);
+        AddNode(parentNode, value);
 
-        graph.Add(parent);
-        foreach (IValue item in value.Expression.Arguments)
+        foreach (IValue childValue in value.Expression.Arguments)
         {
-            var child = ToNode(item, graph);
-            var edge = new DotEdge().From(child).To(parent);
-            graph.Add(child);
+            DotNodeBlock child = ToNode(childValue, graph, inputsCluster);
+            DotEdge edge = new DotEdge().From(child.LastNode).To(parentNode.FirstNode);
             graph.Add(edge);
         }
 
-        return parent;
+        void AddNode(DotNodeBlock node, IValue value)
+        {
+            if (value.IsInput)
+                inputsCluster.Add(node.LastNode);
+            else
+            {
+                if (node.IsValue)
+                    graph.Add(node.LastNode);
+                else
+                {
+                    graph.Add(node.FirstNode);
+                    graph.Add(node.ConnectorEdge);
+                    graph.Add(node.LastNode);
+                }
+            }
+        }
+
+        return parentNode;
     }
 
-    private string ToHtmlNode(string name, string expression, string value)
+    private DotNodeBlock ComposeDotNodeByType(IValue value)
+    {
+        switch (value.Expression.Type)
+        {
+            case ExpressionNodeType.Comparision:
+            case ExpressionNodeType.Conditional:
+            case ExpressionNodeType.BinaryExpression:
+                return ToExpressionDotNodeBlock(value);
+            case ExpressionNodeType.None:
+            case ExpressionNodeType.Constant:
+            default:
+                return ToValueDotNodeBlock(value);
+        }
+    }
+
+    private DotNodeBlock ToValueDotNodeBlock(IValue value)
+    {
+        DotNode
+            sameNode = ToValueDotNode(value);
+
+        return new DotNodeBlock
+        {
+            FirstNode = sameNode,
+            LastNode = sameNode,
+            IsValue = true
+        };
+    }
+    private DotNodeBlock ToExpressionDotNodeBlock(IValue value)
+    {
+        DotNode
+            firstNode = ToExpressionDotNode(value),
+            lastNode = ToValueDotNode(value);
+
+        return new DotNodeBlock
+        {
+            FirstNode = firstNode,
+            ConnectorEdge = new DotEdge().From(firstNode).To(lastNode),
+            LastNode = lastNode
+        };
+    }
+
+    private DotNode ToValueDotNode(IValue value)
+    {
+        return new DotNode()
+              .WithIdentifier(Html($"{value.Name}_value"))
+              .WithShape(ShapyByValueType(value))
+              .WithFillColor(ColorByValueType(value))
+              .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToValueNodeHtml(value), isHtml: true);
+    }
+
+    private DotNode ToExpressionDotNode(IValue value)
+    {
+        return new DotNode()
+              .WithIdentifier(Html($"{value.Name}_expression"))
+              .WithShape(ShapyByValueType(value))
+              .WithFillColor(ColorByValueType(value))
+              .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToExpressionNodeHtml(value), isHtml: true);
+    }
+
+    private string ShapyByValueType(IValue value) =>
+                value.IsOutput ? "ellipse" :
+                value.IsInput ? "parallelogram" :
+                                        "Rectangle";
+
+    private DotColor ColorByValueType(IValue value) => value.IsOutput ?
+            DotColor.PaleGreen : DotColor.White;
+
+    private string ToExpressionNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
-                    <tr><td align=""left""><b>{name}</b></td></tr>
-                    <tr><td align=""left"">{expression}</td></tr>
-                    <tr><td align=""left"">{value}</td></tr>
+                    <tr><td align=""left"">{Html(value.Expression.Body)}</td></tr>
                 </table>";
-
     }
+
+    private string ToValueNodeHtml(IValue value)
+    {
+        return $@"<table border=""0"">
+                    <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
+                    <tr><td align=""left"">{value.Primitive:0.00}</td></tr>
+                </table>";
+    }
+
+    string Html(string value) => HttpUtility.HtmlEncode(value);
 
     private async Task SaveToDot(DotGraph graph)
     {

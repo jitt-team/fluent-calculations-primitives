@@ -2,7 +2,7 @@
 
 public class ExpressionNodeConstant : ExpressionNode
 {
-    internal ExpressionNodeConstant(string body) : base(body)
+    internal ExpressionNodeConstant(string body) : base(body, ExpressionNodeType.Constant)
     {
 
     }

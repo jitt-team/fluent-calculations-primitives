@@ -16,14 +16,13 @@ public sealed class Condition : Value,
 
     public Condition(CreateValueArgs createValueArgs) : base(createValueArgs) { }
 
-    public bool IsTrue => PrimitiveValue > 0;
+    public bool IsTrue => Primitive > 0;
 
     public override IValue Default => False();
 
     public static bool operator true(Condition condition) => condition.IsTrue;
 
     public static bool operator false(Condition condition) => !condition.IsTrue;
-
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
@@ -57,11 +56,11 @@ public sealed class Condition : Value,
 
     private Condition ReturnCondition(IValue value, Func<bool, bool, bool> compareFunc,
         [CallerMemberName] string operatorName = "") =>
-        Return<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
+        HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
     public override IValue Create(CreateValueArgs args) => new Condition(args);
 
-    public override bool Equals(object? obj) => base.Equals(obj as IValue);
+    public override bool Equals(object? obj) => Equals(obj as IValue);
 
     public override int GetHashCode() => base.GetHashCode();
 }

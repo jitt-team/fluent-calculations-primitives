@@ -15,7 +15,7 @@ public class CompostionTests
     [Fact]
     public void InheritedClass()
     {
-        Money result = new MoneyCalcInherited().Calculate();
+        Money result = new MoneyCalcInherited().ToResult();
         result.Should().NotBeNull();
     }
 
@@ -91,7 +91,7 @@ public class CompostionTests
             return calculation.Evaluate(() => MoneyOne + MoneyTwo);
         });
 
-        return Calculation.Calculate();
+        return Calculation.ToResult();
     }
 }
 

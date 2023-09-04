@@ -1,10 +1,10 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 
-public class ExpressionNodeComparison : ExpressionNode
+public class ExpressionNodeBinaryExpression : ExpressionNode
 {
     internal static ExpressionNode Create(string operationBody) => new ExpressionNodeBinaryExpression(operationBody);
 
-    internal ExpressionNodeComparison(string body) : base(body, ExpressionNodeType.Comparision)
+    internal ExpressionNodeBinaryExpression(string body) : base(body, ExpressionNodeType.BinaryExpression)
     {
 
     }

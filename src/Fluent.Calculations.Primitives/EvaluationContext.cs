@@ -7,17 +7,22 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-
     private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
     private readonly ExpressionResultCache resultCache = new ExpressionResultCache();
-
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
     public EvaluationContext() { }
 
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) => calculationFunc = func;
 
-    public TResult Calculate() => calculationFunc?.Invoke(this) ?? Return();
+    public TResult ToResult()
+    {
+        TResult result = calculationFunc != null ?
+             calculationFunc.Invoke(this) :
+             Return();
+
+        return (TResult)((IValueOrigin)result).MarkAsEndResult();
+    }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }
 
@@ -44,12 +49,12 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
        Expression<Func<ExpressionResultValue>> expression, string name, string expressionBody)
            where ExpressionResultValue : class, IValue, new()
     {
-        ExpressionResultValue plainResult = expression.Compile().Invoke();
+        ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
         ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, expressionBody);
 
         if (!expressionNode.Arguments.Any())
-            expressionNode.Arguments.AddRange(plainResult.Expression.Arguments);
+            expressionNode.Arguments.AddRange(expressionResultValue.Expression.Arguments);
 
-        return (ExpressionResultValue)plainResult.Create(CreateValueArgs.Create(name, expressionNode, plainResult.PrimitiveValue));
+        return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Create(name, expressionNode, expressionResultValue.Primitive));
     }
 }
