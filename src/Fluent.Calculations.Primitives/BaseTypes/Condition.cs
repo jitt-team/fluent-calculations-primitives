@@ -10,7 +10,7 @@ public sealed class Condition : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Condition() : this(CreateValueArgs.Create("NaN", ExpressionNodeConstant.Create(false.ToString()), 0))
+    public Condition() : this(CreateValueArgs.Create("NaN", new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
     }
 
@@ -25,10 +25,10 @@ public sealed class Condition : Value,
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
+     
+    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, ExpressionNodeConstant.Create(true.ToString()), 1));
-
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, ExpressionNodeConstant.Create(false.ToString()), 0));
+    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 

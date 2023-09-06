@@ -74,8 +74,7 @@ public class CalculationGraphRenderer
     {
         switch (value.Expression.Type)
         {
-            case ExpressionNodeType.Comparision:
-            case ExpressionNodeType.Conditional:
+            case ExpressionNodeType.Lambda:
             case ExpressionNodeType.BinaryExpression:
                 return ToExpressionDotNodeBlock(value);
             case ExpressionNodeType.None:

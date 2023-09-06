@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-    private readonly ExpressionTranslator expressionPartTranslator = new ExpressionTranslator();
+    private readonly ExpressionMembersCapturer expressionPartTranslator = new ExpressionMembersCapturer();
     private readonly ExpressionResultCache resultCache = new ExpressionResultCache();
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
@@ -50,11 +50,33 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
            where ExpressionResultValue : class, IValue, new()
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
-        ExpressionNode expressionNode = expressionPartTranslator.Translate(expression, expressionBody);
+        ExpressionMembersCaptureResult captureResult = expressionPartTranslator.Capture(expression);
 
-        if (!expressionNode.Arguments.Any())
-            expressionNode.Arguments.AddRange(expressionResultValue.Expression.Arguments);
+        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
+
+        IValue[] inputParameters = GetSyncedNameInputParameters(captureResult.InputParameters);
+        IValue[] evaluationValues = ResolveEvaluationPointersToValues(captureResult.EvaluationPointers);
+        expressionNode.WithArguments(inputParameters);
+        expressionNode.Arguments.AddRange(ArgumentsCollection.CreateFrom(evaluationValues));
 
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Create(name, expressionNode, expressionResultValue.Primitive));
+    }
+
+    private IValue[] ResolveEvaluationPointersToValues(PointerToEvaulationCapture[] evaluationPointers)
+    {
+        return evaluationPointers.Where(IsCached).Select(GetFromCache).ToArray();
+        bool IsCached(PointerToEvaulationCapture pointer) => resultCache.ContainsName(pointer.Name);
+        IValue GetFromCache(PointerToEvaulationCapture pointer) => resultCache.GetByName(pointer.Name);
+    }
+
+    private IValue[] GetSyncedNameInputParameters(InputParameterCapture[] inputParameters)
+    {
+        foreach (InputParameterCapture inputParameter in inputParameters)
+        {
+            ((IName)inputParameter.Value).Set(inputParameter.Name);
+            ((IValueOrigin)inputParameter.Value).MarkAsInput();
+        }
+
+        return inputParameters.Select(capture => capture.Value).ToArray();
     }
 }

@@ -12,8 +12,9 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
         {
             var calculation = new MyCalculation
             {
-                ConstantOne = Number.Of(2),
-                ConstantTwo = Number.Of(3)
+                ConstantOne = Number.Of(1),
+                ConstantTwo = Number.Of(2),
+                ConstantThree = Number.Of(2)
             };
 
             Number result = calculation.ToResult();
@@ -27,13 +28,16 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
     internal class MyCalculation : EvaluationContext<Number>
     {
         public Number
-            ConstantOne = Number.Of(2),
-            ConstantTwo = Number.Of(3);
+            ConstantOne = Number.Of(1),
+            ConstantTwo = Number.Of(2),
+            ConstantThree = Number.Of(3);
 
         public Condition
             MyCondition = Condition.True();
 
-        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
+        Number MyResultOne => Evaluate(() => ConstantTwo + ConstantThree);
+
+        Number MyResult => Evaluate(() => ConstantOne + ConstantTwo + ConstantThree + MyResultOne);
 
         public override Number Return() => MyResult;
     }
