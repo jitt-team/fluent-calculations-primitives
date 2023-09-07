@@ -8,7 +8,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 {
     private const string NaN = "NaN";
     private readonly ExpressionMembersCapturer expressionPartTranslator = new ExpressionMembersCapturer();
-    private readonly ExpressionResultCache resultCache = new ExpressionResultCache();
+    private readonly EvaluationResultCache resultCache = new EvaluationResultCache();
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
     public EvaluationContext() { }

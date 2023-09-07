@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System;
 
-internal class ExpressionResultCache
+internal class EvaluationResultCache
 {
     private readonly Dictionary<string, IValue> cache = new Dictionary<string, IValue>();
 
