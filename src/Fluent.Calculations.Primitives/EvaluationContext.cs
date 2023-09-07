@@ -54,9 +54,9 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
 
-        IValue[] inputParameters = GetSyncedNameInputParameters(captureResult.InputParameters);
+        IValue[] inputValues = GetSyncedNameInputParameters(captureResult.InputParameters);
         IValue[] evaluationValues = ResolveEvaluationPointersToValues(captureResult.EvaluationPointers);
-        expressionNode.WithArguments(inputParameters);
+        expressionNode.WithArguments(inputValues);
         expressionNode.Arguments.AddRange(ArgumentsCollection.CreateFrom(evaluationValues));
 
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Create(name, expressionNode, expressionResultValue.Primitive));
