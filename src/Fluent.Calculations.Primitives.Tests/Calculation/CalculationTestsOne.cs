@@ -18,7 +18,7 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
 
             Number result = calculation.ToResult();
 
-            await new CalculationGraphRenderer("graph3.dot").Render(result);
+            await new CalculationGraphRenderer("graph1.dot").Render(result);
 
             result.Should().NotBeNull();
         }
@@ -35,12 +35,8 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
 
         Condition Comparison => Evaluate(() => ConstantOne > ConstantTwo);
 
-        Condition FinalDecision => Evaluate(() => FeatureOn && Comparison);
+        Number Condtitional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
 
-        Number Condtitional => Evaluate(() => FinalDecision ? ConstantOne + ConstantOne : ConstantTwo);
-
-        Number MyMath => Evaluate(() => ConstantOne + Condtitional);
-
-        public override Number Return() => MyMath;
+        public override Number Return() => Condtitional;
     }
 }

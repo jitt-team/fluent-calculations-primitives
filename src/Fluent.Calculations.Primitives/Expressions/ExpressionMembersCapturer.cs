@@ -2,6 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 internal class ExpressionMembersCapturer
 {
@@ -26,6 +27,19 @@ internal class ExpressionMembersCapturer
         {
             BinaryExpression binaryExpression = (BinaryExpression)expression;
             return CaptureExpressionMembers(binaryExpression.Left).Concat(CaptureExpressionMembers(binaryExpression.Right)).ToList();
+        }
+        else if (expression.NodeType == ExpressionType.Convert)
+        {
+            UnaryExpression unaryExpression = (UnaryExpression)expression;
+            return CaptureExpressionMembers(unaryExpression.Operand);
+        }
+        else if (expression.NodeType == ExpressionType.Conditional)
+        {
+            ConditionalExpression conditionalExpression = (ConditionalExpression)expression;
+            return CaptureExpressionMembers(conditionalExpression.Test)
+                .Concat(CaptureExpressionMembers(conditionalExpression.IfTrue))
+                .Concat(CaptureExpressionMembers(conditionalExpression.IfFalse))
+                .ToList();
         }
         else if (expression.NodeType == ExpressionType.MemberAccess)
         {
