@@ -5,6 +5,8 @@ public abstract class Value : IValue, IName, IValueOrigin
 {
     public override string ToString() => $"{Name}";
 
+    public virtual string ValueToString() => $"{Primitive:0.00}";
+
     public string Name { get; private set; }
 
     public ExpressionNode Expression { get; init; }

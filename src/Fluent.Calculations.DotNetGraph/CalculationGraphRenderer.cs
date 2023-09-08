@@ -175,14 +175,14 @@ public class CalculationGraphRenderer
     {
         return $@"<table border=""0"">
                     <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""center"">{value.Primitive}</td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
                 </table>";
     }
     private string ToValueNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
                     <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""center"">{value.Primitive}</td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
                 </table>";
     }
 

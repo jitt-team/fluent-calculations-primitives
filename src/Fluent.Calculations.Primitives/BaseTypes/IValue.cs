@@ -18,4 +18,6 @@ public interface IValue
     IValue Create(CreateValueArgs args);
 
     IValue Default { get; }
+
+    string ValueToString();
 }

@@ -10,6 +10,8 @@ public sealed class Condition : Value,
 {
     public override string ToString() => $"{Name}";
 
+    public override string ValueToString() => $"{IsTrue}";
+
     public Condition() : this(CreateValueArgs.Create("NaN", new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
     }
@@ -25,7 +27,7 @@ public sealed class Condition : Value,
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
-     
+
     public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
     public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Create(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
