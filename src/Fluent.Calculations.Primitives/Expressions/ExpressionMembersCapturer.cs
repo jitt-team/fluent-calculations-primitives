@@ -21,10 +21,6 @@ internal class ExpressionMembersCapturer
             LambdaExpression lambdaExpression = (LambdaExpression)expression;
             return CaptureExpressionMembers(lambdaExpression.Body);
         }
-        //else if (MethodBinaryExpressionTypes.Contains(expression.NodeType))
-        //{
-            
-        //}
         else if (BinaryExpressionTypes.Contains(expression.NodeType))
         {
             BinaryExpression binaryExpression = (BinaryExpression)expression;
