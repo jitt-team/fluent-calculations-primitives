@@ -51,13 +51,13 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
         ExpressionMembersCaptureResult captureResult = expressionPartTranslator.Capture(expression);
-
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
 
         IValue[] inputValues = GetSyncedNameInputParameters(captureResult.InputParameters);
         IValue[] evaluationValues = ResolveEvaluationPointersToValues(captureResult.EvaluationPointers);
-        expressionNode.WithArguments(inputValues);
-        expressionNode.Arguments.AddRange(ArgumentsCollection.CreateFrom(evaluationValues));
+        IValue[] arguments = inputValues.Concat(evaluationValues).Distinct().ToArray();
+
+        expressionNode.WithArguments(arguments);
 
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Create(name, expressionNode, expressionResultValue.Primitive));
     }

@@ -21,6 +21,10 @@ internal class ExpressionMembersCapturer
             LambdaExpression lambdaExpression = (LambdaExpression)expression;
             return CaptureExpressionMembers(lambdaExpression.Body);
         }
+        //else if (MethodBinaryExpressionTypes.Contains(expression.NodeType))
+        //{
+            
+        //}
         else if (BinaryExpressionTypes.Contains(expression.NodeType))
         {
             BinaryExpression binaryExpression = (BinaryExpression)expression;
@@ -77,6 +81,15 @@ internal class ExpressionMembersCapturer
         ExpressionType.GreaterThan,
         ExpressionType.LessThan,
         ExpressionType.GreaterThanOrEqual,
-        ExpressionType.LessThanOrEqual
+        ExpressionType.LessThanOrEqual,
+        ExpressionType.Modulo,
+        ExpressionType.Power,
+        ExpressionType.Equal,
+        ExpressionType.NotEqual,
+        ExpressionType.Add,
+        ExpressionType.AndAlso,
+        ExpressionType.OrElse,
+        ExpressionType.Or,
+
     };
 }
