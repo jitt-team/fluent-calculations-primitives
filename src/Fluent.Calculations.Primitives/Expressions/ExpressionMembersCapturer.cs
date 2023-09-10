@@ -9,8 +9,8 @@ internal class ExpressionMembersCapturer
         List<object> capturedMembers = CaptureExpressionMembers(expression);
 
         return new ExpressionMembersCaptureResult(
-            capturedMembers.Where(InputParameterCapture.OfType).Cast<InputParameterCapture>().ToArray(),
-            capturedMembers.Where(PointerToEvaulationCapture.OfType).Cast<PointerToEvaulationCapture>().ToArray()
+            capturedMembers.Where(CapturedInputParameter.OfType).Cast<CapturedInputParameter>().ToArray(),
+            capturedMembers.Where(CapturedEvaulation.OfType).Cast<CapturedEvaulation>().ToArray()
         );
     }
 
@@ -45,11 +45,11 @@ internal class ExpressionMembersCapturer
 
             if (IsInputParameter(memberExpression.Member))
                 // TODO : Any way to make this once per member and not one each usage? Maybe invoke much later?
-                return new List<object> { new InputParameterCapture((IValue)DynamicInvoke(expression), memberExpression.Member.Name) };
+                return new List<object> { new CapturedInputParameter((IValue)DynamicInvoke(expression), memberExpression.Member.Name) };
 
             else if (IsEvaluation(memberExpression.Member))
                 // Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
-                return new List<object> { new PointerToEvaulationCapture(((PropertyInfo)memberExpression.Member).Name) };
+                return new List<object> { new CapturedEvaulation(((PropertyInfo)memberExpression.Member).Name) };
 
             else
                 return new List<object>();

@@ -2,11 +2,11 @@
 {
     internal class ExpressionMembersCaptureResult 
     {
-        public InputParameterCapture[] InputParameters { get; }
+        public CapturedInputParameter[] InputParameters { get; }
 
-        public PointerToEvaulationCapture[] EvaluationPointers { get; }
+        public CapturedEvaulation[] EvaluationPointers { get; }
 
-        public ExpressionMembersCaptureResult(InputParameterCapture[] inputParameters, PointerToEvaulationCapture[] evaluationPointer)
+        public ExpressionMembersCaptureResult(CapturedInputParameter[] inputParameters, CapturedEvaulation[] evaluationPointer)
         {
             this.InputParameters = inputParameters;
             this.EvaluationPointers = evaluationPointer;

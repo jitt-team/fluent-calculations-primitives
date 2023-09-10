@@ -62,16 +62,16 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Build(name, expressionNode, expressionResultValue.Primitive));
     }
 
-    private IValue[] ResolveEvaluationPointersToValues(PointerToEvaulationCapture[] evaluationPointers)
+    private IValue[] ResolveEvaluationPointersToValues(CapturedEvaulation[] evaluationPointers)
     {
         return evaluationPointers.Where(IsCached).Select(GetFromCache).ToArray();
-        bool IsCached(PointerToEvaulationCapture pointer) => resultCache.ContainsName(pointer.Name);
-        IValue GetFromCache(PointerToEvaulationCapture pointer) => resultCache.GetByName(pointer.Name);
+        bool IsCached(CapturedEvaulation pointer) => resultCache.ContainsName(pointer.Name);
+        IValue GetFromCache(CapturedEvaulation pointer) => resultCache.GetByName(pointer.Name);
     }
 
-    private IValue[] GetSyncedNameInputParameters(InputParameterCapture[] inputParameters)
+    private IValue[] GetSyncedNameInputParameters(CapturedInputParameter[] inputParameters)
     {
-        foreach (InputParameterCapture inputParameter in inputParameters)
+        foreach (CapturedInputParameter inputParameter in inputParameters)
         {
             ((IName)inputParameter.Value).Set(inputParameter.Name);
             ((IValueOrigin)inputParameter.Value).MarkAsInput();
