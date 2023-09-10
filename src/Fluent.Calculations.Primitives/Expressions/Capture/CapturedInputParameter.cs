@@ -1,4 +1,4 @@
-﻿namespace Fluent.Calculations.Primitives.Expressions;
+﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.BaseTypes;
 
 internal class CapturedInputParameter
@@ -9,8 +9,8 @@ internal class CapturedInputParameter
 
     public CapturedInputParameter(IValue value, string name)
     {
-        this.Value = value;
-        this.Name = name;
+        Value = value;
+        Name = name;
     }
 
     internal static bool OfType(object obj) => obj is CapturedInputParameter;

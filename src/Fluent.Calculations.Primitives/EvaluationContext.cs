@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
