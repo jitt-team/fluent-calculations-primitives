@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Tests.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Expressions.Capture;
 using Xunit.Abstractions;
 
 public class ExpressionMembersCapturerTests

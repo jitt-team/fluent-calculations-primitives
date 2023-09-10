@@ -1,6 +1,6 @@
-﻿namespace Fluent.Calculations.Primitives.Expressions
+﻿namespace Fluent.Calculations.Primitives.Expressions.Capture
 {
-    internal class ExpressionMembersCaptureResult 
+    internal class ExpressionMembersCaptureResult
     {
         public CapturedInputParameter[] InputParameters { get; }
 
@@ -8,8 +8,8 @@
 
         public ExpressionMembersCaptureResult(CapturedInputParameter[] inputParameters, CapturedEvaulation[] evaluationPointer)
         {
-            this.InputParameters = inputParameters;
-            this.EvaluationPointers = evaluationPointer;
+            InputParameters = inputParameters;
+            EvaluationPointers = evaluationPointer;
         }
     }
 }
