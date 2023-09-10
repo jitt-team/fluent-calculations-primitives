@@ -33,11 +33,12 @@ namespace Fluent.Calculations.Primitives.Tests.Calculation
             ConstantThree = Number.Of(3);
 
         public Condition
-            MyCondition = Condition.True();
+            MyCondition = Condition.True(),
+            MyCondtitionTwo = Condition.False();
 
-        Number MyResultOne => Evaluate(() => ConstantTwo + ConstantThree);
+        Condition ConditionAnd => Evaluate(() => MyCondition && MyCondtitionTwo);
 
-        Number MyResult => Evaluate(() => ConstantOne + ConstantTwo + ConstantThree + MyResultOne);
+        Number MyResult => Evaluate(() => ConditionAnd ? ConstantOne : ConstantOne + ConstantThree);
 
         public override Number Return() => MyResult;
     }

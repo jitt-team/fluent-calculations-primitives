@@ -2,8 +2,6 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text.RegularExpressions;
-
 internal class ExpressionMembersCapturer
 {
     public ExpressionMembersCaptureResult Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue
@@ -79,6 +77,15 @@ internal class ExpressionMembersCapturer
         ExpressionType.GreaterThan,
         ExpressionType.LessThan,
         ExpressionType.GreaterThanOrEqual,
-        ExpressionType.LessThanOrEqual
+        ExpressionType.LessThanOrEqual,
+        ExpressionType.Modulo,
+        ExpressionType.Power,
+        ExpressionType.Equal,
+        ExpressionType.NotEqual,
+        ExpressionType.Add,
+        ExpressionType.AndAlso,
+        ExpressionType.OrElse,
+        ExpressionType.Or,
+
     };
 }

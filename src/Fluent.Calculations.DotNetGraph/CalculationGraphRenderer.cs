@@ -1,4 +1,5 @@
-﻿using DotNetGraph.Compilation;
+﻿using DotNetGraph.Attributes;
+using DotNetGraph.Compilation;
 using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
@@ -30,8 +31,10 @@ public class CalculationGraphRenderer
         DotSubgraph inputsCluster = new DotSubgraph()
             .WithIdentifier("cluster_0")
             .WithLabel("INPUT PARAMETERS")
-            .WithColor(DotColor.LightSkyBlue)
-            .WithStyle(DotSubgraphStyle.Filled);
+            .WithColor(DotColor.Black)
+            .WithStyle("filled, solid");
+
+        inputsCluster.SetAttribute("fillcolor", new DotAttribute($@"""#c27ffa"""));
 
         graph.Add(inputsCluster);
         ToNode(value, graph, inputsCluster);
@@ -46,7 +49,7 @@ public class CalculationGraphRenderer
         foreach (IValue childValue in value.Expression.Arguments)
         {
             DotNodeBlock child = ToNode(childValue, graph, inputsCluster);
-            DotEdge edge = new DotEdge().From(child.LastNode).To(parentNode.FirstNode);
+            DotEdge edge = new DotEdge().From(child.LastNode).To(parentNode.FirstNode).WithStyle(DotEdgeStyle.Dashed).WithArrowHead(DotEdgeArrowType.Open);
             graph.Add(edge);
         }
 
@@ -87,7 +90,7 @@ public class CalculationGraphRenderer
     private DotNodeBlock ToValueDotNodeBlock(IValue value)
     {
         DotNode
-            sameNode = ToValueDotNode(value);
+            sameNode = ToConstantDotNode(value);
 
         return new DotNodeBlock
         {
@@ -105,29 +108,51 @@ public class CalculationGraphRenderer
         return new DotNodeBlock
         {
             FirstNode = firstNode,
-            ConnectorEdge = new DotEdge().From(firstNode).To(lastNode),
+            ConnectorEdge = new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2),
             LastNode = lastNode
         };
     }
 
-    private DotNode ToValueDotNode(IValue value)
+    private DotNode ToConstantDotNode(IValue value)
     {
-        return new DotNode()
+        var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_value"))
               .WithShape(ShapyByValueType(value))
               .WithFillColor(ColorByValueType(value))
               .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToConstantNodeHtml(value), isHtml: true);
+
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
+
+        return node;
+    }
+
+    private DotNode ToValueDotNode(IValue value)
+    {
+        var node = new DotNode()
+              .WithIdentifier(Html($"{value.Name}_value"))
+              .WithShape(DotNodeShape.Ellipse)
+              .WithFillColor(ColorByValueType(value))
+              .WithStyle(DotNodeStyle.Filled)
               .WithLabel(ToValueNodeHtml(value), isHtml: true);
+
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
+
+        return node;
     }
 
     private DotNode ToExpressionDotNode(IValue value)
     {
-        return new DotNode()
+        var node =  new DotNode()
               .WithIdentifier(Html($"{value.Name}_expression"))
-              .WithShape(ShapyByValueType(value))
-              .WithFillColor(ColorByValueType(value))
+              .WithShape("Rectangle")
+              .WithFillColor("skyblue")
               .WithStyle(DotNodeStyle.Filled)
               .WithLabel(ToExpressionNodeHtml(value), isHtml: true);
+
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
+
+        return node;
     }
 
     private string ShapyByValueType(IValue value) =>
@@ -135,21 +160,29 @@ public class CalculationGraphRenderer
                 value.IsInput ? "parallelogram" :
                                         "Rectangle";
 
-    private DotColor ColorByValueType(IValue value) => value.IsOutput ?
-            DotColor.PaleGreen : DotColor.White;
+    private string ColorByValueType(IValue value) => value.IsOutput ?
+            "#7ffac2" : "skyblue";
 
     private string ToExpressionNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
+                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
                     <tr><td align=""left"">{Html(value.Expression.Body)}</td></tr>
                 </table>";
     }
 
-    private string ToValueNodeHtml(IValue value)
+    private string ToConstantNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
                     <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""left"">{value.Primitive:0.00}</td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
+                </table>";
+    }
+    private string ToValueNodeHtml(IValue value)
+    {
+        return $@"<table border=""0"">
+                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
                 </table>";
     }
 
