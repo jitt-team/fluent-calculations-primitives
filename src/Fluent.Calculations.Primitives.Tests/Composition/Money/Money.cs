@@ -19,6 +19,10 @@ public class Money : Number
 
     public static Money operator +(Money left, Money right) => new Money(left.Add(right), left.Currency);
 
+    public static Money operator *(Money left, Number right) => new Money(left.Multiply(right), left.Currency);
+
+    public static Money operator *(Number left, Money right) => left * right;
+
     public override IValue Create(CreateValueArgs args) => new Money(args, Currency);
 
     public override IValue Default => new Money(Currency.None);
