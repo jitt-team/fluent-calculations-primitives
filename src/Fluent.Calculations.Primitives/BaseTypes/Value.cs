@@ -3,10 +3,6 @@ using Fluent.Calculations.Primitives.Expressions;
 
 public abstract class Value : IValue, IName, IValueOrigin
 {
-    public override string ToString() => $"{Name}";
-
-    public virtual string ValueToString() => $"{Primitive:0.00}";
-
     public string Name { get; private set; }
 
     public ExpressionNode Expression { get; init; }
@@ -48,6 +44,12 @@ public abstract class Value : IValue, IName, IValueOrigin
 
     public abstract IValue Default { get; }
 
+    public ResultType HandleBinaryExpression<ResultType, ResultPrimitiveType>(
+        IValue right,
+        Func<IValue, IValue, ResultPrimitiveType> calcFunc,
+        string operatorName) where ResultType : IValue, new() =>
+        BinaryExpressionHandler.Handle<ResultType, ResultPrimitiveType>(this, right, calcFunc, operatorName);
+
     void IName.Set(string name) => Name = name;
 
     IValue IValueOrigin.MarkAsEndResult()
@@ -62,19 +64,6 @@ public abstract class Value : IValue, IName, IValueOrigin
         return this;
     }
 
-    public ResultType HandleBinaryExpression<ResultType, ResultPrimitiveType>(
-            IValue right,
-            Func<IValue, IValue, ResultPrimitiveType> calcFunc,
-            string operatorName) where ResultType : IValue, new()
-    {
-        ExpressionNode expressionNode = new  ExpressionNode(ComposeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression)
-                .WithArguments(this, right);
-
-        return (ResultType)new ResultType().Create(CreateValueArgs.Create(operatorName, expressionNode, Convert.ToDecimal(calcFunc(this, right))));
-
-        string ComposeBinaryExpressionBody() => $"{this} {ToLanguageOperator(operatorName)} {right}";
-    }
-
     public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
 
     public override bool Equals(object? obj)
@@ -85,23 +74,7 @@ public abstract class Value : IValue, IName, IValueOrigin
 
     public override int GetHashCode() => Primitive.GetHashCode();
 
-    private string ToLanguageOperator(string operatorName)
-    {
-        switch (operatorName)
-        {
-            case "And": return "&";
-            case "Or": return "|";
-            case "IsEqual": return "==";
-            case "NotEqual": return "!=";
-            case "LessThan": return "<";
-            case "GreaterThan": return ">";
-            case "LessThanOrEqual": return "<=";
-            case "GreaterThanOrEqual": return ">=";
-            case "Add": return "+";
-            case "Substract": return "-";
-            case "Multiply": return "*";
-            case "Divide": return "/";
-            default: return "#unknown_operator#";
-        }
-    }
+    public override string ToString() => $"{Name}";
+
+    public virtual string ValueToString() => $"{Primitive:0.00}";
 }

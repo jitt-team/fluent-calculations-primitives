@@ -59,7 +59,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         expressionNode.WithArguments(arguments);
 
-        return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Create(name, expressionNode, expressionResultValue.Primitive));
+        return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Build(name, expressionNode, expressionResultValue.Primitive));
     }
 
     private IValue[] ResolveEvaluationPointersToValues(PointerToEvaulationCapture[] evaluationPointers)

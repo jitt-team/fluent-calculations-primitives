@@ -14,7 +14,7 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(CreateValueArgs.Create("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
+    public Number() : this(CreateValueArgs.Build("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
 
     public Number(Number number) : base(number)
     {
@@ -27,7 +27,7 @@ public class Number : Value,
     public static Number Zero => new() { IsInput = true };
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
-        new(CreateValueArgs.Create(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
+        new(CreateValueArgs.Build(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
