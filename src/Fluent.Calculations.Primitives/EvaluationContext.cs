@@ -22,7 +22,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IValueOrigin)result).MarkAsEndResult();
+        return (TResult)((IOrigin)result).MarkAsEndResult();
     }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }
@@ -75,7 +75,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         foreach (CapturedInputParameter inputParameter in inputParameters)
         {
             ((IName)inputParameter.Value).Set(inputParameter.Name);
-            ((IValueOrigin)inputParameter.Value).MarkAsInput();
+            ((IOrigin)inputParameter.Value).MarkAsInput();
         }
 
         return inputParameters.Select(capture => capture.Value).ToArray();

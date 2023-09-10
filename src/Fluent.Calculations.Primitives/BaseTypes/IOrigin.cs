@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes
 {
-    internal interface IValueOrigin
+    internal interface IOrigin
     {
         IValue MarkAsEndResult();
         IValue MarkAsInput();

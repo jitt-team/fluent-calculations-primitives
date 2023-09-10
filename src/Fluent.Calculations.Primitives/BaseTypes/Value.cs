@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
-public abstract class Value : IValue, IName, IValueOrigin
+public abstract class Value : IValue, IName, IOrigin
 {
     public string Name { get; private set; }
 
@@ -52,13 +52,13 @@ public abstract class Value : IValue, IName, IValueOrigin
 
     void IName.Set(string name) => Name = name;
 
-    IValue IValueOrigin.MarkAsEndResult()
+    IValue IOrigin.MarkAsEndResult()
     {
         IsOutput = true;
         return this;
     }
 
-    IValue IValueOrigin.MarkAsInput()
+    IValue IOrigin.MarkAsInput()
     {
         IsInput = true;
         return this;
