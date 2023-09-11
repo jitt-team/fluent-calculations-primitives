@@ -51,6 +51,7 @@ jobs:
     # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
     # You can update this logic if you want to manage releases differently
     # if: github.event_name == 'release'
+    if: github.ref_name == 'feture/minver'
     runs-on: ubuntu-latest
     needs: [ build ]
     steps:
