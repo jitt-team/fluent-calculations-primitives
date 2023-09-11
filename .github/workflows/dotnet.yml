@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main", "feature/*", "feture/minver" ]
+    branches: [ "main", "feature/*" ]
   pull_request:
-    branches: [  "main", "feature/*", "feture/minver"  ]
+    branches: [  "main", "feature/*" ]
 
 env:
   NuGetDirectory: ${{github.workspace}}/nuget
