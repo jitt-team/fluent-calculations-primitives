@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "main", "feature/*", "feture/minver" ]
   pull_request:
-    branches: [  "main", "feature/*"  ]
+    branches: [  "main", "feature/*", "feture/minver"  ]
 
 env:
   NuGetDirectory: ${{github.workspace}}/nuget
