@@ -21,7 +21,7 @@ public class Money : Number
 
     public static Money operator *(Money left, Number right) => new Money(left.Multiply(right), left.Currency);
 
-    public static Money operator *(Number left, Money right) => left * right;
+    public static Money operator *(Number left, Money right) => new Money(right.Multiply(left), right.Currency);
 
     public override IValue Create(CreateValueArgs args) => new Money(args, Currency);
 
