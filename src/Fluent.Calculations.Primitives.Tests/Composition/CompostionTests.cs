@@ -44,12 +44,14 @@ public class CompostionTests
     private Money MoneyCalcMethod()
     {
         EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
+        
+        Number SomeNumber = Number.Of(5);
 
         Money
             MoneyOne = Number.Of(10).Amount().EUR,
             MoneyTwo = Number.Of(20).Amount().EUR;
 
-        return Calculation.Evaluate(() => MoneyOne + MoneyTwo);
+        return Calculation.Evaluate(() => MoneyOne + SomeNumber * MoneyTwo);
     }
 
     private Money FunctionToScopeImpicit()

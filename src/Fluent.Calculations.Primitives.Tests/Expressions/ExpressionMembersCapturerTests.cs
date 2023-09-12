@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Tests.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Expressions.Capture;
 using Xunit.Abstractions;
 
 public class ExpressionMembersCapturerTests
@@ -12,14 +12,15 @@ public class ExpressionMembersCapturerTests
     [Fact]
     public void test()
     {
-        var capturer = new ExpressionMembersCapturer();
+
+        var capturer = new ExpressionCapturer(new ExpressionMembersCapturer(new ExpressionMemberExtractor(), new MemberAccessExtractor()));
 
         Condition a = Condition.True();
         Number
             b = Number.Of(1),
             c = Number.Of(2);
 
-        ExpressionMembersCaptureResult result = capturer.Capture(() => a ? b : c);
+        ExpressionCaptureResult result = capturer.Capture(() => a ? b : c);
 
         output.WriteLine(result.ToString());
     }
