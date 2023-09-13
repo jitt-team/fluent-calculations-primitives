@@ -4,33 +4,47 @@ using Fluent.Calculations.Primitives.Expressions.Capture;
 using FluentAssertions;
 using Moq;
 using System.Linq.Expressions;
-using Xunit.Abstractions;
 
 public class ExpressionCapturerTests
 {
     private readonly Mock<IExpressionMembersCapturer> expressionMembersCapturer;
 
-    public ExpressionCapturerTests()
-    {
-        expressionMembersCapturer = new Mock<IExpressionMembersCapturer>(MockBehavior.Strict);
-    }
+    public ExpressionCapturerTests() => expressionMembersCapturer = new Mock<IExpressionMembersCapturer>(MockBehavior.Strict);
 
     [Fact]
-    public void test()
+    public void CapturedMembers_AreReturned()
     {
-        Condition a = Condition.True();
         Number
-            b = Number.Of(1),
-            c = Number.Of(2);
+            dummyValue = Number.Of(1);
 
-        ExpressionCaptureResult result = BuildExpressionCapturer().Capture(() => a ? b : c);
+        CapturedInputMember
+            testInputMember1 = new CapturedInputMember(Number.Zero, "INPUT-MEMBER-1"),
+            testInputMember2 = new CapturedInputMember(Number.Zero, "INPUT-MEMBER-2");
+
+        CapturedEvaulationMember
+            testEvalMember1 = new CapturedEvaulationMember("EVALUATION-MEMBER-1"),
+            testEvalMember2 = new CapturedEvaulationMember("EVALUATION-MEMBER-2");
+
+        ExpressionCaptureResult result = BuildCapturer().Capture(() => dummyValue);
+
         result.Should().NotBeNull();
+        result.InputMembers.Count().Should().Be(2);
+        result.InputMembers[0].Name.Should().Be(testInputMember1.Name);
+        result.InputMembers[1].Name.Should().Be(testInputMember2.Name);
+
+        result.EvaluationMembers.Count().Should().Be(2);
+        result.EvaluationMembers[0].Name.Should().Be(testEvalMember1.Name);
+        result.EvaluationMembers[1].Name.Should().Be(testEvalMember2.Name);
+
+        ExpressionCapturer BuildCapturer() => BuildExpressionCapturer(
+            new[] { testInputMember1, testInputMember2 },
+            new[] { testEvalMember1, testEvalMember2 });
     }
 
-    ExpressionCapturer BuildExpressionCapturer()
+    ExpressionCapturer BuildExpressionCapturer(CapturedInputMember[] inputMembers, CapturedEvaulationMember[] evaulationMembers)
     {
-        expressionMembersCapturer.Setup(e => e.Capture(It.IsAny<Expression>())).Returns(new List<object>());
-
+        List<object> returnValue = inputMembers.Cast<object>().Concat(evaulationMembers.Cast<object>()).ToList();
+        expressionMembersCapturer.Setup(e => e.Capture(It.IsAny<Expression>())).Returns(returnValue);
         return new ExpressionCapturer(expressionMembersCapturer.Object);
     }
 }
