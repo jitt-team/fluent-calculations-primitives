@@ -3,10 +3,10 @@ using System.Linq.Expressions;
 
 internal class ExpressionMembersCapturer : IExpressionMembersCapturer
 {
-    private readonly IExpressionMemberExtractor _expressionMemberExtractor;
+    private readonly IMultiPartExpressionMemberExtractor _expressionMemberExtractor;
     private readonly IMemberAccessExtractor _memberAccessCapturer;
 
-    public ExpressionMembersCapturer(IExpressionMemberExtractor memberExtractor, IMemberAccessExtractor memberAccessCapturer)
+    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor memberExtractor, IMemberAccessExtractor memberAccessCapturer)
     {
         _expressionMemberExtractor = memberExtractor;
         _memberAccessCapturer = memberAccessCapturer;

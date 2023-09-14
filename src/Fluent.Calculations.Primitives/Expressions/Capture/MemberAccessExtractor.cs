@@ -1,5 +1,4 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
-using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -9,7 +8,7 @@ internal class MemberAccessExtractor : IMemberAccessExtractor
     {
         // TODO : Any way to make this once per member and not one each usage? Maybe invoke much later?
         if (IsInputParameter(expression.Member))
-            return ToListResult(new CapturedInputMember(DynamicInvoke(expression), expression.Member.Name));
+            return ToListResult(new CapturedInputMember(LambdaInvoker.DynamicInvoke(expression), expression.Member.Name));
 
         // Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
         else if (IsEvaluation(expression.Member))
@@ -22,10 +21,6 @@ internal class MemberAccessExtractor : IMemberAccessExtractor
         || member.MemberType == MemberTypes.Property && ((PropertyInfo)member).CanWrite;
 
     private bool IsEvaluation(MemberInfo member) => member.MemberType == MemberTypes.Property && !((PropertyInfo)member).CanWrite;
-
-    private IValue DynamicInvoke(Expression expression) => (IValue)EnsureNotNull(Expression.Lambda(expression).Compile().DynamicInvoke(), expression);
-
-    private object EnsureNotNull(object? obj, Expression body) => obj ?? throw new InvalidOperationException(@$"Expression ""{body}"" resulted in Null");
 
     private static List<object> ToListResult(object obj) => new List<object> { obj };
 }

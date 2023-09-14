@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 
-internal class ExpressionMemberExtractor : IExpressionMemberExtractor
+internal class MultiPartExpressionMemberExtractor : IMultiPartExpressionMemberExtractor
 {
     public Expression[] ExtractBinaryExpressionMembers(BinaryExpression expression) =>
         new[] { expression.Left, expression.Right };

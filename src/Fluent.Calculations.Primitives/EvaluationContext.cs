@@ -16,7 +16,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
     public EvaluationContext()
     {
-        IExpressionMemberExtractor expressionMemberExtractor = new ExpressionMemberExtractor();
+        IMultiPartExpressionMemberExtractor expressionMemberExtractor = new MultiPartExpressionMemberExtractor();
         IMemberAccessExtractor memberAccessExtractor = new MemberAccessExtractor();
         IExpressionMembersCapturer expressionMembersCapturer = new ExpressionMembersCapturer(expressionMemberExtractor, memberAccessExtractor);
         this.expressionCapturer = new ExpressionCapturer(expressionMembersCapturer);
