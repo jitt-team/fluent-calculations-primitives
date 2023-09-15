@@ -8,9 +8,9 @@ internal class ExpressionMembersCapturer : IExpressionMembersCapturer
 
     public ExpressionMembersCapturer() : this(new MultiPartExpressionMemberExtractor(), new MemberAccessCapturer()){}
 
-    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor memberExtractor, IMemberAccessCapturer memberAccessCapturer)
+    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor expressionMemberExtractor, IMemberAccessCapturer memberAccessCapturer)
     {
-        _expressionMemberExtractor = memberExtractor;
+        _expressionMemberExtractor = expressionMemberExtractor;
         _memberAccessCapturer = memberAccessCapturer;
     }
 
