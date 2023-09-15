@@ -8,7 +8,7 @@ internal class MemberAccessExtractor : IMemberAccessExtractor
     {
         // TODO : Any way to make this once per member and not one each usage? Maybe invoke much later?
         if (IsInputParameter(expression.Member))
-            return ToListResult(new CapturedInputMember(LambdaInvoker.DynamicInvoke(expression), expression.Member.Name));
+            return ToListResult(new CapturedInputMember(ValueExpressionInvoker.DynamicInvoke(expression), expression.Member.Name));
 
         // Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
         else if (IsEvaluation(expression.Member))
