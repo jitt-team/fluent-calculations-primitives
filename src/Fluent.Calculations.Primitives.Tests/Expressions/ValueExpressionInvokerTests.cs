@@ -7,12 +7,14 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
     public class ValueExpressionInvokerTests
     {
+        MemberAccessReflectionProvider memberAccessReflectionProvider = new MemberAccessReflectionProvider();
+
         [Fact]
         public void HasValue_ReturnsResult()
         {
             Number testValue = Number.Of(1, "TEST-VALUE");
             Expression<Func<Number>> testExpression = () => testValue;
-            IValue result = MemberAccessReflectionProvider.DynamicInvoke(testExpression.Body);
+            IValue result = memberAccessReflectionProvider.GetValue(testExpression.Body);
             result.Name.Should().Be(testValue.Name);
         }
 
@@ -21,7 +23,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         {
             Number testValue = null;
             Expression<Func<Number>> testExpression = () => testValue;
-            Assert.Throws<NullExpressionResultException>(() => MemberAccessReflectionProvider.DynamicInvoke(testExpression.Body));
+            Assert.Throws<NullExpressionResultException>(() => memberAccessReflectionProvider.GetValue(testExpression.Body));
         }
     }
 }

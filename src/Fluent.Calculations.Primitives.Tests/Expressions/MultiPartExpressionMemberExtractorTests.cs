@@ -8,6 +8,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions;
 public class MultiPartExpressionMemberExtractorTests
 {
     private readonly MultiPartExpressionMemberExtractor expressionMemberExtractor = new MultiPartExpressionMemberExtractor();
+    private readonly MemberAccessReflectionProvider memberAccessReflectionProvider = new MemberAccessReflectionProvider();
 
     [Fact]
     public void ExtractConditionalExpressionMembers_ReturnsThreeMember()
@@ -25,9 +26,9 @@ public class MultiPartExpressionMemberExtractorTests
         UnaryExpression testMemberConversion = (UnaryExpression)memberResults[0];
 
         IValue
-            resultCondition = MemberAccessReflectionProvider.DynamicInvoke(testMemberConversion.Operand),
-            resultValue1 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[1]),
-            resultValue2 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[2]);
+            resultCondition = memberAccessReflectionProvider.GetValue(testMemberConversion.Operand),
+            resultValue1 = memberAccessReflectionProvider.GetValue(memberResults[1]),
+            resultValue2 = memberAccessReflectionProvider.GetValue(memberResults[2]);
 
         resultCondition.Name.Should().Be(testCondition.Name);
         resultValue1.Name.Should().Be(testValue1.Name);
@@ -47,8 +48,8 @@ public class MultiPartExpressionMemberExtractorTests
         Expression[] memberResults = expressionMemberExtractor.ExtractBinaryExpressionMembers(testBinaryExpression);
 
         IValue
-            resultValue1 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[0]),
-            resultValue2 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[1]);
+            resultValue1 = memberAccessReflectionProvider.GetValue(memberResults[0]),
+            resultValue2 = memberAccessReflectionProvider.GetValue(memberResults[1]);
 
         resultValue1.Name.Should().Be(testValue1.Name);
         resultValue2.Name.Should().Be(testValue2.Name);

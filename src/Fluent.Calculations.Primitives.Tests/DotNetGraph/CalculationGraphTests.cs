@@ -17,7 +17,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
             }
             .ToResult();
 
-            await new CalculationGraphRenderer("graph1.dot").Render(result);
+            await new CalculationGraphRenderer("graph4.dot").Render(result);
         }
 
         internal class FooBarCalculation : EvaluationContext<Number>

@@ -13,5 +13,20 @@ internal class MemberAccessReflectionProvider : IMemberAccessReflectionProvider
 
     private object EnsureNotNull(object? obj, Expression body) => obj ?? throw new NullExpressionResultException(body.ToString());
 
-    public string GetPropertyName(MemberExpression expression) => ((PropertyInfo)expression.Member).Name;
+    public string GetPropertyName(MemberExpression expression)
+    {
+        MemberInfo memberInfo = expression.Member;
+
+        switch (memberInfo.MemberType)
+        {
+            case MemberTypes.Field:
+                return ((FieldInfo)expression.Member).Name;
+            case MemberTypes.Property:
+                return ((PropertyInfo)expression.Member).Name;
+            default:
+                break;
+        }
+
+        throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{expression.Member.Name}] is not supported.");
+    }
 }
