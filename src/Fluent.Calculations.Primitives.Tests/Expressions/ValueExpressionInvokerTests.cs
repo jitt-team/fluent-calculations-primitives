@@ -11,8 +11,8 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         public void HasValue_ReturnsResult()
         {
             Number testValue = Number.Of(1, "TEST-VALUE");
-            Expression<Func<Number>> testEpression = () => testValue;
-            IValue result = ValueExpressionInvoker.DynamicInvoke(testEpression.Body);
+            Expression<Func<Number>> testExpression = () => testValue;
+            IValue result = ValueExpressionInvoker.DynamicInvoke(testExpression.Body);
             result.Name.Should().Be(testValue.Name);
         }
 
@@ -20,8 +20,8 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         public void NullValue_Throws()
         {
             Number testValue = null;
-            Expression<Func<Number>> testEpression = () => testValue;
-            Assert.Throws<NullExpressionResultException>(() => ValueExpressionInvoker.DynamicInvoke(testEpression.Body));
+            Expression<Func<Number>> testExpression = () => testValue;
+            Assert.Throws<NullExpressionResultException>(() => ValueExpressionInvoker.DynamicInvoke(testExpression.Body));
         }
     }
 }
