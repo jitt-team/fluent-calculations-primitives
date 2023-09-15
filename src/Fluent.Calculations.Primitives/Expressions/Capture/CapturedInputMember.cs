@@ -13,5 +13,5 @@ internal class CapturedInputMember
         Name = name;
     }
 
-    internal static bool OfType(object obj) => obj is CapturedInputMember;
+    internal static bool IsOfType(object obj) => obj is CapturedInputMember;
 }

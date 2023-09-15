@@ -15,8 +15,8 @@ internal class ExpressionCapturer : IExpressionCapturer
         List<object> capturedMembers = membersCapturer.Capture(expression);
 
         return new ExpressionCaptureResult(
-            capturedMembers.Where(CapturedInputMember.OfType).Cast<CapturedInputMember>().ToArray(),
-            capturedMembers.Where(CapturedEvaulationMember.OfType).Cast<CapturedEvaulationMember>().ToArray()
+            capturedMembers.Where(CapturedInputMember.IsOfType).Cast<CapturedInputMember>().ToArray(),
+            capturedMembers.Where(CapturedEvaulationMember.IsOfType).Cast<CapturedEvaulationMember>().ToArray()
         );
     }
 }

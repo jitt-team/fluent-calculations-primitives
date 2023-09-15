@@ -12,6 +12,7 @@ internal class MemberAccessCapturer : IMemberAccessCapturer
     public List<object> Capture(MemberExpression expression)
     {
         // TODO: Any way to make this once per member and not one each usage? Maybe invoke much later?
+        // TODO: Maybe we can capture just expressions to members and then invoke the at the end just once?
         if (reflectionProvider.IsInputMember(expression.Member))
             return ToList(new CapturedInputMember(reflectionProvider.GetValue(expression), reflectionProvider.GetPropertyName(expression)));
 

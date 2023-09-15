@@ -6,5 +6,5 @@ internal class CapturedEvaulationMember
 
     public CapturedEvaulationMember(string name) => Name = name;
 
-    internal static bool OfType(object obj) => obj is CapturedEvaulationMember;
+    internal static bool IsOfType(object obj) => obj is CapturedEvaulationMember;
 }
