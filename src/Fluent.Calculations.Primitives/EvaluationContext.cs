@@ -12,17 +12,11 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private readonly IExpressionCapturer expressionCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    internal EvaluationContext(IExpressionCapturer expressionCapturer) => this.expressionCapturer = expressionCapturer;
-
-    public EvaluationContext()
-    {
-        IMultiPartExpressionMemberExtractor expressionMemberExtractor = new MultiPartExpressionMemberExtractor();
-        IMemberAccessExtractor memberAccessExtractor = new MemberAccessExtractor();
-        IExpressionMembersCapturer expressionMembersCapturer = new ExpressionMembersCapturer(expressionMemberExtractor, memberAccessExtractor);
-        this.expressionCapturer = new ExpressionCapturer(expressionMembersCapturer);
-    }
-
+    public EvaluationContext() : this(new ExpressionCapturer()) { }
+    
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
+
+    internal EvaluationContext(IExpressionCapturer expressionCapturer) => this.expressionCapturer = expressionCapturer;
 
     public TResult ToResult()
     {
@@ -73,9 +67,9 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
     private IValue[] ResolveEvaluationMembersToValues(CapturedEvaulationMember[] evaluationPointers)
     {
-        return evaluationPointers.Where(IsCached).Select(GetFromCache).ToArray();
+        return evaluationPointers.Where(IsCached).Select(GetCachedValue).ToArray();
         bool IsCached(CapturedEvaulationMember pointer) => resultCache.ContainsName(pointer.Name);
-        IValue GetFromCache(CapturedEvaulationMember pointer) => resultCache.GetByName(pointer.Name);
+        IValue GetCachedValue(CapturedEvaulationMember pointer) => resultCache.GetByName(pointer.Name);
     }
 
     private IValue[] GetSyncedNameInputValues(CapturedInputMember[] inputParameters)

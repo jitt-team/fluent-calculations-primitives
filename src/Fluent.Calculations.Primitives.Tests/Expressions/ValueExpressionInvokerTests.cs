@@ -12,7 +12,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         {
             Number testValue = Number.Of(1, "TEST-VALUE");
             Expression<Func<Number>> testExpression = () => testValue;
-            IValue result = ValueExpressionInvoker.DynamicInvoke(testExpression.Body);
+            IValue result = MemberAccessReflectionProvider.DynamicInvoke(testExpression.Body);
             result.Name.Should().Be(testValue.Name);
         }
 
@@ -21,7 +21,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         {
             Number testValue = null;
             Expression<Func<Number>> testExpression = () => testValue;
-            Assert.Throws<NullExpressionResultException>(() => ValueExpressionInvoker.DynamicInvoke(testExpression.Body));
+            Assert.Throws<NullExpressionResultException>(() => MemberAccessReflectionProvider.DynamicInvoke(testExpression.Body));
         }
     }
 }

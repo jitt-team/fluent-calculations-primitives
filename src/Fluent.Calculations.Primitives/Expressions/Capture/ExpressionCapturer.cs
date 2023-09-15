@@ -6,6 +6,8 @@ internal class ExpressionCapturer : IExpressionCapturer
 {
     private readonly IExpressionMembersCapturer membersCapturer;
 
+    public ExpressionCapturer() : this(new ExpressionMembersCapturer()) { }
+
     public ExpressionCapturer(IExpressionMembersCapturer membersCapturer) => this.membersCapturer = membersCapturer;
 
     public ExpressionCaptureResult Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue

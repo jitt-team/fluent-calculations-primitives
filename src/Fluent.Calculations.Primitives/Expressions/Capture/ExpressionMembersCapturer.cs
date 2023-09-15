@@ -4,9 +4,11 @@ using System.Linq.Expressions;
 internal class ExpressionMembersCapturer : IExpressionMembersCapturer
 {
     private readonly IMultiPartExpressionMemberExtractor _expressionMemberExtractor;
-    private readonly IMemberAccessExtractor _memberAccessCapturer;
+    private readonly IMemberAccessCapturer _memberAccessCapturer;
 
-    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor memberExtractor, IMemberAccessExtractor memberAccessCapturer)
+    public ExpressionMembersCapturer() : this(new MultiPartExpressionMemberExtractor(), new MemberAccessCapturer()){}
+
+    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor memberExtractor, IMemberAccessCapturer memberAccessCapturer)
     {
         _expressionMemberExtractor = memberExtractor;
         _memberAccessCapturer = memberAccessCapturer;
@@ -23,7 +25,7 @@ internal class ExpressionMembersCapturer : IExpressionMembersCapturer
         else if (expression.NodeType == ExpressionType.Conditional)
             return CaptureMultiple(_expressionMemberExtractor.ExtractConditionalExpressionMembers((ConditionalExpression)expression));
         else if (expression.NodeType == ExpressionType.MemberAccess)
-            return _memberAccessCapturer.CaptureParameterMember((MemberExpression)expression);
+            return _memberAccessCapturer.Capture((MemberExpression)expression);
         else
             return new List<object>(); // TODO : Returm NotImplemented Value for visibility
     }

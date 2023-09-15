@@ -25,9 +25,9 @@ public class MultiPartExpressionMemberExtractorTests
         UnaryExpression testMemberConversion = (UnaryExpression)memberResults[0];
 
         IValue
-            resultCondition = ValueExpressionInvoker.DynamicInvoke(testMemberConversion.Operand),
-            resultValue1 = ValueExpressionInvoker.DynamicInvoke(memberResults[1]),
-            resultValue2 = ValueExpressionInvoker.DynamicInvoke(memberResults[2]);
+            resultCondition = MemberAccessReflectionProvider.DynamicInvoke(testMemberConversion.Operand),
+            resultValue1 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[1]),
+            resultValue2 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[2]);
 
         resultCondition.Name.Should().Be(testCondition.Name);
         resultValue1.Name.Should().Be(testValue1.Name);
@@ -47,8 +47,8 @@ public class MultiPartExpressionMemberExtractorTests
         Expression[] memberResults = expressionMemberExtractor.ExtractBinaryExpressionMembers(testBinaryExpression);
 
         IValue
-            resultValue1 = ValueExpressionInvoker.DynamicInvoke(memberResults[0]),
-            resultValue2 = ValueExpressionInvoker.DynamicInvoke(memberResults[1]);
+            resultValue1 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[0]),
+            resultValue2 = MemberAccessReflectionProvider.DynamicInvoke(memberResults[1]);
 
         resultValue1.Name.Should().Be(testValue1.Name);
         resultValue2.Name.Should().Be(testValue2.Name);
