@@ -8,7 +8,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions;
 public class MultiPartExpressionMemberExtractorTests
 {
     private readonly MultiPartExpressionMemberExtractor expressionMemberExtractor = new MultiPartExpressionMemberExtractor();
-    private readonly MemberAccessReflectionProvider memberAccessReflectionProvider = new MemberAccessReflectionProvider();
+    private readonly ReflectionProvider memberAccessReflectionProvider = new ReflectionProvider();
 
     [Fact]
     public void ExtractConditionalExpressionMembers_ReturnsThreeMember()

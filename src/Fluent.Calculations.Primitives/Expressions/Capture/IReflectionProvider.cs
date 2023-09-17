@@ -4,11 +4,11 @@ using System.Reflection;
 
 namespace Fluent.Calculations.Primitives.Expressions.Capture
 {
-    internal interface IMemberAccessReflectionProvider
+    internal interface IReflectionProvider
     {
-        bool IsInputMember(MemberInfo member);
+        bool IsParameter(MemberInfo member);
 
-        bool IsEvaluationMember(MemberInfo member);
+        bool IsEvaluation(MemberInfo member);
 
         IValue GetValue(Expression expression);
 

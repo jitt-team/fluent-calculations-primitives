@@ -7,7 +7,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
     public class ValueExpressionInvokerTests
     {
-        MemberAccessReflectionProvider memberAccessReflectionProvider = new MemberAccessReflectionProvider();
+        ReflectionProvider memberAccessReflectionProvider = new ReflectionProvider();
 
         [Fact]
         public void HasValue_ReturnsResult()

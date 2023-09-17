@@ -3,11 +3,11 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
 
-internal class MemberAccessReflectionProvider : IMemberAccessReflectionProvider
+internal class ReflectionProvider : IReflectionProvider
 {
-    public bool IsInputMember(MemberInfo member) => member.MemberType == MemberTypes.Field || member.MemberType == MemberTypes.Property && ((PropertyInfo)member).CanWrite;
+    public bool IsParameter(MemberInfo member) => member.MemberType == MemberTypes.Field || member.MemberType == MemberTypes.Property && ((PropertyInfo)member).CanWrite;
 
-    public bool IsEvaluationMember(MemberInfo member) => member.MemberType == MemberTypes.Property && !((PropertyInfo)member).CanWrite;
+    public bool IsEvaluation(MemberInfo member) => member.MemberType == MemberTypes.Property && !((PropertyInfo)member).CanWrite;
 
     public IValue GetValue(Expression expression)
     {

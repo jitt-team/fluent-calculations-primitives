@@ -2,9 +2,9 @@
 
 namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
-    public class MemberAccessReflectionProviderTests
+    public class ReflectionProviderTests
     {
-        private MemberAccessReflectionProvider reflectionProvider = new MemberAccessReflectionProvider();
+        private ReflectionProvider reflectionProvider = new ReflectionProvider();
 
         [Fact]
         public void Test()

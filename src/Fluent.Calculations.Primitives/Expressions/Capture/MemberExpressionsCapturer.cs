@@ -1,20 +1,16 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 
-internal class ExpressionMembersCapturer : IExpressionMembersCapturer
+internal class MemberExpressionsCapturer : IMemberExpressionsCapturer
 {
     private readonly IMultiPartExpressionMemberExtractor _expressionMemberExtractor;
-    private readonly IMemberAccessCapturer _memberAccessCapturer;
 
-    public ExpressionMembersCapturer() : this(new MultiPartExpressionMemberExtractor(), new MemberAccessCapturer()){}
+    public MemberExpressionsCapturer() : this(new MultiPartExpressionMemberExtractor()) { }
 
-    public ExpressionMembersCapturer(IMultiPartExpressionMemberExtractor expressionMemberExtractor, IMemberAccessCapturer memberAccessCapturer)
-    {
+    public MemberExpressionsCapturer(IMultiPartExpressionMemberExtractor expressionMemberExtractor) =>
         _expressionMemberExtractor = expressionMemberExtractor;
-        _memberAccessCapturer = memberAccessCapturer;
-    }
 
-    public List<object> Capture(Expression expression)
+    public List<MemberExpression> Capture(Expression expression)
     {
         if (expression.NodeType == ExpressionType.Lambda)
             return Capture(((LambdaExpression)expression).Body);
@@ -25,10 +21,9 @@ internal class ExpressionMembersCapturer : IExpressionMembersCapturer
         else if (expression.NodeType == ExpressionType.Conditional)
             return CaptureMultiple(_expressionMemberExtractor.ExtractConditionalExpressionMembers((ConditionalExpression)expression));
         else if (expression.NodeType == ExpressionType.MemberAccess)
-            return _memberAccessCapturer.Capture((MemberExpression)expression);
-        else
-            return new List<object>(); // TODO : Returm NotImplemented Value for visibility
+            return new List<MemberExpression> { (MemberExpression)expression };
+        throw new NotImplementedException($"Expression type {expression.NodeType} body {expression} not implemented");
     }
 
-    private List<object> CaptureMultiple(Expression[] expressions) => expressions.SelectMany(Capture).ToList();
- }
+    private List<MemberExpression> CaptureMultiple(Expression[] expressions) => expressions.SelectMany(Capture).ToList();
+}
