@@ -28,13 +28,13 @@ public class ExpressionValuesCapturerTests
         CapturedExpressionValues result = BuildCapturer().Capture(() => dummyValue);
 
         result.Should().NotBeNull();
-        result.InputMembers.Count().Should().Be(2);
-        result.InputMembers[0].Name.Should().Be(testParam1.Name);
-        result.InputMembers[1].Name.Should().Be(testParam2.Name);
+        result.Parameters.Count().Should().Be(2);
+        result.Parameters[0].Name.Should().Be(testParam1.Name);
+        result.Parameters[1].Name.Should().Be(testParam2.Name);
 
-        result.EvaluationMembers.Count().Should().Be(2);
-        result.EvaluationMembers[0].Name.Should().Be(testEval1.Name);
-        result.EvaluationMembers[1].Name.Should().Be(testEval2.Name);
+        result.Evaluations.Count().Should().Be(2);
+        result.Evaluations[0].Name.Should().Be(testEval1.Name);
+        result.Evaluations[1].Name.Should().Be(testEval2.Name);
 
         ExpressionValuesCapturer BuildCapturer() => BuildExpressionCapturer(
             new[] { testParam1, testParam2 },

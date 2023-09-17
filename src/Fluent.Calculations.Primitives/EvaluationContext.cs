@@ -8,15 +8,19 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-    private readonly EvaluationResultCache resultCache = new EvaluationResultCache();
-    private readonly IExpressionValuesCapturer expressionCapturer;
+    private readonly IEvaluationResultsCache resultsCache;
+    private readonly IExpressionValuesCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    public EvaluationContext() : this(new ExpressionValuesCapturer()) { }
+    public EvaluationContext() : this(new ExpressionValuesCapturer(), new EvaluationResultsCache()) { }
     
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
 
-    internal EvaluationContext(IExpressionValuesCapturer expressionCapturer) => this.expressionCapturer = expressionCapturer;
+    internal EvaluationContext(IExpressionValuesCapturer expressionCapturer, IEvaluationResultsCache resultsCache)
+    {
+        this.expressionValuesCapturer = expressionCapturer;
+        this.resultsCache = resultsCache;
+    }
 
     public TResult ToResult()
     {
@@ -31,19 +35,19 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
         Expression<Func<ExpressionResultValue>> expression,
-        [CallerMemberName] string name = "NaN",
-        [CallerArgumentExpression("expression")] string lambdaExpressionBody = "NaN")
+        [CallerMemberName] string name = NaN,
+        [CallerArgumentExpression("expression")] string lambdaExpressionBody = NaN)
             where ExpressionResultValue : class, IValue, new()
     {
         string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
 
         if (!lambdaExpressionBody.Equals(NaN) &&
-            resultCache.ContainsKey(lambdaExpressionBodyAdjusted))
-            return (ExpressionResultValue)resultCache.GetByKey(lambdaExpressionBodyAdjusted);
+            resultsCache.ContainsKey(lambdaExpressionBodyAdjusted))
+            return (ExpressionResultValue)resultsCache.GetByKey(lambdaExpressionBodyAdjusted);
 
         ExpressionResultValue value = EvaluateInternal(expression, name, lambdaExpressionBodyAdjusted);
 
-        resultCache.Add(lambdaExpressionBodyAdjusted, value);
+        resultsCache.Add(lambdaExpressionBodyAdjusted, value);
 
         return value;
     }
@@ -53,14 +57,14 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
            where ExpressionResultValue : class, IValue, new()
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
-        CapturedExpressionValues captureResult = expressionCapturer.Capture(expression);
+        CapturedExpressionValues captureResult = expressionValuesCapturer.Capture(expression);
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
 
-        IValue[] inputValues = GetSyncedNameInputValues(captureResult.InputMembers);
-        IValue[] evaluationValues = ResolveEvaluationMembersToValues(captureResult.EvaluationMembers);
-        IValue[] arguments = inputValues.Concat(evaluationValues).Distinct().ToArray();
+        IValue[] parameterValues = GetSyncedNameInputValues(captureResult.Parameters);
+        IValue[] evaluationValues = ResolveEvaluationMembersToValues(captureResult.Evaluations);
+        IValue[] expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
 
-        expressionNode.WithArguments(arguments);
+        expressionNode.WithArguments(expressionArguments);
 
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Build(name, expressionNode, expressionResultValue.Primitive));
     }
@@ -68,18 +72,18 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private IValue[] ResolveEvaluationMembersToValues(CapturedEvaluation[] evaluationPointers)
     {
         return evaluationPointers.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation pointer) => resultCache.ContainsName(pointer.Name);
-        IValue GetCachedValue(CapturedEvaluation pointer) => resultCache.GetByName(pointer.Name);
+        bool IsCached(CapturedEvaluation pointer) => resultsCache.ContainsName(pointer.Name);
+        IValue GetCachedValue(CapturedEvaluation pointer) => resultsCache.GetByName(pointer.Name);
     }
 
-    private IValue[] GetSyncedNameInputValues(CapturedParameter[] inputParameters)
+    private IValue[] GetSyncedNameInputValues(CapturedParameter[] parameters)
     {
-        foreach (CapturedParameter inputParameter in inputParameters)
+        foreach (CapturedParameter parameter in parameters)
         {
-            ((IName)inputParameter.Value).Set(inputParameter.Name);
-            ((IOrigin)inputParameter.Value).MarkAsInput();
+            ((IName)parameter.Value).Set(parameter.Name);
+            ((IOrigin)parameter.Value).MarkAsInput();
         }
 
-        return inputParameters.Select(capture => capture.Value).ToArray();
+        return parameters.Select(capture => capture.Value).ToArray();
     }
 }

@@ -12,6 +12,6 @@ namespace Fluent.Calculations.Primitives.Expressions.Capture
 
         IValue GetValue(Expression expression);
 
-        string GetPropertyName(MemberExpression expression);
+        string GetPropertyOrFieldName(MemberInfo expression);
     }
 }

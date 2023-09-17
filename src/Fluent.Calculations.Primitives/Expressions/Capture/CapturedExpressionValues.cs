@@ -2,13 +2,13 @@
 
 internal class CapturedExpressionValues
 {
-    public CapturedParameter[] InputMembers { get; }
+    public CapturedParameter[] Parameters { get; }
 
-    public CapturedEvaluation[] EvaluationMembers { get; }
+    public CapturedEvaluation[] Evaluations { get; }
 
     public CapturedExpressionValues(CapturedParameter[] inputParameters, CapturedEvaluation[] evaluationPointer)
     {
-        InputMembers = inputParameters;
-        EvaluationMembers = evaluationPointer;
+        Parameters = inputParameters;
+        Evaluations = evaluationPointer;
     }
 }
