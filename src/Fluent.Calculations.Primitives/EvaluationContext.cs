@@ -61,7 +61,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
 
         IValue[] parameterValues = GetSyncedNameInputValues(captureResult.Parameters);
-        IValue[] evaluationValues = ResolveEvaluationMembersToValues(captureResult.Evaluations);
+        IValue[] evaluationValues = SelectCachedEvaluationsValues(captureResult.Evaluations);
         IValue[] expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
 
         expressionNode.WithArguments(expressionArguments);
@@ -69,11 +69,11 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Build(name, expressionNode, expressionResultValue.Primitive));
     }
 
-    private IValue[] ResolveEvaluationMembersToValues(CapturedEvaluation[] evaluationPointers)
+    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
     {
-        return evaluationPointers.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation pointer) => resultsCache.ContainsName(pointer.Name);
-        IValue GetCachedValue(CapturedEvaluation pointer) => resultsCache.GetByName(pointer.Name);
+        return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
+        bool IsCached(CapturedEvaluation evaluation) => resultsCache.ContainsName(evaluation.Name);
+        IValue GetCachedValue(CapturedEvaluation evaluation) => resultsCache.GetByName(evaluation.Name);
     }
 
     private IValue[] GetSyncedNameInputValues(CapturedParameter[] parameters)
