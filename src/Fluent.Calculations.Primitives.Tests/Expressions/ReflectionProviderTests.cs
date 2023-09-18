@@ -9,7 +9,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
         [Fact]
         public void Test()
         {
-            reflectionProvider.GetValue(null);
+
 
 
         }

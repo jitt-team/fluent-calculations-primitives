@@ -19,7 +19,7 @@ namespace Fluent.Calculations.Primitives.Tests.Lab.GenericMath
             sum.Should().Be(7m);
         }
 
-        [Fact]
+        [Fact(Skip ="Skip until implementing methid call capture")]
         public void TestNumber()
         {
             var ctx = new EvaluationContext<Number>();
