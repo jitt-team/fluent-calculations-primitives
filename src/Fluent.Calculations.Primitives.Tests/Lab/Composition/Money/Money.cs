@@ -1,4 +1,4 @@
-﻿namespace Fluent.Calculations.Primitives.Tests.Composition;
+﻿namespace Fluent.Calculations.Primitives.Tests.Lab.Composition;
 using Fluent.Calculations.Primitives.BaseTypes;
 
 public class Money : Number

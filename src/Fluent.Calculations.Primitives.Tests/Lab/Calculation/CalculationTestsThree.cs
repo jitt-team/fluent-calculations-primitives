@@ -1,9 +1,8 @@
 ﻿using Fluent.Calculations.DotNetGraph;
-using Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
-namespace Fluent.Calculations.Primitives.Tests.Calculation
+namespace Fluent.Calculations.Primitives.Tests.Lab.Calculation
 {
     public class CalculationTestsThree
     {

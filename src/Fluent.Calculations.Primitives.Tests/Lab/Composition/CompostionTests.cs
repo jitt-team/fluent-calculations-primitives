@@ -1,7 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
-
-namespace Fluent.Calculations.Primitives.Tests.Composition;
+namespace Fluent.Calculations.Primitives.Tests.Lab.Composition;
 
 public class CompostionTests
 {
@@ -44,7 +43,7 @@ public class CompostionTests
     private Money MoneyCalcMethod()
     {
         EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
-        
+
         Number SomeNumber = Number.Of(5);
 
         Money

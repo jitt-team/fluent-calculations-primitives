@@ -3,7 +3,11 @@ using Fluent.Calculations.Primitives.BaseTypes;
 
 internal class EvaluationResultsCache : IEvaluationResultsCache
 {
-    private readonly Dictionary<string, IValue> cache = new Dictionary<string, IValue>();
+    private readonly IDictionary<string, IValue> cache;
+
+    public EvaluationResultsCache() : this(new Dictionary<string, IValue>()) { }
+
+    public EvaluationResultsCache(IDictionary<string, IValue> cache) => this.cache = cache;
 
     public void Add(IValue value) => cache.Add(value.Name, value);
 
