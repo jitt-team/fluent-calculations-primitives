@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 
-public interface IMemberExpressionsCapturer
+internal interface IMemberExpressionsCapturer
 {
     List<MemberExpression> Capture(Expression expression);
 }

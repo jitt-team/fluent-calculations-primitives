@@ -6,9 +6,9 @@ internal class CapturedExpressionValues
 
     public CapturedEvaluation[] Evaluations { get; }
 
-    public CapturedExpressionValues(CapturedParameter[] inputParameters, CapturedEvaluation[] evaluationPointer)
+    public CapturedExpressionValues(IEnumerable<CapturedParameter> inputParameters, IEnumerable<CapturedEvaluation> evaluationPointer)
     {
-        Parameters = inputParameters;
-        Evaluations = evaluationPointer;
+        Parameters = inputParameters.ToArray();
+        Evaluations = evaluationPointer.ToArray();
     }
 }

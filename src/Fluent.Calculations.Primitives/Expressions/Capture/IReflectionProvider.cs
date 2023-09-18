@@ -1,17 +1,15 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
+﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
+using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Fluent.Calculations.Primitives.Expressions.Capture
+internal interface IReflectionProvider
 {
-    internal interface IReflectionProvider
-    {
-        bool IsParameter(MemberInfo member);
+    bool IsParameter(MemberInfo member);
 
-        bool IsEvaluation(MemberInfo member);
+    bool IsEvaluation(MemberInfo member);
 
-        IValue GetValue(Expression expression);
+    IValue GetValue(Expression expression);
 
-        string GetPropertyOrFieldName(MemberInfo expression);
-    }
+    string GetPropertyOrFieldName(MemberInfo expression);
 }

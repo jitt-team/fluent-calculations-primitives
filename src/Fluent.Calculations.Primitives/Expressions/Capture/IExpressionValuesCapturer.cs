@@ -1,10 +1,8 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
+﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
+using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 
-namespace Fluent.Calculations.Primitives.Expressions.Capture
+internal interface IExpressionValuesCapturer
 {
-    internal interface IExpressionValuesCapturer
-    {
-        CapturedExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue;
-    }
+    CapturedExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue;
 }
