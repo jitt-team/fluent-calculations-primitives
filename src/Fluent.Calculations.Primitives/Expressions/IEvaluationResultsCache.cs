@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal interface IEvaluationResultsCache
+public interface IEvaluationResultsCache
 {
     void Add(IValue value);
     void Add(string name, IValue value);

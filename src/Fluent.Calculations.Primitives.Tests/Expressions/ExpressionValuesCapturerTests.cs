@@ -3,48 +3,49 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using FluentAssertions;
 using Moq;
+using System.Linq.Expressions;
+using System.Reflection;
 
 public class ExpressionValuesCapturerTests
 {
     private readonly Mock<IMemberExpressionsCapturer> expressionMembersCapturerMock;
     private readonly Mock<IReflectionProvider> reflectionProviderMock;
 
-    public ExpressionValuesCapturerTests() => expressionMembersCapturerMock = new Mock<IMemberExpressionsCapturer>(MockBehavior.Strict);
+    public ExpressionValuesCapturerTests()
+    {
+        expressionMembersCapturerMock = new Mock<IMemberExpressionsCapturer>(MockBehavior.Strict);
+        reflectionProviderMock = new Mock<IReflectionProvider>(MockBehavior.Strict);
+    }
 
-    [Fact(Skip ="Needs updating")]
+    [Fact]
     public void CapturedMembers_AreReturned()
     {
-        Number
-            dummyValue = Number.Of(1);
+        var testClass = new TestClass();
 
-        CapturedParameter
-            testParam1 = new CapturedParameter(Number.Zero, "INPUT-MEMBER-1"),
-            testParam2 = new CapturedParameter(Number.Zero, "INPUT-MEMBER-2");
+        // Expression<Func<Func<Number>>> testEvaluationExpression = () => testClass.TestEvaluation;
 
-        CapturedEvaluation
-            testEval1 = new CapturedEvaluation("EVALUATION-MEMBER-1"),
-            testEval2 = new CapturedEvaluation("EVALUATION-MEMBER-2");
+        CapturedExpressionValues result = BuildCapturer().Capture(() => testClass.TestParameter);
 
-        CapturedExpressionValues result = BuildCapturer().Capture(() => dummyValue);
+        result.Parameters.Should().HaveCount(1);
 
-        result.Should().NotBeNull();
-        result.Parameters.Count().Should().Be(2);
-        result.Parameters[0].Name.Should().Be(testParam1.Name);
-        result.Parameters[1].Name.Should().Be(testParam2.Name);
-
-        result.Evaluations.Count().Should().Be(2);
-        result.Evaluations[0].Name.Should().Be(testEval1.Name);
-        result.Evaluations[1].Name.Should().Be(testEval2.Name);
-
-        ExpressionValuesCapturer BuildCapturer() => BuildExpressionCapturer(
-            new[] { testParam1, testParam2 },
-            new[] { testEval1, testEval2 });
+        ExpressionValuesCapturer BuildCapturer() => BuildExpressionCapturer(testClass);
     }
 
-    ExpressionValuesCapturer BuildExpressionCapturer(CapturedParameter[] inputMembers, CapturedEvaluation[] evaulationMembers)
+    public class TestClass
     {
-        //List<object> returnValue = inputMembers.Cast<object>().Concat(evaulationMembers.Cast<object>()).ToList();
-        //expressionMembersCapturer.Setup(e => e.Capture(It.IsAny<Expression>())).Returns(returnValue);
-        return new ExpressionValuesCapturer(expressionMembersCapturerMock.Object, null);
+        public Number TestParameter = Number.Of(1, "TEST-PARAMETE");
+        public Func<Number> TestEvaluation = () => Number.Of(2, "TEST-EVALUATION");
     }
+
+    ExpressionValuesCapturer BuildExpressionCapturer(TestClass testClass)
+    {
+        expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression>())).Returns(new List<MemberExpression> { GetLambdaBody(() => testClass.TestParameter) });
+        reflectionProviderMock.Setup(p => p.IsParameter(It.IsAny<MemberInfo>())).Returns(true);
+        reflectionProviderMock.Setup(p => p.GetValue(It.IsAny<Expression>())).Returns(testClass.TestParameter);
+        reflectionProviderMock.Setup(p => p.GetPropertyOrFieldName(It.IsAny<MemberInfo>())).Returns(nameof(testClass.TestParameter));
+
+        return new ExpressionValuesCapturer(expressionMembersCapturerMock.Object, reflectionProviderMock.Object);
+    }
+
+    MemberExpression GetLambdaBody(Expression expression) => (MemberExpression)((LambdaExpression)expression).Body;
 }

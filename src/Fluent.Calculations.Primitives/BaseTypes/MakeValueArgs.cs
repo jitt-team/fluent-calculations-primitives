@@ -2,7 +2,7 @@
 
 using Fluent.Calculations.Primitives.Expressions;
 
-public class CreateValueArgs
+public class MakeValueArgs
 {
     public string Name { get; private set; } = "NaN";
 
@@ -16,8 +16,8 @@ public class CreateValueArgs
 
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
-    internal static CreateValueArgs Build(string name, ExpressionNode expression, decimal primitiveValue) =>
-        new CreateValueArgs
+    internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue) =>
+        new MakeValueArgs
         {
             Name = name,
             Expression = expression,
@@ -25,7 +25,7 @@ public class CreateValueArgs
             IsConstant = false
         };
 
-    public CreateValueArgs WithTags(params Tag[] tags)
+    public MakeValueArgs WithTags(params Tag[] tags)
     {
         Tags = new TagsCollection(tags);
         return this;

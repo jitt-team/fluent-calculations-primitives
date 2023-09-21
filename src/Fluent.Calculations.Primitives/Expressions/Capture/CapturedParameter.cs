@@ -1,13 +1,13 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal class CapturedParameter
+public class CapturedParameter
 {
-    public IValue Value { get; }
+    internal IValue Value { get; }
 
-    public string Name { get; }
+    internal string Name { get; }
 
-    public CapturedParameter(IValue value, string name)
+    internal CapturedParameter(IValue value, string name)
     {
         Value = value;
         Name = name;

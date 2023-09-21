@@ -31,7 +31,7 @@ public abstract class Value : IValue, IName, IOrigin
         Tags = value.Tags;
     }
 
-    protected Value(CreateValueArgs createValueArgs)
+    protected Value(MakeValueArgs createValueArgs)
     {
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
@@ -40,7 +40,7 @@ public abstract class Value : IValue, IName, IOrigin
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue Create(CreateValueArgs args);
+    public abstract IValue Make(MakeValueArgs args);
 
     public abstract IValue Default { get; }
 

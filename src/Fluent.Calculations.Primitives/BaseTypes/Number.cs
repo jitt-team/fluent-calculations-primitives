@@ -14,20 +14,20 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(CreateValueArgs.Build("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
+    public Number() : this(MakeValueArgs.Compose("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
 
     public Number(Number number) : base(number)
     {
     }
 
-    public Number(CreateValueArgs createValueArgs) : base(createValueArgs)
+    public Number(MakeValueArgs createValueArgs) : base(createValueArgs)
     {
     }
 
     public static Number Zero => new() { IsInput = true };
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
-        new(CreateValueArgs.Build(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
+        new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
@@ -75,7 +75,7 @@ public class Number : Value,
     private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
         HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    public override IValue Create(CreateValueArgs args) => new Number(args);
+    public override IValue Make(MakeValueArgs args) => new Number(args);
 
     public override IValue Default => Zero;
 

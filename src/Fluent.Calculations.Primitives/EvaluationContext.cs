@@ -66,7 +66,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         expressionNode.WithArguments(expressionArguments);
 
-        return (ExpressionResultValue)expressionResultValue.Create(CreateValueArgs.Build(name, expressionNode, expressionResultValue.Primitive));
+        return (ExpressionResultValue)expressionResultValue.Make(MakeValueArgs.Compose(name, expressionNode, expressionResultValue.Primitive));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)

@@ -15,7 +15,7 @@ public class Money : Number
 
     public Money(Money money) : this(money, money.Currency) { }
 
-    public Money(CreateValueArgs createValueArgs, Currency currency) : base(createValueArgs) => Currency = currency;
+    public Money(MakeValueArgs createValueArgs, Currency currency) : base(createValueArgs) => Currency = currency;
 
     public static Money operator +(Money left, Money right) => new Money(left.Add(right), left.Currency);
 
@@ -23,7 +23,7 @@ public class Money : Number
 
     public static Money operator *(Number left, Money right) => new Money(right.Multiply(left), right.Currency);
 
-    public override IValue Create(CreateValueArgs args) => new Money(args, Currency);
+    public override IValue Make(MakeValueArgs args) => new Money(args, Currency);
 
     public override IValue Default => new Money(Currency.None);
 }

@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 
-internal interface IExpressionValuesCapturer
+public interface IExpressionValuesCapturer
 {
     CapturedExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue;
 }
