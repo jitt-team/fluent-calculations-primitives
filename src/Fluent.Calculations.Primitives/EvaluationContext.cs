@@ -57,6 +57,8 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
            where ExpressionResultValue : class, IValue, new()
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
+
+        // TODO : Detect binary expressions and skip Expression Capture.
         MemberExpressionValues members = expressionValuesCapturer.Capture(expression);
         SyncParameterMemberNamesAndOrigin(members.Parameters);
 
