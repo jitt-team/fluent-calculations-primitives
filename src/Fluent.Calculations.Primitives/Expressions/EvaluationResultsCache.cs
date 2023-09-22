@@ -11,14 +11,14 @@ internal class EvaluationResultsCache : IEvaluationResultsCache
 
     public void Add(IValue value) => cache.Add(value.Name, value);
 
-    public void Add(string name, IValue value) => cache.Add(name, value);
+    public void Add(string key, IValue value) => cache.Add(key, value);
 
-    public bool ContainsKey(string name) => cache.ContainsKey(name);
+    public bool ContainsKey(string key) => cache.ContainsKey(key);
 
-    public bool TryGetValue(string lambdaExpressionBodyAdjusted, out IValue? cachedValue) =>
-        cache.TryGetValue(lambdaExpressionBodyAdjusted, out cachedValue);
+    public bool TryGetValue(string key, out IValue? cachedValue) =>
+        cache.TryGetValue(key, out cachedValue);
 
-    public IValue GetByKey(string name) => cache[name];
+    public IValue GetByKey(string key) => cache[key];
 
     public bool ContainsName(string name) => cache.Values.Any(value => value.Name == name);
 
