@@ -12,6 +12,4 @@ public class CapturedParameter
         Value = value;
         Name = name;
     }
-
-    internal static bool IsOfType(object obj) => obj is CapturedParameter;
 }

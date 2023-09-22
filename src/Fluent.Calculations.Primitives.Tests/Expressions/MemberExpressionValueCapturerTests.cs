@@ -6,12 +6,12 @@ using Moq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-public class ExpressionValuesCapturerTests
+public class MemberExpressionValueCapturerTests
 {
     private readonly Mock<IMemberExpressionsCapturer> expressionMembersCapturerMock;
     private readonly Mock<IReflectionProvider> reflectionProviderMock;
 
-    public ExpressionValuesCapturerTests()
+    public MemberExpressionValueCapturerTests()
     {
         expressionMembersCapturerMock = new Mock<IMemberExpressionsCapturer>(MockBehavior.Strict);
         reflectionProviderMock = new Mock<IReflectionProvider>(MockBehavior.Strict);
@@ -24,11 +24,11 @@ public class ExpressionValuesCapturerTests
 
         // Expression<Func<Func<Number>>> testEvaluationExpression = () => testClass.TestEvaluation;
 
-        CapturedExpressionValues result = BuildCapturer().Capture(() => testClass.TestParameter);
+        MemberExpressionValues result = BuildCapturer().Capture(() => testClass.TestParameter);
 
         result.Parameters.Should().HaveCount(1);
 
-        ExpressionValuesCapturer BuildCapturer() => BuildExpressionCapturer(testClass);
+        MemberExpressionValueCapturer BuildCapturer() => BuildExpressionCapturer(testClass);
     }
 
     public class TestClass
@@ -37,14 +37,14 @@ public class ExpressionValuesCapturerTests
         public Func<Number> TestEvaluation = () => Number.Of(2, "TEST-EVALUATION");
     }
 
-    ExpressionValuesCapturer BuildExpressionCapturer(TestClass testClass)
+    MemberExpressionValueCapturer BuildExpressionCapturer(TestClass testClass)
     {
         expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression>())).Returns(new List<MemberExpression> { GetLambdaBody(() => testClass.TestParameter) });
         reflectionProviderMock.Setup(p => p.IsParameter(It.IsAny<MemberInfo>())).Returns(true);
         reflectionProviderMock.Setup(p => p.GetValue(It.IsAny<Expression>())).Returns(testClass.TestParameter);
         reflectionProviderMock.Setup(p => p.GetPropertyOrFieldName(It.IsAny<MemberInfo>())).Returns(nameof(testClass.TestParameter));
 
-        return new ExpressionValuesCapturer(expressionMembersCapturerMock.Object, reflectionProviderMock.Object);
+        return new MemberExpressionValueCapturer(expressionMembersCapturerMock.Object, reflectionProviderMock.Object);
     }
 
     MemberExpression GetLambdaBody(Expression expression) => (MemberExpression)((LambdaExpression)expression).Body;

@@ -3,20 +3,20 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
 
-internal class ExpressionValuesCapturer : IExpressionValuesCapturer
+internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 {
     private readonly IMemberExpressionsCapturer memberExpressionsCapturer;
     private readonly IReflectionProvider reflectionProvider;
 
-    public ExpressionValuesCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider()) { }
+    public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider()) { }
 
-    public ExpressionValuesCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider)
+    public MemberExpressionValueCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider)
     {
         this.memberExpressionsCapturer = membersCapturer;
         this.reflectionProvider = reflectionProvider;
     }
 
-    public CapturedExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue
+    public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue
     {
         var parameters = new List<CapturedParameter>();
         var evaluations = new List<CapturedEvaluation>();
@@ -36,7 +36,7 @@ internal class ExpressionValuesCapturer : IExpressionValuesCapturer
         // TODO: Maybe we can capture just expressions to members and then invoke the at the end just once?
         // TODO: Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
 
-        return new CapturedExpressionValues(parameters, evaluations);
+        return new MemberExpressionValues(parameters, evaluations);
     }
 
     private bool IsParameter(MemberInfo memberInfo) => reflectionProvider.IsParameter(memberInfo);

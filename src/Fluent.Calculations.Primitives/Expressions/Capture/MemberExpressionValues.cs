@@ -1,12 +1,12 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 
-public class CapturedExpressionValues
+public class MemberExpressionValues
 {
     internal CapturedParameter[] Parameters { get; }
 
     internal CapturedEvaluation[] Evaluations { get; }
 
-    internal CapturedExpressionValues(IEnumerable<CapturedParameter> inputParameters, IEnumerable<CapturedEvaluation> evaluationPointer)
+    internal MemberExpressionValues(IEnumerable<CapturedParameter> inputParameters, IEnumerable<CapturedEvaluation> evaluationPointer)
     {
         Parameters = inputParameters.ToArray();
         Evaluations = evaluationPointer.ToArray();

@@ -9,14 +9,14 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 {
     private const string NaN = "NaN";
     private readonly IEvaluationResultsCache resultsCache;
-    private readonly IExpressionValuesCapturer expressionValuesCapturer;
+    private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    public EvaluationContext() : this(new ExpressionValuesCapturer(), new EvaluationResultsCache()) { }
-    
+    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new EvaluationResultsCache()) { }
+
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
 
-    internal EvaluationContext(IExpressionValuesCapturer expressionCapturer, IEvaluationResultsCache resultsCache)
+    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IEvaluationResultsCache resultsCache)
     {
         this.expressionValuesCapturer = expressionCapturer;
         this.resultsCache = resultsCache;
@@ -57,14 +57,15 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
            where ExpressionResultValue : class, IValue, new()
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
-        CapturedExpressionValues captureResult = expressionValuesCapturer.Capture(expression);
-        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda);
+        MemberExpressionValues members = expressionValuesCapturer.Capture(expression);
+        SyncParameterMemberNamesAndOrigin(members.Parameters);
 
-        IValue[] parameterValues = GetSyncedNameInputValues(captureResult.Parameters);
-        IValue[] evaluationValues = SelectCachedEvaluationsValues(captureResult.Evaluations);
-        IValue[] expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
+        IValue[]
+            parameterValues = members.Parameters.Select(capture => capture.Value).ToArray(),
+            evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
+            expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
 
-        expressionNode.WithArguments(expressionArguments);
+        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
         return (ExpressionResultValue)expressionResultValue.Make(MakeValueArgs.Compose(name, expressionNode, expressionResultValue.Primitive));
     }
@@ -76,14 +77,12 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         IValue GetCachedValue(CapturedEvaluation evaluation) => resultsCache.GetByName(evaluation.Name);
     }
 
-    private IValue[] GetSyncedNameInputValues(CapturedParameter[] parameters)
+    private void SyncParameterMemberNamesAndOrigin(CapturedParameter[] parameters)
     {
         foreach (CapturedParameter parameter in parameters)
         {
             ((IName)parameter.Value).Set(parameter.Name);
             ((IOrigin)parameter.Value).MarkAsInput();
         }
-
-        return parameters.Select(capture => capture.Value).ToArray();
     }
 }
