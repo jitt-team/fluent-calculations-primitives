@@ -58,16 +58,17 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     {
         ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
 
-        // TODO : Detect binary expressions and skip Expression Capture.
+        ExpressionNode expressionNode;
+
         MemberExpressionValues members = expressionValuesCapturer.Capture(expression);
         SyncParameterMemberNamesAndOrigin(members.Parameters);
 
-        IValue[]
-            parameterValues = members.Parameters.Select(capture => capture.Value).ToArray(),
+        IEnumerable<IValue>
+            parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
-            expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
+            expressionArguments = parameterValues.Concat(evaluationValues);
 
-        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
+        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments.ToArray());
 
         return (ExpressionResultValue)expressionResultValue.Make(MakeValueArgs.Compose(name, expressionNode, expressionResultValue.Primitive));
     }
