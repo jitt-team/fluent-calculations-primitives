@@ -55,7 +55,7 @@ public class CalculationGraphRenderer
 
         void AddNode(DotNodeBlock node, IValue value)
         {
-            if (value.IsInput)
+            if (value.IsParameter)
                 inputsCluster.Add(node.LastNode);
             else
             {
@@ -157,7 +157,7 @@ public class CalculationGraphRenderer
 
     private string ShapyByValueType(IValue value) =>
                 value.IsOutput ? "ellipse" :
-                value.IsInput ? "parallelogram" :
+                value.IsParameter ? "parallelogram" :
                                         "Rectangle";
 
     private string ColorByValueType(IValue value) => value.IsOutput ?

@@ -1,4 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
+
+using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -6,9 +8,9 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
 {
     private readonly List<MemberExpression> memberExpressions = new List<MemberExpression>();
 
-    public List<MemberExpression> Capture(Expression expression)
+    public List<MemberExpression> Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lamdaExpression) where TExpressionResulValue : class, IValue
     {
-        Visit(expression);
+        Visit(lamdaExpression);
         return memberExpressions;
     }
 

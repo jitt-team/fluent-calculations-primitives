@@ -7,7 +7,7 @@ public interface IValue
 
     decimal Primitive { get; }
 
-    bool IsInput { get; }
+    bool IsParameter { get; }
 
     bool IsOutput { get; }
 

@@ -16,14 +16,14 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         this.reflectionProvider = reflectionProvider;
     }
 
-    public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue
+    public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
     {
         var parameters = new List<CapturedParameter>();
         var evaluations = new List<CapturedEvaluation>();
 
-        List<MemberExpression> expressionsCustom = memberExpressionsCapturer.Capture(expression);
+        List<MemberExpression> lambdaMemberExpressions = memberExpressionsCapturer.Capture(lambdaExpression);
 
-        foreach (MemberExpression memberExpression in expressionsCustom)
+        foreach (MemberExpression memberExpression in lambdaMemberExpressions)
             if (IsParameter(memberExpression.Member))
                 parameters.Add(ToParameter(memberExpression));
             else if (IsEvaluation(memberExpression.Member))
@@ -32,8 +32,6 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         // ..else
         // TODO: Consider collecting unknown members, perhaps some inline constants?
         // TODO: Handle Unknown members, throw exception early, explain why it shouldn't happen
-        // TODO: Any way to make this once per member and not one each usage? Maybe invoke much later?
-        // TODO: Maybe we can capture just expressions to members and then invoke the at the end just once?
         // TODO: Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
 
         return new MemberExpressionValues(parameters, evaluations);

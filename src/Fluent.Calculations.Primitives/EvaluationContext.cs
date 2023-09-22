@@ -28,13 +28,13 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IOrigin)result).MarkAsEndResult();
+        return (TResult)((IOrigin)result).AsResult();
     }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }
 
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
-        Expression<Func<ExpressionResultValue>> expression,
+        Expression<Func<ExpressionResultValue>> lambdaExpression,
         [CallerMemberName] string name = NaN,
         [CallerArgumentExpression("expression")] string lambdaExpressionBody = NaN)
             where ExpressionResultValue : class, IValue, new()
@@ -45,7 +45,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
             resultsCache.ContainsKey(lambdaExpressionBodyAdjusted))
             return (ExpressionResultValue)resultsCache.GetByKey(lambdaExpressionBodyAdjusted);
 
-        ExpressionResultValue value = EvaluateInternal(expression, name, lambdaExpressionBodyAdjusted);
+        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, lambdaExpressionBodyAdjusted);
 
         resultsCache.Add(lambdaExpressionBodyAdjusted, value);
 
@@ -53,14 +53,14 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     }
 
     private ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
-       Expression<Func<ExpressionResultValue>> expression, string name, string expressionBody)
+       Expression<Func<ExpressionResultValue>> lambdaExpression, string name, string expressionBody)
            where ExpressionResultValue : class, IValue, new()
     {
-        ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
+        ExpressionResultValue expressionResultValue = lambdaExpression.Compile().Invoke();
 
         ExpressionNode expressionNode;
 
-        MemberExpressionValues members = expressionValuesCapturer.Capture(expression);
+        MemberExpressionValues members = expressionValuesCapturer.Capture(lambdaExpression);
         SyncParameterMemberNamesAndOrigin(members.Parameters);
 
         IEnumerable<IValue>
@@ -83,9 +83,6 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private void SyncParameterMemberNamesAndOrigin(CapturedParameter[] parameters)
     {
         foreach (CapturedParameter parameter in parameters)
-        {
-            ((IName)parameter.Value).Set(parameter.Name);
-            ((IOrigin)parameter.Value).MarkAsInput();
-        }
+            ((IOrigin)parameter.Value).MarkAsParameter(parameter.Name);
     }
 }

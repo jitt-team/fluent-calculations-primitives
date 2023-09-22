@@ -1,5 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using System.Xml.Linq;
 
 public abstract class Value : IValue, IName, IOrigin
 {
@@ -9,11 +10,13 @@ public abstract class Value : IValue, IName, IOrigin
 
     public decimal Primitive { get; init; }
 
-    public bool IsInput { get; protected set; }
+    public bool IsParameter { get; protected set; }
 
     public bool IsOutput { get; private set; }
 
     public TagsCollection Tags { get; init; }
+
+    private bool originIsSet;
 
     private Value()
     {
@@ -27,7 +30,7 @@ public abstract class Value : IValue, IName, IOrigin
         Name = value.Name;
         Expression = value.Expression;
         Primitive = value.Primitive;
-        IsInput = value.IsInput;
+        IsParameter = value.IsParameter;
         Tags = value.Tags;
     }
 
@@ -35,7 +38,7 @@ public abstract class Value : IValue, IName, IOrigin
     {
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
-        IsInput = createValueArgs.IsConstant;
+        IsParameter = createValueArgs.IsConstant;
         Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }
@@ -52,16 +55,26 @@ public abstract class Value : IValue, IName, IOrigin
 
     void IName.Set(string name) => Name = name;
 
-    IValue IOrigin.MarkAsEndResult()
+    bool IOrigin.IsSet => originIsSet;
+
+    IValue IOrigin.AsResult()
     {
-        IsOutput = true;
+        if (!originIsSet)
+        {
+            IsOutput = true;
+            originIsSet = true;
+        }
         return this;
     }
 
-    IValue IOrigin.MarkAsInput()
+    void IOrigin.MarkAsParameter(string fieldName)
     {
-        IsInput = true;
-        return this;
+        if (originIsSet)
+            return;
+
+        Name = fieldName;
+        IsParameter = true;
+        originIsSet = true;
     }
 
     public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
