@@ -21,7 +21,9 @@ internal class ExpressionValuesCapturer : IExpressionValuesCapturer
         var parameters = new List<CapturedParameter>();
         var evaluations = new List<CapturedEvaluation>();
 
-        foreach (MemberExpression memberExpression in memberExpressionsCapturer.Capture(expression))
+        List<MemberExpression> expressionsCustom = memberExpressionsCapturer.Capture(expression);
+
+        foreach (MemberExpression memberExpression in expressionsCustom)
             if (IsParameter(memberExpression.Member))
                 parameters.Add(ToParameter(memberExpression));
             else if (IsEvaluation(memberExpression.Member))
