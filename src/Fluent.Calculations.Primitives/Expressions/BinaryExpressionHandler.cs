@@ -10,15 +10,15 @@ namespace Fluent.Calculations.Primitives.Expressions
             Func<IValue, IValue, ResultPrimitiveType> calcFunc,
             string operatorName) where ResultType : IValue, new()
         {
-            ExpressionNode expressionNode = new ExpressionNode(ComposeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression)
+            ExpressionNode expressionNode = new ExpressionNode(MakeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression)
                     .WithArguments(left, right);
 
-            IValue result = new ResultType().Create(CreateValueArgs.Build(operatorName, expressionNode, ToResult()));
+            IValue result = new ResultType().Make(MakeValueArgs.Compose(operatorName, expressionNode, ToResult()));
 
             return (ResultType)result;
 
             decimal ToResult() => Convert.ToDecimal(calcFunc(left, right));
-            string ComposeBinaryExpressionBody() => $"{left} {BinaryExpressionLanguageConverter.MethodNameToOperator(operatorName)} {right}";
+            string MakeBinaryExpressionBody() => $"{left} {BinaryExpressionLanguageConverter.MethodNameToOperator(operatorName)} {right}";
         }
     }
 }

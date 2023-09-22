@@ -12,11 +12,11 @@ public sealed class Condition : Value,
 
     public override string ValueToString() => $"{IsTrue}";
 
-    public Condition() : this(CreateValueArgs.Build("NaN", new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
+    public Condition() : this(MakeValueArgs.Compose("NaN", new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
     }
 
-    public Condition(CreateValueArgs createValueArgs) : base(createValueArgs) { }
+    public Condition(MakeValueArgs createValueArgs) : base(createValueArgs) { }
 
     public bool IsTrue => Primitive > 0;
 
@@ -28,9 +28,9 @@ public sealed class Condition : Value,
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Build(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
+    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(CreateValueArgs.Build(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
+    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 
@@ -60,7 +60,7 @@ public sealed class Condition : Value,
         [CallerMemberName] string operatorName = "") =>
         HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue Create(CreateValueArgs args) => new Condition(args);
+    public override IValue Make(MakeValueArgs args) => new Condition(args);
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 
