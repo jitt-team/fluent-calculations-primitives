@@ -27,3 +27,30 @@ internal class MemberExpressionsCapturer : IMemberExpressionsCapturer
 
     private List<MemberExpression> CaptureMultiple(Expression[] expressions) => expressions.SelectMany(Capture).ToList();
 }
+
+public class MyVisitor : ExpressionVisitor
+{ 
+    private readonly List<MemberExpression> memberExpressions = new List<MemberExpression>();
+
+    public List<MemberExpression> Capture(Expression expression)
+    {
+
+        return new List<MemberExpression>();
+    }
+
+    protected override Expression VisitLambda<IValue>(Expression<IValue> node)
+    {
+        return base.VisitLambda(node);
+    }
+
+    protected override Expression VisitBinary(BinaryExpression node)
+    {
+        return base.VisitBinary(node);
+    }
+
+    protected override Expression VisitConditional(ConditionalExpression node)
+    {
+        return base.VisitConditional(node);
+    }
+
+}
