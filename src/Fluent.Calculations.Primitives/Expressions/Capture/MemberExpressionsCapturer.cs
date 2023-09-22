@@ -24,6 +24,6 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
 
         return node;
 
-        bool WithSameName(MemberExpression memberExpression) => memberExpression.Member.Name.Equals(node.Member.Name))
+        bool WithSameName(MemberExpression memberExpression) => memberExpression.Member.Name.Equals(node.Member.Name);
     }
 }
