@@ -1,6 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.BaseTypes;
-using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 
