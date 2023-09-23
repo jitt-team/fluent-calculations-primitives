@@ -24,7 +24,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         var parameters = new List<CapturedParameter>();
         var evaluations = new List<CapturedEvaluation>();
 
-        List<MemberExpression> lambdaMemberExpressions = memberExpressionsCapturer.Capture(lambdaExpression);
+        MemberExpression[] lambdaMemberExpressions = memberExpressionsCapturer.Capture(lambdaExpression);
 
         foreach (MemberExpression memberExpression in lambdaMemberExpressions)
             if (IsParameter(memberExpression.Member))

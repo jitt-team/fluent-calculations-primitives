@@ -41,7 +41,7 @@ public class MemberExpressionValueCapturerTests
 
     MemberExpressionValueCapturer BuildExpressionCapturer(TestClass testClass)
     {
-        expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<IValue>>>())).Returns(new List<MemberExpression> { GetLambdaBody(() => testClass.TestParameter) });
+        expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<IValue>>>())).Returns(new MemberExpression[] { GetLambdaBody(() => testClass.TestParameter) });
         reflectionProviderMock.Setup(p => p.IsParameter(It.IsAny<MemberInfo>())).Returns(true);
         reflectionProviderMock.Setup(p => p.GetValue(It.IsAny<Expression>())).Returns(testClass.TestParameter);
         reflectionProviderMock.Setup(p => p.GetPropertyOrFieldName(It.IsAny<MemberInfo>())).Returns(nameof(testClass.TestParameter));

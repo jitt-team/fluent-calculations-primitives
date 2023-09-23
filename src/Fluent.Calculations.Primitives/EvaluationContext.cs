@@ -68,7 +68,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             expressionArguments = parameterValues.Concat(evaluationValues);
 
-        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments));
+        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
         return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
