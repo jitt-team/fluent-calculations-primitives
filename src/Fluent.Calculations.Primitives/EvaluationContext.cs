@@ -42,12 +42,14 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         if (!name.Equals(NaN) && evalueationsCache.ContainsKey(name))
             return (ExpressionResultValue)evalueationsCache.GetByKey(name);
 
-        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody));
+        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(NaN))
             evalueationsCache.Add(name, value);
 
         return value;
+
+        string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
     private ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
