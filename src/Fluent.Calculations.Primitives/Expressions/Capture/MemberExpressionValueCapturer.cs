@@ -1,5 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.BaseTypes;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -31,11 +32,6 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
                 parameters.Add(ToParameter(memberExpression));
             else if (IsEvaluation(memberExpression.Member))
                 evaluations.Add(ToEvaluation(memberExpression));
-
-        // ..else
-        // TODO: Consider collecting unknown members, perhaps some inline constants?
-        // TODO: Handle Unknown members, throw exception early, explain why it shouldn't happen
-        // TODO: Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
 
         return new MemberExpressionValues(parameters, evaluations);
     }
