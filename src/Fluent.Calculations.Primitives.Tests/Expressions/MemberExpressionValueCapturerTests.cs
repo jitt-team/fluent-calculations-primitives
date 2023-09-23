@@ -1,8 +1,10 @@
 ﻿namespace Fluent.Calculations.Primitives.Tests.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using FluentAssertions;
 using Moq;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -39,12 +41,12 @@ public class MemberExpressionValueCapturerTests
 
     MemberExpressionValueCapturer BuildExpressionCapturer(TestClass testClass)
     {
-        expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression>())).Returns(new List<MemberExpression> { GetLambdaBody(() => testClass.TestParameter) });
+        expressionMembersCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<IValue>>>())).Returns(new List<MemberExpression> { GetLambdaBody(() => testClass.TestParameter) });
         reflectionProviderMock.Setup(p => p.IsParameter(It.IsAny<MemberInfo>())).Returns(true);
         reflectionProviderMock.Setup(p => p.GetValue(It.IsAny<Expression>())).Returns(testClass.TestParameter);
         reflectionProviderMock.Setup(p => p.GetPropertyOrFieldName(It.IsAny<MemberInfo>())).Returns(nameof(testClass.TestParameter));
 
-        return new MemberExpressionValueCapturer(expressionMembersCapturerMock.Object, reflectionProviderMock.Object);
+        return new MemberExpressionValueCapturer(expressionMembersCapturerMock.Object, reflectionProviderMock.Object, new ValuesCache());
     }
 
     MemberExpression GetLambdaBody(Expression expression) => (MemberExpression)((LambdaExpression)expression).Body;

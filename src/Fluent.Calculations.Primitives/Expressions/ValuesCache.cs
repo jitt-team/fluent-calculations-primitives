@@ -1,13 +1,13 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal class EvaluationResultsCache : IEvaluationResultsCache
+internal class ValuesCache : IValuesCache
 {
     private readonly IDictionary<string, IValue> cache;
 
-    public EvaluationResultsCache() : this(new Dictionary<string, IValue>()) { }
+    public ValuesCache() : this(new Dictionary<string, IValue>()) { }
 
-    public EvaluationResultsCache(IDictionary<string, IValue> cache) => this.cache = cache;
+    public ValuesCache(IDictionary<string, IValue> cache) => this.cache = cache;
 
     public void Add(IValue value) => cache.Add(value.Name, value);
 
@@ -15,8 +15,7 @@ internal class EvaluationResultsCache : IEvaluationResultsCache
 
     public bool ContainsKey(string key) => cache.ContainsKey(key);
 
-    public bool TryGetValue(string key, out IValue? cachedValue) =>
-        cache.TryGetValue(key, out cachedValue);
+    public bool TryGetValue(string key, out IValue? cachedValue) => cache.TryGetValue(key, out cachedValue);
 
     public IValue GetByKey(string key) => cache[key];
 

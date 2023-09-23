@@ -7,13 +7,16 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 {
     private readonly IMemberExpressionsCapturer memberExpressionsCapturer;
     private readonly IReflectionProvider reflectionProvider;
+    private readonly IValuesCache parametersCache;
+    private const string NaN = "NaN";
 
-    public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider()) { }
+    public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider(), new ValuesCache()) { }
 
-    public MemberExpressionValueCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider)
+    public MemberExpressionValueCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider, IValuesCache valuesCache)
     {
         this.memberExpressionsCapturer = membersCapturer;
         this.reflectionProvider = reflectionProvider;
+        this.parametersCache = valuesCache;
     }
 
     public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
@@ -41,11 +44,27 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 
     private bool IsEvaluation(MemberInfo memberInfo) => reflectionProvider.IsEvaluation(memberInfo);
 
-    private CapturedParameter ToParameter(MemberExpression memberExpression) => new CapturedParameter(GetValue(memberExpression), GetName(memberExpression.Member));
+    private CapturedParameter ToParameter(MemberExpression memberExpression)
+    {
+        string name = GetName(memberExpression.Member);
+
+        return new CapturedParameter(GetValue(memberExpression, name), name);
+    }
 
     private CapturedEvaluation ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluation(GetName(memberExpression.Member));
 
-    private IValue GetValue(MemberExpression expression) => reflectionProvider.GetValue(expression);
+    private IValue GetValue(MemberExpression expression, string name)
+    {
+        if (!name.Equals(NaN) && parametersCache.ContainsKey(name))
+            return parametersCache.GetByKey(name);
+
+        IValue value = reflectionProvider.GetValue(expression);
+
+        if (!name.Equals(NaN))
+            parametersCache.Add(name, value);
+
+        return value;
+    }
 
     private string GetName(MemberInfo memberInfo) => reflectionProvider.GetPropertyOrFieldName(memberInfo);
 }

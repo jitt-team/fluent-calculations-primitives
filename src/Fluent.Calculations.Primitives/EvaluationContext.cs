@@ -8,18 +8,18 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-    private readonly IEvaluationResultsCache resultsCache;
+    private readonly IValuesCache evalueationsCache;
     private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new EvaluationResultsCache()) { }
+    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new ValuesCache()) { }
 
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
 
-    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IEvaluationResultsCache resultsCache)
+    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IValuesCache resultsCache)
     {
         this.expressionValuesCapturer = expressionCapturer;
-        this.resultsCache = resultsCache;
+        this.evalueationsCache = resultsCache;
     }
 
     public TResult ToResult()
@@ -36,18 +36,16 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
         Expression<Func<ExpressionResultValue>> lambdaExpression,
         [CallerMemberName] string name = NaN,
-        [CallerArgumentExpression("expression")] string lambdaExpressionBody = NaN)
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = NaN)
             where ExpressionResultValue : class, IValue, new()
     {
-        string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
+        if (!name.Equals(NaN) && evalueationsCache.ContainsKey(name))
+            return (ExpressionResultValue)evalueationsCache.GetByKey(name);
 
-        if (!lambdaExpressionBody.Equals(NaN) &&
-            resultsCache.ContainsKey(lambdaExpressionBodyAdjusted))
-            return (ExpressionResultValue)resultsCache.GetByKey(lambdaExpressionBodyAdjusted);
+        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody));
 
-        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, lambdaExpressionBodyAdjusted);
-
-        resultsCache.Add(lambdaExpressionBodyAdjusted, value);
+        if (!name.Equals(NaN))
+            evalueationsCache.Add(name, value);
 
         return value;
     }
@@ -76,8 +74,8 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation evaluation) => resultsCache.ContainsName(evaluation.Name);
-        IValue GetCachedValue(CapturedEvaluation evaluation) => resultsCache.GetByName(evaluation.Name);
+        bool IsCached(CapturedEvaluation evaluation) => evalueationsCache.ContainsName(evaluation.Name);
+        IValue GetCachedValue(CapturedEvaluation evaluation) => evalueationsCache.GetByName(evaluation.Name);
     }
 
     private void SyncParameterMemberNamesAndOrigin(CapturedParameter[] parameters)
