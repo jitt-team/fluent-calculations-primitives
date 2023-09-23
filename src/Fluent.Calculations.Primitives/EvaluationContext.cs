@@ -42,12 +42,12 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         if (!name.Equals(NaN) && evalueationsCache.ContainsKey(name))
             return (ExpressionResultValue)evalueationsCache.GetByKey(name);
 
-        ExpressionResultValue value = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
+        ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(NaN))
-            evalueationsCache.Add(name, value);
+            evalueationsCache.Add(name, result);
 
-        return value;
+        return result;
 
         string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
@@ -56,7 +56,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
        Expression<Func<ExpressionResultValue>> lambdaExpression, string name, string expressionBody)
            where ExpressionResultValue : class, IValue, new()
     {
-        ExpressionResultValue expressionResultValue = lambdaExpression.Compile().Invoke();
+        ExpressionResultValue result = lambdaExpression.Compile().Invoke();
 
         ExpressionNode expressionNode;
 
@@ -70,7 +70,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments));
 
-        return (ExpressionResultValue)expressionResultValue.Make(MakeValueArgs.Compose(name, expressionNode, expressionResultValue.Primitive));
+        return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
