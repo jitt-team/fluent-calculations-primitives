@@ -7,7 +7,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 {
     private readonly IMemberExpressionsCapturer memberExpressionsCapturer;
     private readonly IReflectionProvider reflectionProvider;
-    private readonly IValuesCache parametersCache;
+    private readonly IValuesCache parameterCache;
     private const string NaN = "NaN";
 
     public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider(), new ValuesCache()) { }
@@ -16,7 +16,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
     {
         this.memberExpressionsCapturer = membersCapturer;
         this.reflectionProvider = reflectionProvider;
-        this.parametersCache = valuesCache;
+        this.parameterCache = valuesCache;
     }
 
     public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
@@ -50,13 +50,13 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 
     private IValue GetValue(MemberExpression expression, string name)
     {
-        if (!name.Equals(NaN) && parametersCache.ContainsKey(name))
-            return parametersCache.GetByKey(name);
+        if (!name.Equals(NaN) && parameterCache.ContainsKey(name))
+            return parameterCache.GetByKey(name);
 
         IValue value = reflectionProvider.GetValue(expression);
 
         if (!name.Equals(NaN))
-            parametersCache.Add(name, value);
+            parameterCache.Add(name, value);
 
         return value;
     }

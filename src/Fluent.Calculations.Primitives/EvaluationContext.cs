@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-    private readonly IValuesCache evalueationsCache;
+    private readonly IValuesCache evaluationCache;
     private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
@@ -19,7 +19,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IValuesCache resultsCache)
     {
         this.expressionValuesCapturer = expressionCapturer;
-        this.evalueationsCache = resultsCache;
+        this.evaluationCache = resultsCache;
     }
 
     public TResult ToResult()
@@ -39,13 +39,13 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = NaN)
             where ExpressionResultValue : class, IValue, new()
     {
-        if (!name.Equals(NaN) && evalueationsCache.ContainsKey(name))
-            return (ExpressionResultValue)evalueationsCache.GetByKey(name);
+        if (!name.Equals(NaN) && evaluationCache.ContainsKey(name))
+            return (ExpressionResultValue)evaluationCache.GetByKey(name);
 
         ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(NaN))
-            evalueationsCache.Add(name, result);
+            evaluationCache.Add(name, result);
 
         return result;
 
@@ -76,8 +76,8 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation evaluation) => evalueationsCache.ContainsName(evaluation.Name);
-        IValue GetCachedValue(CapturedEvaluation evaluation) => evalueationsCache.GetByName(evaluation.Name);
+        bool IsCached(CapturedEvaluation evaluation) => evaluationCache.ContainsName(evaluation.Name);
+        IValue GetCachedValue(CapturedEvaluation evaluation) => evaluationCache.GetByName(evaluation.Name);
     }
 
     private void MarkValuesAsParameters(CapturedParameter[] parameters)
