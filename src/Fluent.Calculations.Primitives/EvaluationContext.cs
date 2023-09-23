@@ -61,7 +61,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         ExpressionNode expressionNode;
 
         MemberExpressionValues members = expressionValuesCapturer.Capture(lambdaExpression);
-        SyncParameterMemberNamesAndOrigin(members.Parameters);
+        MarkValuesAsParameters(members.Parameters);
 
         IEnumerable<IValue>
             parameterValues = members.Parameters.Select(capture => capture.Value),
@@ -80,7 +80,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         IValue GetCachedValue(CapturedEvaluation evaluation) => evalueationsCache.GetByName(evaluation.Name);
     }
 
-    private void SyncParameterMemberNamesAndOrigin(CapturedParameter[] parameters)
+    private void MarkValuesAsParameters(CapturedParameter[] parameters)
     {
         foreach (CapturedParameter parameter in parameters)
             ((IOrigin)parameter.Value).MarkAsParameter(parameter.Name);
