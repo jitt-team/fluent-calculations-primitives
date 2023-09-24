@@ -19,10 +19,10 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         this.parameterCache = valuesCache;
     }
 
-    public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
+    public MemberExpressionMembers CaptureMembers<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
     {
-        var parameters = new List<CapturedParameter>();
-        var evaluations = new List<CapturedEvaluation>();
+        var parameters = new List<CapturedParameterMember>();
+        var evaluations = new List<CapturedEvaluationMember>();
 
         MemberExpression[] lambdaMemberExpressions = memberExpressionsCapturer.Capture(lambdaExpression);
 
@@ -32,21 +32,21 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
             else if (IsEvaluation(memberExpression.Member))
                 evaluations.Add(ToEvaluation(memberExpression));
 
-        return new MemberExpressionValues(parameters, evaluations);
+        return new MemberExpressionMembers(parameters, evaluations);
     }
 
     private bool IsParameter(MemberInfo memberInfo) => reflectionProvider.IsParameter(memberInfo);
 
     private bool IsEvaluation(MemberInfo memberInfo) => reflectionProvider.IsEvaluation(memberInfo);
 
-    private CapturedParameter ToParameter(MemberExpression memberExpression)
+    private CapturedParameterMember ToParameter(MemberExpression memberExpression)
     {
         string name = GetName(memberExpression.Member);
 
-        return new CapturedParameter(GetValue(memberExpression, name), name);
+        return new CapturedParameterMember(GetValue(memberExpression, name), name);
     }
 
-    private CapturedEvaluation ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluation(GetName(memberExpression.Member));
+    private CapturedEvaluationMember ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluationMember(GetName(memberExpression.Member));
 
     private IValue GetValue(MemberExpression expression, string name)
     {

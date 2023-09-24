@@ -3,7 +3,9 @@
     internal interface IOrigin
     {
         bool IsSet { get; }
+
         IValue AsResult();
-        void MarkAsParameter(string fieldName);
+
+        void MarkAsParameter(string name);
     }
 }

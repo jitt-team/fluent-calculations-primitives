@@ -60,7 +60,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         ExpressionNode expressionNode;
 
-        MemberExpressionValues members = expressionValuesCapturer.Capture(lambdaExpression);
+        MemberExpressionMembers members = expressionValuesCapturer.CaptureMembers(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
         IEnumerable<IValue>
@@ -73,16 +73,16 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
-    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
+    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation evaluation) => evaluationCache.ContainsName(evaluation.Name);
-        IValue GetCachedValue(CapturedEvaluation evaluation) => evaluationCache.GetByName(evaluation.Name);
+        bool IsCached(CapturedEvaluationMember evaluation) => evaluationCache.ContainsName(evaluation.MemberName);
+        IValue GetCachedValue(CapturedEvaluationMember evaluation) => evaluationCache.GetByName(evaluation.MemberName);
     }
 
-    private void MarkValuesAsParameters(CapturedParameter[] parameters)
+    private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
-        foreach (CapturedParameter parameter in parameters)
-            ((IOrigin)parameter.Value).MarkAsParameter(parameter.Name);
+        foreach (CapturedParameterMember parameter in parameters)
+            ((IOrigin)parameter.Value).MarkAsParameter(parameter.MemberName);
     }
 }
