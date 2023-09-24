@@ -27,12 +27,11 @@ public  class ExpressionNode
         return this;
     }
 
-    public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b).ToArray());
+    public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b));
 
-    public ExpressionNode WithArguments(IValue[] arguments)
+    public ExpressionNode WithArguments(IEnumerable<IValue> arguments)
     {
         Arguments = new ArgumentsCollection(arguments);
         return this;
     }
-
 }

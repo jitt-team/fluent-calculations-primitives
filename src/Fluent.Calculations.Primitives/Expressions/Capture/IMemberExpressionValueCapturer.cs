@@ -4,5 +4,5 @@ using System.Linq.Expressions;
 
 public interface IMemberExpressionValueCapturer
 {
-    MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue;
+    MemberExpressionMembers CaptureMembers<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue;
 }

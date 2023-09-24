@@ -7,47 +7,59 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 {
     private readonly IMemberExpressionsCapturer memberExpressionsCapturer;
     private readonly IReflectionProvider reflectionProvider;
+    private readonly IValuesCache parameterCache;
+    private const string NaN = "NaN";
 
-    public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider()) { }
+    public MemberExpressionValueCapturer() : this(new MemberExpressionsCapturer(), new ReflectionProvider(), new ValuesCache()) { }
 
-    public MemberExpressionValueCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider)
+    public MemberExpressionValueCapturer(IMemberExpressionsCapturer membersCapturer, IReflectionProvider reflectionProvider, IValuesCache valuesCache)
     {
         this.memberExpressionsCapturer = membersCapturer;
         this.reflectionProvider = reflectionProvider;
+        this.parameterCache = valuesCache;
     }
 
-    public MemberExpressionValues Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> expression) where TExpressionResulValue : class, IValue
+    public MemberExpressionMembers CaptureMembers<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
     {
-        var parameters = new List<CapturedParameter>();
-        var evaluations = new List<CapturedEvaluation>();
+        var parameters = new List<CapturedParameterMember>();
+        var evaluations = new List<CapturedEvaluationMember>();
 
-        List<MemberExpression> expressionsCustom = memberExpressionsCapturer.Capture(expression);
+        MemberExpression[] lambdaMemberExpressions = memberExpressionsCapturer.Capture(lambdaExpression);
 
-        foreach (MemberExpression memberExpression in expressionsCustom)
+        foreach (MemberExpression memberExpression in lambdaMemberExpressions)
             if (IsParameter(memberExpression.Member))
                 parameters.Add(ToParameter(memberExpression));
             else if (IsEvaluation(memberExpression.Member))
                 evaluations.Add(ToEvaluation(memberExpression));
 
-        // ..else
-        // TODO: Consider collecting unknown members, perhaps some inline constants?
-        // TODO: Handle Unknown members, throw exception early, explain why it shouldn't happen
-        // TODO: Any way to make this once per member and not one each usage? Maybe invoke much later?
-        // TODO: Maybe we can capture just expressions to members and then invoke the at the end just once?
-        // TODO: Don't invoke to conserve performance, perhaps could be a DebugMode to map out full tree
-
-        return new MemberExpressionValues(parameters, evaluations);
+        return new MemberExpressionMembers(parameters, evaluations);
     }
 
     private bool IsParameter(MemberInfo memberInfo) => reflectionProvider.IsParameter(memberInfo);
 
     private bool IsEvaluation(MemberInfo memberInfo) => reflectionProvider.IsEvaluation(memberInfo);
 
-    private CapturedParameter ToParameter(MemberExpression memberExpression) => new CapturedParameter(GetValue(memberExpression), GetName(memberExpression.Member));
+    private CapturedParameterMember ToParameter(MemberExpression memberExpression)
+    {
+        string name = GetName(memberExpression.Member);
 
-    private CapturedEvaluation ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluation(GetName(memberExpression.Member));
+        return new CapturedParameterMember(GetValue(memberExpression, name), name);
+    }
 
-    private IValue GetValue(MemberExpression expression) => reflectionProvider.GetValue(expression);
+    private CapturedEvaluationMember ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluationMember(GetName(memberExpression.Member));
+
+    private IValue GetValue(MemberExpression expression, string name)
+    {
+        if (!name.Equals(NaN) && parameterCache.ContainsKey(name))
+            return parameterCache.GetByKey(name);
+
+        IValue value = reflectionProvider.GetValue(expression);
+
+        if (!name.Equals(NaN))
+            parameterCache.Add(name, value);
+
+        return value;
+    }
 
     private string GetName(MemberInfo memberInfo) => reflectionProvider.GetPropertyOrFieldName(memberInfo);
 }

@@ -8,18 +8,18 @@ using System.Runtime.CompilerServices;
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
     private const string NaN = "NaN";
-    private readonly IEvaluationResultsCache resultsCache;
+    private readonly IValuesCache evaluationCache;
     private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new EvaluationResultsCache()) { }
+    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new ValuesCache()) { }
 
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
 
-    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IEvaluationResultsCache resultsCache)
+    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IValuesCache resultsCache)
     {
         this.expressionValuesCapturer = expressionCapturer;
-        this.resultsCache = resultsCache;
+        this.evaluationCache = resultsCache;
     }
 
     public TResult ToResult()
@@ -28,63 +28,61 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IOrigin)result).MarkAsEndResult();
+        return (TResult)((IOrigin)result).AsResult();
     }
 
     public virtual TResult Return() { return (TResult)new TResult().Default; }
 
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
-        Expression<Func<ExpressionResultValue>> expression,
+        Expression<Func<ExpressionResultValue>> lambdaExpression,
         [CallerMemberName] string name = NaN,
-        [CallerArgumentExpression("expression")] string lambdaExpressionBody = NaN)
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = NaN)
             where ExpressionResultValue : class, IValue, new()
     {
-        string lambdaExpressionBodyAdjusted = LamdaExpressionPrefixRemover.RemovePrefix(lambdaExpressionBody);
+        if (!name.Equals(NaN) && evaluationCache.ContainsKey(name))
+            return (ExpressionResultValue)evaluationCache.GetByKey(name);
 
-        if (!lambdaExpressionBody.Equals(NaN) &&
-            resultsCache.ContainsKey(lambdaExpressionBodyAdjusted))
-            return (ExpressionResultValue)resultsCache.GetByKey(lambdaExpressionBodyAdjusted);
+        ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
-        ExpressionResultValue value = EvaluateInternal(expression, name, lambdaExpressionBodyAdjusted);
+        if (!name.Equals(NaN))
+            evaluationCache.Add(name, result);
 
-        resultsCache.Add(lambdaExpressionBodyAdjusted, value);
+        return result;
 
-        return value;
+        string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
     private ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
-       Expression<Func<ExpressionResultValue>> expression, string name, string expressionBody)
+       Expression<Func<ExpressionResultValue>> lambdaExpression, string name, string expressionBody)
            where ExpressionResultValue : class, IValue, new()
     {
-        ExpressionResultValue expressionResultValue = expression.Compile().Invoke();
+        ExpressionResultValue result = lambdaExpression.Compile().Invoke();
 
-        // TODO : Detect binary expressions and skip Expression Capture.
-        MemberExpressionValues members = expressionValuesCapturer.Capture(expression);
-        SyncParameterMemberNamesAndOrigin(members.Parameters);
+        ExpressionNode expressionNode;
 
-        IValue[]
-            parameterValues = members.Parameters.Select(capture => capture.Value).ToArray(),
+        MemberExpressionMembers members = expressionValuesCapturer.CaptureMembers(lambdaExpression);
+        MarkValuesAsParameters(members.Parameters);
+
+        IEnumerable<IValue>
+            parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
-            expressionArguments = parameterValues.Concat(evaluationValues).Distinct().ToArray();
+            expressionArguments = parameterValues.Concat(evaluationValues);
 
-        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
+        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (ExpressionResultValue)expressionResultValue.Make(MakeValueArgs.Compose(name, expressionNode, expressionResultValue.Primitive));
+        return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
-    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluation[] evaluations)
+    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluation evaluation) => resultsCache.ContainsName(evaluation.Name);
-        IValue GetCachedValue(CapturedEvaluation evaluation) => resultsCache.GetByName(evaluation.Name);
+        bool IsCached(CapturedEvaluationMember evaluation) => evaluationCache.ContainsName(evaluation.MemberName);
+        IValue GetCachedValue(CapturedEvaluationMember evaluation) => evaluationCache.GetByName(evaluation.MemberName);
     }
 
-    private void SyncParameterMemberNamesAndOrigin(CapturedParameter[] parameters)
+    private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
-        foreach (CapturedParameter parameter in parameters)
-        {
-            ((IName)parameter.Value).Set(parameter.Name);
-            ((IOrigin)parameter.Value).MarkAsInput();
-        }
+        foreach (CapturedParameterMember parameter in parameters)
+            ((IOrigin)parameter.Value).MarkAsParameter(parameter.MemberName);
     }
 }

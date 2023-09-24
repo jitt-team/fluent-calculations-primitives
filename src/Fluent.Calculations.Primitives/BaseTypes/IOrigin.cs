@@ -2,7 +2,10 @@
 {
     internal interface IOrigin
     {
-        IValue MarkAsEndResult();
-        IValue MarkAsInput();
+        bool IsSet { get; }
+
+        IValue AsResult();
+
+        void MarkAsParameter(string name);
     }
 }
