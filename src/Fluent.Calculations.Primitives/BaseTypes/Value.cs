@@ -67,12 +67,12 @@ public abstract class Value : IValue, IName, IOrigin
         return this;
     }
 
-    void IOrigin.MarkAsParameter(string fieldName)
+    void IOrigin.MarkAsParameter(string name)
     {
         if (originIsSet)
             return;
 
-        Name = fieldName;
+        Name = name;
         IsParameter = true;
         originIsSet = true;
     }
