@@ -14,6 +14,6 @@ internal class BinaryExpressionHandler
         IValue MakeInstance() => new ResultType().Make(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToResult()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression).WithArguments(left, right);
         decimal ToResult() => Convert.ToDecimal(calcFunc(left, right));
-        string MakeBinaryExpressionBody() => $"{left} {BinaryExpressionLanguageConverter.MethodNameToOperator(operatorName)} {right}";
+        string MakeBinaryExpressionBody() => $"{left} {BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
     }
 }

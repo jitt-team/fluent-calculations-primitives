@@ -1,11 +1,14 @@
-﻿namespace Fluent.Calculations.Primitives.Tests.Expressions
+﻿using Fluent.Calculations.Primitives.Expressions;
+using FluentAssertions;
+
+namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
     public class BinaryExpressionHandlerTests
     {
         [Fact]
-        public void Test()
+        public void ExistingMethod_IsResolved()
         {
-
+           
         }
     }
 }
