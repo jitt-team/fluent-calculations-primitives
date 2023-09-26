@@ -18,7 +18,11 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
 
     private MemberExpression CaptureIfNotExists(MemberExpression node)
     {
+        if (!typeof(IValue).IsAssignableFrom(node.Type))
+            return node;
+
         string memberName = node.Member.Name;
+
         if (!capturedMemberExpressions.ContainsKey(memberName))
             capturedMemberExpressions.Add(memberName, node);
 

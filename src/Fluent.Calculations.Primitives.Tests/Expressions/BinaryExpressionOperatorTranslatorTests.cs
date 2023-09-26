@@ -11,5 +11,4 @@ public class BinaryExpressionOperatorTranslatorTests
     [Fact]
     public void TestNotExistingMethod_ReturnsUnknown() => BinaryExpressionOperatorTranslator
         .MethodNameToOperator("NonExistentMethodName").Should().Be(BinaryExpressionOperatorTranslator.Unknown);
-
 }
