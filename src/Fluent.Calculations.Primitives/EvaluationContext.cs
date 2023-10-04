@@ -5,15 +5,15 @@ using Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
+public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
     private readonly IValuesCache evaluationCache;
     private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
-    private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
+    private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
 
     public EvaluationContext() : this(new ValuesCache(), new MemberExpressionValueCapturer()) { }
 
-    public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
+    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) : this() => calculationFunc = func;
 
     internal EvaluationContext(IValuesCache resultsCache, IMemberExpressionValueCapturer expressionCapturer)
     {
@@ -21,27 +21,27 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         this.evaluationCache = resultsCache;
     }
 
-    public TResult ToResult()
+    public ResultValueType ToResult()
     {
-        TResult result = calculationFunc != null ?
+        ResultValueType result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IOrigin)result).AsResult();
+        return (ResultValueType)((IOrigin)result).AsResult();
     }
 
-    public virtual TResult Return() { return (TResult)new TResult().Default; }
+    public virtual ResultValueType Return() { return (ResultValueType)new ResultValueType().Default; }
 
-    public ExpressionResultValue Evaluate<ExpressionResultValue>(
-        Expression<Func<ExpressionResultValue>> lambdaExpression,
+    public ValueType Evaluate<ValueType>(
+        Expression<Func<ValueType>> lambdaExpression,
         [CallerMemberName] string name = Constants.NaN,
         [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = Constants.NaN)
-            where ExpressionResultValue : class, IValue, new()
+            where ValueType : class, IValue, new()
     {
         if (!name.Equals(Constants.NaN) && evaluationCache.ContainsKey(name))
-            return (ExpressionResultValue)evaluationCache.GetByKey(name);
+            return (ValueType)evaluationCache.GetByKey(name);
 
-        ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
+        ValueType result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(Constants.NaN))
             evaluationCache.Add(name, result);
@@ -51,11 +51,11 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
         string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-    private ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
-       Expression<Func<ExpressionResultValue>> lambdaExpression, string name, string expressionBody)
-           where ExpressionResultValue : class, IValue, new()
+    private ValueType EvaluateInternal<ValueType>(
+       Expression<Func<ValueType>> lambdaExpression, string name, string expressionBody)
+           where ValueType : class, IValue, new()
     {
-        ExpressionResultValue result = lambdaExpression.Compile().Invoke();
+        ValueType result = lambdaExpression.Compile().Invoke();
 
         ExpressionNode expressionNode;
 
@@ -69,7 +69,7 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
+        return (ValueType)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)

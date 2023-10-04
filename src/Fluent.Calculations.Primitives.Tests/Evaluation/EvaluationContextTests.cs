@@ -6,10 +6,21 @@ public class EvaluationContextTests
     [Fact]
     public void Test()
     {
-        EvaluationContext<Number> Calculation = new EvaluationContext<Number>();
+        Number 
+            NumberOne = Number.Of(5, "TEST-NUMBER-ONE"),
+            NumberTwo = Number.Of(3, "TEST-NUMBER-TWO");
 
-        Number NumberOne = Number.Of(5), NumberTwo = Number.Of(3);
+        var calculation = BuildCalculation();
 
-        Number result = Calculation.Evaluate(() => NumberOne * NumberTwo);
+        
+
+        Number result = calculation.Evaluate(() => NumberOne * NumberTwo);
+    }
+
+    private EvaluationContext<Number> BuildCalculation()
+    {
+
+        EvaluationContext<Number> calculation = new EvaluationContext<Number>(valueCache, expressionCapturer);
+        return calculation;
     }
 }
