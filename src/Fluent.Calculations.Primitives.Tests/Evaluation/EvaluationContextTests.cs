@@ -8,6 +8,7 @@ public class EvaluationContextTests
 {
     private IMock<IValuesCache> _valuesCacheMock;
     private IMock<IMemberExpressionValueCapturer> _memberCapturerMock;
+
     [Fact]
     public void Test()
     {
@@ -16,8 +17,6 @@ public class EvaluationContextTests
             NumberTwo = Number.Of(3, "TEST-NUMBER-TWO");
 
         var calculation = BuildCalculation();
-
-
 
         Number result = calculation.Evaluate(() => NumberOne * NumberTwo);
     }
