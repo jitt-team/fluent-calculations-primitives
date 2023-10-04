@@ -1,6 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
-
+namespace Fluent.Calculations.Primitives.Tests.BaseTypes;
 public class ConditionTests
 {
     [Fact]

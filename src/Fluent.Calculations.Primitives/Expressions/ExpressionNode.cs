@@ -6,7 +6,7 @@ public  class ExpressionNode
 {
     public override string ToString() => $"{Body}";
 
-    internal static ExpressionNode None => new ExpressionNode("NaN", ExpressionNodeType.None) ;
+    internal static ExpressionNode None => new ExpressionNode(Constants.NaN, ExpressionNodeType.None) ;
 
     public ExpressionNode(string body, string type)
     {

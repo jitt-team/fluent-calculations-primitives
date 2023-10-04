@@ -7,16 +7,15 @@ using System.Runtime.CompilerServices;
 
 public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
 {
-    private const string NaN = "NaN";
     private readonly IValuesCache evaluationCache;
     private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
     private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
 
-    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new ValuesCache()) { }
+    public EvaluationContext() : this(new ValuesCache(), new MemberExpressionValueCapturer()) { }
 
     public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
 
-    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IValuesCache resultsCache)
+    internal EvaluationContext(IValuesCache resultsCache, IMemberExpressionValueCapturer expressionCapturer)
     {
         this.expressionValuesCapturer = expressionCapturer;
         this.evaluationCache = resultsCache;
@@ -35,16 +34,16 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
     public ExpressionResultValue Evaluate<ExpressionResultValue>(
         Expression<Func<ExpressionResultValue>> lambdaExpression,
-        [CallerMemberName] string name = NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = NaN)
+        [CallerMemberName] string name = Constants.NaN,
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = Constants.NaN)
             where ExpressionResultValue : class, IValue, new()
     {
-        if (!name.Equals(NaN) && evaluationCache.ContainsKey(name))
+        if (!name.Equals(Constants.NaN) && evaluationCache.ContainsKey(name))
             return (ExpressionResultValue)evaluationCache.GetByKey(name);
 
         ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
-        if (!name.Equals(NaN))
+        if (!name.Equals(Constants.NaN))
             evaluationCache.Add(name, result);
 
         return result;
