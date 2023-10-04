@@ -37,7 +37,7 @@ public abstract class Value : IValue, IName, IOrigin
     {
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
-        IsParameter = createValueArgs.IsConstant;
+        IsParameter = createValueArgs.IsParameter;
         Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }

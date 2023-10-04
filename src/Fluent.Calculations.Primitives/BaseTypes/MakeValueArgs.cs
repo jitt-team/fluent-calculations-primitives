@@ -10,7 +10,7 @@ public class MakeValueArgs
 
     public decimal PrimitiveValue { get; private set; }
 
-    public bool IsConstant { get; private set; }
+    public bool IsParameter { get; private set; }
 
     public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
 
@@ -22,7 +22,7 @@ public class MakeValueArgs
             Name = name,
             Expression = expression,
             PrimitiveValue = primitiveValue,
-            IsConstant = false
+            IsParameter = false
         };
 
     public MakeValueArgs WithTags(params Tag[] tags)
