@@ -7,8 +7,8 @@ using System.Runtime.CompilerServices;
 
 public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
-    private readonly IValuesCache evaluationCache;
-    private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
+    private readonly IValuesCache valuesCache;
+    private readonly IMemberExpressionValueCapturer memberCapturer;
     private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
 
     public EvaluationContext() : this(new ValuesCache(), new MemberExpressionValueCapturer()) { }
@@ -17,8 +17,8 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
 
     internal EvaluationContext(IValuesCache resultsCache, IMemberExpressionValueCapturer expressionCapturer)
     {
-        this.expressionValuesCapturer = expressionCapturer;
-        this.evaluationCache = resultsCache;
+        this.memberCapturer = expressionCapturer;
+        this.valuesCache = resultsCache;
     }
 
     public ResultValueType ToResult()
@@ -38,13 +38,13 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
         [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = Constants.NaN)
             where ValueType : class, IValue, new()
     {
-        if (!name.Equals(Constants.NaN) && evaluationCache.ContainsKey(name))
-            return (ValueType)evaluationCache.GetByKey(name);
+        if (!name.Equals(Constants.NaN) && valuesCache.ContainsKey(name))
+            return (ValueType)valuesCache.GetByKey(name);
 
         ValueType result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(Constants.NaN))
-            evaluationCache.Add(name, result);
+            valuesCache.Add(name, result);
 
         return result;
 
@@ -59,7 +59,7 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
 
         ExpressionNode expressionNode;
 
-        MemberExpressionMembers members = expressionValuesCapturer.CaptureMembers(lambdaExpression);
+        CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
         IEnumerable<IValue>
@@ -75,8 +75,8 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluationMember evaluation) => evaluationCache.ContainsName(evaluation.MemberName);
-        IValue GetCachedValue(CapturedEvaluationMember evaluation) => evaluationCache.GetByName(evaluation.MemberName);
+        bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
+        IValue GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
 
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)

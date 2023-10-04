@@ -18,7 +18,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         this.parameterCache = valuesCache;
     }
 
-    public MemberExpressionMembers CaptureMembers<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
+    public CapturedExpressionMembers Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
     {
         var parameters = new List<CapturedParameterMember>();
         var evaluations = new List<CapturedEvaluationMember>();
@@ -31,7 +31,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
             else if (IsEvaluation(memberExpression.Member))
                 evaluations.Add(ToEvaluation(memberExpression));
 
-        return new MemberExpressionMembers(parameters, evaluations);
+        return new CapturedExpressionMembers(parameters, evaluations);
     }
 
     private bool IsParameter(MemberInfo memberInfo) => reflectionProvider.IsParameter(memberInfo);
