@@ -13,7 +13,7 @@ public class MemberExpressionsCapturerTests
         var testClass = new TestClass();
 
         MemberExpression[] captureResult = capturer.Capture(() => testClass.TestFieldOne + testClass.TestFieldTwo + testClass.TestEvaluationOne + testClass.TestEvaluationTwo);
-        
+
         string[] expectedMemberNames = new[] {
             nameof(testClass.TestFieldOne),
             nameof(testClass.TestFieldTwo),
@@ -22,7 +22,7 @@ public class MemberExpressionsCapturerTests
         };
 
         captureResult.Count().Should().Be(4);
-        captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));                   
+        captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
     [Fact]
@@ -61,9 +61,9 @@ public class MemberExpressionsCapturerTests
 }
 
 public class TestClass
-{ 
+{
     public Number TestFieldOne = Number.Of(5.00m);
-    
+
     public Number TestFieldTwo = Number.Of(6.00m);
 
     public Number TestEvaluationOne => Number.Of(7.00m);
