@@ -58,6 +58,24 @@ public class MemberExpressionsCapturerTests
         captureResult.Count().Should().Be(2);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
+
+    [Fact]
+    public void Lambda_WithVariousMemberTypes_AllAreCaptured()
+    {
+        var capturer = new MemberExpressionsCapturer();
+        var testClass = new TestClass();
+
+        MemberExpression[] captureResult = capturer.Capture(() => testClass.TestCondition ? testClass.TestFieldOne : testClass.TestFieldTwo);
+
+        string[] expectedMemberNames = new[] {
+            nameof(testClass.TestFieldOne),
+            nameof(testClass.TestFieldTwo),
+            nameof(testClass.TestCondition)
+        };
+
+        captureResult.Count().Should().Be(3);
+        captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
+    }
 }
 
 public class TestClass
@@ -69,4 +87,6 @@ public class TestClass
     public Number TestEvaluationOne => Number.Of(7.00m);
 
     public Number TestEvaluationTwo => Number.Of(8.00m);
+
+    public Condition TestCondition => Condition.True();
 }
