@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions
 {
-    internal class BinaryExpressionOperatorTranslator
+    internal static class BinaryExpressionOperatorTranslator
     {
         public const string Unknown = "<Unknown>";
 
