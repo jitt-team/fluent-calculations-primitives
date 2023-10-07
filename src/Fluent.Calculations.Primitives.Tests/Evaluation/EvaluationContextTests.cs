@@ -109,7 +109,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             _valuesCacheMock.Setup(c => c.Add(expectedCalculationName, It.IsAny<IValue>())).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
 
-            EvaluationContext<Number> calculation = new EvaluationContext<Number>(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
         private EvaluationContext<Number> MockAndBuildCachedCalculation(string expectedCalculationName, Number cachedResult)
@@ -117,7 +117,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             _valuesCacheMock.Setup(c => c.ContainsKey(expectedCalculationName)).Returns(true).Verifiable();
             _valuesCacheMock.Setup(c => c.GetByKey(expectedCalculationName)).Returns(cachedResult).Verifiable();
 
-            EvaluationContext<Number> calculation = new EvaluationContext<Number>(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
 
@@ -129,7 +129,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             _valuesCacheMock.Setup(c => c.GetByName(cachedValueName)).Returns(cachedValue).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
 
-            EvaluationContext<Number> calculation = new EvaluationContext<Number>(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
 

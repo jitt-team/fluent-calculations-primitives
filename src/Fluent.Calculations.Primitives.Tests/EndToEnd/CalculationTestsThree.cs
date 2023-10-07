@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
-namespace Fluent.Calculations.Primitives.Tests.Lab.Calculation
+namespace Fluent.Calculations.Primitives.Tests.Integration
 {
     public class CalculationTestsThree
     {

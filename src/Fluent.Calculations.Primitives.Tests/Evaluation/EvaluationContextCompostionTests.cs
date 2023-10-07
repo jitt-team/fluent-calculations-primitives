@@ -12,9 +12,9 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class EvaluationContextCompostionTests
     {
-        
+
         [Fact]
-        public void Calculation_MixedContexts_ResultAndArgumentsExpected() 
+        public void Calculation_MixedContexts_ResultAndArgumentsExpected()
         {
             Number result = TestCalculationMixedContexts.Return();
             result.Primitive.Should().Be(20);
@@ -28,7 +28,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             Number result = TestCalcuationPureFunction.Return();
             result.Primitive.Should().Be(5);
             result.Name.Should().Be(Constant.TestEvaluationName);
-            result.Expression.Arguments.Should().HaveCount(2);            
+            result.Expression.Arguments.Should().HaveCount(2);
         }
 
         [Fact]
@@ -54,11 +54,11 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
     {
         public static Number Return()
         {
-            EvaluationOptions options = new EvaluationOptions { AlwaysReadNamesFromExpressions = true };
+            EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
 
             EvaluationContext<Number>
-                CalculationOne = new EvaluationContext<Number>(options),
-                CalculationOther = new EvaluationContext<Number>(options);
+                CalculationOne = new(options),
+                CalculationOther = new(options);
 
             Number
                 NumberOne = Number.Of(2),
@@ -77,8 +77,8 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
     {
         public static Number Return()
         {
-            EvaluationOptions options = new EvaluationOptions { AlwaysReadNamesFromExpressions = true };
-            EvaluationContext<Number> Calculation = new EvaluationContext<Number>(options);
+            EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
+            EvaluationContext<Number> Calculation = new(options);
 
             Number
                 NumberOne = Number.Of(2),
@@ -91,7 +91,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private EvaluationContext<Number> context = new EvaluationContext<Number>();
+        private EvaluationContext<Number> context = new();
 
         Number
             NumberOne = Number.Of(2),

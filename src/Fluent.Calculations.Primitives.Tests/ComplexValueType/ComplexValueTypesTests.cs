@@ -1,10 +1,11 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
-namespace Fluent.Calculations.Primitives.Tests.Lab.Composition;
+namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 
-public class CompostionTests
+public class ComplexValueTypesTests
 {
-    private Money FunctionToScopeImpicit()
+    private Money Return()
     {
+        EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
         EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
 
         Money

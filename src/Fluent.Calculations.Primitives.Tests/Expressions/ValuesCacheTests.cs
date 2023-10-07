@@ -8,8 +8,8 @@ public class ValuesCacheTests
     [Fact]
     public void ValueIsAddedToCache()
     {
-        Dictionary<string, IValue> cacheStorage = new Dictionary<string, IValue>();
-        var cache = new ValuesCache(cacheStorage);
+        Dictionary<string, IValue> cacheStorage = new();
+        ValuesCache cache = new(cacheStorage);
         string testValueName = "TEST-VALUE";
         cache.Add(Number.Of(1, testValueName));
         cacheStorage.Values.Should().HaveCount(1);
@@ -19,7 +19,7 @@ public class ValuesCacheTests
     [Fact]
     public void GetValueByName_IsReturned()
     {
-        var cache = new ValuesCache();
+        ValuesCache cache = new();
         string testValueName = "TEST-VALUE";
         cache.Add(Number.Of(1, testValueName));
         var value = cache.GetByName(testValueName);
@@ -29,7 +29,7 @@ public class ValuesCacheTests
     [Fact]
     public void GetValueByKey_IsReturned()
     {
-        var cache = new ValuesCache();
+        ValuesCache cache = new();
         string testValueName = "TEST-VALUE", key = "TEST-KEY";
         cache.Add(key, Number.Of(1, testValueName));
         var value = cache.GetByKey(key);

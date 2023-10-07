@@ -9,8 +9,8 @@ public class MemberExpressionsCapturerTests
     [Fact]
     public void LambdaWithMultipleMembers_IValue_AllAreCaptured()
     {
-        var capturer = new MemberExpressionsCapturer();
-        var testClass = new TestClass();
+        MemberExpressionsCapturer capturer = new();
+        TestClass testClass = new();
 
         MemberExpression[] captureResult = capturer.Capture(() => testClass.TestFieldOne + testClass.TestFieldTwo + testClass.TestEvaluationOne + testClass.TestEvaluationTwo);
 
@@ -28,8 +28,8 @@ public class MemberExpressionsCapturerTests
     [Fact]
     public void LambdaWithDublicateMembers_IValue_UniqueAreCaptured()
     {
-        var capturer = new MemberExpressionsCapturer();
-        var testClass = new TestClass();
+        MemberExpressionsCapturer capturer = new();
+        TestClass testClass = new();
 
         MemberExpression[] captureResult = capturer.Capture(() => testClass.TestFieldOne + testClass.TestFieldOne + testClass.TestEvaluationOne + testClass.TestEvaluationOne);
 
@@ -45,8 +45,8 @@ public class MemberExpressionsCapturerTests
     [Fact]
     public void LambdaWithUnsupportedMembers_UnsupportedAreIgnored()
     {
-        var capturer = new MemberExpressionsCapturer();
-        var testClass = new TestClass();
+        MemberExpressionsCapturer capturer = new();
+        TestClass testClass = new();
         decimal unsupportedValueType = 1;
         MemberExpression[] captureResult = capturer.Capture(() => unsupportedValueType > 2 ? testClass.TestFieldOne : testClass.TestFieldTwo);
 
@@ -62,8 +62,8 @@ public class MemberExpressionsCapturerTests
     [Fact]
     public void Lambda_WithVariousMemberTypes_AllAreCaptured()
     {
-        var capturer = new MemberExpressionsCapturer();
-        var testClass = new TestClass();
+        MemberExpressionsCapturer capturer = new();
+        TestClass testClass = new();
 
         MemberExpression[] captureResult = capturer.Capture(() => testClass.TestCondition ? testClass.TestFieldOne : testClass.TestFieldTwo);
 

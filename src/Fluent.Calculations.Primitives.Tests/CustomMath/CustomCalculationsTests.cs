@@ -2,7 +2,7 @@
 using FluentAssertions;
 using System.Numerics;
 
-namespace Fluent.Calculations.Primitives.Tests.Lab.GenericMath
+namespace Fluent.Calculations.Primitives.Tests.CustomMath
 {
     public class CustomCalculationsTests
     {
