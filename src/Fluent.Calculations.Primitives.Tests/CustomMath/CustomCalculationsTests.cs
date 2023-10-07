@@ -7,21 +7,27 @@ namespace Fluent.Calculations.Primitives.Tests.CustomMath
     public class CustomCalculationsTests
     {
         [Fact]
-        public void TestDecimal()
+        public void Calculate_CustomFunction_EvaluationNumber_ResultExpected()
         {
             decimal One = 1, Two = 2, Three = 3;
-            decimal sum = CustomGenericCalculation.CalculateTestFormula(One, Two, Three);
-            sum.Should().Be(7m);
+
+            decimal result = CustomGenericCalculation.CalculateTestFormula(One, Two, Three);
+
+            result.Should().Be(7m);
         }
 
-        [Fact(Skip = "Skip until implementing methid call capture")]
-        public void TestNumber()
+        [Fact]
+        public void Calculate_CustomFunction_Decimal_ResultExpected()
         {
-            var context = new EvaluationContext<Number>();
+            EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
+            EvaluationContext<Number> context = new(options);
+            Number One = 1, Two = 2, Three = 3;
 
-            Number One = 1, Two = 2, Three = 2;
-            Number sum = context.Evaluate(() => CustomGenericCalculation.CalculateTestFormula(One, Two, Three));
-            sum.Should().Be(Number.Of(7m));
+            Number result = context.Evaluate(() => CustomGenericCalculation.CalculateTestFormula(One, Two, Three));
+
+            result.Should().Be(Number.Of(7m));
+            result.Expression.Body.Should().Be("CustomGenericCalculation.CalculateTestFormula(One, Two, Three)");
+            result.Expression.Arguments.Should().HaveCount(3);
         }
     }
 
@@ -31,6 +37,6 @@ namespace Fluent.Calculations.Primitives.Tests.CustomMath
             where TNumber :
                 IAdditionOperators<TNumber, TNumber, TNumber>,
                 IMultiplyOperators<TNumber, TNumber, TNumber>
-            => valueOne + valueTwo * valueThree;
+            => valueOne + (valueTwo * valueThree);
     }
 }
