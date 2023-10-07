@@ -7,18 +7,24 @@ using System.Runtime.CompilerServices;
 
 public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
+    private EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
 
-    public EvaluationContext() : this(new ValuesCache(), new MemberExpressionValueCapturer()) { }
+    public EvaluationContext() : this(EvaluationOptions.Default) { }
 
-    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) : this() => calculationFunc = func;
+    public EvaluationContext(EvaluationOptions options) : 
+        this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    internal EvaluationContext(IValuesCache resultsCache, IMemberExpressionValueCapturer expressionCapturer)
+    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) : 
+        this(EvaluationOptions.Default) => calculationFunc = func;
+
+    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer)
     {
-        this.memberCapturer = expressionCapturer;
-        this.valuesCache = resultsCache;
+        this.options = EvaluationOptions.Default;
+        this.memberCapturer = memberCapturer;
+        this.valuesCache = valuesCache;
     }
 
     public ResultValueType ToResult()
@@ -82,6 +88,10 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
         foreach (CapturedParameterMember parameter in parameters)
-            ((IOrigin)parameter.Value).MarkAsParameter(parameter.MemberName);
+        {
+            IOrigin paramterOrigin = ((IOrigin)parameter.Value);
+            if (options.AlwaysReadNamesFromExpressions || !paramterOrigin.IsSet)
+                paramterOrigin.MarkAsParameter(parameter.MemberName);
+        }
     }
 }

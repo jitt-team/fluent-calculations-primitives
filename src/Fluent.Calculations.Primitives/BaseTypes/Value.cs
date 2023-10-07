@@ -64,9 +64,6 @@ public abstract class Value : IValue, IName, IOrigin
 
     void IOrigin.MarkAsParameter(string name)
     {
-        if (OriginIsSet)
-            return;
-
         Name = name;
         IsParameter = true;
     }
