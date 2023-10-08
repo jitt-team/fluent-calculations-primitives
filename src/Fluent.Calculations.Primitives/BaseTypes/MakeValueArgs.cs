@@ -4,13 +4,13 @@ using Fluent.Calculations.Primitives.Expressions;
 
 public class MakeValueArgs
 {
-    public string Name { get; private set; } = "NaN";
+    public string Name { get; private set; } = Constants.NaN;
 
     public ExpressionNode Expression { get; private set; } = ExpressionNode.None;
 
     public decimal PrimitiveValue { get; private set; }
 
-    public bool IsConstant { get; private set; }
+    public bool IsParameter { get; private set; }
 
     public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
 
@@ -22,7 +22,7 @@ public class MakeValueArgs
             Name = name,
             Expression = expression,
             PrimitiveValue = primitiveValue,
-            IsConstant = false
+            IsParameter = false
         };
 
     public MakeValueArgs WithTags(params Tag[] tags)

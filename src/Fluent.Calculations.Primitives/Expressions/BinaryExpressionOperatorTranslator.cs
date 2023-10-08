@@ -1,14 +1,15 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions
 {
-    internal class BinaryExpressionLanguageConverter
+    internal static class BinaryExpressionOperatorTranslator
     {
+        public const string Unknown = "<Unknown>";
+
         public static string MethodNameToOperator(string methodName)
         {
             if (MethodOperatorMaping.TryGetValue(methodName, out string? @operator) && @operator != null)
                 return @operator;
 
-            return
-                "#unknown_operator#";
+            return Unknown;
         }
 
         private static Dictionary<string, string> MethodOperatorMaping = new Dictionary<string, string>

@@ -12,7 +12,7 @@ public sealed class Condition : Value,
 
     public override string ValueToString() => $"{IsTrue}";
 
-    public Condition() : this(MakeValueArgs.Compose("NaN", new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
+    public Condition() : this(MakeValueArgs.Compose(Constants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
     }
 

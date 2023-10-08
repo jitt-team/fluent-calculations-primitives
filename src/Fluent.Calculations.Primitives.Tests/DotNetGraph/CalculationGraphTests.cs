@@ -2,7 +2,7 @@ using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
-namespace Fluent.Calculations.Primitives.Tests.Lab.DotNetGraph
+namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
 {
     public class CalculationGraphTests
     {

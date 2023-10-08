@@ -1,11 +1,11 @@
-﻿namespace Fluent.Calculations.Primitives.Tests.Lab.Composition;
+﻿namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 
 public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
 {
     private const string NoneCorrencyCode = "None";
+
     public static Currency None => new Currency(NoneCorrencyCode);
 
-    // TODO: We could support alternate currency codes all at once to have highly compatible comparisions
     public string Code { get; }
 
     public Currency(string currencyCode) => Code = EnsureIsValid(currencyCode);
