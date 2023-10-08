@@ -1,45 +1,38 @@
-﻿using Fluent.Calculations.DotNetGraph;
+﻿using DotNetGraph.Core;
+using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
-namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
+namespace Fluent.Calculations.Primitives.Tests.DotNetGraph;
+
+public class CalculationDotGraphRendererTests
 {
-    public class CalculationDotGraphRendererTests
+    [Fact]
+    public void AdditionCalculation_Rendered_GraphHasExpectedElements()
     {
-        [Fact]
-        public async Task TestWIP()
+        var calculation = new AdditionCalculation
         {
-            var calculation = new FooBarCalculation
-            {
-                ConstantOne = Number.Of(2),
-                ConstantTwo = Number.Of(3)
-            };
+            ConstantOne = Number.Of(2),
+            ConstantTwo = Number.Of(3)
+        };
 
-            Number result = calculation.ToResult();
+        Number result = calculation.ToResult();
 
-            result.Should().NotBeNull();
+        DotGraph graph = new CalculationDotGraphRenderer().Render(result);
 
-            var graphFileName = "graph4.dot";
-
-            await new CalculationDotGraphRenderer(graphFileName).Render(result);
-
-            File.Exists(graphFileName).Should().BeTrue();
-        }
+        graph.Elements.Should().HaveCount(6);
     }
+}
 
-    internal class FooBarCalculation : EvaluationContext<Number>
-    {
-        public Number
-            ConstantOne = Number.Zero,
-            ConstantTwo = Number.Zero;
+internal class AdditionCalculation : EvaluationContext<Number>
+{
+    public AdditionCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
-        public Condition
-            FeatureOn = Condition.True();
+    public Number
+        ConstantOne = Number.Zero,
+        ConstantTwo = Number.Zero;
 
-        Condition Comparison => Evaluate(() => ConstantOne > ConstantTwo);
+    Number OnePlusTwo => Evaluate(() => ConstantOne + ConstantTwo);
 
-        Number Condtitional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
-
-        public override Number Return() => Condtitional;
-    }
+    public override Number Return() => OnePlusTwo;
 }

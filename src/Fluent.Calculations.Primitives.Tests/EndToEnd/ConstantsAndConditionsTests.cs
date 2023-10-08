@@ -9,7 +9,7 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
         [Fact]
         public void ConstantsAndConditions_IsExpectedResult()
         {
-            var calculation = new ConstantsAndConditions
+            ConstantsAndConditions calculation = new()
             {
                 ConstantOne = Number.Of(1),
                 ConstantTwo = Number.Of(2),

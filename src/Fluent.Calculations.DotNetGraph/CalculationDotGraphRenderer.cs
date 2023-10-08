@@ -5,27 +5,11 @@ using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Web;
-
 namespace Fluent.Calculations.DotNetGraph;
-
-public class DotNodeBlock
-{
-    public bool IsValue { get; set; }
-    public DotNode FirstNode { get; set; }
-    public DotEdge ConnectorEdge { get; set; }
-    public DotNode LastNode { get; set; }
-}
 
 public class CalculationDotGraphRenderer
 {
-    private readonly string graphFileName;
-
-    public CalculationDotGraphRenderer(string graphFileName)
-    {
-        this.graphFileName = graphFileName;
-    }
-
-    public async Task Render(IValue value)
+    public DotGraph Render(IValue value)
     {
         DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
         DotSubgraph inputsCluster = new DotSubgraph()
@@ -38,7 +22,7 @@ public class CalculationDotGraphRenderer
 
         graph.Add(inputsCluster);
         ToNode(value, graph, inputsCluster);
-        await SaveToDot(graph);
+        return graph;
     }
 
     private DotNodeBlock ToNode(IValue value, DotGraph graph, DotSubgraph inputsCluster)
@@ -143,7 +127,7 @@ public class CalculationDotGraphRenderer
 
     private DotNode ToExpressionDotNode(IValue value)
     {
-        var node =  new DotNode()
+        var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_expression"))
               .WithShape("Rectangle")
               .WithFillColor("skyblue")
@@ -188,15 +172,12 @@ public class CalculationDotGraphRenderer
 
     string Html(string value) => HttpUtility.HtmlEncode(value);
 
-    private async Task SaveToDot(DotGraph graph)
+    public async Task SaveToDot(DotGraph graph, string outputFilePath)
     {
         await using var writer = new StringWriter();
-        var context = new CompilationContext(writer, new CompilationOptions());
+        CompilationContext context = new(writer, new CompilationOptions());
         await graph.CompileAsync(context);
-
-        var result = writer.GetStringBuilder().ToString();
-
-        // Save it to a file
-        File.WriteAllText(graphFileName, result);
+        string result = writer.GetStringBuilder().ToString();
+        File.WriteAllText(outputFilePath, result);
     }
 }
