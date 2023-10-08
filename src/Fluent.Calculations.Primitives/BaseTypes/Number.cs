@@ -16,13 +16,11 @@ public class Number : Value,
 
     public Number() : this(MakeValueArgs.Compose("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
 
+    public Number(Number number) : base(number) { }
+
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);
-
-    public Number(Number number) : base(number)
-    {
-    }
 
     public Number(MakeValueArgs createValueArgs) : base(createValueArgs)
     {
