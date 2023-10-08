@@ -18,13 +18,11 @@ public class Number : Value,
 
     public Number(Number number) : base(number) { }
 
+    public Number(MakeValueArgs createValueArgs) : base(createValueArgs) { }
+
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);
-
-    public Number(MakeValueArgs createValueArgs) : base(createValueArgs)
-    {
-    }
 
     public static Number Zero => new() { IsParameter = true };
 
