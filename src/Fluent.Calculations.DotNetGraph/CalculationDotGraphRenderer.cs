@@ -139,10 +139,16 @@ public class CalculationDotGraphRenderer
         return node;
     }
 
-    private string ShapyByValueType(IValue value) =>
-                value.IsOutput ? "ellipse" :
-                value.IsParameter ? "parallelogram" :
-                                        "Rectangle";
+    private string ShapyByValueType(IValue value)
+    {
+        if (value.IsOutput)
+            return "ellipse";
+
+        if (value.IsParameter)
+            return "parallelogram";
+
+        return "Rectangle";
+    }
 
     private string ColorByValueType(IValue value) => value.IsOutput ?
             "#7ffac2" : "skyblue";
