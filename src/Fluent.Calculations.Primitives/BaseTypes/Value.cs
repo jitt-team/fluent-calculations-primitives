@@ -1,6 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
-using System.Xml.Linq;
 
 public abstract class Value : IValue, IName, IOrigin
 {
@@ -16,11 +15,11 @@ public abstract class Value : IValue, IName, IOrigin
 
     public TagsCollection Tags { get; init; }
 
-    private bool originIsSet;
+    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
 
     private Value()
     {
-        Name = "NaN";
+        Name = Constants.NaN;
         Expression = ExpressionNode.None;
         Tags = TagsCollection.Empty;
     }
@@ -38,7 +37,7 @@ public abstract class Value : IValue, IName, IOrigin
     {
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
-        IsParameter = createValueArgs.IsConstant;
+        IsParameter = createValueArgs.IsParameter;
         Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }
@@ -55,26 +54,18 @@ public abstract class Value : IValue, IName, IOrigin
 
     void IName.Set(string name) => Name = name;
 
-    bool IOrigin.IsSet => originIsSet;
+    bool IOrigin.IsSet => OriginIsSet;
 
     IValue IOrigin.AsResult()
     {
-        if (!originIsSet)
-        {
-            IsOutput = true;
-            originIsSet = true;
-        }
+        IsOutput = true;
         return this;
     }
 
     void IOrigin.MarkAsParameter(string name)
     {
-        if (originIsSet)
-            return;
-
         Name = name;
         IsParameter = true;
-        originIsSet = true;
     }
 
     public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);

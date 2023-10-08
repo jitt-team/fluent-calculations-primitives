@@ -5,62 +5,67 @@ using Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-public partial class EvaluationContext<TResult> where TResult : class, IValue, new()
+public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
-    private const string NaN = "NaN";
-    private readonly IValuesCache evaluationCache;
-    private readonly IMemberExpressionValueCapturer expressionValuesCapturer;
-    private Func<EvaluationContext<TResult>, TResult>? calculationFunc;
+    private readonly EvaluationOptions options;
+    private readonly IValuesCache valuesCache;
+    private readonly IMemberExpressionValueCapturer memberCapturer;
+    private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
 
-    public EvaluationContext() : this(new MemberExpressionValueCapturer(), new ValuesCache()) { }
+    public EvaluationContext() : this(EvaluationOptions.Default) { }
 
-    public EvaluationContext(Func<EvaluationContext<TResult>, TResult> func) : this() => calculationFunc = func;
+    public EvaluationContext(EvaluationOptions options) : 
+        this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    internal EvaluationContext(IMemberExpressionValueCapturer expressionCapturer, IValuesCache resultsCache)
+    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) : 
+        this(EvaluationOptions.Default) => calculationFunc = func;
+
+    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer)
     {
-        this.expressionValuesCapturer = expressionCapturer;
-        this.evaluationCache = resultsCache;
+        this.options = EvaluationOptions.Default;
+        this.memberCapturer = memberCapturer;
+        this.valuesCache = valuesCache;
     }
 
-    public TResult ToResult()
+    public ResultValueType ToResult()
     {
-        TResult result = calculationFunc != null ?
+        ResultValueType result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
 
-        return (TResult)((IOrigin)result).AsResult();
+        return (ResultValueType)((IOrigin)result).AsResult();
     }
 
-    public virtual TResult Return() { return (TResult)new TResult().Default; }
+    public virtual ResultValueType Return() { return (ResultValueType)new ResultValueType().Default; }
 
-    public ExpressionResultValue Evaluate<ExpressionResultValue>(
-        Expression<Func<ExpressionResultValue>> lambdaExpression,
-        [CallerMemberName] string name = NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = NaN)
-            where ExpressionResultValue : class, IValue, new()
+    public ValueType Evaluate<ValueType>(
+        Expression<Func<ValueType>> lambdaExpression,
+        [CallerMemberName] string name = Constants.NaN,
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = Constants.NaN)
+            where ValueType : class, IValue, new()
     {
-        if (!name.Equals(NaN) && evaluationCache.ContainsKey(name))
-            return (ExpressionResultValue)evaluationCache.GetByKey(name);
+        if (!name.Equals(Constants.NaN) && valuesCache.ContainsKey(name))
+            return (ValueType)valuesCache.GetByKey(name);
 
-        ExpressionResultValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
+        ValueType result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
-        if (!name.Equals(NaN))
-            evaluationCache.Add(name, result);
+        if (!name.Equals(Constants.NaN))
+            valuesCache.Add(name, result);
 
         return result;
 
         string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-    private ExpressionResultValue EvaluateInternal<ExpressionResultValue>(
-       Expression<Func<ExpressionResultValue>> lambdaExpression, string name, string expressionBody)
-           where ExpressionResultValue : class, IValue, new()
+    private ValueType EvaluateInternal<ValueType>(
+       Expression<Func<ValueType>> lambdaExpression, string name, string expressionBody)
+           where ValueType : class, IValue, new()
     {
-        ExpressionResultValue result = lambdaExpression.Compile().Invoke();
+        ValueType result = lambdaExpression.Compile().Invoke();
 
         ExpressionNode expressionNode;
 
-        MemberExpressionMembers members = expressionValuesCapturer.CaptureMembers(lambdaExpression);
+        CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
         IEnumerable<IValue>
@@ -70,19 +75,23 @@ public partial class EvaluationContext<TResult> where TResult : class, IValue, n
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (ExpressionResultValue)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
+        return (ValueType)result.Make(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
-        bool IsCached(CapturedEvaluationMember evaluation) => evaluationCache.ContainsName(evaluation.MemberName);
-        IValue GetCachedValue(CapturedEvaluationMember evaluation) => evaluationCache.GetByName(evaluation.MemberName);
+        bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
+        IValue GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
 
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
         foreach (CapturedParameterMember parameter in parameters)
-            ((IOrigin)parameter.Value).MarkAsParameter(parameter.MemberName);
+        {
+            IOrigin paramterOrigin = ((IOrigin)parameter.Value);
+            if (options.AlwaysReadNamesFromExpressions || !paramterOrigin.IsSet)
+                paramterOrigin.MarkAsParameter(parameter.MemberName);
+        }
     }
 }

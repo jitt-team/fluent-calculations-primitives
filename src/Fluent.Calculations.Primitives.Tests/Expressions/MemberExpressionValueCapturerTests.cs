@@ -28,7 +28,7 @@ public class MemberExpressionValueCapturerTests
         valueCacheMock.Setup(c => c.ContainsKey(It.IsAny<string>())).Returns(false);
         valueCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValue>())).Verifiable();
 
-        MemberExpressionMembers result = BuildCapturer().CaptureMembers(() => testMemberClass.TestParameter);
+        CapturedExpressionMembers result = BuildCapturer().Capture(() => testMemberClass.TestParameter);
 
         result.Parameters.Should().HaveCount(1);
         result.Parameters.Single().MemberName.Should().Be(TestMembersClass.TestParameterName);
@@ -47,7 +47,7 @@ public class MemberExpressionValueCapturerTests
         valueCacheMock.Setup(c => c.ContainsKey(It.IsAny<string>())).Returns(true);
         valueCacheMock.Setup(c => c.GetByKey(It.IsAny<string>())).Returns(Number.Of(3.00m, cachedParameterName));
 
-        MemberExpressionMembers result = BuildCapturer().CaptureMembers(() => testMemberClass.TestParameter);
+        CapturedExpressionMembers result = BuildCapturer().Capture(() => testMemberClass.TestParameter);
 
         result.Parameters.Should().HaveCount(1);
         result.Parameters.Single().Value.Name.Should().Be(cachedParameterName);
@@ -59,7 +59,7 @@ public class MemberExpressionValueCapturerTests
     public void CaptureEvaluationMember_IsReturned()
     {
         var testMemberClass = new TestMembersClass();
-        MemberExpressionMembers result = BuildCapturer().CaptureMembers(() => testMemberClass.TestEvaluation);
+        CapturedExpressionMembers result = BuildCapturer().Capture(() => testMemberClass.TestEvaluation);
 
         result.Evaluations.Should().HaveCount(1);
         result.Evaluations.Single().MemberName.Should().Be(TestMembersClass.TestEvaluationName);
