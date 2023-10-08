@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
-    private EvaluationOptions options;
+    private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
