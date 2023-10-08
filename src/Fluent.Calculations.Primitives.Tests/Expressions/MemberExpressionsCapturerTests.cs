@@ -76,6 +76,25 @@ public class MemberExpressionsCapturerTests
         captureResult.Count().Should().Be(3);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
+
+    [Fact]
+    public void Lambda_CustomFunction_AllAreCaptured()
+    {
+        MemberExpressionsCapturer capturer = new();
+        TestClass testClass = new();
+
+        MemberExpression[] captureResult = capturer.Capture(() => CustomFunction(testClass.TestFieldOne, testClass.TestFieldTwo));
+
+        string[] expectedMemberNames = new[] {
+            nameof(testClass.TestFieldOne),
+            nameof(testClass.TestFieldTwo)
+        };
+
+        captureResult.Count().Should().Be(2);
+        captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
+    }
+
+    private Number CustomFunction(Number val1, Number val2) => val1 + val2;
 }
 
 public class TestClass
