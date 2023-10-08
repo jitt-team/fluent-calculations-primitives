@@ -4,12 +4,12 @@ using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Integration
 {
-    public class CalculationTestsTwo
+    public class ConstantsAndConditionsTests
     {
         [Fact]
-        public async Task Test()
+        public void ConstantsAndConditions_IsExpectedResult()
         {
-            var calculation = new MyCalculation
+            var calculation = new ConstantsAndConditions
             {
                 ConstantOne = Number.Of(1),
                 ConstantTwo = Number.Of(2),
@@ -18,14 +18,14 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
             Number result = calculation.ToResult();
 
-            await new CalculationGraphRenderer("graph2.dot").Render(result);
-
             result.Should().NotBeNull();
         }
     }
 
-    internal class MyCalculation : EvaluationContext<Number>
+    internal class ConstantsAndConditions : EvaluationContext<Number>
     {
+        public ConstantsAndConditions() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+
         public Number
             ConstantOne = Number.Of(1),
             ConstantTwo = Number.Of(2),

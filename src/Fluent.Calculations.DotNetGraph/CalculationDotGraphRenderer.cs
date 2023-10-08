@@ -16,11 +16,11 @@ public class DotNodeBlock
     public DotNode LastNode { get; set; }
 }
 
-public class CalculationGraphRenderer
+public class CalculationDotGraphRenderer
 {
     private readonly string graphFileName;
 
-    public CalculationGraphRenderer(string graphFileName)
+    public CalculationDotGraphRenderer(string graphFileName)
     {
         this.graphFileName = graphFileName;
     }
