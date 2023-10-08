@@ -1,12 +1,13 @@
 using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Primitives.BaseTypes;
+using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
 {
     public class CalculationGraphTests
     {
         [Fact]
-        public async Task Test()
+        public async Task CalculationGraphRenderer_Should_Render_a_File()
         {
             Number result = new FooBarCalculation
             {
@@ -17,7 +18,11 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
             }
             .ToResult();
 
-            await new CalculationGraphRenderer("graph4.dot").Render(result);
+            var graphFileName = "graph4.dot";
+
+            await new CalculationGraphRenderer(graphFileName).Render(result);
+
+            File.Exists(graphFileName).Should().BeTrue();
         }
 
         internal class FooBarCalculation : EvaluationContext<Number>
