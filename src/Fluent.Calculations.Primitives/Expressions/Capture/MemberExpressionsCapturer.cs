@@ -5,10 +5,12 @@ using System.Linq.Expressions;
 
 public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCapturer
 {
-    private readonly Dictionary<string, MemberExpression> capturedMemberExpressions = new Dictionary<string, MemberExpression>();
+    private Dictionary<string, MemberExpression> capturedMemberExpressions = new Dictionary<string, MemberExpression>();
 
     public MemberExpression[] Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lamdaExpression) where TExpressionResulValue : class, IValue
     {
+        capturedMemberExpressions = new Dictionary<string, MemberExpression>();
+
         Visit(lamdaExpression);
 
         return capturedMemberExpressions.Values.ToArray();

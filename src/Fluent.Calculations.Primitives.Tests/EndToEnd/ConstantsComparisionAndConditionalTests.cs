@@ -1,15 +1,14 @@
-﻿using Fluent.Calculations.DotNetGraph;
-using Fluent.Calculations.Primitives.BaseTypes;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Integration
 {
-    public class CalculationTestsOne
+    public class ConstantsComparisionAndConditionalTests
     {
         [Fact]
-        public async Task Test()
+        public void ConstantsComparisionAndConditional_IsExpectedResult()
         {
-            var calculation = new FooBarCalculation
+            var calculation = new ConstantsComparisionAndConditional
             {
                 ConstantOne = Number.Of(2),
                 ConstantTwo = Number.Of(3)
@@ -17,14 +16,14 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
             Number result = calculation.ToResult();
 
-            await new CalculationGraphRenderer("graph1.dot").Render(result);
-
             result.Should().NotBeNull();
         }
     }
 
-    internal class FooBarCalculation : EvaluationContext<Number>
+    internal class ConstantsComparisionAndConditional : EvaluationContext<Number>
     {
+        public ConstantsComparisionAndConditional() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+
         public Number
             ConstantOne = Number.Zero,
             ConstantTwo = Number.Zero;

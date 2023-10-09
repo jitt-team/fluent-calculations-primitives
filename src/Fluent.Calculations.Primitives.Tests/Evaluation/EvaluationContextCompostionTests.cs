@@ -19,7 +19,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             Number result = TestCalculationMixedContexts.Return();
             result.Primitive.Should().Be(20);
             result.Name.Should().Be(Constant.TestEvaluationName);
-            result.Expression.Arguments.Should().HaveCount(4);
+            result.Expression.Arguments.Should().HaveCount(2);
         }
 
         [Fact]
