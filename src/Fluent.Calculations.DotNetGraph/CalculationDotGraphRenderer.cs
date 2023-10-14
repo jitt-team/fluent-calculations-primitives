@@ -1,5 +1,4 @@
-﻿using DotNetGraph.Compilation;
-using DotNetGraph.Core;
+﻿using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
@@ -90,14 +89,5 @@ public class CalculationDotGraphRenderer
             ConnectorEdge = new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2),
             LastNode = lastNode
         };
-    }
-
-    public async Task SaveToDot(DotGraph graph, string outputFilePath)
-    {
-        await using var writer = new StringWriter();
-        CompilationContext context = new(writer, new CompilationOptions());
-        await graph.CompileAsync(context);
-        string result = writer.GetStringBuilder().ToString();
-        File.WriteAllText(outputFilePath, result);
     }
 }
