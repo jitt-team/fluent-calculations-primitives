@@ -2,6 +2,8 @@
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using QuikGraph;
+
 namespace Fluent.Calculations.DotNetGraph;
 
 public class CalculationDotGraphRenderer
@@ -28,7 +30,8 @@ public class CalculationDotGraphRenderer
         foreach (IValue childValue in value.Expression.Arguments)
         {
             DotNodeBlock argumentBlock = AddValueToGraph(childValue, targetGraph, targerParametersCluster);
-            targetGraph.LinkFromValueToArgument(valueBlock, argumentBlock);
+            DotEdge edge = builder.CreateDashedEdge(valueBlock.LastNode, argumentBlock.FirstNode);
+            targetGraph.Add(edge);
         }
 
         DotNodeBlock AddNewBlockByType(IValue value)
@@ -78,7 +81,7 @@ public class CalculationDotGraphRenderer
             firstNode = builder.CreateExpressionNode(value),
             lastNode = builder.CreateValueNode(value);
 
-        DotEdge connectorEdge = builder.CreateEdge(firstNode, lastNode);
+        DotEdge connectorEdge = builder.CreateSolidEdge(firstNode, lastNode);
 
         return new DotNodeBlock(firstNode, lastNode, connectorEdge);
     }
