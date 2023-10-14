@@ -2,7 +2,6 @@
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
-using QuikGraph;
 
 namespace Fluent.Calculations.DotNetGraph;
 
