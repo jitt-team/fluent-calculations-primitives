@@ -106,7 +106,7 @@ namespace Fluent.Calculations.DotNetGraph
 
         string Html(string value) => HttpUtility.HtmlEncode(value);
 
+        public DotEdge CreateEdge(DotNode firstNode, DotNode lastNode) =>
+            new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2);
     }
-
-
 }

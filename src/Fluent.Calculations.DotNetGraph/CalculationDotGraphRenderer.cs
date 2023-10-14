@@ -68,14 +68,9 @@ public class CalculationDotGraphRenderer
     private DotNodeBlock CreateValueBlock(IValue value)
     {
         DotNode
-            sameNode = builder.CreateConsantNode(value);
+            constantNode = builder.CreateConsantNode(value);
 
-        return new DotNodeBlock
-        {
-            FirstNode = sameNode,
-            LastNode = sameNode,
-            IsValuePart = true
-        };
+        return new DotNodeBlock(constantNode, isValuePart: true);
     }
     private DotNodeBlock CreateExpressionBlock(IValue value)
     {
@@ -83,11 +78,8 @@ public class CalculationDotGraphRenderer
             firstNode = builder.CreateExpressionNode(value),
             lastNode = builder.CreateValueNode(value);
 
-        return new DotNodeBlock
-        {
-            FirstNode = firstNode,
-            ConnectorEdge = new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2),
-            LastNode = lastNode
-        };
+        DotEdge connectorEdge = builder.CreateEdge(firstNode, lastNode);
+
+        return new DotNodeBlock(firstNode, lastNode, connectorEdge);
     }
 }

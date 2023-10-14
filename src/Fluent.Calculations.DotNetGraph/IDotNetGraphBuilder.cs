@@ -13,4 +13,5 @@ public interface IDotNetGraphBuilder
     DotNode CreateValueNode(IValue value);
 
     DotNode CreateExpressionNode(IValue value);
+    DotEdge CreateEdge(DotNode firstNode, DotNode lastNode);
 }
