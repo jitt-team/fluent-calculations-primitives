@@ -28,7 +28,7 @@ public class CalculationDotGraphRenderer
         foreach (IValue childValue in value.Expression.Arguments)
         {
             DotNodeBlock argumentBlock = AddValueToGraph(childValue, targetGraph, targerParametersCluster);
-            targetGraph.LinkValueToArgument(valueBlock, argumentBlock);
+            targetGraph.LinkFromValueToArgument(valueBlock, argumentBlock);
         }
 
         DotNodeBlock AddNewBlockByType(IValue value)

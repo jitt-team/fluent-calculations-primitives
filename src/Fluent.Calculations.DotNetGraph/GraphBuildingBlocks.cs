@@ -5,7 +5,7 @@ namespace Fluent.Calculations.DotNetGraph;
 
 internal static class GraphBuildingBlocks
 {
-    public static DotEdge LinkValueToArgument(this DotGraph targetGraph, DotNodeBlock valueBlock, DotNodeBlock argumentBlock)
+    public static DotEdge LinkFromValueToArgument(this DotGraph targetGraph, DotNodeBlock valueBlock, DotNodeBlock argumentBlock)
     {
         DotEdge edge = new DotEdge().From(argumentBlock.LastNode)
             .To(valueBlock.FirstNode)
