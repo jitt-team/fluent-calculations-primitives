@@ -1,189 +1,87 @@
-﻿using DotNetGraph.Attributes;
-using DotNetGraph.Compilation;
-using DotNetGraph.Core;
+﻿using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
-using System.Web;
+
 namespace Fluent.Calculations.DotNetGraph;
 
 public class CalculationDotGraphRenderer
 {
+    private readonly IDotNetGraphBuilder builder;
+
+    public CalculationDotGraphRenderer(IDotNetGraphBuilder builder) => this.builder = builder;
+
+    public CalculationDotGraphRenderer() : this(new DotNetGraphBuilderDefault()) { }
+
     public DotGraph Render(IValue value)
     {
-        DotGraph graph = new DotGraph().WithIdentifier("FooGraph").Directed();
-        DotSubgraph inputsCluster = new DotSubgraph()
-            .WithIdentifier("cluster_0")
-            .WithLabel("INPUT PARAMETERS")
-            .WithColor(DotColor.Black)
-            .WithStyle("filled, solid");
-
-        inputsCluster.SetAttribute("fillcolor", new DotAttribute($@"""#c27ffa"""));
-
-        graph.Add(inputsCluster);
-        ToNode(value, graph, inputsCluster);
+        DotGraph graph = builder.CreateDirectedGraph("FluentCalculations");
+        DotSubgraph parametersCluster = builder.CreateInputParametersCluster();
+        graph.Add(parametersCluster);
+        AddValueToGraph(value, graph, parametersCluster);
         return graph;
     }
 
-    private DotNodeBlock ToNode(IValue value, DotGraph graph, DotSubgraph inputsCluster)
+    private DotNodeBlock AddValueToGraph(IValue value, DotGraph targetGraph, DotSubgraph targerParametersCluster)
     {
-        DotNodeBlock parentNode = ComposeDotNodeByType(value);
-        AddNode(parentNode, value);
+        DotNodeBlock valueBlock = AddNewBlockByType(value);
 
         foreach (IValue childValue in value.Expression.Arguments)
         {
-            DotNodeBlock child = ToNode(childValue, graph, inputsCluster);
-            DotEdge edge = new DotEdge().From(child.LastNode).To(parentNode.FirstNode).WithStyle(DotEdgeStyle.Dashed).WithArrowHead(DotEdgeArrowType.Open);
-            graph.Add(edge);
+            DotNodeBlock argumentBlock = AddValueToGraph(childValue, targetGraph, targerParametersCluster);
+            DotEdge edge = builder.CreateDashedEdge(valueBlock.LastNode, argumentBlock.FirstNode);
+            targetGraph.Add(edge);
         }
 
-        void AddNode(DotNodeBlock node, IValue value)
+        DotNodeBlock AddNewBlockByType(IValue value)
         {
+            DotNodeBlock newBlock = CreateBlockByType(value);
+
             if (value.IsParameter)
-                inputsCluster.Add(node.LastNode);
+                targerParametersCluster.Add(newBlock.LastNode);
             else
             {
-                if (node.IsValue)
-                    graph.Add(node.LastNode);
+                if (newBlock.IsValuePart)
+                    targetGraph.Add(newBlock.LastNode);
                 else
-                {
-                    graph.Add(node.FirstNode);
-                    graph.Add(node.ConnectorEdge);
-                    graph.Add(node.LastNode);
-                }
+                    targetGraph.AddRange(newBlock.FirstNode, newBlock.ConnectorEdge, newBlock.LastNode);
             }
+
+            return newBlock;
         }
 
-        return parentNode;
+        return valueBlock;
     }
 
-    private DotNodeBlock ComposeDotNodeByType(IValue value)
+    private DotNodeBlock CreateBlockByType(IValue value)
     {
         switch (value.Expression.Type)
         {
             case ExpressionNodeType.Lambda:
             case ExpressionNodeType.BinaryExpression:
-                return ToExpressionDotNodeBlock(value);
+                return CreateExpressionBlock(value);
             case ExpressionNodeType.None:
             case ExpressionNodeType.Constant:
             default:
-                return ToValueDotNodeBlock(value);
+                return CreateValueBlock(value);
         }
     }
 
-    private DotNodeBlock ToValueDotNodeBlock(IValue value)
+    private DotNodeBlock CreateValueBlock(IValue value)
     {
         DotNode
-            sameNode = ToConstantDotNode(value);
+            constantNode = builder.CreateConsantNode(value);
 
-        return new DotNodeBlock
-        {
-            FirstNode = sameNode,
-            LastNode = sameNode,
-            IsValue = true
-        };
+        return new DotNodeBlock(constantNode, isValuePart: true);
     }
-    private DotNodeBlock ToExpressionDotNodeBlock(IValue value)
+    private DotNodeBlock CreateExpressionBlock(IValue value)
     {
         DotNode
-            firstNode = ToExpressionDotNode(value),
-            lastNode = ToValueDotNode(value);
+            firstNode = builder.CreateExpressionNode(value),
+            lastNode = builder.CreateValueNode(value);
 
-        return new DotNodeBlock
-        {
-            FirstNode = firstNode,
-            ConnectorEdge = new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2),
-            LastNode = lastNode
-        };
-    }
+        DotEdge connectorEdge = builder.CreateSolidEdge(firstNode, lastNode);
 
-    private DotNode ToConstantDotNode(IValue value)
-    {
-        var node = new DotNode()
-              .WithIdentifier(Html($"{value.Name}_value"))
-              .WithShape(ShapyByValueType(value))
-              .WithFillColor(ColorByValueType(value))
-              .WithStyle(DotNodeStyle.Filled)
-              .WithLabel(ToConstantNodeHtml(value), isHtml: true);
-
-        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
-
-        return node;
-    }
-
-    private DotNode ToValueDotNode(IValue value)
-    {
-        var node = new DotNode()
-              .WithIdentifier(Html($"{value.Name}_value"))
-              .WithShape(DotNodeShape.Ellipse)
-              .WithFillColor(ColorByValueType(value))
-              .WithStyle(DotNodeStyle.Filled)
-              .WithLabel(ToValueNodeHtml(value), isHtml: true);
-
-        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
-
-        return node;
-    }
-
-    private DotNode ToExpressionDotNode(IValue value)
-    {
-        var node = new DotNode()
-              .WithIdentifier(Html($"{value.Name}_expression"))
-              .WithShape("Rectangle")
-              .WithFillColor("skyblue")
-              .WithStyle(DotNodeStyle.Filled)
-              .WithLabel(ToExpressionNodeHtml(value), isHtml: true);
-
-        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
-
-        return node;
-    }
-
-    private string ShapyByValueType(IValue value)
-    {
-        if (value.IsOutput)
-            return "ellipse";
-
-        if (value.IsParameter)
-            return "parallelogram";
-
-        return "Rectangle";
-    }
-
-    private string ColorByValueType(IValue value) => value.IsOutput ?
-            "#7ffac2" : "skyblue";
-
-    private string ToExpressionNodeHtml(IValue value)
-    {
-        return $@"<table border=""0"">
-                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""left"">{Html(value.Expression.Body)}</td></tr>
-                </table>";
-    }
-
-    private string ToConstantNodeHtml(IValue value)
-    {
-        return $@"<table border=""0"">
-                    <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
-                </table>";
-    }
-    private string ToValueNodeHtml(IValue value)
-    {
-        return $@"<table border=""0"">
-                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
-                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
-                </table>";
-    }
-
-    string Html(string value) => HttpUtility.HtmlEncode(value);
-
-    public async Task SaveToDot(DotGraph graph, string outputFilePath)
-    {
-        await using var writer = new StringWriter();
-        CompilationContext context = new(writer, new CompilationOptions());
-        await graph.CompileAsync(context);
-        string result = writer.GetStringBuilder().ToString();
-        File.WriteAllText(outputFilePath, result);
+        return new DotNodeBlock(firstNode, lastNode, connectorEdge);
     }
 }
