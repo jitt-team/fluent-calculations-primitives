@@ -7,7 +7,7 @@ namespace Fluent.Calculations.DotNetGraph;
 
 public class CalculationDotGraphRenderer
 {
-    private IDotNetGraphBuilder builder;
+    private readonly IDotNetGraphBuilder builder;
 
     public CalculationDotGraphRenderer(IDotNetGraphBuilder builder) => this.builder = builder;
 
