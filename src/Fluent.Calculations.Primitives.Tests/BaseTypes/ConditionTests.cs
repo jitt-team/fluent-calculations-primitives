@@ -3,7 +3,7 @@ using FluentAssertions;
 namespace Fluent.Calculations.Primitives.Tests.BaseTypes;
 public class ConditionTests
 {
-    [Fact]
+    [Fact(DisplayName = "Condition instance of True should equal Boolean True")]
     public void should_be_true() => Condition.True().IsTrue.Should().BeTrue();
 
     [Fact]
