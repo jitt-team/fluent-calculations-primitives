@@ -18,16 +18,18 @@ internal class BinaryExpressionHandler
         string MakeBinaryExpressionBody() => $"{left} {BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
     }
 
-    public static ResultType Handle<ResultType, ResultPrimitiveType>(
-        Values<IValue> collecionValue,
-        Func<IEnumerable<IValue>, ResultPrimitiveType> aggregateCalcFunc,
-    string operatorName) where ResultType : IValue, new()
+    public static CollectionElementType HandleAggregate<CollectionType, CollectionElementType>(
+        CollectionType valueCollection,
+        Func<IEnumerable<CollectionElementType>, decimal> aggregateCalcFunc,
+        string operatorName)
+        where CollectionElementType : class, IValue, new()
+        where CollectionType : class, IEnumerable<CollectionElementType>, IValues<CollectionElementType>, new()
     {
-        return (ResultType)MakeInstance();
+        return (CollectionElementType)MakeElementInstance();
 
-        IValue MakeInstance() => new ResultType().Make(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
-        ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.BinaryExpression).WithArguments((IValue)collecionValue);
-        decimal ToPrimitiveResult() => Convert.ToDecimal(aggregateCalcFunc(collecionValue));
-        string MakeCollectionExpressionBody() => $"{BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} of {collecionValue}";
+        IValue MakeElementInstance() => new CollectionType().MakeElement(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
+        ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.Collection).WithArguments((IValue)valueCollection);
+        decimal ToPrimitiveResult() => Convert.ToDecimal(aggregateCalcFunc(valueCollection));
+        string MakeCollectionExpressionBody() => $"{BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} of {valueCollection}";
     }
 }

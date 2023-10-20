@@ -13,5 +13,9 @@ public class Numbers : Values<Number>
     public override IValue Default => new Numbers { Primitive = decimal.Zero };
 
     public override IValue Make(MakeValueArgs args) => new Numbers(args);
+
+    public override IValue MakeElement(MakeValueArgs args) => new Number(args);
+
+    public Number Sum() => this.Sum<Numbers, Number>();
 }
 

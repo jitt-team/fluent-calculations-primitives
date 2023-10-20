@@ -3,7 +3,12 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Collections;
 
-public abstract class Values<T> : IEnumerable<IValue>, IValue
+public interface IValues<ElementValueType> : IEnumerable<ElementValueType>, IValue where ElementValueType : class, IValue, new()
+{
+    IValue MakeElement(MakeValueArgs args);
+}
+
+public abstract class Values<ElementValueType> : IValues<ElementValueType> where ElementValueType : class, IValue, new()
 {
     private readonly List<IValue> values = new List<IValue>();
 
@@ -39,14 +44,16 @@ public abstract class Values<T> : IEnumerable<IValue>, IValue
 
     public void Add(IValue number) => values.Add(number);
 
-    public IEnumerator<IValue> GetEnumerator() => values.GetEnumerator();
-
     public abstract IValue Make(MakeValueArgs args);
+
+    public abstract IValue MakeElement(MakeValueArgs args);
 
     public abstract IValue Default { get; }
 
     public virtual string ValueToString() => $"{Primitive:0.00}";
 
     IEnumerator IEnumerable.GetEnumerator() => values.GetEnumerator();
+
+    IEnumerator<ElementValueType> IEnumerable<ElementValueType>.GetEnumerator() => values.Cast<ElementValueType>().GetEnumerator();
 }
 

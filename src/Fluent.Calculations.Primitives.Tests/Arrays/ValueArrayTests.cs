@@ -30,7 +30,7 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
 
                 Numbers MultipleNumbers = new() { NumberOne, NumberTwo };
 
-                return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
+                return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberOne, Constant.TestEvaluationName);
             }
 
         }
