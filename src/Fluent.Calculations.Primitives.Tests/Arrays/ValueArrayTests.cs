@@ -1,7 +1,12 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Collections;
 
 namespace Fluent.Calculations.Primitives.Tests.Arrays
 {
+    public static class Constant
+    {
+        public const string TestEvaluationName = "TEST-ARRAY-EVALUAITON-NAME";
+    }
 
     public partial class ValueArrayTests
     {
@@ -10,11 +15,6 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
         {
 
 
-        }
-
-        public static class Constant
-        {
-            public const string TestEvaluationName = "TEST-ARRAY-EVALUAITON-NAME";
         }
 
         public class TestArrayCalcuation
