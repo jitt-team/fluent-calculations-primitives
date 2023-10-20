@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using System;
+using System.Runtime.CompilerServices;
 
 public class Numbers : Values<Number>
 {
@@ -11,6 +13,13 @@ public class Numbers : Values<Number>
     public override decimal Primitive { get; init; }
 
     public override IValue Default => new Numbers { Primitive = decimal.Zero };
+
+    internal static Numbers Of(Func<Number[]> valuesFunc, [CallerArgumentExpression("valuesFunc")] string lambdaExpressionBody = Constants.NaN)
+    {
+        var numbers = new Numbers();
+        valuesFunc().ToList().ForEach(numbers.Add);
+        return numbers;
+    }
 
     public override IValue Make(MakeValueArgs args) => new Numbers(args);
 

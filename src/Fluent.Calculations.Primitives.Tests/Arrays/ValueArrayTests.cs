@@ -32,7 +32,7 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
                     NumberTwo = Number.Of(3),
                     NumberThree = Number.Of(4);
 
-                Numbers MultipleNumbers = new() { NumberOne, NumberTwo };
+                Numbers MultipleNumbers = Numbers.Of(() => new[] { NumberOne, NumberTwo });
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberThree, Constant.TestEvaluationName);
             }
