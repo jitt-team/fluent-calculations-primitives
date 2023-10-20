@@ -8,7 +8,7 @@ public interface IValues<ElementValueType> : IEnumerable<ElementValueType>, IVal
     IValue MakeElement(MakeValueArgs args);
 }
 
-public abstract class Values<ElementValueType> : IValues<ElementValueType> where ElementValueType : class, IValue, new()
+public abstract class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where ElementValueType : class, IValue, new()
 {
     private readonly List<IValue> values = new List<IValue>();
 
@@ -50,10 +50,24 @@ public abstract class Values<ElementValueType> : IValues<ElementValueType> where
 
     public abstract IValue Default { get; }
 
+    public bool IsSet => throw new NotImplementedException();
+
     public virtual string ValueToString() => $"{Primitive:0.00}";
 
     IEnumerator IEnumerable.GetEnumerator() => values.GetEnumerator();
 
     IEnumerator<ElementValueType> IEnumerable<ElementValueType>.GetEnumerator() => values.Cast<ElementValueType>().GetEnumerator();
+
+    IValue IOrigin.AsResult()
+    {
+        IsOutput = true;
+        return this;
+    }
+
+    void IOrigin.MarkAsParameter(string name)
+    {
+        Name = name;
+        IsParameter = true;
+    }
 }
 

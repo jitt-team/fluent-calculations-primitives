@@ -1,5 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Collections;
+using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Arrays
 {
@@ -14,7 +15,9 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
         public void Test()
         {
 
-
+            var result = TestArrayCalcuation.Return();
+            result.Should().NotBeNull();
+            result.Primitive.Should().Be(20);
         }
 
         public class TestArrayCalcuation
@@ -26,11 +29,12 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
 
                 Number
                     NumberOne = Number.Of(2),
-                    NumberTwo = Number.Of(3);
+                    NumberTwo = Number.Of(3),
+                    NumberThree = Number.Of(4);
 
                 Numbers MultipleNumbers = new() { NumberOne, NumberTwo };
 
-                return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberOne, Constant.TestEvaluationName);
+                return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberThree, Constant.TestEvaluationName);
             }
 
         }
