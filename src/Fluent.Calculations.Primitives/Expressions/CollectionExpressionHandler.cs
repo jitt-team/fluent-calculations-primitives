@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 internal class CollectionExpressionHandler
 {
     public static TSource Handle<TSource>(IValues<TSource> source, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = Constants.NaN) where TSource : class, IValue, new() =>
-        HandleAggregate(source, () => aggregateFunc(source, OfPrimitiveValue), methodName);
+        HandleAggregate(source, () => aggregateFunc(source, SelectPrimitiveValue), methodName);
 
     private static TSource HandleAggregate<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
     {
@@ -17,5 +17,5 @@ internal class CollectionExpressionHandler
         string MakeCollectionExpressionBody() => $"{BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} of {source}";
     }
 
-    private static Func<IValue, decimal> OfPrimitiveValue = new Func<IValue, decimal>(value => value.Primitive);
+    private static Func<IValue, decimal> SelectPrimitiveValue = new Func<IValue, decimal>(value => value.Primitive);
 }
