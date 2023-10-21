@@ -8,11 +8,11 @@ internal class CollectionExpressionHandler
     public static TSource Handle<TSource>(IValues<TSource> source, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = Constants.NaN) where TSource : class, IValue, new() =>
         HandleAggregate(source, () => aggregateFunc(source, OfPrimitiveValue), methodName);
 
-    private static ValueType HandleAggregate<ValueType>(IValues<ValueType> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where ValueType : class, IValue, new()
+    private static TSource HandleAggregate<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
     {
-        return (ValueType)MakeElementInstance();
+        return (TSource)MakeElementInstance();
 
-        IValue MakeElementInstance() => new Values<ValueType>().MakeElement(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc()));
+        IValue MakeElementInstance() => new Values<TSource>().MakeElement(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.Collection).WithArguments((IValue)source);
         string MakeCollectionExpressionBody() => $"{BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} of {source}";
     }
