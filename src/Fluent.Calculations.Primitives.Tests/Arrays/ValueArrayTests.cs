@@ -14,10 +14,9 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
         [Fact]
         public void Test()
         {
-
             var result = TestArrayCalcuation.Return();
             result.Should().NotBeNull();
-            result.Primitive.Should().Be(20);
+            result.Primitive.Should().Be(5);
         }
 
         public class TestArrayCalcuation
@@ -29,12 +28,11 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
 
                 Number
                     NumberOne = Number.Of(2, "NumberOne"),
-                    NumberTwo = Number.Of(3, "NumberTwo"),
-                    NumberThree = Number.Of(4, "NumberThree");
+                    NumberTwo = Number.Of(3, "NumberTwo");
 
                 Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, "MultipleNumbers");
 
-                return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberThree, Constant.TestEvaluationName);
+                return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
             }
 
         }

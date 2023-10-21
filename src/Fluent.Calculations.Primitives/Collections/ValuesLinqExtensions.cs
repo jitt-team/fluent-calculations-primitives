@@ -1,14 +1,20 @@
 ﻿namespace Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions;
+using static Fluent.Calculations.Primitives.Expressions.AggregateExpressionHandler;
 
 public static class ValuesLinqExtensions
 {
-    public static CollectionElementType Sum<CollectionElementType>(this IValues<CollectionElementType> collection)
-        where CollectionElementType : class, IValue, new()      
-        => AggregateExpressionHandler.HandleAggregate(collection, values => collection.Primitive, "Sum");
+    public static TSource Sum<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => 
+        HandleAggregate(values, Enumerable.Sum);
 
-    public static CollectionElementType Average<CollectionElementType>(this IValues<CollectionElementType> collection)
-        where CollectionElementType : class, IValue, new()
-        => AggregateExpressionHandler.HandleAggregate(collection, values => values.Average(value => value.Primitive), "Average");
+    public static TSource Average<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => 
+        HandleAggregate(values, Enumerable.Average);
+
+    public static TSource Min<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() =>
+        HandleAggregate(values, Enumerable.Min);
+
+    public static TSource Max<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() =>
+        HandleAggregate(values, Enumerable.Max);
+
 }
+
