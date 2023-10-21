@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 internal class CollectionExpressionHandler
 {
     public static TSource Handle<TSource>(IValues<TSource> source, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = Constants.NaN) where TSource : class, IValue, new() =>
-        HandleAggregate(source, () => aggregateFunc(source, SelectPrimitiveValue), methodName);
+        Handle(source, () => aggregateFunc(source, SelectPrimitiveValue), methodName);
 
-    private static TSource HandleAggregate<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
+    private static TSource Handle<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
     {
         return (TSource)MakeResultInstance();
 
