@@ -14,7 +14,7 @@ internal class CollectionExpressionHandler
 
         IValue MakeResultInstance() => new Values<TSource>().MakeElement(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.Collection).WithArguments((IValue)source);
-        string MakeCollectionExpressionBody() => $"{BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} of {source}";
+        string MakeCollectionExpressionBody() => $"{operatorName}({source})";
     }
 
     private static Func<IValue, decimal> SelectPrimitiveValue = new Func<IValue, decimal>(value => value.Primitive);

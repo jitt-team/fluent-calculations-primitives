@@ -2,17 +2,17 @@
 using Fluent.Calculations.Primitives.Collections;
 using FluentAssertions;
 
-namespace Fluent.Calculations.Primitives.Tests.Arrays
+namespace Fluent.Calculations.Primitives.Tests.EndToEnd
 {
     public static class Constant
     {
         public const string TestEvaluationName = "TEST-ARRAY-EVALUATION-NAME";
     }
 
-    public partial class ValueArrayTests
+    public partial class ValueCollectionWithAggregateMethodTests
     {
         [Fact]
-        public void Test()
+        public void Calculation_WithCollectionAndAggregateMethod_IsExpectedResult()
         {
             var result = TestArrayCalcuation.Return();
             result.Should().NotBeNull();
