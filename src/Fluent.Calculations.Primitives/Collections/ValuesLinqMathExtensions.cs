@@ -4,12 +4,12 @@ using static Fluent.Calculations.Primitives.Expressions.CollectionExpressionHand
 
 public static class ValuesLinqMathExtensions
 {
-    public static TSource Sum<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => Handle(values, Enumerable.Sum);
+    public static TSource Sum<TSource>(this IValues<TSource> source) where TSource : class, IValue, new() => Handle(source, Enumerable.Sum);
 
-    public static TSource Average<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => Handle(values, Enumerable.Average);
+    public static TSource Average<TSource>(this IValues<TSource> source) where TSource : class, IValue, new() => Handle(source, Enumerable.Average);
 
-    public static TSource Min<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => Handle(values, Enumerable.Min);
+    public static TSource Min<TSource>(this IValues<TSource> source) where TSource : class, IValue, new() => Handle(source, Enumerable.Min);
 
-    public static TSource Max<TSource>(this IValues<TSource> values) where TSource : class, IValue, new() => Handle(values, Enumerable.Max);
+    public static TSource Max<TSource>(this IValues<TSource> source) where TSource : class, IValue, new() => Handle(source, Enumerable.Max);
 }
 
