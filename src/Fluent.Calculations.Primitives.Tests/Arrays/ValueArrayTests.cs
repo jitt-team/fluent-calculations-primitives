@@ -6,7 +6,7 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
 {
     public static class Constant
     {
-        public const string TestEvaluationName = "TEST-ARRAY-EVALUAITON-NAME";
+        public const string TestEvaluationName = "TEST-ARRAY-EVALUATION-NAME";
     }
 
     public partial class ValueArrayTests
@@ -27,10 +27,10 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
                 EvaluationContext<Number> Calculation = new(options);
 
                 Number
-                    NumberOne = Number.Of(2, "NumberOne"),
-                    NumberTwo = Number.Of(3, "NumberTwo");
+                    NumberOne = Number.Of(2, nameof(NumberOne)),
+                    NumberTwo = Number.Of(3, nameof(NumberTwo));
 
-                Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, "MultipleNumbers");
+                Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, nameof(MultipleNumbers));
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
             }

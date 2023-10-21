@@ -3,9 +3,9 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Collections;
 using System.Runtime.CompilerServices;
 
-internal class AggregateExpressionHandler
+internal class CollectionExpressionHandler
 {
-    public static TSource HandleAggregate<TSource>(IValues<TSource> values, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = Constants.NaN) where TSource : class, IValue, new() =>
+    public static TSource Handle<TSource>(IValues<TSource> values, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = Constants.NaN) where TSource : class, IValue, new() =>
         HandleAggregate(values, () => aggregateFunc(values, OfPrimitiveValue), methodName);
 
     private static ValueType HandleAggregate<ValueType>(IValues<ValueType> valueCollection, Func<decimal> primitiveValueAggregateFunc, string operatorName) where ValueType : class, IValue, new()
