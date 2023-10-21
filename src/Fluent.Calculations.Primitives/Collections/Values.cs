@@ -2,17 +2,19 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Collections;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
-public interface IValues<ElementValueType> : IEnumerable<ElementValueType>, IValue where ElementValueType : class, IValue, new()
+public interface IValues<ElementValueType> : IReadOnlyCollection<ElementValueType>, IValue where ElementValueType : class, IValue, new()
 {
     IValue MakeElement(MakeValueArgs args);
 }
 
-public abstract class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where ElementValueType : class, IValue, new()
+public class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where ElementValueType : class, IValue, new()
 {
-    private readonly List<IValue> values = new List<IValue>();
+    public override string ToString() => $"{Name}";
 
-    private Values()
+    internal Values()
     {
         Name = Constants.NaN;
         Expression = ExpressionNode.None;
@@ -32,7 +34,7 @@ public abstract class Values<ElementValueType> : IValues<ElementValueType>, IOri
 
     public ExpressionNode Expression { get; init; }
 
-    public abstract decimal Primitive { get; init; }
+    public decimal Primitive { get; init; }
 
     public bool IsParameter { get; protected set; }
 
@@ -42,21 +44,21 @@ public abstract class Values<ElementValueType> : IValues<ElementValueType>, IOri
 
     internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
 
-    public void Add(IValue number) => values.Add(number);
+    public IValue Make(MakeValueArgs args) => throw new NotImplementedException();
 
-    public abstract IValue Make(MakeValueArgs args);
+    public IValue MakeElement(MakeValueArgs args) => new ElementValueType().Make(args);
 
-    public abstract IValue MakeElement(MakeValueArgs args);
+    public IValue Default { get; }
 
-    public abstract IValue Default { get; }
+    public bool IsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
 
-    public bool IsSet => throw new NotImplementedException();
+    public int Count => Expression.Arguments.Count;
 
     public virtual string ValueToString() => $"{Primitive:0.00}";
 
-    IEnumerator IEnumerable.GetEnumerator() => values.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => Expression.Arguments.GetEnumerator();
 
-    IEnumerator<ElementValueType> IEnumerable<ElementValueType>.GetEnumerator() => values.Cast<ElementValueType>().GetEnumerator();
+    IEnumerator<ElementValueType> IEnumerable<ElementValueType>.GetEnumerator() => Expression.Arguments.Cast<ElementValueType>().GetEnumerator();
 
     IValue IOrigin.AsResult()
     {
@@ -68,6 +70,15 @@ public abstract class Values<ElementValueType> : IValues<ElementValueType>, IOri
     {
         Name = name;
         IsParameter = true;
+    }
+
+    internal static Values<ElementValueType> Of(Expression<Func<Number[]>> valuesFunc, [CallerMemberName] string fieldName = "")
+    {
+        List<Number> collectionElements = valuesFunc.Compile().Invoke().ToList();
+        decimal primitiveValue = collectionElements.Sum(value => value.Primitive);
+        var expressionNode = new ExpressionNode($"{typeof(ElementValueType).Name}[{collectionElements.Count}]", ExpressionNodeType.Collection).WithArguments(collectionElements);
+        Values<ElementValueType> numbers = new Values<ElementValueType>(MakeValueArgs.Compose(fieldName, expressionNode, primitiveValue));
+        return numbers;
     }
 }
 

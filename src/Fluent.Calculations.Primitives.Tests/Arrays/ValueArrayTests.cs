@@ -28,11 +28,11 @@ namespace Fluent.Calculations.Primitives.Tests.Arrays
                 EvaluationContext<Number> Calculation = new(options);
 
                 Number
-                    NumberOne = Number.Of(2),
-                    NumberTwo = Number.Of(3),
-                    NumberThree = Number.Of(4);
+                    NumberOne = Number.Of(2, "NumberOne"),
+                    NumberTwo = Number.Of(3, "NumberTwo"),
+                    NumberThree = Number.Of(4, "NumberThree");
 
-                Numbers MultipleNumbers = Numbers.Of(() => new[] { NumberOne, NumberTwo });
+                Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, "MultipleNumbers");
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum() * NumberThree, Constant.TestEvaluationName);
             }

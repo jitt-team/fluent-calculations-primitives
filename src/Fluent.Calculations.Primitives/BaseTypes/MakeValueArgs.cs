@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
 using Fluent.Calculations.Primitives.Expressions;
+using System;
 
 public class MakeValueArgs
 {
@@ -24,6 +25,11 @@ public class MakeValueArgs
             PrimitiveValue = primitiveValue,
             IsParameter = false
         };
+
+    internal static object Compose(string fieldName, ExpressionNode expressionNode, object primitiveValue)
+    {
+        throw new NotImplementedException();
+    }
 
     public MakeValueArgs WithTags(params Tag[] tags)
     {
