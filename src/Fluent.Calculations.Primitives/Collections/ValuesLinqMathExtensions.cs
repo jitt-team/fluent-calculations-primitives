@@ -12,4 +12,3 @@ public static class ValuesLinqMathExtensions
 
     public static TSource Max<TSource>(this IValues<TSource> source) where TSource : class, IValue, new() => Handle(source, Enumerable.Max);
 }
-
