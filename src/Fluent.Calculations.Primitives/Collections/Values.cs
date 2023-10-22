@@ -9,7 +9,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 {
     public override string ToString() => $"{Name}";
 
-    internal Values() : this(MakeValueArgs.Compose(Constants.Empty, new ExpressionNode("0", ExpressionNodeType.Collection), 0.00m)) { }
+    internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode("0", ExpressionNodeType.Collection), 0.00m)) { }
 
     private static Values<T> Empty = new Values<T>() ;
 
@@ -34,7 +34,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
+    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
 
     public IValue MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
@@ -42,7 +42,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public IValue Default => Empty;
 
-    public bool IsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
+    public bool IsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
 
     public int Count => Expression.Arguments.Count;
 

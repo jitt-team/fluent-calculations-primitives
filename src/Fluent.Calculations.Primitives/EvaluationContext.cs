@@ -40,16 +40,16 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
 
     public ValueType Evaluate<ValueType>(
         Expression<Func<ValueType>> lambdaExpression,
-        [CallerMemberName] string name = Constants.NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = Constants.NaN)
+        [CallerMemberName] string name = StringConstants.NaN,
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN)
             where ValueType : class, IValue, new()
     {
-        if (!name.Equals(Constants.NaN) && valuesCache.ContainsKey(name))
+        if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (ValueType)valuesCache.GetByKey(name);
 
         ValueType result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
-        if (!name.Equals(Constants.NaN))
+        if (!name.Equals(StringConstants.NaN))
             valuesCache.Add(name, result);
 
         return result;

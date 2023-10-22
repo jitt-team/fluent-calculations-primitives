@@ -5,7 +5,7 @@ using System;
 
 public class MakeValueArgs
 {
-    public string Name { get; private set; } = Constants.NaN;
+    public string Name { get; private set; } = StringConstants.NaN;
 
     public ExpressionNode Expression { get; private set; } = ExpressionNode.None;
 

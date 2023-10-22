@@ -49,12 +49,12 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 
     private IValue GetValue(MemberExpression expression, string name)
     {
-        if (!name.Equals(Constants.NaN) && parameterCache.ContainsKey(name))
+        if (!name.Equals(StringConstants.NaN) && parameterCache.ContainsKey(name))
             return parameterCache.GetByKey(name);
 
         IValue value = reflectionProvider.GetValue(expression);
 
-        if (!name.Equals(Constants.NaN))
+        if (!name.Equals(StringConstants.NaN))
             parameterCache.Add(name, value);
 
         return value;

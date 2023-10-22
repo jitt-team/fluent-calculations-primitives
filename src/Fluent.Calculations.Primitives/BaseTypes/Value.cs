@@ -15,11 +15,11 @@ public abstract class Value : IValue, IName, IOrigin
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
+    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
 
     private Value()
     {
-        Name = Constants.NaN;
+        Name = StringConstants.NaN;
         Expression = ExpressionNode.None;
         Tags = TagsCollection.Empty;
     }

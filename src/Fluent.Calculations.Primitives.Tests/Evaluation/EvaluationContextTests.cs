@@ -63,8 +63,8 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public Number RunNonCachedParameterTestCase(ExpectedTestValues expected)
         {
             Number
-                 NumberOne = Number.Of(5, Constants.NaN),
-                 NumberTwo = Number.Of(3, Constants.NaN);
+                 NumberOne = Number.Of(5, StringConstants.NaN),
+                 NumberTwo = Number.Of(3, StringConstants.NaN);
 
             CapturedExpressionMembers capturedMembersMock = MockParameterCaptureResult(
                 NumberOne, expected.NumberOneName,
@@ -79,8 +79,8 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public Number RunCachedEvaluationParameterTestCase(ExpectedTestValues expected)
         {
             Number
-                 NumberOne = Number.Of(5, Constants.NaN),
-                 NumberTwo = Number.Of(3, Constants.NaN);
+                 NumberOne = Number.Of(5, StringConstants.NaN),
+                 NumberTwo = Number.Of(3, StringConstants.NaN);
 
             Number
                 CachedResult = Number.Of(expected.PrimitiveValue, expected.CalculationName);
@@ -93,7 +93,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public Number RunCachedEvaluationMemberTestCase(ExpectedTestValues expected)
         {
             Number
-                 NumberOne = Number.Of(5, Constants.NaN),
+                 NumberOne = Number.Of(5, StringConstants.NaN),
                  NumberTwo = Number.Of(3, expected.NumberTwoName);
 
             CapturedExpressionMembers capturedMembersMock = MockEvaluationCaptureResult(expected.NumberTwoName);
