@@ -16,16 +16,18 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
 
             Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, nameof(MultipleNumbers));
 
-            Number result = CollectionExpressionHandler.Handle(MultipleNumbers, Enumerable.Sum, "Sum");
+            Number result = CollectionExpressionHandler.Handle(MultipleNumbers, TestAggregateMethod, "TestAggregateMethod");
 
             result.Primitive.Should().Be(5);
-            result.Name.Should().Be("Sum");
-            result.Expression.Body.Should().Be("Sum(MultipleNumbers)");
+            result.Name.Should().Be("TestAggregateMethod");
+            result.Expression.Body.Should().Be("TestAggregateMethod(MultipleNumbers)");
             result.Expression.Arguments.Count.Should().Be(1);
             IValue multipleNumbersArgument = result.Expression.Arguments.First();
             multipleNumbersArgument.Name.Should().Be("MultipleNumbers");
             multipleNumbersArgument.Expression.Arguments.First().Name.Should().Be("NumberOne");
             multipleNumbersArgument.Expression.Arguments.Last().Name.Should().Be("NumberTwo");
         }
+
+        public static decimal TestAggregateMethod<TSource>(IEnumerable<TSource> source, Func<TSource, decimal> selector) => 5.00m;
     }
 }
