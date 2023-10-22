@@ -14,7 +14,7 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode("0", ExpressionNodeType.Constant), 0)) { }
+    public Number() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Constant), 0)) { }
 
     public Number(Number number) : base(number) { }
 

@@ -9,7 +9,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 {
     public override string ToString() => $"{Name}";
 
-    internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode("0", ExpressionNodeType.Collection), 0.00m)) { }
+    internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Collection), 0.00m)) { }
 
     private static Values<T> Empty = new Values<T>() ;
 
