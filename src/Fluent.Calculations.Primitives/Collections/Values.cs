@@ -5,21 +5,13 @@ using System.Collections;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-public interface IValues<ElementValueType> : IReadOnlyCollection<ElementValueType>, IValue where ElementValueType : class, IValue, new()
-{
-    IValue MakeElement(MakeValueArgs args);
-}
-
-public class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where ElementValueType : class, IValue, new()
+public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 {
     public override string ToString() => $"{Name}";
 
-    internal Values()
-    {
-        Name = Constants.NaN;
-        Expression = ExpressionNode.None;
-        Tags = TagsCollection.Empty;
-    }
+    internal Values() : this(MakeValueArgs.Compose(Constants.Empty, new ExpressionNode("0", ExpressionNodeType.Collection), 0.00m)) { }
+
+    private static Values<T> Empty = new Values<T>() ;
 
     protected Values(MakeValueArgs createValueArgs)
     {
@@ -44,11 +36,11 @@ public class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where
 
     internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
 
-    public IValue Make(MakeValueArgs args) => throw new NotImplementedException();
+    public IValue MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
-    public IValue MakeElement(MakeValueArgs args) => new ElementValueType().Make(args);
+    public IValue MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
 
-    public IValue Default { get; }
+    public IValue Default => Empty;
 
     public bool IsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
 
@@ -58,7 +50,7 @@ public class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where
 
     IEnumerator IEnumerable.GetEnumerator() => Expression.Arguments.GetEnumerator();
 
-    IEnumerator<ElementValueType> IEnumerable<ElementValueType>.GetEnumerator() => Expression.Arguments.Cast<ElementValueType>().GetEnumerator();
+    IEnumerator<T> IEnumerable<T>.GetEnumerator() => Expression.Arguments.Cast<T>().GetEnumerator();
 
     IValue IOrigin.AsResult()
     {
@@ -72,12 +64,12 @@ public class Values<ElementValueType> : IValues<ElementValueType>, IOrigin where
         IsParameter = true;
     }
 
-    internal static Values<ElementValueType> Of(Expression<Func<Number[]>> valuesFunc, [CallerMemberName] string fieldName = "")
+    internal static Values<T> Of(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = "")
     {
-        List<Number> collectionElements = valuesFunc.Compile().Invoke().ToList();
+        List<T> collectionElements = valuesFunc.Compile().Invoke().ToList();
         decimal primitiveValue = collectionElements.Sum(value => value.Primitive);
-        var expressionNode = new ExpressionNode($"{typeof(ElementValueType).Name}[{collectionElements.Count}]", ExpressionNodeType.Collection).WithArguments(collectionElements);
-        Values<ElementValueType> numbers = new Values<ElementValueType>(MakeValueArgs.Compose(fieldName, expressionNode, primitiveValue));
+        var expressionNode = new ExpressionNode($"{typeof(T).Name}[{collectionElements.Count}]", ExpressionNodeType.Collection).WithArguments(collectionElements);
+        Values<T> numbers = new Values<T>(MakeValueArgs.Compose(fieldName, expressionNode, primitiveValue));
         return numbers;
     }
 }

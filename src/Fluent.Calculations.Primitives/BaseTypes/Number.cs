@@ -14,7 +14,7 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(MakeValueArgs.Compose("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
+    public Number() : this(MakeValueArgs.Compose(Constants.Zero, new ExpressionNode("0", ExpressionNodeType.Constant), 0)) { }
 
     public Number(Number number) : base(number) { }
 
@@ -75,7 +75,7 @@ public class Number : Value,
     private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = Constants.NaN) =>
         HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    public override IValue Make(MakeValueArgs args) => new Number(args);
+    public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
 
     public override IValue Default => Zero;
 

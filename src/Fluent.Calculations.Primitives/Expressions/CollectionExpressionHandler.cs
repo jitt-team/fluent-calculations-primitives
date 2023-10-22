@@ -10,9 +10,9 @@ internal class CollectionExpressionHandler
 
     private static TSource Handle<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
     {
-        return (TSource)MakeResultInstance();
+        return (TSource)MakeOfSourceType();
 
-        IValue MakeResultInstance() => new Values<TSource>().MakeElement(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc()));
+        IValue MakeOfSourceType() => new Values<TSource>().MakeOfThisElementType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.Collection).WithArguments((IValue)source);
         string MakeCollectionExpressionBody() => $"{operatorName}({source})";
     }

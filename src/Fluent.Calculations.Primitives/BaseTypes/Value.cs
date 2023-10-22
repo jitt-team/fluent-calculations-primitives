@@ -42,7 +42,7 @@ public abstract class Value : IValue, IName, IOrigin
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue Make(MakeValueArgs args);
+    public abstract IValue MakeOfThisType(MakeValueArgs args);
 
     public abstract IValue Default { get; }
 

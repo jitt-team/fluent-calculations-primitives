@@ -60,7 +60,7 @@ public sealed class Condition : Value,
         [CallerMemberName] string operatorName = "") =>
         HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue Make(MakeValueArgs args) => new Condition(args);
+    public override IValue MakeOfThisType(MakeValueArgs args) => new Condition(args);
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 

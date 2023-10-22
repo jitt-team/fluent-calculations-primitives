@@ -23,7 +23,7 @@ public class Money : Number
 
     public static Money operator *(Number left, Money right) => new Money(right.Multiply(left), right.Currency);
 
-    public override IValue Make(MakeValueArgs args) => new Money(args, Currency);
+    public override IValue MakeOfThisType(MakeValueArgs args) => new Money(args, Currency);
 
     public override IValue Default => new Money(Currency.None);
 }

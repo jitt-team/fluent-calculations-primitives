@@ -15,7 +15,7 @@ public interface IValue
 
     TagsCollection Tags { get; }
 
-    IValue Make(MakeValueArgs args);
+    IValue MakeOfThisType(MakeValueArgs args);
 
     IValue Default { get; }
 
