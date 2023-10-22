@@ -3,12 +3,12 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Collections;
 using System.Runtime.CompilerServices;
 
-internal class CollectionExpressionHandler
+internal static class CollectionExpressionHandler
 {
-    public static TSource Handle<TSource>(IValues<TSource> source, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = StringConstants.NaN) where TSource : class, IValue, new() =>
-        Handle(source, () => aggregateFunc(source, SelectPrimitiveValue), methodName);
+    public static TSource Handle<TSource>(this IValues<TSource> source, Func<IEnumerable<TSource>, Func<TSource, decimal>, decimal> aggregateFunc, [CallerMemberName] string methodName = StringConstants.NaN) where TSource : class, IValue, new() =>
+        HandleInternal(source, () => aggregateFunc(source, SelectPrimitiveValue), methodName);
 
-    private static TSource Handle<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
+    private static TSource HandleInternal<TSource>(IValues<TSource> source, Func<decimal> primitiveValueAggregateFunc, string operatorName) where TSource : class, IValue, new()
     {
         return (TSource)MakeOfSourceType();
 

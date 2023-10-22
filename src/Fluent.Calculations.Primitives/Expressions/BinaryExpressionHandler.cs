@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal class BinaryExpressionHandler
+internal static class BinaryExpressionHandler
 {
     public static ResultType Handle<ResultType, ResultPrimitiveType>(
         IValue left,
