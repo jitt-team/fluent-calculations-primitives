@@ -34,7 +34,6 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
             }
-
         }
     }
 }
