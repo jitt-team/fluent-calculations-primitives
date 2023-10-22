@@ -1,6 +1,7 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.Expressions;
+using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Collections
 {
@@ -11,6 +12,7 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
         {
             var values = new Values<MyValueType>();
             var element = values.MakeOfThisElementType(MakeValueArgs.Compose("EXPECTED-NAME", ExpressionNode.None, 0));
+            element.Should().NotBeNull();
         }
     }
 
