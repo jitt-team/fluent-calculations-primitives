@@ -34,15 +34,13 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
-
     public IValue MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
     public IValue MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
 
     public IValue Default => Empty;
 
-    public bool IsSet => !Name.IsNaNOrNull();
+    bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
     public int Count => Expression.Arguments.Count;
 

@@ -15,8 +15,6 @@ public abstract class Value : IValue, IName, IOrigin
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !Name.IsNaNOrNull();
-
     private Value()
     {
         Name = StringConstants.NaN;
@@ -54,7 +52,7 @@ public abstract class Value : IValue, IName, IOrigin
 
     void IName.Set(string name) => Name = name;
 
-    bool IOrigin.IsSet => OriginIsSet;
+    bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
     IValue IOrigin.AsResult()
     {
