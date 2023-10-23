@@ -42,7 +42,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public IValue Default => Empty;
 
-    public bool IsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
+    public bool IsSet => !Name.IsNaNOrNull();
 
     public int Count => Expression.Arguments.Count;
 
@@ -64,7 +64,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
         IsParameter = true;
     }
 
-    internal static Values<T> Of(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = "")
+    internal static Values<T> SumOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = "")
     {
         List<T> collectionElements = valuesFunc.Compile().Invoke().ToList();
         decimal primitiveValue = collectionElements.Sum(value => value.Primitive);

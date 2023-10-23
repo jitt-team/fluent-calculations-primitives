@@ -30,7 +30,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
                     NumberOne = Number.Of(2, nameof(NumberOne)),
                     NumberTwo = Number.Of(3, nameof(NumberTwo));
 
-                Values<Number> MultipleNumbers = Values<Number>.Of(() => new[] { NumberOne, NumberTwo }, nameof(MultipleNumbers));
+                Values<Number> MultipleNumbers = Values<Number>.SumOf(() => new[] { NumberOne, NumberTwo }, nameof(MultipleNumbers));
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
             }

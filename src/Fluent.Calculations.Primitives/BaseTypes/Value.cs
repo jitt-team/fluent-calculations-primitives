@@ -15,7 +15,7 @@ public abstract class Value : IValue, IName, IOrigin
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(StringConstants.NaN);
+    internal bool OriginIsSet => !Name.IsNaNOrNull();
 
     private Value()
     {
