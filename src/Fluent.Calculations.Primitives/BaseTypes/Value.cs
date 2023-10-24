@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
-public abstract class Value : IValue, IName, IOrigin
+public abstract class Value : IValue, IOrigin
 {
     public string Name { get; private set; }
 
@@ -49,8 +49,6 @@ public abstract class Value : IValue, IName, IOrigin
         Func<IValue, IValue, ResultPrimitiveType> calcFunc,
         string operatorName) where ResultType : IValue, new() =>
         BinaryExpressionHandler.Handle<ResultType, ResultPrimitiveType>(this, right, calcFunc, operatorName);
-
-    void IName.Set(string name) => Name = name;
 
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
