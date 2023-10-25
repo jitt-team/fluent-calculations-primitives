@@ -1,10 +1,11 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
 using Fluent.Calculations.Primitives.Expressions;
+using System;
 
 public class MakeValueArgs
 {
-    public string Name { get; private set; } = Constants.NaN;
+    public string Name { get; private set; } = StringConstants.NaN;
 
     public ExpressionNode Expression { get; private set; } = ExpressionNode.None;
 
@@ -24,6 +25,11 @@ public class MakeValueArgs
             PrimitiveValue = primitiveValue,
             IsParameter = false
         };
+
+    internal static object Compose(string fieldName, ExpressionNode expressionNode, object primitiveValue)
+    {
+        throw new NotImplementedException();
+    }
 
     public MakeValueArgs WithTags(params Tag[] tags)
     {

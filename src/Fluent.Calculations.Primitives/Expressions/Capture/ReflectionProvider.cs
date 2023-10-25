@@ -1,38 +1,66 @@
-﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
-using Fluent.Calculations.Primitives.BaseTypes;
-using System.Linq.Expressions;
-using System.Reflection;
-
-internal class ReflectionProvider : IReflectionProvider
+﻿namespace Fluent.Calculations.Primitives.Expressions.Capture
 {
-    // TODO: Check type, should be IValue
-    public bool IsParameter(MemberInfo member) => member.MemberType == MemberTypes.Field
-        || (member.MemberType == MemberTypes.Property && ((PropertyInfo)member).CanWrite);
+    using Fluent.Calculations.Primitives.BaseTypes;
+    using System.Linq.Expressions;
+    using System.Reflection;
 
-    // TODO: Check type, should be IValue
-    public bool IsEvaluation(MemberInfo member) => member.MemberType == MemberTypes.Property
-        && !((PropertyInfo)member).CanWrite;
-
-    public IValue GetValue(Expression expression)
+    internal class ReflectionProvider : IReflectionProvider
     {
-        // TODO: A potential place to cache compiled member access expressions for performance
-        return (IValue)EnsureNotNull(Expression.Lambda(expression).Compile().DynamicInvoke(), expression);
-    }
+        public bool IsParameter(MemberInfo member) => IsOfTypeIValue(member) && ParameterAndEvaluationDefaultConvention.IsFieldOrWritableProperty(member);
 
-    public string GetPropertyOrFieldName(MemberInfo memberInfo)
-    {
-        switch (memberInfo.MemberType)
+        public bool IsEvaluation(MemberInfo member) => IsOfTypeIValue(member) && ParameterAndEvaluationDefaultConvention.IsReadOnlyProperty(member);
+
+        public IValue GetValue(Expression expression)
         {
-            case MemberTypes.Field:
-                return ((FieldInfo)memberInfo).Name;
-            case MemberTypes.Property:
-                return ((PropertyInfo)memberInfo).Name;
-            default:
-                break;
+            // TODO: A potential place to cache compiled member access expressions for performance
+            return (IValue)EnsureNotNull(Expression.Lambda(expression).Compile().DynamicInvoke(), expression);
         }
 
-        throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{memberInfo.Name}] is not supported.");
-    }
+        public string GetPropertyOrFieldName(MemberInfo memberInfo)
+        {
+            switch (memberInfo.MemberType)
+            {
+                case MemberTypes.Field:
+                    return ((FieldInfo)memberInfo).Name;
+                case MemberTypes.Property:
+                    return ((PropertyInfo)memberInfo).Name;
+                default:
+                    break;
+            }
 
-    private object EnsureNotNull(object? obj, Expression body) => obj ?? throw new NullExpressionResultException(body.ToString());
+            throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{memberInfo.Name}] is not supported.");
+        }
+
+        private bool IsOfTypeIValue(MemberInfo member) => typeof(IValue).IsAssignableFrom(GetFieldOrPropertyType(member));
+
+        private Type GetFieldOrPropertyType(MemberInfo memberInfo)
+        {
+            switch (memberInfo.MemberType)
+            {
+                case MemberTypes.Field:
+                    return ((FieldInfo)memberInfo).FieldType;
+                case MemberTypes.Property:
+                    return ((PropertyInfo)memberInfo).PropertyType;
+                default:
+                    break;
+            }
+
+            throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{memberInfo.Name}] is not supported.");
+        }
+
+
+
+        private object EnsureNotNull(object? obj, Expression body) => obj ?? throw new NullExpressionResultException(body.ToString());
+
+        private static class ParameterAndEvaluationDefaultConvention
+        {
+            // TODO: Check type, should be IValue
+            public static bool IsFieldOrWritableProperty(MemberInfo member) => 
+                member.MemberType == MemberTypes.Field || (member.MemberType == MemberTypes.Property && ((PropertyInfo)member).CanWrite);
+
+            // TODO: Check type, should be IValue
+            public static bool IsReadOnlyProperty(MemberInfo member) => 
+                member.MemberType == MemberTypes.Property && !((PropertyInfo)member).CanWrite;
+        }
+    }
 }

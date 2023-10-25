@@ -4,6 +4,7 @@
     {
         public const string None = "None";
         public const string Constant = "Constant";
+        public const string Collection = "Collection";
         public const string Lambda = "Lambda";
         public const string BinaryExpression = "BinaryExpression";
     }

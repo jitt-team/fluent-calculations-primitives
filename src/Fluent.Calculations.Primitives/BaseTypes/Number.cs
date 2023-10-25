@@ -14,7 +14,7 @@ public class Number : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public Number() : this(MakeValueArgs.Compose("Zero", new ExpressionNode($"0", ExpressionNodeType.Constant), 0)) { }
+    public Number() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Constant), 0)) { }
 
     public Number(Number number) : base(number) { }
 
@@ -69,13 +69,13 @@ public class Number : Value,
 
     public Number Divide(Number right) => HandleNumberOperation(right, (a, b) => a / b);
 
-    private Condition HandleConditionOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = "") =>
+    private Condition HandleConditionOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = "") =>
+    private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    public override IValue Make(MakeValueArgs args) => new Number(args);
+    public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
 
     public override IValue Default => Zero;
 

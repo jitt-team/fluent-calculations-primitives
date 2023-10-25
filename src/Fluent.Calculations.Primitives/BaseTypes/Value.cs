@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
-public abstract class Value : IValue, IName, IOrigin
+public abstract class Value : IValue, IOrigin
 {
     public string Name { get; private set; }
 
@@ -15,11 +15,9 @@ public abstract class Value : IValue, IName, IOrigin
 
     public TagsCollection Tags { get; init; }
 
-    internal bool OriginIsSet => !string.IsNullOrEmpty(Name) && !Name.Equals(Constants.NaN);
-
     private Value()
     {
-        Name = Constants.NaN;
+        Name = StringConstants.NaN;
         Expression = ExpressionNode.None;
         Tags = TagsCollection.Empty;
     }
@@ -42,7 +40,7 @@ public abstract class Value : IValue, IName, IOrigin
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue Make(MakeValueArgs args);
+    public abstract IValue MakeOfThisType(MakeValueArgs args);
 
     public abstract IValue Default { get; }
 
@@ -52,9 +50,7 @@ public abstract class Value : IValue, IName, IOrigin
         string operatorName) where ResultType : IValue, new() =>
         BinaryExpressionHandler.Handle<ResultType, ResultPrimitiveType>(this, right, calcFunc, operatorName);
 
-    void IName.Set(string name) => Name = name;
-
-    bool IOrigin.IsSet => OriginIsSet;
+    bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
     IValue IOrigin.AsResult()
     {
