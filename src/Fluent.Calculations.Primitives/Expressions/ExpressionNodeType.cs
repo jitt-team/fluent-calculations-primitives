@@ -1,12 +1,11 @@
-﻿namespace Fluent.Calculations.Primitives.Expressions
+﻿namespace Fluent.Calculations.Primitives.Expressions;
+
+public static class ExpressionNodeType
 {
-    public static class ExpressionNodeType
-    {
-        public const string None = "None";
-        public const string Constant = "Constant";
-        public const string Collection = "Collection";
-        public const string Lambda = "Lambda";
-        public const string BinaryExpression = "Binary";
-        public const string MathExpression = "Math";
-    }
+    public const string None = "None";
+    public const string Constant = "Constant";
+    public const string Collection = "Collection";
+    public const string Lambda = "Lambda";
+    public const string BinaryExpression = "Binary";
+    public const string MathExpression = "Math";
 }

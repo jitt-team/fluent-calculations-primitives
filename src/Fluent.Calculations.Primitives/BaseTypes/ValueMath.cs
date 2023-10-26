@@ -2,7 +2,7 @@
 using System;
 using static Expressions.MathExpressionHandler;
 
-public static class NumberMath
+public static class ValueMath
 {
     public static T Abs<T>(T value) where T : IValue, new() => HandleWithSingleArgument<T>(value, Math.Abs);
 

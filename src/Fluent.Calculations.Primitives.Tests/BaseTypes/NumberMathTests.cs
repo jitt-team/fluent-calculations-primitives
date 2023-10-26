@@ -11,7 +11,7 @@ public class NumberMathTests
         string expectedArgumentName = "INPUT-VALUE";
         Number value = Number.Of(-3, expectedArgumentName);
 
-        Number result = NumberMath.Abs(value);
+        Number result = ValueMath.Abs(value);
 
         result.Primitive.Should().Be(3);
         result.Name.Should().Be("Abs");
@@ -27,7 +27,7 @@ public class NumberMathTests
         string expectedArgumentName = "INPUT-VALUE";
         Money value = Number.Of(-3, expectedArgumentName).AsMoney().EUR;
 
-        Money result = NumberMath.Abs(value);
+        Money result = ValueMath.Abs(value);
 
         result.Primitive.Should().Be(3);
         result.Name.Should().Be("Abs");
@@ -48,7 +48,7 @@ public class NumberMathTests
             value1 = Number.Of(2, expectedArgumentName1),
             value2 = Number.Of(3, expectedArgumentName2);
 
-        Number result = NumberMath.Max(value1, value2);
+        Number result = ValueMath.Max(value1, value2);
 
         result.Primitive.Should().Be(3);
         result.Name.Should().Be("Max");
@@ -71,7 +71,7 @@ public class NumberMathTests
             value1 = Number.Of(2.247m, expectedArgumentName1),
             value2 = Number.Of(2, expectedArgumentName2);
 
-        Number result = NumberMath.Round(value1, value2);
+        Number result = ValueMath.Round(value1, value2);
 
         result.Primitive.Should().Be(2.25m);
         result.Name.Should().Be("Round");

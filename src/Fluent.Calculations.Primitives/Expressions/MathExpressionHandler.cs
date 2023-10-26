@@ -1,7 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
 
 internal static class MathExpressionHandler
 {
