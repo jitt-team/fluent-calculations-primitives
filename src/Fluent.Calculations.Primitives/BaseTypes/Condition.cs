@@ -58,7 +58,7 @@ public sealed class Condition : Value,
 
     private Condition ReturnCondition(IValue value, Func<bool, bool, bool> compareFunc,
         [CallerMemberName] string operatorName = "") =>
-        HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
+        HandleTwoPartExpression<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
     public override IValue MakeOfThisType(MakeValueArgs args) => new Condition(args);
 

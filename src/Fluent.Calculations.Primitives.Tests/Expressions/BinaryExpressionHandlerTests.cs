@@ -12,7 +12,7 @@ public class BinaryExpressionHandlerTests
             leftNumber = Number.Of(2.00m, "LEFT-NUMBER"),
             rightNumber = Number.Of(3.00m, "RIGHT-NUMBER");
 
-        Number result = BinaryExpressionHandler.Handle<Number, decimal>(leftNumber, rightNumber, (a, b) => a.Primitive + b.Primitive, "Add");
+        Number result = TwoPartExpressionHandler.Handle<Number, decimal>(leftNumber, rightNumber, (a, b) => a.Primitive + b.Primitive, "Add");
 
         result.Primitive.Should().Be(5.00m);
         result.Name.Should().Be("Add");

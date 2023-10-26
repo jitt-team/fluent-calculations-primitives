@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal static class BinaryExpressionHandler
+internal static class TwoPartExpressionHandler
 {
     public static ResultType Handle<ResultType, ResultPrimitiveType>(
         IValue left,
@@ -14,6 +14,6 @@ internal static class BinaryExpressionHandler
         IValue MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression).WithArguments(left, right);
         decimal ToPrimitiveResult() => Convert.ToDecimal(primitiveCalcFunc(left, right));
-        string MakeBinaryExpressionBody() => $"{left} {BinaryExpressionOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
+        string MakeBinaryExpressionBody() => $"{left} {LanguageOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
     }
 }
