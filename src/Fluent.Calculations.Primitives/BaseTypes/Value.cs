@@ -48,7 +48,7 @@ public abstract class Value : IValue, IOrigin
         IValue right,
         Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValue, new() =>
-        TwoPartExpressionHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
+        BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
