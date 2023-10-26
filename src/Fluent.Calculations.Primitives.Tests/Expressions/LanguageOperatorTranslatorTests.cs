@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.Expressions;
 using FluentAssertions;
 
-public class BinaryExpressionOperatorTranslatorTests
+public class LanguageOperatorTranslatorTests
 {
     [Fact]
     public void TestExistingMethod_IsTranslatedCorrectly() => LanguageOperatorTranslator

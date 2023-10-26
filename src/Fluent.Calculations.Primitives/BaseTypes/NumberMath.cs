@@ -1,5 +1,4 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
-
 using System;
 using static Expressions.MathExpressionHandler;
 
@@ -17,5 +16,5 @@ public static class NumberMath
 
     public static T Max<T>(T left, T right) where T : IValue, new() => HandleWithTwoArguments<T>(left, right, Math.Max);
 
-    public static T Round<T>(T left, T right) where T : IValue, new() => HandleWithTwoArguments<T>(left, right, (a, b) => Math.Round(a, Convert.ToInt32(b)));
+    public static T Round<T>(T left, T right) where T : IValue, new() => HandleWithTwoArgumentsInt<T>(left, right, Math.Round);
 }

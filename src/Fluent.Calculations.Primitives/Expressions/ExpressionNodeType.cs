@@ -6,6 +6,7 @@
         public const string Constant = "Constant";
         public const string Collection = "Collection";
         public const string Lambda = "Lambda";
-        public const string BinaryExpression = "BinaryExpression";
+        public const string BinaryExpression = "Binary";
+        public const string MathExpression = "Math";
     }
 }

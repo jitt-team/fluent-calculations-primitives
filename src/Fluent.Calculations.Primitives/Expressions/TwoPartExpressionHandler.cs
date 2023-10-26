@@ -7,12 +7,13 @@ internal static class TwoPartExpressionHandler
         IValue left,
         IValue right,
         Func<IValue, IValue, ResultPrimitiveType> primitiveCalcFunc,
-        string operatorName) where ResultType : IValue, new()
+        string operatorName,
+        string expressionType) where ResultType : IValue, new()
     {
         return (ResultType)MakeOfResultType();
 
         IValue MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
-        ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeBinaryExpressionBody(), ExpressionNodeType.BinaryExpression).WithArguments(left, right);
+        ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeBinaryExpressionBody(), expressionType).WithArguments(left, right);
         decimal ToPrimitiveResult() => Convert.ToDecimal(primitiveCalcFunc(left, right));
         string MakeBinaryExpressionBody() => $"{left} {LanguageOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
     }
