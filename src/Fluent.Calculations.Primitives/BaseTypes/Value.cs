@@ -44,7 +44,7 @@ public abstract class Value : IValue, IOrigin
 
     public abstract IValue Default { get; }
 
-    public ResultType HandleTwoPartExpression<ResultType, ResultPrimitiveType>(
+    public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValue right,
         Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValue, new() =>
