@@ -61,13 +61,13 @@ public class Number : Value,
 
     private Condition GreaterThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a >= b);
 
-    public Number Add(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
+    protected Number Add(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
 
-    public Number Substract(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
+    protected Number Substract(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
 
-    public Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
+    protected Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
 
-    public Number Divide(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
+    protected Number Divide(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
     private Condition HandleComparisonOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);

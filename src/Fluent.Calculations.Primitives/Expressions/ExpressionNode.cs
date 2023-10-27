@@ -1,11 +1,11 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-public  class ExpressionNode
+public class ExpressionNode
 {
     public override string ToString() => $"{Body}";
 
-    internal static ExpressionNode None => new ExpressionNode(StringConstants.NaN, ExpressionNodeType.None) ;
+    internal static ExpressionNode None => new ExpressionNode(StringConstants.NaN, ExpressionNodeType.None);
 
     public ExpressionNode(string body, string type)
     {
@@ -33,4 +33,6 @@ public  class ExpressionNode
         Arguments = new ArgumentsCollection(arguments);
         return this;
     }
+
+    internal void UpdateBody(string body) => Body = body;
 }
