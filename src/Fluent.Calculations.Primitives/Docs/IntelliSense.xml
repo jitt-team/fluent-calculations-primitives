@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+	<members name="EvaluationContext">
+		<class>
+			<summary>Base class for implementing calculations</summary>
+			<remarks>My additional remarks</remarks>
+			<typeparam name="ResultValueType">Type of calculation result</typeparam>
+		</class>
+	</members>
+</docs>
+

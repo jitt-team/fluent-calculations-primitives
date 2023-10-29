@@ -2,10 +2,12 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Expressions.Capture;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-public partial class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
+public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
@@ -14,10 +16,10 @@ public partial class EvaluationContext<ResultValueType> : IEvaluationContext<Res
 
     public EvaluationContext() : this(EvaluationOptions.Default) { }
 
-    public EvaluationContext(EvaluationOptions options) : 
+    public EvaluationContext(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) : 
+    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
     internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer)

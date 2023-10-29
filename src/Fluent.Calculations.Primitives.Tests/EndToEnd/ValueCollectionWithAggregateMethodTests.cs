@@ -9,7 +9,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
         public const string TestEvaluationName = "TEST-ARRAY-EVALUATION-NAME";
     }
 
-    public partial class ValueCollectionWithAggregateMethodTests
+    public class ValueCollectionWithAggregateMethodTests
     {
         [Fact]
         public void Calculation_WithCollectionAndAggregateMethod_IsExpectedResult()
