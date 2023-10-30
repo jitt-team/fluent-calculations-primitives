@@ -49,31 +49,31 @@ public class Number : Value,
 
     public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right));
 
-    private Condition IsEqual(Number right) => HandleConditionOperation(right, (a, b) => a == b);
+    private Condition IsEqual(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
 
-    private Condition NotEqual(Number right) => HandleConditionOperation(right, (a, b) => a != b);
+    private Condition NotEqual(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
 
-    private Condition LessThan(Number right) => HandleConditionOperation(right, (a, b) => a < b);
+    private Condition LessThan(Number right) => HandleComparisonOperation(right, (a, b) => a < b);
 
-    private Condition GreaterThan(Number right) => HandleConditionOperation(right, (a, b) => a > b);
+    private Condition GreaterThan(Number right) => HandleComparisonOperation(right, (a, b) => a > b);
 
-    private Condition LessThanOrEqual(Number right) => HandleConditionOperation(right, (a, b) => a <= b);
+    private Condition LessThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a <= b);
 
-    private Condition GreaterThanOrEqual(Number right) => HandleConditionOperation(right, (a, b) => a >= b);
+    private Condition GreaterThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a >= b);
 
-    public Number Add(Number right) => HandleNumberOperation(right, (a, b) => a + b);
+    protected Number Add(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
 
-    public Number Substract(Number right) => HandleNumberOperation(right, (a, b) => a - b);
+    protected Number Substract(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
 
-    public Number Multiply(Number right) => HandleNumberOperation(right, (a, b) => a * b);
+    protected Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
 
-    public Number Divide(Number right) => HandleNumberOperation(right, (a, b) => a / b);
+    protected Number Divide(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
-    private Condition HandleConditionOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
-        HandleBinaryExpression<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
+    private Condition HandleComparisonOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
+        HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    private Number HandleNumberOperation(IValue value, Func<decimal, decimal, decimal> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
-        HandleBinaryExpression<Number, decimal>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
+    private Number HandleArithmeticOperation(IValue value, Func<decimal, decimal, decimal> calculationFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
+        HandleBinaryOperation<Number, decimal>(value, (a, b) => calculationFunc(a.Primitive, b.Primitive), operatorName);
 
     public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
 

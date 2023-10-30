@@ -9,8 +9,8 @@ public class ComplexValueTypesTests
         EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
 
         Money
-            MoneyOne = Number.Of(10).Amount().EUR,
-            MoneyTwo = Number.Of(20).Amount().EUR;
+            MoneyOne = Number.Of(10).AsMoney().EUR,
+            MoneyTwo = Number.Of(20).AsMoney().EUR;
 
         return Calculation.Evaluate(() => MoneyOne + MoneyTwo);
     }
