@@ -2,14 +2,17 @@
 <docs>
 	<members name="EvaluationContext">
 		<class>
-			<summary>Base class for implementing calculations and hold the calculation context.
+			<summary>
+				Base class for implementing calculations and hold the calculation context.
 			</summary>
 			<remarks>
 				<para>
-					It is a main entry point that provides all tracing capabilities and holds all the required state during calculation execution.
-					When inherited, the derived class can also provide an interface to pass in all needed calculation inputs, it  can also contain all required constants.
+					It is a main entry point that provides all tracing capabilities and<br/>
+					all the required state during calculation execution.<br/>
+					When inherited, the derived class can also provide an interface to pass in<br/>
+					all needed calculation inputs, it  can also contain all required constants.
 				</para>
-				<list type="bullet">
+				<list type="table">
 					<item>
 						<term>Summary</term>
 						<description>This should provide a one sentence summary of the class or member.</description>
@@ -22,15 +25,24 @@
 						</description>
 					</item>
 					<item>
-						<term>example, code</term>
+						<term>Inheritance</term>
 						<description>
 							<code>
-								if(a > b)
-								return a;
+								public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>{
+								public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+								public override Number Return() => Number.Of(0);
+								}
 							</code>
 						</description>
 					</item>
 				</list>
+				<item>
+					More information:
+					<para></para>
+					<a href="https://github.com/jitt-team/fluent-calculations-primitives/wiki/">
+						Fluent.Calculations Wiki
+					</a>
+				</item>
 				<para>
 					The list above uses the "table" style. You could
 					also use the "bullet" or "number" style. Neither
@@ -41,6 +53,37 @@
 				</para>
 			</remarks>
 			<typeparam name="ResultValueType">Type of calculation result</typeparam>
+		</class>
+		<ctor-options>
+			<summary>
+				Creates an instance
+			</summary>
+			<param name="options">Context options</param>
+		</ctor-options>
+		<ctor-func>
+			<summary>
+				Creates an instance
+			</summary>
+			<param name="func">Calculation function</param>
+		</ctor-func>
+		<method-ToResult>
+			<summary>
+				Exit method to return result from inherited calculation
+			</summary>
+			<returns>Calculation result</returns>
+		</method-ToResult>
+		<method-Evaluate>
+			<summary>Summary</summary>
+			<typeparam name="ValueType">A</typeparam>
+			<param name="lambdaExpression">A</param>
+			<param name="name">A</param>
+			<param name="lambdaExpressionBody">A</param>
+			<returns>Labda expression result</returns>
+		</method-Evaluate>
+	</members>
+	<members name="Value">
+		<class>
+			
 		</class>
 	</members>
 </docs>

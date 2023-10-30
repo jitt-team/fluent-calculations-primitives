@@ -8,17 +8,19 @@ using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
 public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
-{
+{     
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
-
+        
     public EvaluationContext() : this(EvaluationOptions.Default) { }
 
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
     public EvaluationContext(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
     public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
@@ -29,6 +31,7 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
         this.valuesCache = valuesCache;
     }
 
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public ResultValueType ToResult()
     {
         ResultValueType result = calculationFunc != null ?
@@ -38,8 +41,10 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
         return (ResultValueType)((IOrigin)result).AsResult();
     }
 
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual ResultValueType Return() { return (ResultValueType)new ResultValueType().Default; }
 
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public ValueType Evaluate<ValueType>(
         Expression<Func<ValueType>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
