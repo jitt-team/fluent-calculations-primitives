@@ -2,53 +2,17 @@
 <docs>
 	<members name="EvaluationContext">
 		<class>
-			<summary>
-				Every class and member should have a one sentence
-				summary describing its purpose.
+			<summary>Base class for implementing calculations and hold the calculation context.
 			</summary>
 			<remarks>
-				You can expand on that one sentence summary to
-				provide more information for readers. In this case,
-				the <c>ExampleClass</c> provides different C#
-				elements to show how you would add documentation
-				comments for most elements in a typical class.
 				<para>
-					The remarks can add multiple paragraphs, so you can
-					write detailed information for developers that use
-					your work. You should add everything needed for
-					readers to be successful. This class contains
-					examples for the following:
+					It is a main entry point that provides all tracing capabilities and holds all the required state during calculation execution.
+					When inherited, the derived class can also provide an interface to pass in all needed calculation inputs, it  can also contain all required constants.
 				</para>
 				<list type="bullet">
 					<item>
 						<term>Summary</term>
 						<description>This should provide a one sentence summary of the class or member.</description>
-					</item>
-					<item>
-						<term>Remarks</term>
-						<description>This is typically a more detailed description of the class or member</description>
-					</item>
-					<item>
-						<term>para</term>
-						<description>The para tag separates a section into multiple paragraphs</description>
-					</item>
-					<item>
-						<term>list</term>
-						<description>Provides a list of terms or elements</description>
-					</item>
-					<item>
-						<term>returns, param</term>
-						<description>Used to describe parameters and return values</description>
-					</item>
-					<item>
-						<term>value</term>
-						<description>Used to describe properties</description>
-					</item>
-					<item>
-						<term>exception</term>
-						<description>
-							Used to describe exceptions that may be thrown
-						</description>
 					</item>
 					<item>
 						<term>c, cref, see, seealso</term>
