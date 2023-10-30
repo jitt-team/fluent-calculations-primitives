@@ -59,6 +59,8 @@ public class CalculationDotGraphRenderer
         {
             case ExpressionNodeType.Lambda:
             case ExpressionNodeType.BinaryExpression:
+            case ExpressionNodeType.Collection:
+            case ExpressionNodeType.MathExpression:
                 return CreateExpressionBlock(value);
             case ExpressionNodeType.None:
             case ExpressionNodeType.Constant:

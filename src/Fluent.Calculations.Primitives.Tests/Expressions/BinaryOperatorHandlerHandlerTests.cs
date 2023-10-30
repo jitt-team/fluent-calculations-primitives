@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using FluentAssertions;
 
-public class BinaryExpressionHandlerTests
+public class BinaryOperatorHandlerHandlerTests
 {
     [Fact]
     public void BinaryExpression_WithTwoValues_IsExpectedResult()
@@ -12,7 +12,7 @@ public class BinaryExpressionHandlerTests
             leftNumber = Number.Of(2.00m, "LEFT-NUMBER"),
             rightNumber = Number.Of(3.00m, "RIGHT-NUMBER");
 
-        Number result = BinaryExpressionHandler.Handle<Number, decimal>(leftNumber, rightNumber, (a, b) => a.Primitive + b.Primitive, "Add");
+        Number result = BinaryOperatorHandler.Handle<Number, decimal>(leftNumber, rightNumber, (a, b) => a.Primitive + b.Primitive, "Add", ExpressionNodeType.BinaryExpression);
 
         result.Primitive.Should().Be(5.00m);
         result.Name.Should().Be("Add");

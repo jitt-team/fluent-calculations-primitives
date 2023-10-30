@@ -19,6 +19,16 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
             result.Primitive.Should().Be(5);
         }
 
+        [Fact]
+        public void Calculation_WithCollectionAndAggregateMethod_IsExpectedResult_2()
+        {
+            CollectionsEvaluations calculation = new();
+
+            Number result = calculation.ToResult();
+            result.Should().NotBeNull();
+        }
+
+
         public class TestArrayCalcuation
         {
             public static Number Return()
@@ -34,6 +44,26 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
 
                 return Calculation.Evaluate(() => MultipleNumbers.Sum(), Constant.TestEvaluationName);
             }
+        }
+
+        internal class CollectionsEvaluations : EvaluationContext<Number>
+        {
+            public CollectionsEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+
+            Number SingleNumber = Number.Of(2);
+
+            Values<Number> MultipleNumbers = new()
+            {
+                Number.Of(2, "COLLECTION-NUMBER-1"),
+                Number.Of(4, "COLLECTION-NUMBER-2"),
+                Number.Of(6, "COLLECTION-NUMBER-3")
+            };
+
+            public Number AverageFromMultipleNumbers => Evaluate(() => MultipleNumbers.Average());
+
+            Number EvaluationTwo => Evaluate(() => AverageFromMultipleNumbers * SingleNumber);
+
+            public override Number Return() => EvaluationTwo;
         }
     }
 }

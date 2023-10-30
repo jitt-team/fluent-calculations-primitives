@@ -44,11 +44,11 @@ public abstract class Value : IValue, IOrigin
 
     public abstract IValue Default { get; }
 
-    public ResultType HandleBinaryExpression<ResultType, ResultPrimitiveType>(
+    public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValue right,
-        Func<IValue, IValue, ResultPrimitiveType> calcFunc,
+        Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValue, new() =>
-        BinaryExpressionHandler.Handle<ResultType, ResultPrimitiveType>(this, right, calcFunc, operatorName);
+        BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 

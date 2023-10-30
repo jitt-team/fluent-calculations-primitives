@@ -20,4 +20,6 @@ public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
     IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
 
     internal void AddRange(ArgumentsCollection arguments) => items.AddRange(arguments);
+
+    internal void Add(IValue arguments) => items.Add(arguments);
 }
