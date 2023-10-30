@@ -4,5 +4,5 @@ using System.Runtime.CompilerServices;
 
 public static class ToMoney
 {
-    public static MoneyBuilder Amount(this Number value, [CallerMemberName] string expressionName = "") => new MoneyBuilder(value, expressionName);
+    public static MoneyBuilder AsMoney(this Number value, [CallerMemberName] string expressionName = "") => new MoneyBuilder(value, expressionName);
 }
