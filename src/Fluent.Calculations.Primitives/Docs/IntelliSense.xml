@@ -3,68 +3,61 @@
 	<members name="EvaluationContext">
 		<class>
 			<summary>
-				Base class for implementing calculations and hold the calculation context.
+				Base class for implementing a calculation.
 			</summary>
 			<remarks>
 				<para>
-					It is a main entry point that provides all tracing capabilities and<br/>
-					all the required state during calculation execution.<br/>
-					When inherited, the derived class can also provide an interface to pass in<br/>
-					all needed calculation inputs, it  can also contain all required constants.
+					Use this class to define, run and retrieve a result of your calculations.
 				</para>
 				<list type="table">
 					<item>
-						<term>Summary</term>
-						<description>This should provide a one sentence summary of the class or member.</description>
-					</item>
-					<item>
-						<term>c, cref, see, seealso</term>
+						<term>Calculation</term>
 						<description>
-							These provide code style and links to other
-							documentation elements
+							<para></para>
+							Calculation is a logical compostion of lambda expressions implement operations with input parameters or <br/>
+							of types derived from <see cref="Value"/> or implementing <see cref="IValue"/> interface that ouputs single value as a result.
 						</description>
 					</item>
 					<item>
-						<term>Inheritance</term>
+						<term>Examples</term>
 						<description>
+							<para>See below a class inheriting from EvaluationContext<![CDATA[<T>]]>, where T is a result class type.</para>
 							<code>
-								public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>{
-								public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-								public override Number Return() => Number.Of(0);
-								}
+	public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
+	{
+		public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+		public override Number Return() => Number.Of(0);
+	}
 							</code>
 						</description>
 					</item>
+					<item>
+						<a href="https://github.com/jitt-team/fluent-calculations-primitives/wiki/">
+							Learn more
+						</a>
+					</item>
 				</list>
-				<item>
-					More information:
-					<para></para>
-					<a href="https://github.com/jitt-team/fluent-calculations-primitives/wiki/">
-						Fluent.Calculations Wiki
-					</a>
-				</item>
-				<para>
-					The list above uses the "table" style. You could
-					also use the "bullet" or "number" style. Neither
-					would typically use the "term" element.
-					<br/>
-					Note: paragraphs are double spaced. Use the *br*
-					tag for single spaced lines.
-				</para>
 			</remarks>
-			<typeparam name="ResultValueType">Type of calculation result</typeparam>
+			<typeparam name="T">Type of the result value class</typeparam>
 		</class>
+		<ctor>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationContext{T}"/>.
+			</summary>
+		</ctor>
 		<ctor-options>
 			<summary>
-				Creates an instance
+				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with custom options.
 			</summary>
-			<param name="options">Context options</param>
+			<param name="options">Options to be used to run the calculation</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
-				Creates an instance
+				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with standalone labda expression.
 			</summary>
-			<param name="func">Calculation function</param>
+			<param name="func">
+				Lambda expression using <see cref="IValue"/> types
+			</param>
 		</ctor-func>
 		<method-ToResult>
 			<summary>
@@ -73,17 +66,16 @@
 			<returns>Calculation result</returns>
 		</method-ToResult>
 		<method-Evaluate>
-			<summary>Summary</summary>
-			<typeparam name="ValueType">A</typeparam>
-			<param name="lambdaExpression">A</param>
+			<summary>TBD</summary>
+			<typeparam name="ValueType">TBD</typeparam>
+			<param name="lambdaExpression">TBD</param>
 			<param name="name">A</param>
-			<param name="lambdaExpressionBody">A</param>
+			<param name="lambdaExpressionBody">TBD</param>
 			<returns>Labda expression result</returns>
 		</method-Evaluate>
 	</members>
 	<members name="Value">
 		<class>
-			
 		</class>
 	</members>
 </docs>

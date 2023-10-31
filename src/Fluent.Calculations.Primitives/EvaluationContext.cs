@@ -7,13 +7,14 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValueType> where ResultValueType : class, IValue, new()
-{     
+public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValue, new()
+{
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
-    private Func<EvaluationContext<ResultValueType>, ResultValueType>? calculationFunc;
-        
+    private Func<EvaluationContext<T>, T>? calculationFunc;
+
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
     public EvaluationContext() : this(EvaluationOptions.Default) { }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
@@ -21,7 +22,7 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
-    public EvaluationContext(Func<EvaluationContext<ResultValueType>, ResultValueType> func) :
+    public EvaluationContext(Func<EvaluationContext<T>, T> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
     internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer)
@@ -32,29 +33,29 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
-    public ResultValueType ToResult()
+    public T ToResult()
     {
-        ResultValueType result = calculationFunc != null ?
+        T result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
 
-        return (ResultValueType)((IOrigin)result).AsResult();
+        return (T)((IOrigin)result).AsResult();
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual ResultValueType Return() { return (ResultValueType)new ResultValueType().Default; }
+    public virtual T Return() { return (T)new T().Default; }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
-    public ValueType Evaluate<ValueType>(
-        Expression<Func<ValueType>> lambdaExpression,
+    public TValue Evaluate<TValue>(
+        Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
         [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN)
-            where ValueType : class, IValue, new()
+            where TValue : class, IValue, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
-            return (ValueType)valuesCache.GetByKey(name);
+            return (TValue)valuesCache.GetByKey(name);
 
-        ValueType result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
+        TValue result = EvaluateInternal(lambdaExpression, name, RemoveLambdaPrefix(lambdaExpressionBody));
 
         if (!name.Equals(StringConstants.NaN))
             valuesCache.Add(name, result);
@@ -64,11 +65,11 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
         string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-    private ValueType EvaluateInternal<ValueType>(
-       Expression<Func<ValueType>> lambdaExpression, string name, string expressionBody)
-           where ValueType : class, IValue, new()
+    private TValue EvaluateInternal<TValue>(
+       Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)
+           where TValue : class, IValue, new()
     {
-        ValueType result = lambdaExpression.Compile().Invoke();
+        TValue result = lambdaExpression.Compile().Invoke();
 
         ExpressionNode expressionNode;
 
@@ -82,7 +83,7 @@ public class EvaluationContext<ResultValueType> : IEvaluationContext<ResultValue
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (ValueType)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
+        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
