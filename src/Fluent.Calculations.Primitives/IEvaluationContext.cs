@@ -1,13 +1,15 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
+﻿namespace Fluent.Calculations.Primitives;
+using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-namespace Fluent.Calculations.Primitives
+public interface IEvaluationContext<T> where T : class, IValue, new()
 {
-    public interface IEvaluationContext<TResult> where TResult : class, IValue, new()
-    {
-        ExpressionResultValue Evaluate<ExpressionResultValue>(Expression<Func<ExpressionResultValue>> lambdaExpression, [CallerMemberName] string name = "NaN", [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = "NaN") where ExpressionResultValue : class, IValue, new();
-        TResult Return();
-        TResult ToResult();
-    }
+    TValue Evaluate<TValue>(
+        Expression<Func<TValue>> lambdaExpression,
+        [CallerMemberName] string name = StringConstants.NaN,
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN) 
+        where TValue : class, IValue, new();
+
+    T ToResult();
 }
