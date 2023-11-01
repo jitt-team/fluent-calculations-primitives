@@ -42,7 +42,7 @@ public abstract class Value : IValue, IOrigin
 
     public abstract IValue MakeOfThisType(MakeValueArgs args);
 
-    public abstract IValue Default { get; }
+    public abstract IValue GetDefault();
 
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValue right,

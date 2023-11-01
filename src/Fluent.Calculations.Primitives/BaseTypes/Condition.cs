@@ -20,7 +20,7 @@ public sealed class Condition : Value,
 
     public bool IsTrue => Primitive > 0;
 
-    public override IValue Default => False();
+    public override IValue GetDefault() => False();
 
     public static bool operator true(Condition condition) => condition.IsTrue;
 

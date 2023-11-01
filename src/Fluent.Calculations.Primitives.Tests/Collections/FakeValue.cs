@@ -17,7 +17,7 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 
         public TagsCollection Tags { get; set; }
 
-        public IValue Default => new FakeValue();
+        public IValue GetDefault() => new FakeValue();
 
         public IValue MakeOfThisType(MakeValueArgs args) => new FakeValue
         {

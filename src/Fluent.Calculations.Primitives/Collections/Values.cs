@@ -45,7 +45,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public IValue MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
 
-    public IValue Default => Empty;
+    public IValue GetDefault() => Empty;
 
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
