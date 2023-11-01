@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using System.Collections;
+using System.Diagnostics;
 
+[DebuggerTypeProxy(typeof(ArgumentsCollectionDebugView))]
 public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
 {
     private readonly List<IValue> items;
