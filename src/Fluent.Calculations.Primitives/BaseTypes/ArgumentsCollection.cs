@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
+[DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(ArgumentsCollectionDebugView))]
 public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
 {
