@@ -1,5 +1,4 @@
-﻿using Fluent.Calculations.DotNetGraph;
-using Fluent.Calculations.Primitives.BaseTypes;
+﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Integration
