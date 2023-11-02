@@ -83,7 +83,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
+        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)

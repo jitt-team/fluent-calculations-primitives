@@ -23,13 +23,14 @@
             Expression.UpdateBody(ComposeExpressionBody(Expression.Arguments.Count));
             Primitive += value.Primitive;
             Name = fieldName;
+            Origin = value.Origin;
         }
 
         protected Values(MakeValueArgs createValueArgs)
         {
             Name = createValueArgs.Name;
             Primitive = createValueArgs.PrimitiveValue;
-            IsParameter = createValueArgs.IsParameter;
+            Origin = createValueArgs.Origin;
             Expression = createValueArgs.Expression;
             Tags = createValueArgs.Tags;
         }
@@ -40,9 +41,7 @@
 
         public decimal Primitive { get; private set; }
 
-        public bool IsParameter { get; protected set; }
-
-        public bool IsOutput { get; private set; }
+        public ValueOriginType Origin { get; protected set; }
 
         public TagsCollection Tags { get; init; }
 
@@ -65,14 +64,14 @@
 
         IValue IOrigin.AsResult()
         {
-            IsOutput = true;
+            Origin = ValueOriginType.Result;
             return this;
         }
 
         void IOrigin.MarkAsParameter(string name)
         {
             Name = name;
-            IsParameter = true;
+            Origin = ValueOriginType.Parameter;
         }
 
         internal static Values<T> SumOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = "")

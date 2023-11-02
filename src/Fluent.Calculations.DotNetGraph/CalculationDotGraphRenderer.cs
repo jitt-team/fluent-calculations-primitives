@@ -37,7 +37,7 @@ public class CalculationDotGraphRenderer
         {
             DotNodeBlock newBlock = CreateBlockByType(value);
 
-            if (value.IsParameter)
+            if (value.Origin == ValueOriginType.Parameter || value.Origin == ValueOriginType.Constant)
                 targerParametersCluster.Add(newBlock.LastNode);
             else
             {

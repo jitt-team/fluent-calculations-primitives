@@ -11,9 +11,7 @@ public abstract class Value : IValue, IOrigin
 
     public decimal Primitive { get; init; }
 
-    public bool IsParameter { get; protected set; }
-
-    public bool IsOutput { get; private set; }
+    public ValueOriginType Origin { get; protected set; }
 
     public TagsCollection Tags { get; init; }
 
@@ -29,7 +27,7 @@ public abstract class Value : IValue, IOrigin
         Name = value.Name;
         Expression = value.Expression;
         Primitive = value.Primitive;
-        IsParameter = value.IsParameter;
+        Origin = value.Origin;
         Tags = value.Tags;
     }
 
@@ -37,7 +35,7 @@ public abstract class Value : IValue, IOrigin
     {
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
-        IsParameter = createValueArgs.IsParameter;
+        Origin = createValueArgs.Origin;
         Expression = createValueArgs.Expression;
         Tags = createValueArgs.Tags;
     }
@@ -57,14 +55,14 @@ public abstract class Value : IValue, IOrigin
 
     IValue IOrigin.AsResult()
     {
-        IsOutput = true;
+        Origin = ValueOriginType.Result;
         return this;
     }
 
     void IOrigin.MarkAsParameter(string name)
     {
         Name = name;
-        IsParameter = true;
+        Origin = ValueOriginType.Parameter;
     }
 
     public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);

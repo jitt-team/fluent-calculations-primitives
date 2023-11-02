@@ -24,7 +24,7 @@ public class Number : Value,
 
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);
 
-    public static Number Zero => new() { IsParameter = true };
+    public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));

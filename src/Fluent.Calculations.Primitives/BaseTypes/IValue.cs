@@ -7,9 +7,7 @@ public interface IValue
 
     decimal Primitive { get; }
 
-    bool IsParameter { get; }
-
-    bool IsOutput { get; }
+    ValueOriginType Origin { get; }
 
     ExpressionNode Expression { get; }
 
