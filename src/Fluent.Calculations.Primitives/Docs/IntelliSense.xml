@@ -67,7 +67,7 @@
 		</method-ToResult>
 		<method-Evaluate>
 			<summary>TBD</summary>
-			<typeparam name="ValueType">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
 			<param name="lambdaExpression">TBD</param>
 			<param name="name">A</param>
 			<param name="lambdaExpressionBody">TBD</param>
