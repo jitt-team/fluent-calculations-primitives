@@ -16,7 +16,8 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
             Number result = calculation.ToResult();
 
-            result.Should().NotBeNull();
+            result.Primitive.Should().Be(3);
+            result.Name.Should().Be("Conditional");
         }
     }
 
