@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
+using System.Diagnostics;
 
+[DebuggerDisplay("Body = {Body}")]
 public class ExpressionNode
 {
     public override string ToString() => $"{Body}";

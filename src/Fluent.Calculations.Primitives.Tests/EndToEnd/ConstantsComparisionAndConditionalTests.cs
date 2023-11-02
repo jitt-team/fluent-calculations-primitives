@@ -33,8 +33,8 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
         Condition Comparison => Evaluate(() => ConstantOne > ConstantTwo);
 
-        Number Condtitional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
+        Number Conditional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
 
-        public override Number Return() => Condtitional;
+        public override Number Return() => Conditional;
     }
 }

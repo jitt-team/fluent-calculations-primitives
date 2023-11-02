@@ -25,6 +25,6 @@ public class Money : Number
 
     public override IValue MakeOfThisType(MakeValueArgs args) => new Money(args, Currency);
 
-    public override IValue Default => new Money(Currency.None);
+    public override IValue GetDefault() => new Money(Currency.None);
 }
 

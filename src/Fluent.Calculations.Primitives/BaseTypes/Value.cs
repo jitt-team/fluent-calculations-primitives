@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using System.Diagnostics;
 
+[DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
 public abstract class Value : IValue, IOrigin
 {
     public string Name { get; private set; }
@@ -42,7 +44,7 @@ public abstract class Value : IValue, IOrigin
 
     public abstract IValue MakeOfThisType(MakeValueArgs args);
 
-    public abstract IValue Default { get; }
+    public abstract IValue GetDefault();
 
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValue right,
@@ -50,6 +52,7 @@ public abstract class Value : IValue, IOrigin
         string operatorName) where ResultType : IValue, new() =>
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
     IValue IOrigin.AsResult()

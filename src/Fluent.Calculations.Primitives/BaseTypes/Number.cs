@@ -77,7 +77,7 @@ public class Number : Value,
 
     public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
 
-    public override IValue Default => Zero;
+    public override IValue GetDefault()=> Zero;
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 

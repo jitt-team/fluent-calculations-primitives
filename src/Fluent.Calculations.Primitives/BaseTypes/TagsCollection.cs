@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using System.Collections;
+using System.Diagnostics;
 
+[DebuggerDisplay("Count = {Count}")]
 public sealed class TagsCollection : IReadOnlyCollection<Tag>
 {
     private readonly List<Tag> items;

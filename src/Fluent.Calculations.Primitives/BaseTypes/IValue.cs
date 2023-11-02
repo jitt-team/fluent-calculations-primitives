@@ -17,7 +17,7 @@ public interface IValue
 
     IValue MakeOfThisType(MakeValueArgs args);
 
-    IValue Default { get; }
+    IValue GetDefault();
 
     string ValueToString();
 }

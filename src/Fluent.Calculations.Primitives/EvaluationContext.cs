@@ -43,7 +43,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual T Return() { return (T)new T().Default; }
+    public virtual T Return() { return (T)new T().GetDefault(); }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
@@ -97,9 +97,9 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     {
         foreach (CapturedParameterMember parameter in parameters)
         {
-            IOrigin paramterOrigin = ((IOrigin)parameter.Value);
-            if (options.AlwaysReadNamesFromExpressions || !paramterOrigin.IsSet)
-                paramterOrigin.MarkAsParameter(parameter.MemberName);
+            IOrigin parameterOrigin = ((IOrigin)parameter.Value);
+            if (options.AlwaysReadNamesFromExpressions || !parameterOrigin.IsSet)
+                parameterOrigin.MarkAsParameter(parameter.MemberName);
         }
     }
 }
