@@ -2,6 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -11,13 +12,14 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Collection), 0.00m)) { }
 
-    private static Values<T> Empty = new Values<T>();
+    private static readonly Values<T> Empty = new();
 
     public void Add(T value, [CallerMemberName] string fieldName = "")
     {
         Expression.Arguments.Add(value);
         Expression.UpdateBody(ComposeExpressionBody(Expression.Arguments.Count));
         Primitive += value.Primitive;
+        Name = fieldName;
     }
 
     protected Values(MakeValueArgs createValueArgs)
@@ -47,6 +49,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public IValue GetDefault() => Empty;
 
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
     public int Count => Expression.Arguments.Count;
@@ -74,7 +77,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
         List<T> collectionElements = valuesFunc.Compile().Invoke().ToList();
         decimal primitiveValue = collectionElements.Sum(value => value.Primitive);
         var expressionNode = new ExpressionNode(ComposeExpressionBody(collectionElements.Count), ExpressionNodeType.Collection).WithArguments(collectionElements);
-        Values<T> numbers = new Values<T>(MakeValueArgs.Compose(fieldName, expressionNode, primitiveValue));
+        Values<T> numbers = new(MakeValueArgs.Compose(fieldName, expressionNode, primitiveValue));
         return numbers;
     }
 

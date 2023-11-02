@@ -1,9 +1,11 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
+[DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
 public sealed class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
