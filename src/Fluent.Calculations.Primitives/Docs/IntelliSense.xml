@@ -66,12 +66,12 @@
 			<returns>Calculation result</returns>
 		</method-ToResult>
 		<method-Evaluate>
-			<summary>TBD</summary>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="lambdaExpression">TBD</param>
-			<param name="name">A</param>
-			<param name="lambdaExpressionBody">TBD</param>
-			<returns>Labda expression result</returns>
+			<summary>Evaluates an expression and captures arguments.</summary>
+			<typeparam name="TValue">Result value type</typeparam>
+			<param name="lambdaExpression">Math or logic expression</param>
+			<param name="name">Result name (captured by the compiler by default)</param>
+			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
+			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</method-Evaluate>
 	</members>
 	<members name="Value">
