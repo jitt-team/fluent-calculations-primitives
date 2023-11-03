@@ -1,5 +1,8 @@
-﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+﻿using System.Diagnostics;
 
+namespace Fluent.Calculations.Primitives.BaseTypes;
+
+[DebuggerDisplay("{Name}")]
 public sealed class Tag
 {
     public required string Name { get; init; }

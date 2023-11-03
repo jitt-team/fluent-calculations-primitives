@@ -20,6 +20,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <Version>1.0.16-alpha</Version>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,4 +51,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 </Project>

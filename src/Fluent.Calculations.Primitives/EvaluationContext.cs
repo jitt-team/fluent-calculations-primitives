@@ -43,7 +43,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual T Return() { return (T)new T().Default; }
+    public virtual T Return() { return (T)new T().GetDefault(); }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
@@ -83,7 +83,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
 
         expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive));
+        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }
 
     private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
@@ -97,9 +97,9 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     {
         foreach (CapturedParameterMember parameter in parameters)
         {
-            IOrigin paramterOrigin = ((IOrigin)parameter.Value);
-            if (options.AlwaysReadNamesFromExpressions || !paramterOrigin.IsSet)
-                paramterOrigin.MarkAsParameter(parameter.MemberName);
+            IOrigin parameterOrigin = ((IOrigin)parameter.Value);
+            if (options.AlwaysReadNamesFromExpressions || !parameterOrigin.IsSet)
+                parameterOrigin.MarkAsParameter(parameter.MemberName);
         }
     }
 }

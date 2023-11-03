@@ -66,21 +66,21 @@ namespace Fluent.Calculations.DotNetGraph
             return node;
         }
 
-        private string ShapyByValueType(IValue value)
+        private static string ShapyByValueType(IValue value)
         {
-            if (value.IsOutput)
+            if (value.Origin == ValueOriginType.Result)
                 return "ellipse";
 
-            if (value.IsParameter)
+            if (value.Origin == ValueOriginType.Parameter)
                 return "parallelogram";
 
             return "Rectangle";
         }
 
-        private string ColorByValueType(IValue value) => value.IsOutput ?
+        private static string ColorByValueType(IValue value) => value.Origin == ValueOriginType.Result ?
                 "#7ffac2" : "skyblue";
 
-        private string ToExpressionNodeHtml(IValue value)
+        private static string ToExpressionNodeHtml(IValue value)
         {
             return $@"<table border=""0"">
                     <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
@@ -88,14 +88,14 @@ namespace Fluent.Calculations.DotNetGraph
                 </table>";
         }
 
-        private string ToConstantNodeHtml(IValue value)
+        private static string ToConstantNodeHtml(IValue value)
         {
             return $@"<table border=""0"">
                     <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
                     <tr><td align=""center"">{value.ValueToString()}</td></tr>
                 </table>";
         }
-        private string ToValueNodeHtml(IValue value)
+        private static string ToValueNodeHtml(IValue value)
         {
             return $@"<table border=""0"">
                     <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
@@ -104,7 +104,7 @@ namespace Fluent.Calculations.DotNetGraph
         }
 
 
-        string Html(string value) => HttpUtility.HtmlEncode(value);
+        private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
         public DotEdge CreateSolidEdge(DotNode firstNode, DotNode lastNode) =>
             new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2);

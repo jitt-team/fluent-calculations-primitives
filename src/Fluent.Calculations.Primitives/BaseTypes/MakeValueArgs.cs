@@ -11,19 +11,22 @@ public class MakeValueArgs
 
     public decimal PrimitiveValue { get; private set; }
 
-    public bool IsParameter { get; private set; }
+    public ValueOriginType Origin { get; private set; }
 
     public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
 
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
     internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue) =>
-        new MakeValueArgs
+        Compose(name, expression, primitiveValue, ValueOriginType.Constant);
+
+    internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue, ValueOriginType origin) =>
+        new()
         {
             Name = name,
             Expression = expression,
             PrimitiveValue = primitiveValue,
-            IsParameter = false
+            Origin = origin
         };
 
     internal static object Compose(string fieldName, ExpressionNode expressionNode, object primitiveValue)

@@ -24,7 +24,7 @@ public class Number : Value,
 
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);
 
-    public static Number Zero => new() { IsParameter = true };
+    public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
@@ -77,7 +77,7 @@ public class Number : Value,
 
     public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
 
-    public override IValue Default => Zero;
+    public override IValue GetDefault()=> Zero;
 
     public override bool Equals(object? obj) => Equals(obj as IValue);
 

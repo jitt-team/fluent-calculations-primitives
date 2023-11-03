@@ -16,7 +16,8 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
             Number result = calculation.ToResult();
 
-            result.Should().NotBeNull();
+            result.Primitive.Should().Be(3);
+            result.Name.Should().Be("Conditional");
         }
     }
 
@@ -33,8 +34,8 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
 
         Condition Comparison => Evaluate(() => ConstantOne > ConstantTwo);
 
-        Number Condtitional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
+        Number Conditional => Evaluate(() => Comparison ? ConstantOne : ConstantTwo);
 
-        public override Number Return() => Condtitional;
+        public override Number Return() => Conditional;
     }
 }
