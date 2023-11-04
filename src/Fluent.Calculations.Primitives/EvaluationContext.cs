@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
 public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValue, new()
 {
     private readonly EvaluationOptions options;
@@ -14,14 +14,14 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private Func<EvaluationContext<T>, T>? calculationFunc;
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
     public EvaluationContext() : this(EvaluationOptions.Default) { }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
     public EvaluationContext(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
     public EvaluationContext(Func<EvaluationContext<T>, T> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
@@ -32,7 +32,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         this.valuesCache = valuesCache;
     }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public T ToResult()
     {
         T result = calculationFunc != null ?
@@ -42,10 +42,10 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         return (T)((IOrigin)result).AsResult();
     }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual T Return() { return (T)new T().GetDefault(); }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
         Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,

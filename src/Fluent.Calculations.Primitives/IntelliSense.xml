@@ -23,11 +23,11 @@
 						<description>
 							<para>See below a class inheriting from EvaluationContext<![CDATA[<T>]]>, where T is a result class type.</para>
 							<code>
-	public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
-	{
-		public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-		public override Number Return() => Number.Of(0);
-	}
+public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
+{
+	public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+	public override Number Return() => Number.Of(0);
+}
 							</code>
 						</description>
 					</item>
@@ -76,6 +76,90 @@
 	</members>
 	<members name="Value">
 		<class>
+			<summary>TBD</summary>
 		</class>
+		<prop-name>
+			<summary>TBD</summary>
+		</prop-name>
+		<prop-expression>
+			<summary>TBD</summary>
+		</prop-expression>
+		<prop-primitive>
+			<summary>TBD</summary>
+		</prop-primitive>
+		<prop-origin>
+			<summary>TBD</summary>
+		</prop-origin>
+		<prop-tags>
+			<summary>TBD</summary>
+		</prop-tags>
+		<ctor-value>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+		</ctor-value>
+		<ctor-args>
+			<summary>
+				TBD
+			</summary>
+			<param name="createValueArgs">TBD</param>
+		</ctor-args>
+		<method-make>
+			<summary>
+				TBD
+			</summary>
+			<param name="args">TBD</param>
+			<returns></returns>
+		</method-make>
+		<method-getdefault>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</method-getdefault>
+		<method-handlebinaryexpression>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="ResultType">TBD</typeparam>
+			<typeparam name="ResultPrimitiveType">TBD</typeparam>
+			<param name="right">TBD</param>
+			<param name="expressionFunc">TBD</param>
+			<param name="operatorName">TBD</param>
+			<returns>TBD</returns>
+		</method-handlebinaryexpression>
+		<method-equals-value>
+			 <summary>
+				 TBD
+			</summary>
+			 <param name="value">TBD</param>
+			 <returns>TBD</returns>
+		</method-equals-value>
+		<method-equals-object>
+			<summary>
+				TBD
+			</summary>
+			<param name="obj">TBD</param>
+			<returns>TBD</returns>
+		</method-equals-object>
+		<method-gethashcode>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</method-gethashcode>
+		<method-tostring>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</method-tostring>
+		<method-valuetostring>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</method-valuetostring>
 	</members>
 </docs>
