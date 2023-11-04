@@ -14,8 +14,8 @@
 						<term>Calculation</term>
 						<description>
 							<para></para>
-							Calculation is a logical compostion of lambda expressions implement operations with input parameters or <br/>
-							of types derived from <see cref="Value"/> or implementing <see cref="IValue"/> interface that ouputs single value as a result.
+							Class inheriting from EvaluationContext is logical unit to compute desired result.  It will containt lambda expressions,<br/>
+							input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/>.
 						</description>
 					</item>
 					<item>
@@ -66,7 +66,7 @@ public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
 			<returns>Calculation result</returns>
 		</method-ToResult>
 		<method-Evaluate>
-			<summary>Evaluates an expression and captures arguments.</summary>
+			<summary>Evaluates an expression and captures it's arguments.</summary>
 			<typeparam name="TValue">Result value type</typeparam>
 			<param name="lambdaExpression">Math or logic expression</param>
 			<param name="name">Result name (captured by the compiler by default)</param>
@@ -76,58 +76,58 @@ public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
 	</members>
 	<members name="Value">
 		<class>
-			<summary>TBD</summary>
+			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
 		</class>
 		<prop-name>
-			<summary>TBD</summary>
+			<summary>Name of the variable</summary>
 		</prop-name>
 		<prop-expression>
-			<summary>TBD</summary>
+			<summary>Expression that was used to calculate or define the value</summary>
 		</prop-expression>
 		<prop-primitive>
-			<summary>TBD</summary>
+			<summary>.NET primitive representation of the value</summary>
 		</prop-primitive>
 		<prop-origin>
-			<summary>TBD</summary>
+			<summary>Origin type of the value</summary>
 		</prop-origin>
 		<prop-tags>
-			<summary>TBD</summary>
+			<summary>Custom tags associated with the value</summary>
 		</prop-tags>
 		<ctor-value>
 			<summary>
-				TBD
+				Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
 			</summary>
-			<param name="value">TBD</param>
+			<param name="value">Value to copy</param>
 		</ctor-value>
 		<ctor-args>
 			<summary>
-				TBD
+				Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
 			</summary>
-			<param name="createValueArgs">TBD</param>
+			<param name="createValueArgs">Arguments to create a new value</param>
 		</ctor-args>
 		<method-make>
 			<summary>
-				TBD
+				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
 			</summary>
-			<param name="args">TBD</param>
+			<param name="args">Arguments to create a new value</param>
 			<returns></returns>
 		</method-make>
 		<method-getdefault>
 			<summary>
-				TBD
+				Initializes a new instance with default values, equivalent to zero/null value.
 			</summary>
-			<returns>TBD</returns>
+			<returns>Instance of zero value</returns>
 		</method-getdefault>
 		<method-handlebinaryexpression>
 			<summary>
-				TBD
+				Handles math and comparison operations of underlying primitve values in derived types.
 			</summary>
-			<typeparam name="ResultType">TBD</typeparam>
-			<typeparam name="ResultPrimitiveType">TBD</typeparam>
-			<param name="right">TBD</param>
-			<param name="expressionFunc">TBD</param>
-			<param name="operatorName">TBD</param>
-			<returns>TBD</returns>
+			<typeparam name="ResultType">Operation result type</typeparam>
+			<typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
+			<param name="right">Right side value of operatoin</param>
+			<param name="expressionFunc">Expression representing operation in derived type</param>
+			<param name="operatorName">Operation name (ex. Add, Substract, LessThan)</param>
+			<returns>Result value of defined type containg input values as arguments</returns>
 		</method-handlebinaryexpression>
 		<method-equals-value>
 			 <summary>

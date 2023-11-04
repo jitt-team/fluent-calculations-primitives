@@ -56,7 +56,7 @@ public abstract class Value : IValue, IOrigin
 
     /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-handlebinaryexpression/*' />
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
-        IValue right,
+        IValue right, 
         Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValue, new() =>
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
