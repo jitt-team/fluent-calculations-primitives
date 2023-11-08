@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - 81-setup-docusaurus-github-pages-buildpublish-workflow
     paths:
       - '.github/workflows/docusaurus.yml'
       - 'docusaurus/site/**'
