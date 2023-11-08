@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[5270],{9518:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/fluent-calculations-primitives/blog/tags/docusaurus","allTagsPath":"/fluent-calculations-primitives/blog/tags","count":4,"unlisted":false}')}}]);

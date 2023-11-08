@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[8519],{7050:l=>{l.exports=JSON.parse('{"label":"hello","permalink":"/fluent-calculations-primitives/blog/tags/hello","allTagsPath":"/fluent-calculations-primitives/blog/tags","count":2,"unlisted":false}')}}]);
