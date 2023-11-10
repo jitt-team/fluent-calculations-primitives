@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Docusaurus Github Pages v2
+name: Docusaurus > GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
