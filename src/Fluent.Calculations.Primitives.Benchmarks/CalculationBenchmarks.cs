@@ -16,38 +16,32 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
         }
 
         [Benchmark]
-        public void Calculate_UsingContext()
-        {
-            Number result = additionContext.ToResult();
-        }
+        public void Calculate_UsingContext() => additionContext.ToResult();
 
         [Benchmark]
-        public void Calculate_Native()
-        {
-            decimal result = additionNative.Return();
-        }
+        public void Calculate_Native() => additionNative.Return();
     }
 
     public class BasicAdditionWithContext : EvaluationContext<Number>
     {
         public BasicAdditionWithContext() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = false }) { }
 
-        public Number
+        private Number
             ValueOne = Number.Of(10),
             ValueTwo = Number.Of(20);
 
-        Number Result => Evaluate(() => ValueOne + ValueTwo);
+        private Number Result => Evaluate(() => ValueOne + ValueTwo);
 
         public override Number Return() => Result;
     }
 
     public class BasicAdditionNative
     {
-        public decimal
+        private decimal
             ValueOne = 10,
             ValueTwo = 20;
 
-        decimal Result => ValueOne + ValueTwo;
+        private decimal Result => ValueOne + ValueTwo;
 
         public decimal Return() => Result;
     }
