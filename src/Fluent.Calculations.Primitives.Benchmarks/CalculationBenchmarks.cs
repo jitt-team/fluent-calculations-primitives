@@ -40,9 +40,9 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
         public Condition ConstantOneGreaterThanTwo => Evaluate(() => ConstantTwo > ConstantThree);
         public Number ConstantOneTimesTwo => Evaluate(() => ConstantOne * ConstantTwo);
         public Number WhenTrueThenValue => Evaluate(() => ConstantOneGreaterThanTwo ? ConstantOneTimesTwo : Number.Zero);
-        public Number ConstantFourPlusWhenTrue => Evaluate(() => ConstantFour + WhenTrueThenValue);
-        public Number ConstantFourPlusWhenTrue2 => Evaluate(() => ConstantFourPlusWhenTrue + WhenTrueThenValue);
-        public Number ConstantFourPlusWhenTrue3 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue2);
+        public Number ConstantFourPlusWhenTrue => Evaluate(() => ConstantFour + WhenTrueThenValue * ConstantOne);
+        public Number ConstantFourPlusWhenTrue2 => Evaluate(() => ConstantFourPlusWhenTrue + WhenTrueThenValue / ConstantThree);
+        public Number ConstantFourPlusWhenTrue3 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue2 * ConstantTwo / ConstantFourPlusWhenTrue);
         public Number ConstantFourPlusWhenTrue4 => Evaluate(() => ConstantFourPlusWhenTrue3 + WhenTrueThenValue);
         public Number ConstantFourPlusWhenTrue5 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue4);
         public override Number Return() => ConstantFourPlusWhenTrue5;
