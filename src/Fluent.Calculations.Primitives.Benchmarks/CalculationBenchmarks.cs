@@ -24,7 +24,7 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
         [Benchmark]
         public void Calculate_UsingContext() => additionContext.ToResult();
 
-        // [Benchmark]
+        [Benchmark]
         public void Calculate_Native() => additionNative.Return();
     }
 
