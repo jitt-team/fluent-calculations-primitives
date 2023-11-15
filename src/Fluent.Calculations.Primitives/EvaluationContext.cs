@@ -35,6 +35,8 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public T ToResult()
     {
+        valuesCache.Clear();
+
         T result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
