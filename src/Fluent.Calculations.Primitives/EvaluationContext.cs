@@ -35,6 +35,8 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public T ToResult()
     {
+        valuesCache.Clear();
+
         T result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
@@ -71,8 +73,6 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     {
         TValue result = lambdaExpression.Compile().Invoke();
 
-        ExpressionNode expressionNode;
-
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
@@ -81,7 +81,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             expressionArguments = parameterValues.Concat(evaluationValues);
 
-        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
+        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
         return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }
@@ -92,7 +92,6 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
         IValue GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
-
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
         foreach (CapturedParameterMember parameter in parameters)

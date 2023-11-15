@@ -5,7 +5,7 @@ internal class ValuesCache : IValuesCache
 {
     private readonly IDictionary<string, IValue> cache;
 
-    public ValuesCache() : this(new Dictionary<string, IValue>()) { }
+    public ValuesCache() : this(new Dictionary<string, IValue>(100)) { }
 
     public ValuesCache(IDictionary<string, IValue> cache) => this.cache = cache;
 
@@ -22,4 +22,6 @@ internal class ValuesCache : IValuesCache
     public bool ContainsName(string name) => cache.Values.Any(value => value.Name == name);
 
     public IValue GetByName(string name) => cache.Values.Single(value => value.Name == name);
+
+    public void Clear() => cache.Clear();
 }
