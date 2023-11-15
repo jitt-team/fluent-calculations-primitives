@@ -71,8 +71,6 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     {
         TValue result = lambdaExpression.Compile().Invoke();
 
-        ExpressionNode expressionNode;
-
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
@@ -81,7 +79,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             expressionArguments = parameterValues.Concat(evaluationValues);
 
-        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
+        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
         return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }

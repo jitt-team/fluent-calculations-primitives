@@ -11,28 +11,41 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
 
         public CalculationBenchmarks()
         {
-            additionContext = new BasicAdditionWithContext();
+            additionContext = new BasicAdditionWithContext
+            {
+                ConstantOne = Number.Of(2),
+                ConstantTwo = Number.Of(10),
+                ConstantThree = Number.Of(5),
+                ConstantFour = Number.Of(30)
+            };
             additionNative = new BasicAdditionNative();
         }
 
         [Benchmark]
         public void Calculate_UsingContext() => additionContext.ToResult();
 
-        [Benchmark]
+        // [Benchmark]
         public void Calculate_Native() => additionNative.Return();
     }
 
     public class BasicAdditionWithContext : EvaluationContext<Number>
     {
         public BasicAdditionWithContext() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = false }) { }
+        public Number
+            ConstantOne = Number.Zero,
+            ConstantTwo = Number.Zero,
+            ConstantThree = Number.Zero,
+            ConstantFour = Number.Zero;
 
-        private Number
-            ValueOne = Number.Of(10),
-            ValueTwo = Number.Of(20);
-
-        private Number Result => Evaluate(() => ValueOne + ValueTwo);
-
-        public override Number Return() => Result;
+        public Condition ConstantOneGreaterThanTwo => Evaluate(() => ConstantTwo > ConstantThree);
+        public Number ConstantOneTimesTwo => Evaluate(() => ConstantOne * ConstantTwo);
+        public Number WhenTrueThenValue => Evaluate(() => ConstantOneGreaterThanTwo ? ConstantOneTimesTwo : Number.Zero);
+        public Number ConstantFourPlusWhenTrue => Evaluate(() => ConstantFour + WhenTrueThenValue);
+        public Number ConstantFourPlusWhenTrue2 => Evaluate(() => ConstantFourPlusWhenTrue + WhenTrueThenValue);
+        public Number ConstantFourPlusWhenTrue3 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue2);
+        public Number ConstantFourPlusWhenTrue4 => Evaluate(() => ConstantFourPlusWhenTrue3 + WhenTrueThenValue);
+        public Number ConstantFourPlusWhenTrue5 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue4);
+        public override Number Return() => ConstantFourPlusWhenTrue5;
     }
 
     public class BasicAdditionNative
