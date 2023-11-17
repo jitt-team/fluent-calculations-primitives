@@ -3,6 +3,7 @@ using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Graphviz;
 using Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
+using System.Text;
 
 // Run the calculation (See implementation below)
 IValue resultValue = new DemoCalculation().ToResult();
@@ -25,12 +26,12 @@ public class DemoCalculation : EvaluationContext<Number>
 {
     public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
-    private Number
+    Number
         ValueOne = Number.Of(30),
         ValueTwo = Number.Of(20),
         ValueThree = Number.Of(2);
 
-    public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
+    Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
     Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne - ValueTwo : ValueOne + ValueTwo);
 
