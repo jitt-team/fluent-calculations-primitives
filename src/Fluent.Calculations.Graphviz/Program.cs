@@ -26,7 +26,7 @@ namespace Fluent.Calculations.Graphviz
     {
         public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
-        private Number
+        private readonly Number
             ValueOne = Number.Of(30),
             ValueTwo = Number.Of(20),
             ValueThree = Number.Of(2);
