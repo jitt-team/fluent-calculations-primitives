@@ -16,4 +16,6 @@ public interface IValuesCache
     IValue GetByName(string name);
 
     bool TryGetValue(string key, out IValue? cachedValue);
+
+    void Clear();
 }
