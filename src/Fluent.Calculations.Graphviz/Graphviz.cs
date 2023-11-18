@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 
 namespace Fluent.Calculations.Graphviz
 {
@@ -6,11 +7,16 @@ namespace Fluent.Calculations.Graphviz
     {
         public void ConvertToPNG(string dotFilePath)
         {
+            string? applicationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            if (applicationPath == null)
+                return;
+
             Process proc = new();
-            proc.StartInfo.FileName = @"graphviz\bin\dot.exe";
+            proc.StartInfo.FileName = Path.Combine(applicationPath, @"graphviz\bin\dot.exe");
             proc.StartInfo.Arguments = $"-T png -O {dotFilePath}";
             proc.Start();
-
+            proc.WaitForExit();
         }
     }
 }

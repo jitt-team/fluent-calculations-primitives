@@ -18,23 +18,25 @@ await new DotGraphWriterFile().SaveToDot(dotGraph, dotFilePath);
 new Graphviz().ConvertToPNG(dotFilePath);
 
 Console.WriteLine($@"Result file name ""{dotFilePath}.png""");
-Console.ReadLine();
 
 // Demo calculation
-public class DemoCalculation : EvaluationContext<Number>
+namespace Fluent.Calculations.Graphviz
 {
-    public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+    public class DemoCalculation : EvaluationContext<Number>
+    {
+        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
-    private Number
-        ValueOne = Number.Of(30),
-        ValueTwo = Number.Of(20),
-        ValueThree = Number.Of(2);
+        private Number
+            ValueOne = Number.Of(30),
+            ValueTwo = Number.Of(20),
+            ValueThree = Number.Of(2);
 
-    public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
+        public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-    Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne - ValueTwo : ValueOne + ValueTwo);
+        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne - ValueTwo : ValueOne + ValueTwo);
 
-    Number FinalResult => Evaluate(() => ResultOne * ValueThree);
+        Number FinalResult => Evaluate(() => ResultOne * ValueThree);
 
-    public override Number Return() => FinalResult;
+        public override Number Return() => FinalResult;
+    }
 }
