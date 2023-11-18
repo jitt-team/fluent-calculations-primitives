@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fluent.Calculations.DotNetGraph\Fluent.Calculations.DotNetGraph.csproj" />
-    <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
+    <Compile Remove="Examples\**" />
+    <EmbeddedResource Remove="Examples\**" />
+    <None Remove="Examples\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Examples\" />
+    <ProjectReference Include="..\Fluent.Calculations.DotNetGraph\Fluent.Calculations.DotNetGraph.csproj" />
+    <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
   </ItemGroup>
 
   <ItemGroup>
