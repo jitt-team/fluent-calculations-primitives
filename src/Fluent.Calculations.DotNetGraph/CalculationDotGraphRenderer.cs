@@ -79,11 +79,11 @@ public class CalculationDotGraphRenderer
     private DotNodeBlock CreateExpressionBlock(IValue value)
     {
         DotNode
-            firstNode = builder.CreateExpressionNode(value),
-            lastNode = builder.CreateValueNode(value);
+            expressionNode = builder.CreateExpressionNode(value),
+            resultNode = builder.CreateValueNode(value);
 
-        DotEdge connectorEdge = builder.CreateSolidEdge(firstNode, lastNode);
+        DotEdge connectorEdge = builder.CreateSolidEdge(expressionNode, resultNode);
 
-        return new DotNodeBlock(firstNode, lastNode, connectorEdge);
+        return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
     }
 }

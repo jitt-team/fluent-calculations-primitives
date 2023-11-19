@@ -56,7 +56,7 @@ namespace Fluent.Calculations.DotNetGraph
         {
             var node = new DotNode()
                   .WithIdentifier(Html($"{value.Name}_expression"))
-                  .WithShape("Rectangle")
+                  .WithShape("rectangle")
                   .WithFillColor("skyblue")
                   .WithStyle(DotNodeStyle.Filled)
                   .WithLabel(ToExpressionNodeHtml(value), isHtml: true);
