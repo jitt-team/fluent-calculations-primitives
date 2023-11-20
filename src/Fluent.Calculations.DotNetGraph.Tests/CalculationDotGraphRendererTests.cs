@@ -18,7 +18,7 @@ public class CalculationDotGraphRendererTests
 
         Number result = calculation.ToResult();
 
-        DotGraph graph = new CalculationDotGraphRenderer().Render(result);
+        DotGraph graph = new DotGraphValueBuilder().Build(result);
 
         graph.Elements.Should().HaveCount(6);
     }

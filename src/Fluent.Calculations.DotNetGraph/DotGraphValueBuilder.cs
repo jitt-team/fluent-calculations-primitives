@@ -1,19 +1,20 @@
 ﻿using DotNetGraph.Core;
 using DotNetGraph.Extensions;
+using Fluent.Calculations.DotNetGraph.Shared;
+using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
-
 namespace Fluent.Calculations.DotNetGraph;
 
-public class CalculationDotGraphRenderer
+public class DotGraphValueBuilder
 {
     private readonly IDotNetGraphBuilder builder;
 
-    public CalculationDotGraphRenderer(IDotNetGraphBuilder builder) => this.builder = builder;
+    public DotGraphValueBuilder(IDotNetGraphBuilder builder) => this.builder = builder;
 
-    public CalculationDotGraphRenderer() : this(new DotNetGraphBuilderDefault()) { }
+    public DotGraphValueBuilder() : this(new DotNetGraphBuilderStyle1()) { }
 
-    public DotGraph Render(IValue value)
+    public DotGraph Build(IValue value)
     {
         DotGraph graph = builder.CreateDirectedGraph("FluentCalculations");
         DotSubgraph parametersCluster = builder.CreateInputParametersCluster();

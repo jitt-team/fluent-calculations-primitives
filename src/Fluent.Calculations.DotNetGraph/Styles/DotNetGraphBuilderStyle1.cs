@@ -4,9 +4,9 @@ using DotNetGraph.Extensions;
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Web;
 
-namespace Fluent.Calculations.DotNetGraph
+namespace Fluent.Calculations.DotNetGraph.Styles
 {
-    public class DotNetGraphBuilderDefault : IDotNetGraphBuilder
+    public class DotNetGraphBuilderStyle1 : IDotNetGraphBuilder
     {
         public DotGraph CreateDirectedGraph(string identifier) =>
             new DotGraph().WithIdentifier(identifier).Directed();
@@ -103,7 +103,6 @@ namespace Fluent.Calculations.DotNetGraph
                 </table>";
         }
 
-
         private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
         public DotEdge CreateSolidEdge(DotNode firstNode, DotNode lastNode) =>
@@ -113,5 +112,24 @@ namespace Fluent.Calculations.DotNetGraph
             new DotEdge().From(lastNode).To(firstNode)
                     .WithStyle(DotEdgeStyle.Dashed)
                     .WithArrowHead(DotEdgeArrowType.Open);
+
+        private string ComposeHtmlLabel(string name, string expression, string value) => $@"
+            <table border=""0"" cellborder=""0"" cellpadding=""3"" bgcolor=""white"">
+                <tr>
+                    <td bgcolor=""black"" align=""center"" colspan=""2""><font color=""white"">{name}</font></td>
+                </tr>
+                <tr>
+                    <td align=""left"" port=""r1"">{expression}</td>
+                    <td bgcolor=""grey"" align=""center"">{value}</td>
+                </tr>
+            </table>";
     }
 }
+
+/*
+    style = "filled"
+    penwidth = 1 
+    fillcolor = "white"
+    fontname = "Courier New"
+    shape = "Mrecord"
+*/

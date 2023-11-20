@@ -2,7 +2,7 @@
 
 namespace Fluent.Calculations.DotNetGraph
 {
-    internal interface IDotGraphWriterFile
+    internal interface IDotGraphToFileWriter
     {
         Task SaveToDot(DotGraph graph, string outputFilePath);
     }

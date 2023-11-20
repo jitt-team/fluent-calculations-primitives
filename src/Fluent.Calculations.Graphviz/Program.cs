@@ -8,11 +8,11 @@ using Fluent.Calculations.Primitives.BaseTypes;
 IValue resultValue = new DemoCalculation().ToResult();
 
 // Convert to graph
-DotGraph dotGraph = new CalculationDotGraphRenderer().Render(resultValue);
+DotGraph dotGraph = new DotGraphValueBuilder().Build(resultValue);
 
 // Save graph to .dot format
 string dotFilePath = "fluent-calculation-demo.dot";
-await new DotGraphWriterFile().SaveToDot(dotGraph, dotFilePath);
+await new DotGraphToFileWriter().SaveToDot(dotGraph, dotFilePath);
 
 // Convert .dot graph to PNG image using Graphviz tool
 new Graphviz().ConvertToPNG(dotFilePath);
