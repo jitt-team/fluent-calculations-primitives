@@ -54,7 +54,6 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
                 .WithShape("Mrecord")
                 .WithStyle(DotNodeStyle.Filled);
 
-        // node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
         node.SetAttribute("penwidth", new DotAttribute(@"""1"""));
         node.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
 
@@ -68,9 +67,6 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
             .WithLabel("INPUT PARAMETERS")
             .WithColor(DotColor.LightGrey)
             .WithStyle("filled, solid");
-
-        // subgraph.SetAttribute("fillcolor", new DotAttribute($@"""#c27ffa"""));
-
         return subgraph;
     }
 
