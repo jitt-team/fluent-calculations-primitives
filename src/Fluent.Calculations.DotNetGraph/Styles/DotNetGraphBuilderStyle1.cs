@@ -1,17 +1,31 @@
 ﻿using DotNetGraph.Attributes;
 using DotNetGraph.Core;
 using DotNetGraph.Extensions;
+using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 using System.Web;
 
 namespace Fluent.Calculations.DotNetGraph.Styles
 {
-    public class DotNetGraphBuilderStyle1 : IDotNetGraphBuilder
+    public class DotNetGraphBuilderStyle1 : IGraphStyle
     {
-        public DotGraph CreateDirectedGraph(string identifier) =>
-            new DotGraph().WithIdentifier(identifier).Directed();
-
-        public DotSubgraph CreateInputParametersCluster()
+        public DotNodeBlock CreateBlock(IValue value)
+        {
+            switch (value.Expression.Type)
+            {
+                case ExpressionNodeType.Lambda:
+                case ExpressionNodeType.BinaryExpression:
+                case ExpressionNodeType.Collection:
+                case ExpressionNodeType.MathExpression:
+                    return CreateExpressionBlock(value);
+                case ExpressionNodeType.None:
+                case ExpressionNodeType.Constant:
+                default:
+                    return CreateValueBlock(value);
+            }
+        }
+        public DotSubgraph CreateParametersCluster()
         {
             DotSubgraph subgraph = new DotSubgraph()
                 .WithIdentifier("cluster_0")
@@ -24,7 +38,26 @@ namespace Fluent.Calculations.DotNetGraph.Styles
             return subgraph;
         }
 
-        public DotNode CreateConsantNode(IValue value)
+        private DotNodeBlock CreateValueBlock(IValue value)
+        {
+            DotNode
+                constantNode = CreateConsantNode(value);
+
+            return new DotNodeBlock(constantNode, isValuePart: true);
+        }
+
+        private DotNodeBlock CreateExpressionBlock(IValue value)
+        {
+            DotNode
+                expressionNode = CreateExpressionNode(value),
+                resultNode = CreateValueNode(value);
+
+            DotEdge connectorEdge = ConnectTwoSubNodes(expressionNode, resultNode);
+
+            return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
+        }
+
+        private DotNode CreateConsantNode(IValue value)
         {
             var node = new DotNode()
                   .WithIdentifier(Html($"{value.Name}_value"))
@@ -38,7 +71,7 @@ namespace Fluent.Calculations.DotNetGraph.Styles
             return node;
         }
 
-        public DotNode CreateValueNode(IValue value)
+        private DotNode CreateValueNode(IValue value)
         {
             var node = new DotNode()
                   .WithIdentifier(Html($"{value.Name}_value"))
@@ -52,7 +85,7 @@ namespace Fluent.Calculations.DotNetGraph.Styles
             return node;
         }
 
-        public DotNode CreateExpressionNode(IValue value)
+        private DotNode CreateExpressionNode(IValue value)
         {
             var node = new DotNode()
                   .WithIdentifier(Html($"{value.Name}_expression"))
@@ -105,31 +138,12 @@ namespace Fluent.Calculations.DotNetGraph.Styles
 
         private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
-        public DotEdge CreateSolidEdge(DotNode firstNode, DotNode lastNode) =>
+        private DotEdge ConnectTwoSubNodes(DotNode firstNode, DotNode lastNode) =>
             new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2);
 
-        public DotEdge CreateDashedEdge(DotNode firstNode, DotNode lastNode) =>
+        public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
             new DotEdge().From(lastNode).To(firstNode)
                     .WithStyle(DotEdgeStyle.Dashed)
                     .WithArrowHead(DotEdgeArrowType.Open);
-
-        private string ComposeHtmlLabel(string name, string expression, string value) => $@"
-            <table border=""0"" cellborder=""0"" cellpadding=""3"" bgcolor=""white"">
-                <tr>
-                    <td bgcolor=""black"" align=""center"" colspan=""2""><font color=""white"">{name}</font></td>
-                </tr>
-                <tr>
-                    <td align=""left"" port=""r1"">{expression}</td>
-                    <td bgcolor=""grey"" align=""center"">{value}</td>
-                </tr>
-            </table>";
     }
 }
-
-/*
-    style = "filled"
-    penwidth = 1 
-    fillcolor = "white"
-    fontname = "Courier New"
-    shape = "Mrecord"
-*/

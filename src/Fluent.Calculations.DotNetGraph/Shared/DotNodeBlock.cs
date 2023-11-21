@@ -1,14 +1,15 @@
 ﻿using DotNetGraph.Core;
+using System.Collections;
 
-namespace Fluent.Calculations.DotNetGraph;
+namespace Fluent.Calculations.DotNetGraph.Shared;
 
-public class DotNodeBlock
+public class DotNodeBlock : IEnumerable<IDotElement>
 {
     public DotNodeBlock(DotNode firstNode, bool isValuePart)
     {
-        this.FirstNode = firstNode;
-        this.LastNode = firstNode;
-        this.ConnectorEdge = null;
+        FirstNode = firstNode;
+        LastNode = firstNode;
+        ConnectorEdge = null;
         IsValuePart = isValuePart;
     }
 
@@ -26,4 +27,18 @@ public class DotNodeBlock
     public DotEdge ConnectorEdge { get; set; }
 
     public DotNode LastNode { get; set; }
+
+    public IEnumerator<IDotElement> GetEnumerator()
+    { 
+        if(FirstNode != null)
+            yield return FirstNode;
+
+        if(ConnectorEdge != null) 
+            yield return ConnectorEdge;
+
+        if(LastNode != null) 
+            yield return LastNode;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

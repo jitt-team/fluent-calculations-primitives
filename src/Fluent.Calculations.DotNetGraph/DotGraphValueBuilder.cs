@@ -3,88 +3,44 @@ using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions;
 namespace Fluent.Calculations.DotNetGraph;
 
 public class DotGraphValueBuilder
 {
-    private readonly IDotNetGraphBuilder builder;
+    private readonly IGraphStyle builder;
 
-    public DotGraphValueBuilder(IDotNetGraphBuilder builder) => this.builder = builder;
+    public DotGraphValueBuilder(IGraphStyle builder) => this.builder = builder;
 
     public DotGraphValueBuilder() : this(new DotNetGraphBuilderStyle1()) { }
 
     public DotGraph Build(IValue value)
     {
-        DotGraph graph = builder.CreateDirectedGraph("FluentCalculations");
-        DotSubgraph parametersCluster = builder.CreateInputParametersCluster();
-        graph.Add(parametersCluster);
-        AddValueToGraph(value, graph, parametersCluster);
-        return graph;
+        DotGraph mainGraph = CreateDirectedGraph("FluentCalculations");
+        DotSubgraph paramsGraph = builder.CreateParametersCluster();
+        mainGraph.Add(paramsGraph);
+
+        AddToGraph(value, mainGraph, paramsGraph);
+
+        return mainGraph;
     }
 
-    private DotNodeBlock AddValueToGraph(IValue value, DotGraph targetGraph, DotSubgraph targerParametersCluster)
-    {
-        DotNodeBlock valueBlock = AddNewBlockByType(value);
+    public DotGraph CreateDirectedGraph(string identifier) =>new DotGraph().WithIdentifier(identifier).Directed();
 
-        foreach (IValue childValue in value.Expression.Arguments)
+    private DotNodeBlock AddToGraph(IValue value, DotGraph mainGraph, DotSubgraph paramsGraph)
+    {
+        DotNodeBlock parentNode = builder.CreateBlock(value);
+        DotBaseGraph graph = IsParameter() ? paramsGraph : mainGraph;
+        graph.AddRange(parentNode);
+
+        foreach (IValue argument in value.Expression.Arguments)
         {
-            DotNodeBlock argumentBlock = AddValueToGraph(childValue, targetGraph, targerParametersCluster);
-            DotEdge edge = builder.CreateDashedEdge(valueBlock.LastNode, argumentBlock.FirstNode);
-            targetGraph.Add(edge);
+            DotNodeBlock child = AddToGraph(argument, mainGraph, paramsGraph);
+            DotEdge edge = builder.ConnectValues(parentNode.LastNode, child.FirstNode);
+            mainGraph.Add(edge);
         }
 
-        DotNodeBlock AddNewBlockByType(IValue value)
-        {
-            DotNodeBlock newBlock = CreateBlockByType(value);
+        return parentNode;
 
-            if (value.Origin == ValueOriginType.Parameter || value.Origin == ValueOriginType.Constant)
-                targerParametersCluster.Add(newBlock.LastNode);
-            else
-            {
-                if (newBlock.IsValuePart)
-                    targetGraph.Add(newBlock.LastNode);
-                else
-                    targetGraph.AddRange(newBlock.FirstNode, newBlock.ConnectorEdge, newBlock.LastNode);
-            }
-
-            return newBlock;
-        }
-
-        return valueBlock;
-    }
-
-    private DotNodeBlock CreateBlockByType(IValue value)
-    {
-        switch (value.Expression.Type)
-        {
-            case ExpressionNodeType.Lambda:
-            case ExpressionNodeType.BinaryExpression:
-            case ExpressionNodeType.Collection:
-            case ExpressionNodeType.MathExpression:
-                return CreateExpressionBlock(value);
-            case ExpressionNodeType.None:
-            case ExpressionNodeType.Constant:
-            default:
-                return CreateValueBlock(value);
-        }
-    }
-
-    private DotNodeBlock CreateValueBlock(IValue value)
-    {
-        DotNode
-            constantNode = builder.CreateConsantNode(value);
-
-        return new DotNodeBlock(constantNode, isValuePart: true);
-    }
-    private DotNodeBlock CreateExpressionBlock(IValue value)
-    {
-        DotNode
-            expressionNode = builder.CreateExpressionNode(value),
-            resultNode = builder.CreateValueNode(value);
-
-        DotEdge connectorEdge = builder.CreateSolidEdge(expressionNode, resultNode);
-
-        return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
+        bool IsParameter() => value.Origin == ValueOriginType.Parameter || value.Origin == ValueOriginType.Constant;
     }
 }
