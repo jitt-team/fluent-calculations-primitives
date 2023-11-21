@@ -1,24 +1,46 @@
-﻿using DotNetGraph.Core;
+﻿using DotNetGraph.Attributes;
+using DotNetGraph.Core;
+using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Expressions;
 
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
 internal class DotNetGraphBuilderStyle2 : IGraphStyle
 {
-    public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode)
-    {
-        throw new NotImplementedException();
-    }
+    public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
+        new DotEdge().From(lastNode).To(firstNode)
+                .WithStyle(DotEdgeStyle.Dashed)
+                .WithArrowHead(DotEdgeArrowType.Open);
 
     public DotNodeBlock CreateBlock(IValue value)
     {
-        throw new NotImplementedException();
+        switch (value.Expression.Type)
+        {
+            case ExpressionNodeType.Lambda:
+            case ExpressionNodeType.BinaryExpression:
+            case ExpressionNodeType.Collection:
+            case ExpressionNodeType.MathExpression:
+                return CreateExpressionBlock(value);
+            case ExpressionNodeType.None:
+            case ExpressionNodeType.Constant:
+            default:
+                return CreateValueBlock(value);
+        }
     }
 
     public DotSubgraph CreateParametersCluster()
     {
-        throw new NotImplementedException();
+        DotSubgraph subgraph = new DotSubgraph()
+            .WithIdentifier("cluster_0")
+            .WithLabel("INPUT PARAMETERS")
+            .WithColor(DotColor.Black)
+            .WithStyle("filled, solid");
+
+        // subgraph.SetAttribute("fillcolor", new DotAttribute($@"""#c27ffa"""));
+
+        return subgraph;
     }
 
     /*
