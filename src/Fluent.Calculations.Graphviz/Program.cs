@@ -33,7 +33,7 @@ namespace Fluent.Calculations.Graphviz
 
         public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne - ValueTwo : ValueOne + ValueTwo);
+        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne  : ValueTwo);
 
         Number FinalResult => Evaluate(() => ResultOne * ValueThree);
 
