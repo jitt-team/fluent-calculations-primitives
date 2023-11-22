@@ -22,11 +22,11 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
 
         return subgraph;
     }
+
     public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
         new DotEdge().From(lastNode).To(firstNode)
                 .WithStyle(DotEdgeStyle.Solid)
                 .WithArrowHead(DotEdgeArrowType.Normal);
-
 
     public DotNodeBlock CreateBlock(IValue value) => CreateValueBlock(value);
 
