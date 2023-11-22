@@ -1,5 +1,6 @@
 ﻿using DotNetGraph.Core;
 using Fluent.Calculations.DotNetGraph;
+using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
 
@@ -18,7 +19,7 @@ public class CalculationDotGraphRendererTests
 
         Number result = calculation.ToResult();
 
-        DotGraph graph = new DotGraphValueBuilder().Build(result);
+        DotGraph graph = new DotGraphValueBuilder(new GraphStyleColorful()).Build(result);
 
         graph.Elements.Should().HaveCount(6);
     }

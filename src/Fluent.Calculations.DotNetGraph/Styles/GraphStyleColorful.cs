@@ -3,73 +3,145 @@ using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
-using System.Text.RegularExpressions;
+using Fluent.Calculations.Primitives.Expressions;
 using System.Web;
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
-internal class GraphStyleColorful : IGraphStyle
+public class GraphStyleColorful : IGraphStyle
 {
+    public DotNodeBlock CreateBlock(IValue value)
+    {
+        switch (value.Expression.Type)
+        {
+            case ExpressionNodeType.Lambda:
+            case ExpressionNodeType.BinaryExpression:
+            case ExpressionNodeType.Collection:
+            case ExpressionNodeType.MathExpression:
+                return CreateExpressionBlock(value);
+            case ExpressionNodeType.None:
+            case ExpressionNodeType.Constant:
+            default:
+                return CreateValueBlock(value);
+        }
+    }
     public DotSubgraph CreateParametersCluster()
     {
         DotSubgraph subgraph = new DotSubgraph()
             .WithIdentifier("cluster_0")
-            .WithLabel("Parameters")
-            .WithColor(DotColor.LightGrey)
+            .WithLabel("INPUT PARAMETERS")
+            .WithColor(DotColor.Black)
             .WithStyle("filled, solid");
 
-        subgraph.SetAttribute("penwidth", new DotAttribute(@"""1"""));
-        subgraph.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
+        subgraph.SetAttribute("fillcolor", new DotAttribute($@"""#c27ffa"""));
 
         return subgraph;
     }
 
-    public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
-        new DotEdge().From(lastNode).To(firstNode)
-                .WithStyle(DotEdgeStyle.Solid)
-                .WithArrowHead(DotEdgeArrowType.Normal);
-
-    public DotNodeBlock CreateBlock(IValue value) => CreateValueBlock(value);
-
     private DotNodeBlock CreateValueBlock(IValue value)
     {
-        DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
-        return new DotNodeBlock(node, true);
+        DotNode
+            constantNode = CreateConsantNode(value);
+
+        return new DotNodeBlock(constantNode, isValuePart: true);
     }
 
-    private DotNode CreateBaseNodeStyle(string name)
+    private DotNodeBlock CreateExpressionBlock(IValue value)
     {
-        DotNode node = new DotNode()
-                .WithIdentifier(Html($"{name}_value"))
-                .WithPenWidth(1)
-                .WithFillColor(DotColor.White)
-                .WithShape("Mrecord")
-                .WithStyle(DotNodeStyle.Filled);
+        DotNode
+            expressionNode = CreateExpressionNode(value),
+            resultNode = CreateValueNode(value);
 
-        node.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
+        DotEdge connectorEdge = ConnectTwoSubNodes(expressionNode, resultNode);
+
+        return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
+    }
+
+    private DotNode CreateConsantNode(IValue value)
+    {
+        var node = new DotNode()
+              .WithIdentifier(Html($"{value.Name}_value"))
+              .WithShape(ShapyByValueType(value))
+              .WithFillColor(ColorByValueType(value))
+              .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToConstantNodeHtml(value), isHtml: true);
+
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
 
         return node;
     }
 
-    private string ComposeHtmlLabel(IValue value) => $@"
-            <table border=""0"" cellborder=""0"" cellpadding=""3"" bgcolor=""white"">
-                <tr>
-                    <td bgcolor=""black"" align=""center"" colspan=""2""><font color=""white"">{Humanize(value.Name)}</font></td>
-                </tr>
-                <tr>
-                    {ValueRow(value)}
-                </tr>
-            </table>";
+    private DotNode CreateValueNode(IValue value)
+    {
+        var node = new DotNode()
+              .WithIdentifier(Html($"{value.Name}_value"))
+              .WithShape(DotNodeShape.Ellipse)
+              .WithFillColor(ColorByValueType(value))
+              .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToValueNodeHtml(value), isHtml: true);
 
-    private string ValueRow(IValue value) => IsParameter(value) ?
-            $@"
-                <td align=""center"" port=""r1"">{Html(value.Expression.Body)}</td>" :
-            $@"
-                <td align=""left"" port=""r1"">{Html(Humanize(value.Expression.Body))} : </td>
-                <td bgcolor=""grey"" align=""center"">{value.ValueToString()}</td>";
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
 
-    private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
+        return node;
+    }
+
+    private DotNode CreateExpressionNode(IValue value)
+    {
+        var node = new DotNode()
+              .WithIdentifier(Html($"{value.Name}_expression"))
+              .WithShape("rectangle")
+              .WithFillColor("skyblue")
+              .WithStyle(DotNodeStyle.Filled)
+              .WithLabel(ToExpressionNodeHtml(value), isHtml: true);
+
+        node.SetAttribute("margin", new DotAttribute(@"""0.07"""));
+
+        return node;
+    }
+
+    private static string ShapyByValueType(IValue value)
+    {
+        if (value.Origin == ValueOriginType.Result)
+            return "ellipse";
+
+        if (value.Origin == ValueOriginType.Parameter)
+            return "parallelogram";
+
+        return "Rectangle";
+    }
+
+    private static string ColorByValueType(IValue value) => value.Origin == ValueOriginType.Result ?
+            "#7ffac2" : "skyblue";
+
+    private static string ToExpressionNodeHtml(IValue value)
+    {
+        return $@"<table border=""0"">
+                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
+                    <tr><td align=""left"">{Html(value.Expression.Body)}</td></tr>
+                </table>";
+    }
+
+    private static string ToConstantNodeHtml(IValue value)
+    {
+        return $@"<table border=""0"">
+                    <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
+                </table>";
+    }
+    private static string ToValueNodeHtml(IValue value)
+    {
+        return $@"<table border=""0"">
+                    <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
+                    <tr><td align=""center"">{value.ValueToString()}</td></tr>
+                </table>";
+    }
 
     private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
-    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, "([A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+    private DotEdge ConnectTwoSubNodes(DotNode firstNode, DotNode lastNode) =>
+        new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2);
+
+    public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
+        new DotEdge().From(lastNode).To(firstNode)
+                .WithStyle(DotEdgeStyle.Dashed)
+                .WithArrowHead(DotEdgeArrowType.Open);
 }
