@@ -1,9 +1,7 @@
 ﻿using DotNetGraph.Core;
+namespace Fluent.Calculations.DotNetGraph;
 
-namespace Fluent.Calculations.DotNetGraph
+internal interface IDotGraphToFileWriter
 {
-    internal interface IDotGraphToFileWriter
-    {
-        Task SaveToDot(DotGraph graph, string outputFilePath);
-    }
+    Task SaveToDot(DotGraph graph, string outputFilePath);
 }
