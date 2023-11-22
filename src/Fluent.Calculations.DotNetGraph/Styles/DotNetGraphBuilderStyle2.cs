@@ -33,21 +33,19 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
 
     private DotNodeBlock CreateValueBlock(IValue value)
     {
-        var node = CreateBaseNodeStyle(value.Name)
-              .WithLabel(ComposeHtmlLabel(value), isHtml: true);
+        DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
         return new DotNodeBlock(node, true);
     }
 
     private DotNodeBlock CreateExpressionBlock(IValue value)
     {
-        var node = CreateBaseNodeStyle(value.Name)
-              .WithLabel(ComposeHtmlLabel(value), isHtml: true);
+        DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
         return new DotNodeBlock(node, true);
     }
 
     private DotNode CreateBaseNodeStyle(string name)
     {
-        var node = new DotNode()
+        DotNode node = new DotNode()
                 .WithIdentifier(Html($"{name}_value"))
                 .WithPenWidth(1)
                 .WithFillColor(DotColor.White)
@@ -83,7 +81,6 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
                 </tr>
             </table>";
 
-    private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
     private string ValueRow(IValue value) => IsParameter(value) ?
             $@"
                 <td align=""center"" port=""r1"">{Html(value.Expression.Body)}</td>" :
@@ -91,7 +88,9 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
                 <td align=""left"" port=""r1"">{Html(Humanize(value.Expression.Body))} : </td>
                 <td bgcolor=""grey"" align=""center"">{value.ValueToString()}</td>";
 
+    private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
+
     private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
-    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, "([A-Z])", " $1", RegexOptions.Compiled).Trim();
+    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, "([A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
 }
