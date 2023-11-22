@@ -3,41 +3,34 @@ using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions;
 using System.Text.RegularExpressions;
 using System.Web;
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
 internal class DotNetGraphBuilderStyle2 : IGraphStyle
 {
+    public DotSubgraph CreateParametersCluster()
+    {
+        DotSubgraph subgraph = new DotSubgraph()
+            .WithIdentifier("cluster_0")
+            .WithLabel("Parameters")
+            .WithColor(DotColor.LightGrey)
+            .WithStyle("filled, solid");
+
+        subgraph.SetAttribute("penwidth", new DotAttribute(@"""1"""));
+        subgraph.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
+
+        return subgraph;
+    }
     public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>
         new DotEdge().From(lastNode).To(firstNode)
                 .WithStyle(DotEdgeStyle.Solid)
                 .WithArrowHead(DotEdgeArrowType.Normal);
 
-    public DotNodeBlock CreateBlock(IValue value)
-    {
-        switch (value.Expression.Type)
-        {
-            case ExpressionNodeType.Lambda:
-            case ExpressionNodeType.BinaryExpression:
-            case ExpressionNodeType.Collection:
-            case ExpressionNodeType.MathExpression:
-                return CreateExpressionBlock(value);
-            case ExpressionNodeType.None:
-            case ExpressionNodeType.Constant:
-            default:
-                return CreateValueBlock(value);
-        }
-    }
+
+    public DotNodeBlock CreateBlock(IValue value) => CreateValueBlock(value);
 
     private DotNodeBlock CreateValueBlock(IValue value)
-    {
-        DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
-        return new DotNodeBlock(node, true);
-    }
-
-    private DotNodeBlock CreateExpressionBlock(IValue value)
     {
         DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
         return new DotNodeBlock(node, true);
@@ -55,20 +48,6 @@ internal class DotNetGraphBuilderStyle2 : IGraphStyle
         node.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
 
         return node;
-    }
-
-    public DotSubgraph CreateParametersCluster()
-    {
-        DotSubgraph subgraph = new DotSubgraph()
-            .WithIdentifier("cluster_0")
-            .WithLabel("Parameters")
-            .WithColor(DotColor.LightGrey)
-            .WithStyle("filled, solid");
-
-        subgraph.SetAttribute("penwidth", new DotAttribute(@"""1"""));
-        subgraph.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
-
-        return subgraph;
     }
 
     private string ComposeHtmlLabel(IValue value) => $@"
