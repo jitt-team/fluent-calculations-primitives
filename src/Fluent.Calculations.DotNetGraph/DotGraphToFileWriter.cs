@@ -2,7 +2,7 @@
 using DotNetGraph.Core;
 namespace Fluent.Calculations.DotNetGraph;
 
-public class DotGraphWriterFile : IDotGraphWriterFile
+public class DotGraphToFileWriter : IDotGraphToFileWriter
 {
     public async Task SaveToDot(DotGraph graph, string outputFilePath)
     {

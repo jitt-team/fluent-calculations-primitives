@@ -14,7 +14,7 @@ namespace Fluent.Calculations.Graphviz
 
             Process proc = new();
             proc.StartInfo.FileName = Path.Combine(applicationPath, @"graphviz\bin\dot.exe");
-            proc.StartInfo.Arguments = $"-T png -O {dotFilePath}";
+            proc.StartInfo.Arguments = $"-T png -O {dotFilePath} -Gdpi=150  -Gsize=16,9";
             proc.Start();
             proc.WaitForExit();
         }
