@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Fluent.Calculations.DotNetGraph.Styles
 {
-    public class DotNetGraphBuilderStyle1 : IGraphStyle
+    public class GraphStyleBlackAndWhite : IGraphStyle
     {
         public DotNodeBlock CreateBlock(IValue value)
         {

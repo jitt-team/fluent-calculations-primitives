@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
-internal class DotNetGraphBuilderStyle2 : IGraphStyle
+internal class GraphStyleColorful : IGraphStyle
 {
     public DotSubgraph CreateParametersCluster()
     {

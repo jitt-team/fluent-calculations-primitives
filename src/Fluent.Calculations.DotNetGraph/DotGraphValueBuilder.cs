@@ -11,7 +11,7 @@ public class DotGraphValueBuilder
 
     public DotGraphValueBuilder(IGraphStyle builder) => this.builder = builder;
 
-    public DotGraphValueBuilder() : this(new DotNetGraphBuilderStyle2()) { }
+    public DotGraphValueBuilder() : this(new GraphStyleColorful()) { }
 
     public DotGraph Build(IValue value)
     {
