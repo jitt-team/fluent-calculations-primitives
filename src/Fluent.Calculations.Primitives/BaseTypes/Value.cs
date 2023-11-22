@@ -1,6 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Utils;
 using System.Diagnostics;
+using System.Text.Json;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
 public abstract class Value : IValue, IOrigin
@@ -53,6 +55,9 @@ public abstract class Value : IValue, IOrigin
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public string Type => this.GetType().Name;
+
     IValue IOrigin.AsResult()
     {
         Origin = ValueOriginType.Result;
@@ -77,5 +82,7 @@ public abstract class Value : IValue, IOrigin
 
     public override string ToString() => $"{Name}";
 
-    public virtual string ValueToString() => $"{Primitive:0.00}";
+    public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+
+    public virtual string PrimitiveString => $"{Primitive:0.00}";
 }

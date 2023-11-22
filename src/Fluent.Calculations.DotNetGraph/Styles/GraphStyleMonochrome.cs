@@ -28,9 +28,9 @@ internal class GraphStyleMonochrome : IGraphStyle
                 .WithStyle(DotEdgeStyle.Solid)
                 .WithArrowHead(DotEdgeArrowType.Normal);
 
-    public DotNodeBlock CreateBlock(IValue value) => CreateValueBlock(value);
+    public DotNodeBlock CreateBlock(IValueMetadata value) => CreateValueBlock(value);
 
-    private DotNodeBlock CreateValueBlock(IValue value)
+    private DotNodeBlock CreateValueBlock(IValueMetadata value)
     {
         DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
         return new DotNodeBlock(node, true);
@@ -50,7 +50,7 @@ internal class GraphStyleMonochrome : IGraphStyle
         return node;
     }
 
-    private string ComposeHtmlLabel(IValue value) => $@"
+    private string ComposeHtmlLabel(IValueMetadata value) => $@"
             <table border=""0"" cellborder=""0"" cellpadding=""3"" bgcolor=""white"">
                 <tr>
                     <td bgcolor=""black"" align=""center"" colspan=""2""><font color=""white"">{Humanize(value.Name)}</font></td>
@@ -60,14 +60,14 @@ internal class GraphStyleMonochrome : IGraphStyle
                 </tr>
             </table>";
 
-    private string ValueRow(IValue value) => IsParameter(value) ?
+    private string ValueRow(IValueMetadata value) => IsParameter(value) ?
             $@"
                 <td align=""center"" port=""r1"">{Html(value.Expression.Body)}</td>" :
             $@"
                 <td align=""left"" port=""r1"">{Html(Humanize(value.Expression.Body))} : </td>
-                <td bgcolor=""grey"" align=""center"">{value.ValueToString()}</td>";
+                <td bgcolor=""grey"" align=""center"">{value.PrimitiveString}</td>";
 
-    private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
+    private bool IsParameter(IValueMetadata value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
 
     private static string Html(string value) => HttpUtility.HtmlEncode(value);
 

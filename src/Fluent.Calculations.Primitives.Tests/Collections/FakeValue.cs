@@ -15,6 +15,10 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 
         public ValueOriginType Origin => ValueOriginType.Parameter;
 
+        public string Type => GetType().Name;
+
+        public string PrimitiveString => "VALUE-AS-STRING";
+
         public IValue GetDefault() => new FakeValue();
 
         public IValue MakeOfThisType(MakeValueArgs args) => new FakeValue
@@ -22,6 +26,9 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
             Name = args.Name
         };
 
-        public string ValueToString() => "VALUE-AS-STRING";
+        public string ToJson()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

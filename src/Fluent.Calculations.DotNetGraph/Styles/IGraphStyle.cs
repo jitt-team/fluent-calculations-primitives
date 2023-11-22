@@ -7,7 +7,7 @@ public interface IGraphStyle
 {
     DotSubgraph CreateParametersCluster();
 
-    DotNodeBlock CreateBlock(IValue value);
+    DotNodeBlock CreateBlock(IValueMetadata value);
 
     DotEdge ConnectValues(DotNode firstNode, DotNode lastNode);
 }
