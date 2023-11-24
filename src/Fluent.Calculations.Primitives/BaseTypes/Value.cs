@@ -9,13 +9,13 @@ public abstract class Value : IValue, IOrigin
 {
     public string Name { get; private set; }
 
-    public ExpressionNode Expression { get; init; }
+    public IExpression Expression { get; init; }
 
     public decimal Primitive { get; init; }
 
     public ValueOriginType Origin { get; protected set; }
 
-    public TagsCollection Tags { get; init; }
+    public ITags Tags { get; init; }
 
     private Value()
     {

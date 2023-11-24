@@ -96,10 +96,10 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
 public class ValuesDebugView
 {
-    private readonly IValue collectionValue;
+    private readonly IValueMetadata collectionValue;
 
-    public ValuesDebugView(IValue collectionValue) => this.collectionValue = collectionValue;
+    public ValuesDebugView(IValueMetadata collectionValue) => this.collectionValue = collectionValue;
 
     [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-    public IValue[] Items => collectionValue.Expression.Arguments.ToArray();
+    public IValueMetadata[] Items => collectionValue.Expression.Arguments.ToArray();
 }

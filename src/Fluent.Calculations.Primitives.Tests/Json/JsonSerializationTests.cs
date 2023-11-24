@@ -1,6 +1,5 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
-using System.Text.Json;
 
 namespace Fluent.Calculations.Primitives.Tests.Json
 {

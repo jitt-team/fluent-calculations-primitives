@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
             result.Name.Should().Be("TestAggregateMethod");
             result.Expression.Body.Should().Be("TestAggregateMethod(MultipleNumbers)");
             result.Expression.Arguments.Count.Should().Be(1);
-            IValue multipleNumbersArgument = result.Expression.Arguments.First();
+            IValueMetadata multipleNumbersArgument = result.Expression.Arguments.First();
             multipleNumbersArgument.Name.Should().Be("MultipleNumbers");
             multipleNumbersArgument.Expression.Arguments.First().Name.Should().Be("NumberOne");
             multipleNumbersArgument.Expression.Arguments.Last().Name.Should().Be("NumberTwo");

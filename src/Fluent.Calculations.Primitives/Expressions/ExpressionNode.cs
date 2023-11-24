@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
 [DebuggerDisplay("Body = {Body}")]
-public class ExpressionNode
+public class ExpressionNode : IExpression
 {
     public override string ToString() => $"{Body}";
 
@@ -20,7 +20,7 @@ public class ExpressionNode
 
     public string Type { get; }
 
-    public virtual ArgumentsCollection Arguments { get; internal set; }
+    public virtual IArguments Arguments { get; internal set; }
 
     internal ExpressionNode WithBody(string body)
     {

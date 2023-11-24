@@ -20,10 +20,8 @@ public interface IValueMetadata
     ValueOriginType Origin { get; }
 
     [JsonPropertyName("Expression")]
-    ExpressionNode Expression { get; }
+    IExpression Expression { get; }
 
     [JsonPropertyName("Tags")]
-    TagsCollection Tags { get; }
-
-
+    ITags Tags { get; }
 }

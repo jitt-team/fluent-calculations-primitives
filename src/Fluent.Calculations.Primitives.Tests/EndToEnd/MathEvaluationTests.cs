@@ -20,7 +20,7 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
             Number result = calculation.ToResult();
 
             result.Primitive.Should().Be(8);
-            IValue mathArgument = result.Expression.Arguments.First(a => a.Name.Equals(nameof(calculation.MathMin)));
+            IValueMetadata mathArgument = result.Expression.Arguments.First(a => a.Name.Equals(nameof(calculation.MathMin)));
             mathArgument.Should().NotBeNull();
             mathArgument.Expression.Arguments.Should().HaveCount(2);
             mathArgument.Expression.Arguments.First().Name.Should().Be(nameof(calculation.ConstantOne));
