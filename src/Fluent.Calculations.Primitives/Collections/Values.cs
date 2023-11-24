@@ -1,5 +1,4 @@
 ﻿namespace Fluent.Calculations.Primitives.Collections;
-
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Collections;
@@ -11,6 +10,9 @@ using System.Runtime.CompilerServices;
 [DebuggerTypeProxy(typeof(ValuesDebugView))]
 public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 {
+    private ExpressionNode expression;
+    private TagsCollection tags;
+
     public override string ToString() => $"{Name}";
 
     internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Collection), 0.00m)) { }
@@ -19,8 +21,9 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public void Add(T value, [CallerMemberName] string fieldName = "")
     {
-        Expression.Arguments.Add(value);
-        Expression.UpdateBody(ComposeExpressionBody(Expression.Arguments.Count));
+        expression.AddArgument(value);
+        expression.UpdateBody(ComposeExpressionBody(Expression.Arguments.Count));
+
         Primitive += value.Primitive;
         Name = fieldName;
         Origin = value.Origin;
@@ -28,22 +31,22 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     protected Values(MakeValueArgs createValueArgs)
     {
+        expression = createValueArgs.Expression;
+        tags = createValueArgs.Tags;
         Name = createValueArgs.Name;
         Primitive = createValueArgs.PrimitiveValue;
         Origin = createValueArgs.Origin;
-        Expression = createValueArgs.Expression;
-        Tags = createValueArgs.Tags;
     }
 
     public string Name { get; private set; }
-
-    public ExpressionNode Expression { get; init; }
 
     public decimal Primitive { get; private set; }
 
     public ValueOriginType Origin { get; protected set; }
 
-    public TagsCollection Tags { get; init; }
+    public IExpression Expression => expression;
+
+    public ITags Tags => tags;
 
     public IValue MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
@@ -87,11 +90,6 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
     }
 
     private static string ComposeExpressionBody(int elementCount) => $"{typeof(T).Name}[{elementCount}]";
-
-    public string ToJson()
-    {
-        throw new NotImplementedException("Not yet supported");
-    }
 }
 
 public class ValuesDebugView

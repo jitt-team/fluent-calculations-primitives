@@ -82,7 +82,5 @@ public abstract class Value : IValue, IOrigin
 
     public override string ToString() => $"{Name}";
 
-    public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
-
     public virtual string PrimitiveString => $"{Primitive:0.00}";
 }

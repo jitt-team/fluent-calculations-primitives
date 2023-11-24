@@ -9,9 +9,9 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 
         public decimal Primitive { get; set; }
 
-        public ExpressionNode Expression { get; set; }
+        public IExpression Expression { get; set; }
 
-        public TagsCollection Tags { get; set; }
+        public ITags Tags { get; set; }
 
         public ValueOriginType Origin => ValueOriginType.Parameter;
 

@@ -5,6 +5,8 @@ using System.Diagnostics;
 [DebuggerDisplay("Body = {Body}")]
 public class ExpressionNode : IExpression
 {
+    internal ArgumentsCollection arguments;
+
     public override string ToString() => $"{Body}";
 
     internal static ExpressionNode None => new ExpressionNode(StringConstants.NaN, ExpressionNodeType.None);
@@ -13,14 +15,14 @@ public class ExpressionNode : IExpression
     {
         Body = body;
         Type = type;
-        Arguments = ArgumentsCollection.Empty;
+        arguments = ArgumentsCollection.Empty;
     }
 
     public string Body { get; private set; }
 
     public string Type { get; }
 
-    public virtual IArguments Arguments { get; internal set; }
+    public virtual IArguments Arguments => arguments;
 
     internal ExpressionNode WithBody(string body)
     {
@@ -28,13 +30,15 @@ public class ExpressionNode : IExpression
         return this;
     }
 
-    public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b));
+    public ExpressionNode WithArguments(IValueMetadata a, params IValueMetadata[] b) => WithArguments(new[] { a }.Concat(b));
 
-    public ExpressionNode WithArguments(IEnumerable<IValue> arguments)
+    public ExpressionNode WithArguments(IEnumerable<IValueMetadata> arguments)
     {
-        Arguments = new ArgumentsCollection(arguments);
+        arguments = new ArgumentsCollection(arguments);
         return this;
     }
 
     internal void UpdateBody(string body) => Body = body;
+
+    internal void AddArgument(IValueMetadata value) => arguments.Add(value);
 }

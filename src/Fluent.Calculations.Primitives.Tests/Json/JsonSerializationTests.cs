@@ -1,5 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
+using Fluent.Calculations.Primitives.Json;
 
 namespace Fluent.Calculations.Primitives.Tests.Json
 {
@@ -16,7 +17,7 @@ namespace Fluent.Calculations.Primitives.Tests.Json
             string json = result.ToJson();
 
             // TODO, WIP
-            // IValueMetadata deserialized = ValueJson.FromJson(json);
+            IValueMetadata deserialized = ValueJson.FromJson(json);
 
             json.Should().NotBeNullOrEmpty();
         }
