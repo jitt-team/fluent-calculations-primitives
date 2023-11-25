@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
-public class ValueDto : IValueMetadata
+internal sealed class ValueDto : IValueMetadata
 {
     public string Type { get; set; }
 

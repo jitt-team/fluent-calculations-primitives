@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 [DebuggerDisplay("Body = {Body}")]
-public class ExpressionDto : IExpression
+internal sealed class ExpressionDto : IExpression
 {
     [JsonConverter(typeof(JsonConverterInterfaceToClass<IArguments, ArgumentsDto>))]
     public IArguments Arguments { get; set; }

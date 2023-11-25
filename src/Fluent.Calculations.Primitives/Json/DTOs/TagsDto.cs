@@ -1,4 +1,4 @@
 ﻿namespace Fluent.Calculations.Primitives.Json;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-public class TagsDto : List<Tag>, ITags { }
+internal sealed class TagsDto : List<Tag>, ITags { }

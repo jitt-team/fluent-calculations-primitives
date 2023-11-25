@@ -1,6 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
-using FluentAssertions;
 using Fluent.Calculations.Primitives.Json;
+using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Json
 {
@@ -9,12 +9,15 @@ namespace Fluent.Calculations.Primitives.Tests.Json
         [Fact]
         public void Test()
         {
-            Number
-                valueOne = Number.Of(1, "ValueOne"),
-                valueTwo = Number.Of(2, "ValueTwo"),
-                result = valueOne + valueTwo;
+            Condition someCondition = Condition.True(nameof(someCondition));
 
-            string json = JsonValueConverter.ToJson(result);
+            Number
+                valueOne = Number.Of(1, nameof(valueOne)),
+                valueTwo = Number.Of(2, nameof(valueTwo)),
+                resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
+                resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
+
+            string json = JsonValueConverter.ToJson(resultTwo);
 
             IValueMetadata deserialized = JsonValueConverter.ToValue(json);
 
