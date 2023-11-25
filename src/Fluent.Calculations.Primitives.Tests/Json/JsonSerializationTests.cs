@@ -2,47 +2,45 @@
 using Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.Json;
 using FluentAssertions;
+namespace Fluent.Calculations.Primitives.Tests.Json;
 
-namespace Fluent.Calculations.Primitives.Tests.Json
+public class JsonSerializationTests
 {
-    public class JsonSerializationTests
+    [Fact]
+    public void Test()
     {
-        [Fact]
-        public void Test()
+        Condition someCondition = Condition.True(nameof(someCondition));
+
+        Number
+            valueOne = Number.Of(1, nameof(valueOne)),
+            valueTwo = Number.Of(2, nameof(valueTwo)),
+            resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
+            resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
+
+        string json = ValueJsonConverter.ToJson(resultTwo);
+
+        IValue deserialized = ValueJsonConverter.ToValue(json);
+
+        json.Should().NotBeNullOrEmpty();
+    }
+
+    [Fact]
+    public void Test2()
+    {
+        Values<Number> valuesCollection = Values<Number>.ListOf(() => new Number[]
         {
-            Condition someCondition = Condition.True(nameof(someCondition));
+                Number.Of(5, "ITEM-1"),
+                Number.Of(5, "ITEM-2")
+        }, nameof(valuesCollection));
 
-            Number
-                valueOne = Number.Of(1, nameof(valueOne)),
-                valueTwo = Number.Of(2, nameof(valueTwo)),
-                resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
-                resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
+        Number valueOne = Number.Of(1, nameof(valueOne));
 
-            string json = ValueJsonConverter.ToJson(resultTwo);
+        Number result = Result.Of(() => valueOne + valuesCollection.Sum(), nameof(result));
 
-            IValue deserialized = ValueJsonConverter.ToValue(json);
+        string json = ValueJsonConverter.ToJson(result);
 
-            json.Should().NotBeNullOrEmpty();
-        }
+        IValue deserialized = ValueJsonConverter.ToValue(json);
 
-        [Fact]
-        public void Test2()
-        {
-            Values<Number> valuesCollection = Values<Number>.ListOf(() => new Number[]
-            {
-                    Number.Of(5, "ITEM-1"),
-                    Number.Of(5, "ITEM-2")
-            }, nameof(valuesCollection));
-
-            Number valueOne = Number.Of(1, nameof(valueOne));
-
-            Number result = Result.Of(() => valueOne + valuesCollection.Sum(), nameof(result));
-
-            string json = ValueJsonConverter.ToJson(result);
-
-            IValue deserialized = ValueJsonConverter.ToValue(json);
-
-            json.Should().NotBeNullOrEmpty();
-        }
+        json.Should().NotBeNullOrEmpty();
     }
 }
