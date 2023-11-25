@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 [DebuggerTypeProxy(typeof(ValuesDebugView))]
 public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProvider, new()
 {
-    private ExpressionNode expression;
-    private TagsCollection tags;
+    private readonly ExpressionNode expression;
+    private readonly TagsCollection tags;
 
     public override string ToString() => $"{Name}";
 
