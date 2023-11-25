@@ -25,6 +25,6 @@ public static class ValueJsonConverter
             }
         };
         return JsonSerializer.Deserialize<ValueDto>(Enforce.IsNullOrWhiteSpace(json), options) ??
-        throw new ArgumentException("Provided Json can't be desrialized.", nameof(json));
+        throw new ArgumentException("Provided Json string can not be deserialized.", nameof(json));
     }
 }
