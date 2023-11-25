@@ -80,7 +80,7 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Origin = ValueOriginType.Parameter;
     }
 
-    internal static Values<T> SumOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = StringConstants.NaN)
+    internal static Values<T> ListOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = StringConstants.NaN)
     {
         List<T> collectionElements = valuesFunc.Compile().Invoke().ToList();
         decimal primitiveValue = collectionElements.Sum(value => value.Primitive);

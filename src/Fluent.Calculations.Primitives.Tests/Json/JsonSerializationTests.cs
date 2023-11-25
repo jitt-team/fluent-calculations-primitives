@@ -1,7 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.Json;
-using Fluent.Calculations.Primitives.Tests.Collections;
 using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Json
@@ -29,7 +28,8 @@ namespace Fluent.Calculations.Primitives.Tests.Json
         [Fact]
         public void Test2()
         {
-            Values<Number> valuesCollection = Values<Number>.SumOf(() => new Number[] {
+            Values<Number> valuesCollection = Values<Number>.ListOf(() => new Number[]
+            {
                     Number.Of(5, "ITEM-1"),
                     Number.Of(5, "ITEM-2")
             }, nameof(valuesCollection));

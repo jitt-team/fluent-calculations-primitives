@@ -19,7 +19,7 @@ public class ValuesTests
     [Fact]
     public void WithMultipleElements_AccessibleThroughIEnumerable()
     {
-        Values<FakeValue> values = Values<FakeValue>.SumOf(() => new FakeValue[] {
+        Values<FakeValue> values = Values<FakeValue>.ListOf(() => new FakeValue[] {
             new() { Name = "ITEM-1", Primitive = 1 },
             new() { Name = "ITEM-2", Primitive = 2 } });
 
