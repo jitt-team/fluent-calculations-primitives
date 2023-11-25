@@ -1,8 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
-using Fluent.Calculations.Primitives.Utils;
 using System.Diagnostics;
-using System.Text.Json;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
 public abstract class Value : IValue, IOrigin

@@ -5,7 +5,7 @@ using System.Diagnostics;
 [DebuggerDisplay("Body = {Body}")]
 public class ExpressionNode : IExpression
 {
-    internal ArgumentsCollection arguments;
+    private ArgumentsCollection arguments;
 
     public override string ToString() => $"{Body}";
 
@@ -34,11 +34,11 @@ public class ExpressionNode : IExpression
 
     public ExpressionNode WithArguments(IEnumerable<IValueMetadata> arguments)
     {
-        arguments = new ArgumentsCollection(arguments);
+        this.arguments = new ArgumentsCollection(arguments);
         return this;
     }
 
-    internal void UpdateBody(string body) => Body = body;
+    internal void SetBody(string body) => Body = body;
 
-    internal void AddArgument(IValueMetadata value) => arguments.Add(value);
+    internal void AppendArgument(IValueMetadata value) => arguments.Add(value);
 }

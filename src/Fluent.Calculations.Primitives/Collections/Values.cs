@@ -21,8 +21,8 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public void Add(T value, [CallerMemberName] string fieldName = "")
     {
-        expression.AddArgument(value);
-        expression.UpdateBody(ComposeExpressionBody(Expression.Arguments.Count));
+        expression.AppendArgument(value);
+        expression.SetBody(ComposeExpressionBody(Expression.Arguments.Count));
 
         Primitive += value.Primitive;
         Name = fieldName;

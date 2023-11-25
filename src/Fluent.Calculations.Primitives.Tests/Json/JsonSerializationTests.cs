@@ -14,10 +14,9 @@ namespace Fluent.Calculations.Primitives.Tests.Json
                 valueTwo = Number.Of(2, "ValueTwo"),
                 result = valueOne + valueTwo;
 
-            string json = result.ToJson();
+            string json = JsonValueConverter.ToJson(result);
 
-            // TODO, WIP
-            IValueMetadata deserialized = ValueJson.FromJson(json);
+            IValueMetadata deserialized = JsonValueConverter.ToValue(json);
 
             json.Should().NotBeNullOrEmpty();
         }

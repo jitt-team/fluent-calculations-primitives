@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes
 {
-    public interface ITags : IReadOnlyCollection<Tag>
+    public interface ITags : IEnumerable<Tag>
     {
     }
 }

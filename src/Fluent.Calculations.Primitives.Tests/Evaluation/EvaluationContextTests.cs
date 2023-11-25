@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Evalueation_ExpressionArguments_AreExpected()
+        public void Evaluation_ExpressionArguments_AreExpected()
         {
             var expected = new ExpectedTestValues();
             Number result = RunNonCachedParameterTestCase(expected);
