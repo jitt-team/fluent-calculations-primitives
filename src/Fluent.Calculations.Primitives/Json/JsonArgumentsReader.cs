@@ -1,10 +1,9 @@
 ﻿namespace Fluent.Calculations.Primitives.Json;
-
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-public class JsonConverterArguments : JsonConverter<IArguments>
+public class JsonArgumentsReader : JsonConverter<IArguments>
 {
     public override IArguments Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {

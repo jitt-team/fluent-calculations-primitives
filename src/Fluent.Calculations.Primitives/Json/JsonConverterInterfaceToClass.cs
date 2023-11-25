@@ -6,5 +6,5 @@ internal class JsonConverterInterfaceToClass<TSourceInteface, TTargetClass> : Js
 {
     public override TSourceInteface Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => JsonSerializer.Deserialize<TTargetClass>(ref reader, options);
 
-    public override void Write(Utf8JsonWriter writer, TSourceInteface value, JsonSerializerOptions options) { }
+    public override void Write(Utf8JsonWriter writer, TSourceInteface value, JsonSerializerOptions options) => throw new NotSupportedException("Used only for deserializing");
 }

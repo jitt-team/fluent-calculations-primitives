@@ -4,6 +4,4 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 [DebuggerDisplay("Count = {Count}")]
-internal sealed class ArgumentsDto : List<IValue>, IArguments
-{
-}
+internal sealed class ArgumentsDto : List<IValue>, IArguments { }

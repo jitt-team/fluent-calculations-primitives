@@ -7,7 +7,21 @@ namespace Fluent.Calculations.Primitives.Tests.Json;
 public class JsonSerializationTests
 {
     [Fact]
-    public void Test()
+    public void CalculationResult_Serialized_ExpecedJson()
+    {
+        Condition someCondition = Condition.True(nameof(someCondition));
+
+        Number
+            valueOne = Number.Of(1, nameof(valueOne)),
+            valueTwo = Number.Of(2, nameof(valueTwo)),
+            resultTwo = Result.Of(() => valueOne + valueTwo, nameof(resultTwo));
+
+        string json = ValueJsonConverter.ToJson(resultTwo);
+
+    }
+
+    [Fact]
+    public void CalculationResult2_Serialized_ExpecedJson()
     {
         Condition someCondition = Condition.True(nameof(someCondition));
 

@@ -7,9 +7,9 @@ using System.Text.Json.Serialization;
 [DebuggerDisplay("Body = {Body}")]
 internal sealed class ExpressionDto : IExpression
 {
-    public IArguments Arguments { get; set; }
+    public IArguments Arguments { get; set; } = new ArgumentsDto();
 
-    public string Body { get; set; }
+    public string Body { get; set; } = StringConstants.NaN;
 
-    public string Type { get; set; }
+    public string Type { get; set; } = StringConstants.NaN;
 }
