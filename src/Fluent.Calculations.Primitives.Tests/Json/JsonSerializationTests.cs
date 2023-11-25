@@ -1,5 +1,7 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.Json;
+using Fluent.Calculations.Primitives.Tests.Collections;
 using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Json
@@ -18,6 +20,25 @@ namespace Fluent.Calculations.Primitives.Tests.Json
                 resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
 
             string json = ValueJsonConverter.ToJson(resultTwo);
+
+            IValue deserialized = ValueJsonConverter.ToValue(json);
+
+            json.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact]
+        public void Test2()
+        {
+            Values<Number> valuesCollection = Values<Number>.SumOf(() => new Number[] {
+                    Number.Of(5, "ITEM-1"),
+                    Number.Of(5, "ITEM-2")
+            }, nameof(valuesCollection));
+
+            Number valueOne = Number.Of(1, nameof(valueOne));
+
+            Number result = Result.Of(() => valueOne + valuesCollection.Sum(), nameof(result));
+
+            string json = ValueJsonConverter.ToJson(result);
 
             IValue deserialized = ValueJsonConverter.ToValue(json);
 

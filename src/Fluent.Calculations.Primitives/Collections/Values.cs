@@ -80,7 +80,7 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Origin = ValueOriginType.Parameter;
     }
 
-    internal static Values<T> SumOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = "")
+    internal static Values<T> SumOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = StringConstants.NaN)
     {
         List<T> collectionElements = valuesFunc.Compile().Invoke().ToList();
         decimal primitiveValue = collectionElements.Sum(value => value.Primitive);
@@ -90,14 +90,4 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
     }
 
     private static string ComposeExpressionBody(int elementCount) => $"{typeof(T).Name}[{elementCount}]";
-}
-
-public class ValuesDebugView
-{
-    private readonly IValue collectionValue;
-
-    public ValuesDebugView(IValue collectionValue) => this.collectionValue = collectionValue;
-
-    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-    public IValue[] Items => collectionValue.Expression.Arguments.ToArray();
 }
