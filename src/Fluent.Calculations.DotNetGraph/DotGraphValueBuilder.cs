@@ -13,7 +13,7 @@ public class DotGraphValueBuilder
 
     public DotGraphValueBuilder() : this(new GraphStyleMonochrome()) { }
 
-    public DotGraph Build(IValueMetadata value)
+    public DotGraph Build(IValue value)
     {
         DotGraph mainGraph = CreateDirectedGraph("FluentCalculations");
         DotSubgraph paramsGraph = builder.CreateParametersCluster();
@@ -26,7 +26,7 @@ public class DotGraphValueBuilder
 
     public DotGraph CreateDirectedGraph(string identifier) =>new DotGraph().WithIdentifier(identifier).Directed();
 
-    private DotNodeBlock AddToGraph(IValueMetadata value, DotGraph mainGraph, DotSubgraph paramsGraph)
+    private DotNodeBlock AddToGraph(IValue value, DotGraph mainGraph, DotSubgraph paramsGraph)
     {
         DotNodeBlock parentNode = builder.CreateBlock(value);
         DotBaseGraph graph = IsParameter() ? paramsGraph : mainGraph;

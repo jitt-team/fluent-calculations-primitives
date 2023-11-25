@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValue, new()
+public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValueProvider, new()
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
@@ -45,14 +45,14 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual T Return() { return (T)new T().GetDefault(); }
+    public virtual T Return() { return (T)new T().MakeDefault(); }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
         Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
         [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN)
-            where TValue : class, IValue, new()
+            where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);
@@ -69,14 +69,14 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
 
     private TValue EvaluateInternal<TValue>(
        Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)
-           where TValue : class, IValue, new()
+           where TValue : class, IValueProvider, new()
     {
         TValue result = lambdaExpression.Compile().Invoke();
 
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
-        IEnumerable<IValue>
+        IEnumerable<IValueProvider>
             parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             expressionArguments = parameterValues.Concat(evaluationValues);
@@ -86,11 +86,11 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }
 
-    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
+    private IValueProvider[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
         bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
-        IValue GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
+        IValueProvider GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {

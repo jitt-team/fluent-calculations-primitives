@@ -7,7 +7,7 @@ public static class Result
 {
     public static TValue Of<TValue>(Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN) where TValue : class, IValue, new()
+        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN) where TValue : class, IValueProvider, new()
     {
         TValue result = new EvaluationContext<TValue>().Evaluate(lambdaExpression, name, lambdaExpressionBody);
         return (TValue)((IOrigin)result).AsResult();

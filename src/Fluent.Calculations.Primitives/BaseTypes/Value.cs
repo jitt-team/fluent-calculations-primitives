@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
-public abstract class Value : IValue, IOrigin
+public abstract class Value : IValueProvider, IOrigin
 {
     public string Name { get; private set; }
 
@@ -40,14 +40,14 @@ public abstract class Value : IValue, IOrigin
         Tags = createValueArgs.Tags;
     }
 
-    public abstract IValue MakeOfThisType(MakeValueArgs args);
+    public abstract IValueProvider MakeOfThisType(MakeValueArgs args);
 
-    public abstract IValue GetDefault();
+    public abstract IValueProvider MakeDefault();
 
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
-        IValue right,
-        Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
-        string operatorName) where ResultType : IValue, new() =>
+        IValueProvider right,
+        Func<IValueProvider, IValueProvider, ResultPrimitiveType> expressionFunc,
+        string operatorName) where ResultType : IValueProvider, new() =>
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -56,7 +56,7 @@ public abstract class Value : IValue, IOrigin
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public string Type => this.GetType().Name;
 
-    IValue IOrigin.AsResult()
+    IValueProvider IOrigin.AsResult()
     {
         Origin = ValueOriginType.Result;
         return this;
@@ -68,11 +68,11 @@ public abstract class Value : IValue, IOrigin
         Origin = ValueOriginType.Parameter;
     }
 
-    public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
+    public bool Equals(IValueProvider? value) => value != null && Primitive.Equals(value.Primitive);
 
     public override bool Equals(object? obj)
     {
-        if (obj is not IValue value) return false;
+        if (obj is not IValueProvider value) return false;
         return Equals(value);
     }
 

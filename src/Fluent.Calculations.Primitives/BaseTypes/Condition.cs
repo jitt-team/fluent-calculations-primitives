@@ -22,7 +22,7 @@ public sealed class Condition : Value,
 
     public bool IsTrue => Primitive > 0;
 
-    public override IValue GetDefault() => False();
+    public override IValueProvider MakeDefault() => False();
 
     public static bool operator true(Condition condition) => condition.IsTrue;
 
@@ -58,13 +58,13 @@ public sealed class Condition : Value,
 
     private Condition Or(Condition value) => ReturnCondition(value, (a, b) => a & b);
 
-    private Condition ReturnCondition(IValue value, Func<bool, bool, bool> compareFunc,
+    private Condition ReturnCondition(IValueProvider value, Func<bool, bool, bool> compareFunc,
         [CallerMemberName] string operatorName = "") =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue MakeOfThisType(MakeValueArgs args) => new Condition(args);
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     public override int GetHashCode() => base.GetHashCode();
 }

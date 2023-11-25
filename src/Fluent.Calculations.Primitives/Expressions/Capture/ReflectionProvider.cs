@@ -10,10 +10,10 @@
 
         public bool IsEvaluation(MemberInfo member) => IsOfTypeIValue(member) && ParameterAndEvaluationDefaultConvention.IsReadOnlyProperty(member);
 
-        public IValue GetValue(Expression expression)
+        public IValueProvider GetValue(Expression expression)
         {
             // TODO: A potential place to cache compiled member access expressions for performance
-            return (IValue)EnsureNotNull(Expression.Lambda(expression).Compile().DynamicInvoke(), expression);
+            return (IValueProvider)EnsureNotNull(Expression.Lambda(expression).Compile().DynamicInvoke(), expression);
         }
 
         public string GetPropertyOrFieldName(MemberInfo memberInfo)
@@ -31,7 +31,7 @@
             throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{memberInfo.Name}] is not supported.");
         }
 
-        private bool IsOfTypeIValue(MemberInfo member) => typeof(IValue).IsAssignableFrom(GetFieldOrPropertyType(member));
+        private bool IsOfTypeIValue(MemberInfo member) => typeof(IValueProvider).IsAssignableFrom(GetFieldOrPropertyType(member));
 
         private Type GetFieldOrPropertyType(MemberInfo memberInfo)
         {

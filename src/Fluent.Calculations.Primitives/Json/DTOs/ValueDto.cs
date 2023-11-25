@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text.Json.Serialization;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
-internal sealed class ValueDto : IValueMetadata
+internal sealed class ValueDto : IValue
 {
     public string Type { get; set; }
 
@@ -15,10 +15,8 @@ internal sealed class ValueDto : IValueMetadata
 
     public ValueOriginType Origin { get; set; }
 
-    [JsonConverter(typeof(JsonConverterInterfaceToClass<IExpression, ExpressionDto>))]
     public IExpression Expression { get; set; }
 
-    [JsonConverter(typeof(JsonConverterInterfaceToClass<ITags, TagsDto>))]
     public ITags Tags { get; set; }
 
     public string PrimitiveString { get; set; }

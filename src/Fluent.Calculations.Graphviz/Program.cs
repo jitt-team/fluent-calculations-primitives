@@ -5,7 +5,7 @@ using Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
 
 // Run the calculation (See implementation below)
-IValue resultValue = new DemoCalculation().ToResult();
+IValueProvider resultValue = new DemoCalculation().ToResult();
 
 // Convert to graph
 DotGraph dotGraph = new DotGraphValueBuilder().Build(resultValue);

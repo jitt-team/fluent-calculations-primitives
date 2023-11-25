@@ -23,8 +23,8 @@ public class Money : Number
 
     public static Money operator *(Number left, Money right) => new Money(right.Multiply(left), right.Currency);
 
-    public override IValue MakeOfThisType(MakeValueArgs args) => new Money(args, Currency);
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Money(args, Currency);
 
-    public override IValue GetDefault() => new Money(Currency.None);
+    public override IValueProvider MakeDefault() => new Money(Currency.None);
 }
 

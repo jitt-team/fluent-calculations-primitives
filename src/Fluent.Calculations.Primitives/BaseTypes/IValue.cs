@@ -1,7 +1,27 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
-public interface IValue : IValueMetadata
-{
-    IValue MakeOfThisType(MakeValueArgs args);
+using Fluent.Calculations.Primitives.Expressions;
+using System.Text.Json.Serialization;
 
-    IValue GetDefault();
+public interface IValue
+{
+    [JsonPropertyName("Type")]
+    string Type { get; }
+
+    [JsonPropertyName("Name")]
+    string Name { get; }
+
+    [JsonPropertyName("Primitive")]
+    decimal Primitive { get; }
+
+    [JsonPropertyName("PrimitiveString")]
+    string PrimitiveString { get; }
+
+    [JsonPropertyName("Origin")]
+    ValueOriginType Origin { get; }
+
+    [JsonPropertyName("Expression")]
+    IExpression Expression { get; }
+
+    [JsonPropertyName("Tags")]
+    ITags Tags { get; }
 }

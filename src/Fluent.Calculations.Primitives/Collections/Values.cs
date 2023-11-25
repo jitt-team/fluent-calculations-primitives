@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(ValuesDebugView))]
-public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
+public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProvider, new()
 {
     private ExpressionNode expression;
     private TagsCollection tags;
@@ -48,11 +48,11 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     public ITags Tags => tags;
 
-    public IValue MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
+    public IValueProvider MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
-    public IValue MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
+    public IValueProvider MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
 
-    public IValue GetDefault() => Empty;
+    public IValueProvider MakeDefault() => Empty;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
@@ -68,7 +68,7 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
     IEnumerator<T> IEnumerable<T>.GetEnumerator() => Expression.Arguments.Cast<T>().GetEnumerator();
 
-    IValue IOrigin.AsResult()
+    IValueProvider IOrigin.AsResult()
     {
         Origin = ValueOriginType.Result;
         return this;
@@ -94,10 +94,10 @@ public class Values<T> : IValues<T>, IOrigin where T : class, IValue, new()
 
 public class ValuesDebugView
 {
-    private readonly IValueMetadata collectionValue;
+    private readonly IValue collectionValue;
 
-    public ValuesDebugView(IValueMetadata collectionValue) => this.collectionValue = collectionValue;
+    public ValuesDebugView(IValue collectionValue) => this.collectionValue = collectionValue;
 
     [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-    public IValueMetadata[] Items => collectionValue.Expression.Arguments.ToArray();
+    public IValue[] Items => collectionValue.Expression.Arguments.ToArray();
 }

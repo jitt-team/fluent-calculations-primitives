@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.Expressions;
 
 namespace Fluent.Calculations.Primitives.Tests.Collections
 {
-    internal class FakeValue : IValue
+    internal class FakeValue : IValueProvider
     {
         public string Name { get; set; }
 
@@ -19,9 +19,9 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 
         public string PrimitiveString => "VALUE-AS-STRING";
 
-        public IValue GetDefault() => new FakeValue();
+        public IValueProvider MakeDefault() => new FakeValue();
 
-        public IValue MakeOfThisType(MakeValueArgs args) => new FakeValue
+        public IValueProvider MakeOfThisType(MakeValueArgs args) => new FakeValue
         {
             Name = args.Name
         };

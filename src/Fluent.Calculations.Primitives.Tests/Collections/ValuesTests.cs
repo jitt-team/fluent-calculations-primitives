@@ -11,7 +11,7 @@ public class ValuesTests
     {
         string expectedName = "EXPECTED-NAME";
         Values<FakeValue> values = new();
-        IValue element = values.MakeOfThisElementType(MakeValueArgs.Compose(expectedName, ExpressionNode.None, 0));
+        IValueProvider element = values.MakeOfThisElementType(MakeValueArgs.Compose(expectedName, ExpressionNode.None, 0));
         element.Should().NotBeNull();
         element.Name.Should().Be(expectedName);
     }

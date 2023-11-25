@@ -3,19 +3,19 @@ using Fluent.Calculations.Primitives.BaseTypes;
 
 public interface IValuesCache
 {
-    void Add(IValue value);
+    void Add(IValueProvider value);
 
-    void Add(string key, IValue value);
+    void Add(string key, IValueProvider value);
 
     bool ContainsKey(string key);
 
     bool ContainsName(string name);
 
-    IValue GetByKey(string key);
+    IValueProvider GetByKey(string key);
 
-    IValue GetByName(string name);
+    IValueProvider GetByName(string name);
 
-    bool TryGetValue(string key, out IValue? cachedValue);
+    bool TryGetValue(string key, out IValueProvider? cachedValue);
 
     void Clear();
 }

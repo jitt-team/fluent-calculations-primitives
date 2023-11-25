@@ -69,17 +69,17 @@ public class Number : Value,
 
     protected Number Divide(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
-    private Condition HandleComparisonOperation(IValue value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
+    private Condition HandleComparisonOperation(IValueProvider value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 
-    private Number HandleArithmeticOperation(IValue value, Func<decimal, decimal, decimal> calculationFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
+    private Number HandleArithmeticOperation(IValueProvider value, Func<decimal, decimal, decimal> calculationFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryOperation<Number, decimal>(value, (a, b) => calculationFunc(a.Primitive, b.Primitive), operatorName);
 
-    public override IValue MakeOfThisType(MakeValueArgs args) => new Number(args);
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Number(args);
 
-    public override IValue GetDefault()=> Zero;
+    public override IValueProvider MakeDefault()=> Zero;
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     public override int GetHashCode() => base.GetHashCode();
 }

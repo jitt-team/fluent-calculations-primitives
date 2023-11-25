@@ -7,7 +7,6 @@ using System.Text.Json.Serialization;
 [DebuggerDisplay("Body = {Body}")]
 internal sealed class ExpressionDto : IExpression
 {
-    [JsonConverter(typeof(JsonConverterInterfaceToClass<IArguments, ArgumentsDto>))]
     public IArguments Arguments { get; set; }
 
     public string Body { get; set; }

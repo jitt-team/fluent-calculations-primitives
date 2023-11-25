@@ -17,9 +17,9 @@ namespace Fluent.Calculations.Primitives.Tests.Json
                 resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
                 resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
 
-            string json = JsonValueConverter.ToJson(resultTwo);
+            string json = ValueJsonConverter.ToJson(resultTwo);
 
-            IValueMetadata deserialized = JsonValueConverter.ToValue(json);
+            IValue deserialized = ValueJsonConverter.ToValue(json);
 
             json.Should().NotBeNullOrEmpty();
         }

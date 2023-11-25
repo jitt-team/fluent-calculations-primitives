@@ -30,9 +30,9 @@ public class ExpressionNode : IExpression
         return this;
     }
 
-    public ExpressionNode WithArguments(IValueMetadata a, params IValueMetadata[] b) => WithArguments(new[] { a }.Concat(b));
+    public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b));
 
-    public ExpressionNode WithArguments(IEnumerable<IValueMetadata> arguments)
+    public ExpressionNode WithArguments(IEnumerable<IValue> arguments)
     {
         this.arguments = new ArgumentsCollection(arguments);
         return this;
@@ -40,5 +40,5 @@ public class ExpressionNode : IExpression
 
     internal void SetBody(string body) => Body = body;
 
-    internal void AppendArgument(IValueMetadata value) => arguments.Add(value);
+    internal void AppendArgument(IValue value) => arguments.Add(value);
 }

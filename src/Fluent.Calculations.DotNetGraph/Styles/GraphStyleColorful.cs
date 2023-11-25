@@ -9,7 +9,7 @@ namespace Fluent.Calculations.DotNetGraph.Styles;
 
 public class GraphStyleColorful : IGraphStyle
 {
-    public DotNodeBlock CreateBlock(IValueMetadata value)
+    public DotNodeBlock CreateBlock(IValue value)
     {
         switch (value.Expression.Type)
         {
@@ -37,7 +37,7 @@ public class GraphStyleColorful : IGraphStyle
         return subgraph;
     }
 
-    private DotNodeBlock CreateValueBlock(IValueMetadata value)
+    private DotNodeBlock CreateValueBlock(IValue value)
     {
         DotNode
             constantNode = CreateConsantNode(value);
@@ -45,7 +45,7 @@ public class GraphStyleColorful : IGraphStyle
         return new DotNodeBlock(constantNode, isValuePart: true);
     }
 
-    private DotNodeBlock CreateExpressionBlock(IValueMetadata value)
+    private DotNodeBlock CreateExpressionBlock(IValue value)
     {
         DotNode
             expressionNode = CreateExpressionNode(value),
@@ -56,7 +56,7 @@ public class GraphStyleColorful : IGraphStyle
         return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
     }
 
-    private DotNode CreateConsantNode(IValueMetadata value)
+    private DotNode CreateConsantNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_value"))
@@ -70,7 +70,7 @@ public class GraphStyleColorful : IGraphStyle
         return node;
     }
 
-    private DotNode CreateValueNode(IValueMetadata value)
+    private DotNode CreateValueNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_value"))
@@ -84,7 +84,7 @@ public class GraphStyleColorful : IGraphStyle
         return node;
     }
 
-    private DotNode CreateExpressionNode(IValueMetadata value)
+    private DotNode CreateExpressionNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_expression"))
@@ -98,7 +98,7 @@ public class GraphStyleColorful : IGraphStyle
         return node;
     }
 
-    private static string ShapyByValueType(IValueMetadata value)
+    private static string ShapyByValueType(IValue value)
     {
         if (value.Origin == ValueOriginType.Result)
             return "ellipse";
@@ -109,10 +109,10 @@ public class GraphStyleColorful : IGraphStyle
         return "Rectangle";
     }
 
-    private static string ColorByValueType(IValueMetadata value) => value.Origin == ValueOriginType.Result ?
+    private static string ColorByValueType(IValue value) => value.Origin == ValueOriginType.Result ?
             "#7ffac2" : "skyblue";
 
-    private static string ToExpressionNodeHtml(IValueMetadata value)
+    private static string ToExpressionNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
                     <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>
@@ -120,14 +120,14 @@ public class GraphStyleColorful : IGraphStyle
                 </table>";
     }
 
-    private static string ToConstantNodeHtml(IValueMetadata value)
+    private static string ToConstantNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
                     <tr><td align=""left""><b>{Html(value.Name)}</b></td></tr>
                     <tr><td align=""center"">{value.PrimitiveString}</td></tr>
                 </table>";
     }
-    private static string ToValueNodeHtml(IValueMetadata value)
+    private static string ToValueNodeHtml(IValue value)
     {
         return $@"<table border=""0"">
                     <tr><td align=""center""><b>{Html(value.Name)}</b></td></tr>

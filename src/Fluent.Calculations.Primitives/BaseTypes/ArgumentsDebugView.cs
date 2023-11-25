@@ -9,6 +9,6 @@
         public ArgumentsDebugView(IArguments arguments) => this.arguments = arguments;
 
         [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public IValueMetadata[] Arguments => arguments.ToArray();
+        public IValue[] Arguments => arguments.ToArray();
     }
 }

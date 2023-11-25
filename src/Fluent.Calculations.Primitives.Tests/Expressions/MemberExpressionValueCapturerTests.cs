@@ -26,7 +26,7 @@ public class MemberExpressionValueCapturerTests
 
         Mock<IValuesCache> valueCacheMock = new Mock<IValuesCache>(MockBehavior.Strict);
         valueCacheMock.Setup(c => c.ContainsKey(It.IsAny<string>())).Returns(false);
-        valueCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValue>())).Verifiable();
+        valueCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValueProvider>())).Verifiable();
 
         CapturedExpressionMembers result = BuildCapturer().Capture(() => testMemberClass.TestParameter);
 

@@ -1,6 +1,5 @@
-﻿namespace Fluent.Calculations.Primitives.BaseTypes
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+
+public interface ITags : IEnumerable<Tag>
 {
-    public interface ITags : IEnumerable<Tag>
-    {
-    }
 }

@@ -13,7 +13,7 @@ public class ReflectionProviderTests
     {
         Number testValue = Number.Of(1, "TEST-VALUE");
         Expression<Func<Number>> testExpression = () => testValue;
-        IValue result = memberAccessReflectionProvider.GetValue(testExpression.Body);
+        IValueProvider result = memberAccessReflectionProvider.GetValue(testExpression.Body);
         result.Name.Should().Be(testValue.Name);
     }
 

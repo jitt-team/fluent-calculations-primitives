@@ -6,23 +6,23 @@ using System.Diagnostics;
 [DebuggerTypeProxy(typeof(ArgumentsDebugView))]
 public sealed class ArgumentsCollection : IArguments
 {
-    private readonly List<IValueMetadata> items;
+    private readonly List<IValue> items;
 
-    private ArgumentsCollection() => items = new List<IValueMetadata>();
+    private ArgumentsCollection() => items = new List<IValue>();
 
-    internal ArgumentsCollection(IEnumerable<IValueMetadata> arguments) => items = new List<IValueMetadata>(arguments);
+    internal ArgumentsCollection(IEnumerable<IValue> arguments) => items = new List<IValue>(arguments);
 
     internal static ArgumentsCollection Empty => new ArgumentsCollection();
 
     public int Count => items.Count;
 
-    internal static ArgumentsCollection CreateFrom(IValueMetadata[] arguments) => new ArgumentsCollection(arguments);
+    internal static ArgumentsCollection CreateFrom(IValue[] arguments) => new ArgumentsCollection(arguments);
 
-    public IEnumerator<IValueMetadata> GetEnumerator() => items.GetEnumerator();
+    public IEnumerator<IValue> GetEnumerator() => items.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
 
     internal void AddRange(IArguments arguments) => items.AddRange(arguments);
 
-    internal void Add(IValueMetadata arguments) => items.Add(arguments);
+    internal void Add(IValue arguments) => items.Add(arguments);
 }

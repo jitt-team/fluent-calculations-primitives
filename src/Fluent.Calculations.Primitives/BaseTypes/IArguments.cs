@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-namespace Fluent.Calculations.Primitives.BaseTypes
+public interface IArguments : IEnumerable<IValue>
 {
-    public interface IArguments : IEnumerable<IValueMetadata>
-    {
-        public int Count { get; }
-    }
+    public int Count { get; }
 }
