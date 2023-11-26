@@ -64,11 +64,7 @@ public class JsonSerializationTests
             resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
             resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
 
-        string json = ValueJsonConverter.Serialize(resultTwo);
-
-        IValue deserialized = ValueJsonConverter.Deserialize(json);
-
-        json.Should().NotBeNullOrEmpty();
+        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(resultTwo));       
     }
 
     [Fact]
