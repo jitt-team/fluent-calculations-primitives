@@ -49,17 +49,24 @@ public class JsonSerializationTests
     }
 
     [Fact]
-    public void CalculationResult2_Serialized_ExpecedJson()
+    public void CalculationResult_SameAfterDeserialization()
     {
         Condition someCondition = Condition.True(nameof(someCondition));
 
         Number
             valueOne = Number.Of(1, nameof(valueOne)),
             valueTwo = Number.Of(2, nameof(valueTwo)),
-            resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
-            resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
+            resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne));
 
-        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(resultTwo));
+        Number finalResult = Result.Of(() => resultOne + valueTwo, nameof(finalResult));
+
+        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(finalResult));
+
+        deserialized.Primitive.Should().Be(finalResult.Primitive);
+        deserialized.Name.Should().Be(finalResult.Name);
+        deserialized.Expression.Body.Should().Be(finalResult.Expression.Body);
+        deserialized.Expression.Type.Should().Be(finalResult.Expression.Type);
+        deserialized.Expression.Arguments.Count.Should().Be(finalResult.Expression.Arguments.Count);
     }
 
     [Fact]
