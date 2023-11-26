@@ -19,10 +19,19 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
         public void RenderingThrough_JsonSerialization_SameGraph()
         {
             Number result = RunCalculation();
-            string json = ValueJsonConverter.Serialize(result);
-            IValue valueFromJson = ValueJsonConverter.Deserialize(json);
-            DotGraph graph = new DotGraphValueBuilder().Build(valueFromJson);
-            graph.Elements.Should().HaveCount(5);
+            DotGraph graphFromResult = new DotGraphValueBuilder().Build(result);
+
+            IValue valueFromJson = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(result));            
+            DotGraph graphFromJson = new DotGraphValueBuilder().Build(valueFromJson);
+
+            graphFromJson.Elements.Should().HaveCount(graphFromResult.Elements.Count);
+
+            for (int elementIndex = 0; elementIndex < graphFromJson.Elements.Count; elementIndex++)
+            {
+                DotElement actual = (DotElement)graphFromJson.Elements[elementIndex];
+                DotElement expected = (DotElement)graphFromResult.Elements[elementIndex];
+                actual.Label?.Value.Should().Be(expected.Label.Value);
+            }
         }
 
         private Number RunCalculation() => new AdditionCalculation
