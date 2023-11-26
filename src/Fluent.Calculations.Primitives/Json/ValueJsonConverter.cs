@@ -2,24 +2,22 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
-using System.Collections;
-using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
 public static class ValueJsonConverter
 {
-    public static string Serialize(IValue value)
+    public static string Serialize(IValue value, bool writeIndented = true)
     {
         JsonSerializerOptions options = new()
         {
-            WriteIndented = true,
+            WriteIndented = writeIndented,
             Converters = {
                 new JsonStringEnumConverter() },
             TypeInfoResolver = new DefaultJsonTypeInfoResolver
             {
-                Modifiers = { 
+                Modifiers = {
                     IgnoreEpmptyList<IValue, ITags, Tag>,
                     IgnoreEpmptyList<IExpression, IArguments, IValue>
                 }

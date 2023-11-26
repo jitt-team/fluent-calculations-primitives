@@ -9,18 +9,15 @@ public class JsonSerializationTests
     [Fact]
     public void SimpleValue_Serialized_ExpectedJson()
     {
-        string json = ValueJsonConverter.Serialize(Number.Of(5, "TEST-VALUE"));
+        string json = ValueJsonConverter.Serialize(Number.Of(5, "TEST-VALUE"), writeIndented: false);
         json.Should().NotBeNullOrEmpty();
-        json.Should().Be(
-            "{\r\n  \"Type\": \"Number\",\r\n  \"Name\": \"TEST-VALUE\",\r\n  \"Primitive\": 5,\r\n  \"PrimitiveString\": \"5.00\",\r\n  " +
-            "\"Origin\": \"Constant\",\r\n  \"Expression\": {\r\n    \"Body\": \"5\",\r\n    \"Type\": \"Constant\"\r\n  }\r\n}");
+        json.Should().Be(@"{""Type"":""Number"",""Name"":""TEST-VALUE"",""Primitive"":5,""PrimitiveString"":""5.00"",""Origin"":""Constant"",""Expression"":{""Body"":""5"",""Type"":""Constant""}}");
     }
 
     [Fact]
     public void SimpleJsonValue_Deserialized_ExpectedValue()
     {
-        string json = "{\r\n  \"Type\": \"Number\",\r\n  \"Name\": \"TEST-VALUE\",\r\n  \"Primitive\": 5,\r\n  \"PrimitiveString\": \"5.00\",\r\n  " +
-            "\"Origin\": \"Constant\",\r\n  \"Expression\": {\r\n    \"Body\": \"5\",\r\n    \"Type\": \"Constant\"\r\n  }\r\n}";
+        string json = @"{""Type"":""Number"",""Name"":""TEST-VALUE"",""Primitive"":5,""PrimitiveString"":""5.00"",""Origin"":""Constant"",""Expression"":{""Body"":""5"",""Type"":""Constant""}}";
 
         IValue value = ValueJsonConverter.Deserialize(json);
 
@@ -43,14 +40,12 @@ public class JsonSerializationTests
             valueTwo = Number.Of(2, nameof(valueTwo)),
             resultTwo = Result.Of(() => valueOne + valueTwo, nameof(resultTwo));
 
-        string json = ValueJsonConverter.Serialize(resultTwo);
+        string json = ValueJsonConverter.Serialize(resultTwo, writeIndented: false);
         json.Should().NotBeNullOrEmpty();
         json.Should().Be(
-            "{\r\n  \"Type\": \"Number\",\r\n  \"Name\": \"resultTwo\",\r\n  \"Primitive\": 3,\r\n  \"PrimitiveString\": \"3.00\",\r\n  \"Origin\": \"Result\",\r\n  \"Expression\": {\r\n    " +
-            "\"Arguments\": [\r\n      {\r\n        \"Type\": \"Number\",\r\n        \"Name\": \"valueOne\",\r\n        \"Primitive\": 1,\r\n        \"PrimitiveString\": \"1.00\",\r\n        \"Origin\": \"Constant\",\r\n       " +
-            " \"Expression\": {\r\n          \"Body\": \"1\",\r\n          \"Type\": \"Constant\"\r\n        }\r\n      },\r\n      {\r\n        \"Type\": \"Number\",\r\n        \"Name\": \"valueTwo\",\r\n        \"Primitive\": 2,\r\n       " +
-            " \"PrimitiveString\": \"2.00\",\r\n        \"Origin\": \"Constant\",\r\n        \"Expression\": {\r\n          \"Body\": \"2\",\r\n          \"Type\": \"Constant\"\r\n        }\r\n      }\r\n    ],\r\n   " +
-            " \"Body\": \"valueOne \\u002B valueTwo\",\r\n    \"Type\": \"Lambda\"\r\n  }\r\n}");
+            @"{""Type"":""Number"",""Name"":""resultTwo"",""Primitive"":3,""PrimitiveString"":""3.00"",""Origin"":""Result"",""Expression"":{""Arguments"":[{""Type"":""Number""," +
+            @"""Name"":""valueOne"",""Primitive"":1,""PrimitiveString"":""1.00"",""Origin"":""Constant"",""Expression"":{""Body"":""1"",""Type"":""Constant""}},{""Type"":""Number""," +
+            @"""Name"":""valueTwo"",""Primitive"":2,""PrimitiveString"":""2.00"",""Origin"":""Constant"",""Expression"":{""Body"":""2"",""Type"":""Constant""}}],""Body"":""valueOne \u002B valueTwo"",""Type"":""Lambda""}}");
     }
 
     [Fact]
@@ -64,7 +59,7 @@ public class JsonSerializationTests
             resultOne = Result.Of(() => someCondition ? valueOne : valueTwo, nameof(resultOne)),
             resultTwo = Result.Of(() => resultOne + valueTwo, nameof(resultTwo));
 
-        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(resultTwo));       
+        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(resultTwo));
     }
 
     [Fact]
