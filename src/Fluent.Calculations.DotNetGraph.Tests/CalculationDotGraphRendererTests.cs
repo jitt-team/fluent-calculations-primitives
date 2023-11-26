@@ -12,7 +12,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
         public void AdditionCalculation_Rendered_GraphHasExpectedElements()
         {
             DotGraph graph = new DotGraphValueBuilder().Build(RunCalculation());
-            graph.Elements.Should().HaveCount(6);
+            graph.Elements.Should().HaveCount(5);
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
             string json = ValueJsonConverter.ToJson(result);
             IValue valueFromJson = ValueJsonConverter.ToValue(json);
             DotGraph graph = new DotGraphValueBuilder().Build(valueFromJson);
-            graph.Elements.Should().HaveCount(6);
+            graph.Elements.Should().HaveCount(5);
         }
 
         private Number RunCalculation() => new AdditionCalculation
