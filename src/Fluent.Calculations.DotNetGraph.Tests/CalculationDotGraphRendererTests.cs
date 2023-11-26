@@ -19,8 +19,8 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
         public void RenderingThrough_JsonSerialization_SameGraph()
         {
             Number result = RunCalculation();
-            string json = ValueJsonConverter.ToJson(result);
-            IValue valueFromJson = ValueJsonConverter.ToValue(json);
+            string json = ValueJsonConverter.Serialize(result);
+            IValue valueFromJson = ValueJsonConverter.Deserialize(json);
             DotGraph graph = new DotGraphValueBuilder().Build(valueFromJson);
             graph.Elements.Should().HaveCount(5);
         }

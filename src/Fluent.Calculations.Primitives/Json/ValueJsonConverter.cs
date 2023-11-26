@@ -2,13 +2,15 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
+using System.Collections;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
 public static class ValueJsonConverter
 {
-    public static string ToJson(IValue value)
+    public static string Serialize(IValue value)
     {
         JsonSerializerOptions options = new()
         {
@@ -17,13 +19,16 @@ public static class ValueJsonConverter
                 new JsonStringEnumConverter() },
             TypeInfoResolver = new DefaultJsonTypeInfoResolver
             {
-                Modifiers = { IgnoreEpmptyTags }
+                Modifiers = { 
+                    IgnoreEpmptyList<IValue, ITags, Tag>,
+                    IgnoreEpmptyList<IExpression, IArguments, IValue>
+                }
             }
         };
         return JsonSerializer.Serialize(value, options);
     }
 
-    public static IValue ToValue(string json)
+    public static IValue Deserialize(string json)
     {
         JsonSerializerOptions options = new()
         {
@@ -38,18 +43,15 @@ public static class ValueJsonConverter
         throw new ArgumentException("Provided Json string can not be deserialized.", nameof(json));
     }
 
-    private static void IgnoreEpmptyTags(JsonTypeInfo typeInfo)
+    private static void IgnoreEpmptyList<TContainingType, TListType, IElementType>(JsonTypeInfo typeInfo) where TListType : IEnumerable<IElementType>
     {
-        if (typeInfo.Type != typeof(IValue))
+        if (typeInfo.Type != typeof(TContainingType))
             return;
 
-        foreach (JsonPropertyInfo propertyInfo in typeInfo.Properties)
-        {
-            if (propertyInfo.PropertyType == typeof(ITags))
-            {
-                propertyInfo.ShouldSerialize = static (obj, value) =>
-                    value != null && ((ITags)value).Any();
-            }
-        }
+        var listProperties = typeInfo.Properties.Where(p => p.PropertyType == typeof(TListType));
+
+        foreach (JsonPropertyInfo propertyInfo in listProperties)
+            propertyInfo.ShouldSerialize = static (obj, value) =>
+                value != null && ((TListType)value).Any();
     }
 }
