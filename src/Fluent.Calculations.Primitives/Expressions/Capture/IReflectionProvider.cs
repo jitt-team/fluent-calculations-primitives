@@ -9,7 +9,7 @@ public interface IReflectionProvider
 
     bool IsEvaluation(MemberInfo member);
 
-    IValue GetValue(Expression expression);
+    IValueProvider GetValue(Expression expression);
 
     string GetPropertyOrFieldName(MemberInfo expression);
 }

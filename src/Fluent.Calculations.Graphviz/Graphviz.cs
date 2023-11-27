@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace Fluent.Calculations.Graphviz
 {
-    internal class Graphviz
+    internal static class Graphviz
     {
-        public void ConvertToPNG(string dotFilePath)
+        public static void ConvertToPNG(string dotFilePath)
         {
             string? applicationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 

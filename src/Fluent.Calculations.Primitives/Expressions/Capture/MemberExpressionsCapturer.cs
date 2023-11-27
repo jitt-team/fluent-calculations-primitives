@@ -7,7 +7,7 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
 {
     private Dictionary<string, MemberExpression> capturedMemberExpressions = new Dictionary<string, MemberExpression>();
 
-    public MemberExpression[] Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lamdaExpression) where TExpressionResulValue : class, IValue
+    public MemberExpression[] Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lamdaExpression) where TExpressionResulValue : class, IValueProvider
     {
         capturedMemberExpressions = new Dictionary<string, MemberExpression>();
 
@@ -20,7 +20,7 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
 
     private MemberExpression CaptureIfNotExists(MemberExpression node)
     {
-        if (!typeof(IValue).IsAssignableFrom(node.Type))
+        if (!typeof(IValueProvider).IsAssignableFrom(node.Type))
             return node;
 
         string memberName = node.Member.Name;

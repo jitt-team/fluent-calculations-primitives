@@ -12,17 +12,17 @@ public sealed class Condition : Value,
 {
     public override string ToString() => $"{Name}";
 
-    public override string ValueToString() => $"{IsTrue}";
+    public override string PrimitiveString => $"{IsTrue}";
+
+    public Condition(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
     }
 
-    public Condition(MakeValueArgs createValueArgs) : base(createValueArgs) { }
-
     public bool IsTrue => Primitive > 0;
 
-    public override IValue GetDefault() => False();
+    public override IValueProvider MakeDefault() => False();
 
     public static bool operator true(Condition condition) => condition.IsTrue;
 
@@ -30,9 +30,9 @@ public sealed class Condition : Value,
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
+    public static Condition True([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
+    public static Condition False([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 
@@ -58,13 +58,13 @@ public sealed class Condition : Value,
 
     private Condition Or(Condition value) => ReturnCondition(value, (a, b) => a & b);
 
-    private Condition ReturnCondition(IValue value, Func<bool, bool, bool> compareFunc,
+    private Condition ReturnCondition(IValueProvider value, Func<bool, bool, bool> compareFunc,
         [CallerMemberName] string operatorName = "") =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 
-    public override IValue MakeOfThisType(MakeValueArgs args) => new Condition(args);
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
 
-    public override bool Equals(object? obj) => Equals(obj as IValue);
+    public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     public override int GetHashCode() => base.GetHashCode();
 }

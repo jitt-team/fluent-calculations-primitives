@@ -1,21 +1,27 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using System.Text.Json.Serialization;
 
 public interface IValue
 {
+    [JsonPropertyName("Type")]
+    string Type { get; }
+
+    [JsonPropertyName("Name")]
     string Name { get; }
 
+    [JsonPropertyName("Primitive")]
     decimal Primitive { get; }
 
+    [JsonPropertyName("PrimitiveString")]
+    string PrimitiveString { get; }
+
+    [JsonPropertyName("Origin")]
     ValueOriginType Origin { get; }
 
-    ExpressionNode Expression { get; }
+    [JsonPropertyName("Expression")]
+    IExpression Expression { get; }
 
-    TagsCollection Tags { get; }
-
-    IValue MakeOfThisType(MakeValueArgs args);
-
-    IValue GetDefault();
-
-    string ValueToString();
+    [JsonPropertyName("Tags")]
+    ITags Tags { get; }
 }

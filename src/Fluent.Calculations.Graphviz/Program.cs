@@ -3,21 +3,35 @@ using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Graphviz;
 using Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Json;
+
+// File names
+string
+    fileName = "fluent-calculation-demo",
+    jsonFileName = $"{fileName}.json",
+    dotFileName = $"{fileName}.dot",
+    pngFileName = $"{dotFileName}.png";
 
 // Run the calculation (See implementation below)
-IValue resultValue = new DemoCalculation().ToResult();
+Number resultValue = new DemoCalculation().ToResult();
+
+// Serialize to Json
+string resultAsJson = ValueJsonConverter.Serialize(resultValue);
+File.WriteAllText(jsonFileName, resultAsJson);
+
+// Deserialize from json
+IValue resultFromJson = ValueJsonConverter.Deserialize(resultAsJson);
 
 // Convert to graph
-DotGraph dotGraph = new DotGraphValueBuilder().Build(resultValue);
+DotGraph dotGraph = new DotGraphValueBuilder().Build(resultFromJson);
 
 // Save graph to .dot format
-string dotFilePath = "fluent-calculation-demo.dot";
-await new DotGraphToFileWriter().SaveToDot(dotGraph, dotFilePath);
+await new DotGraphToFileWriter().SaveToDot(dotGraph, dotFileName);
 
 // Convert .dot graph to PNG image using Graphviz tool
-new Graphviz().ConvertToPNG(dotFilePath);
+Graphviz.ConvertToPNG(dotFileName);
 
-Console.WriteLine($@"Result file name ""{dotFilePath}.png""");
+Console.WriteLine($@"Result file name ""{pngFileName}""");
 
 // Demo calculation
 namespace Fluent.Calculations.Graphviz
@@ -33,7 +47,7 @@ namespace Fluent.Calculations.Graphviz
 
         public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne  : ValueTwo);
+        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne : ValueTwo);
 
         Number FinalResult => Evaluate(() => ResultOne * ValueThree);
 

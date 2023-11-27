@@ -65,7 +65,7 @@ internal class GraphStyleMonochrome : IGraphStyle
                 <td align=""center"" port=""r1"">{Html(value.Expression.Body)}</td>" :
             $@"
                 <td align=""left"" port=""r1"">{Html(Humanize(value.Expression.Body))} : </td>
-                <td bgcolor=""grey"" align=""center"">{value.ValueToString()}</td>";
+                <td bgcolor=""grey"" align=""center"">{value.PrimitiveString}</td>";
 
     private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
 

@@ -24,7 +24,7 @@ public class DotGraphValueBuilder
         return mainGraph;
     }
 
-    public DotGraph CreateDirectedGraph(string identifier) =>new DotGraph().WithIdentifier(identifier).Directed();
+    public static DotGraph CreateDirectedGraph(string identifier) => new DotGraph().WithIdentifier(identifier).Directed();
 
     private DotNodeBlock AddToGraph(IValue value, DotGraph mainGraph, DotSubgraph paramsGraph)
     {

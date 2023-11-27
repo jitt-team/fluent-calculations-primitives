@@ -3,17 +3,17 @@ using Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
-public abstract class Value : IValue, IOrigin
+public abstract class Value : IValueProvider, IOrigin
 {
     public string Name { get; private set; }
 
-    public ExpressionNode Expression { get; init; }
+    public IExpression Expression { get; init; }
 
     public decimal Primitive { get; init; }
 
     public ValueOriginType Origin { get; protected set; }
 
-    public TagsCollection Tags { get; init; }
+    public ITags Tags { get; init; }
 
     private Value()
     {
@@ -31,29 +31,32 @@ public abstract class Value : IValue, IOrigin
         Tags = value.Tags;
     }
 
-    protected Value(MakeValueArgs createValueArgs)
+    protected Value(MakeValueArgs makeValueArgs)
     {
-        Name = createValueArgs.Name;
-        Primitive = createValueArgs.PrimitiveValue;
-        Origin = createValueArgs.Origin;
-        Expression = createValueArgs.Expression;
-        Tags = createValueArgs.Tags;
+        Name = makeValueArgs.Name;
+        Primitive = makeValueArgs.PrimitiveValue;
+        Origin = makeValueArgs.Origin;
+        Expression = makeValueArgs.Expression;
+        Tags = makeValueArgs.Tags;
     }
 
-    public abstract IValue MakeOfThisType(MakeValueArgs args);
+    public abstract IValueProvider MakeOfThisType(MakeValueArgs args);
 
-    public abstract IValue GetDefault();
+    public abstract IValueProvider MakeDefault();
 
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
-        IValue right,
-        Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
-        string operatorName) where ResultType : IValue, new() =>
+        IValueProvider right,
+        Func<IValueProvider, IValueProvider, ResultPrimitiveType> expressionFunc,
+        string operatorName) where ResultType : IValueProvider, new() =>
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
-    IValue IOrigin.AsResult()
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public string Type => this.GetType().Name;
+
+    IValueProvider IOrigin.AsResult()
     {
         Origin = ValueOriginType.Result;
         return this;
@@ -65,11 +68,11 @@ public abstract class Value : IValue, IOrigin
         Origin = ValueOriginType.Parameter;
     }
 
-    public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
+    public bool Equals(IValueProvider? value) => value != null && Primitive.Equals(value.Primitive);
 
     public override bool Equals(object? obj)
     {
-        if (obj is not IValue value) return false;
+        if (obj is not IValueProvider value) return false;
         return Equals(value);
     }
 
@@ -77,5 +80,5 @@ public abstract class Value : IValue, IOrigin
 
     public override string ToString() => $"{Name}";
 
-    public virtual string ValueToString() => $"{Primitive:0.00}";
+    public virtual string PrimitiveString => $"{Primitive:0.00}";
 }

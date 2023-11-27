@@ -3,8 +3,8 @@ using System.Collections;
 using System.Diagnostics;
 
 [DebuggerDisplay("Count = {Count}")]
-[DebuggerTypeProxy(typeof(ArgumentsCollectionDebugView))]
-public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
+[DebuggerTypeProxy(typeof(ArgumentsDebugView))]
+public sealed class ArgumentsCollection : IArguments
 {
     private readonly List<IValue> items;
 
@@ -22,7 +22,7 @@ public sealed class ArgumentsCollection : IReadOnlyCollection<IValue>
 
     IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
 
-    internal void AddRange(ArgumentsCollection arguments) => items.AddRange(arguments);
+    internal void AddRange(IArguments arguments) => items.AddRange(arguments);
 
     internal void Add(IValue arguments) => items.Add(arguments);
 }

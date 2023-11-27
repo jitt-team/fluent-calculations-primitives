@@ -4,27 +4,27 @@ using Fluent.Calculations.Primitives.BaseTypes;
 internal static class BinaryOperatorHandler
 {
     public static ResultType Handle<ResultType, ResultPrimitiveType>(
-         IValue left,
-         IValue right,
-         Func<IValue, IValue, ResultPrimitiveType> primitiveCalcFunc,
+         IValueProvider left,
+         IValueProvider right,
+         Func<IValueProvider, IValueProvider, ResultPrimitiveType> primitiveCalcFunc,
          string operatorName,
-         string expressionType) where ResultType : IValue, new() =>
+         string expressionType) where ResultType : IValueProvider, new() =>
         Handle<ResultType, ResultPrimitiveType>(left, right, primitiveCalcFunc, operatorName, expressionType, ComposeBinaryExpressionBody);
 
     public static ResultType Handle<ResultType, ResultPrimitiveType>(
-        IValue left,
-        IValue right,
-        Func<IValue, IValue, ResultPrimitiveType> primitiveCalcFunc,
+        IValueProvider left,
+        IValueProvider right,
+        Func<IValueProvider, IValueProvider, ResultPrimitiveType> primitiveCalcFunc,
         string operatorName,
         string expressionType,
-        Func<IValue, IValue, string, string> composeBodyFunc) where ResultType : IValue, new()
+        Func<IValueProvider, IValueProvider, string, string> composeBodyFunc) where ResultType : IValueProvider, new()
     {
         return (ResultType)MakeOfResultType();
 
-        IValue MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
+        IValueProvider MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult()));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(composeBodyFunc(left, right, operatorName), expressionType).WithArguments(left, right);
         decimal ToPrimitiveResult() => Convert.ToDecimal(primitiveCalcFunc(left, right));
     }
 
-    private static string ComposeBinaryExpressionBody(IValue left, IValue right, string operatorName) => $"{left} {LanguageOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
+    private static string ComposeBinaryExpressionBody(IValueProvider left, IValueProvider right, string operatorName) => $"{left} {LanguageOperatorTranslator.MethodNameToOperator(operatorName)} {right}";
 }
