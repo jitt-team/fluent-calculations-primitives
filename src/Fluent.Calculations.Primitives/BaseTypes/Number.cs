@@ -81,5 +81,5 @@ public class Number : Value,
 
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
-    public override int GetHashCode() => Primitive.GetHashCode();
+    public override int GetHashCode() => base.GetHashCode();
 }
