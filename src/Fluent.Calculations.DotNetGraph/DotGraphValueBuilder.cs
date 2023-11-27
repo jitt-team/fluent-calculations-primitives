@@ -5,9 +5,11 @@ using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
 namespace Fluent.Calculations.DotNetGraph;
 
-public class DotGraphValueBuilder(IGraphStyle builder)
+public class DotGraphValueBuilder
 {
-    private readonly IGraphStyle builder = builder;
+    private readonly IGraphStyle builder;
+
+    public DotGraphValueBuilder(IGraphStyle builder) => this.builder = builder;
 
     public DotGraphValueBuilder() : this(new GraphStyleMonochrome()) { }
 

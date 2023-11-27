@@ -6,13 +6,15 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
-public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
+public sealed class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
     public override string ToString() => $"{Name}";
 
     public override string PrimitiveString => $"{IsTrue}";
+
+    public Condition(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
     {
