@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
-public sealed class Condition(MakeValueArgs createValueArgs) : Value(createValueArgs),
+public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {

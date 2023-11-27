@@ -31,13 +31,13 @@ public abstract class Value : IValueProvider, IOrigin
         Tags = value.Tags;
     }
 
-    protected Value(MakeValueArgs createValueArgs)
+    protected Value(MakeValueArgs makeValueArgs)
     {
-        Name = createValueArgs.Name;
-        Primitive = createValueArgs.PrimitiveValue;
-        Origin = createValueArgs.Origin;
-        Expression = createValueArgs.Expression;
-        Tags = createValueArgs.Tags;
+        Name = makeValueArgs.Name;
+        Primitive = makeValueArgs.PrimitiveValue;
+        Origin = makeValueArgs.Origin;
+        Expression = makeValueArgs.Expression;
+        Tags = makeValueArgs.Tags;
     }
 
     public abstract IValueProvider MakeOfThisType(MakeValueArgs args);

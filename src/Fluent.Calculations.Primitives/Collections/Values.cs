@@ -29,13 +29,13 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Origin = value.Origin;
     }
 
-    protected Values(MakeValueArgs createValueArgs)
+    protected Values(MakeValueArgs makeValueArgs)
     {
-        expression = createValueArgs.Expression;
-        tags = createValueArgs.Tags;
-        Name = createValueArgs.Name;
-        Primitive = createValueArgs.PrimitiveValue;
-        Origin = createValueArgs.Origin;
+        expression = makeValueArgs.Expression;
+        tags = makeValueArgs.Tags;
+        Name = makeValueArgs.Name;
+        Primitive = makeValueArgs.PrimitiveValue;
+        Origin = makeValueArgs.Origin;
     }
 
     public string Name { get; private set; }

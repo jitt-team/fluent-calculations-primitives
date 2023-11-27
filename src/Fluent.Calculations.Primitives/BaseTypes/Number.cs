@@ -18,7 +18,7 @@ public class Number : Value,
 
     public Number(Number number) : base(number) { }
 
-    public Number(MakeValueArgs createValueArgs) : base(createValueArgs) { }
+    public Number(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 

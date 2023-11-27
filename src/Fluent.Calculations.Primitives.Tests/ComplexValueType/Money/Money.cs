@@ -15,7 +15,7 @@ public class Money : Number
 
     public Money(Money money) : this(money, money.Currency) { }
 
-    public Money(MakeValueArgs createValueArgs, Currency currency) : base(createValueArgs) => Currency = currency;
+    public Money(MakeValueArgs makeValueArgs, Currency currency) : base(makeValueArgs) => Currency = currency;
 
     public static Money operator +(Money left, Money right) => new Money(left.Add(right), left.Currency);
 
