@@ -11,18 +11,15 @@ public class GraphStyleColorful : IGraphStyle
 {
     public DotNodeBlock CreateBlock(IValue value)
     {
-        switch (value.Expression.Type)
+        return value.Expression.Type switch
         {
-            case ExpressionNodeType.Lambda:
-            case ExpressionNodeType.BinaryExpression:
-            case ExpressionNodeType.Collection:
-            case ExpressionNodeType.MathExpression:
-                return CreateExpressionBlock(value);
-            case ExpressionNodeType.None:
-            case ExpressionNodeType.Constant:
-            default:
-                return CreateValueBlock(value);
-        }
+            ExpressionNodeType.Lambda or
+            ExpressionNodeType.BinaryExpression or
+            ExpressionNodeType.Collection or
+            ExpressionNodeType.MathExpression
+            => CreateExpressionBlock(value),
+            _ => CreateValueBlock(value),
+        };
     }
     public DotSubgraph CreateParametersCluster()
     {
@@ -37,7 +34,7 @@ public class GraphStyleColorful : IGraphStyle
         return subgraph;
     }
 
-    private DotNodeBlock CreateValueBlock(IValue value)
+    private static DotNodeBlock CreateValueBlock(IValue value)
     {
         DotNode
             constantNode = CreateConsantNode(value);
@@ -45,7 +42,7 @@ public class GraphStyleColorful : IGraphStyle
         return new DotNodeBlock(constantNode, isValuePart: true);
     }
 
-    private DotNodeBlock CreateExpressionBlock(IValue value)
+    private static DotNodeBlock CreateExpressionBlock(IValue value)
     {
         DotNode
             expressionNode = CreateExpressionNode(value),
@@ -56,7 +53,7 @@ public class GraphStyleColorful : IGraphStyle
         return new DotNodeBlock(resultNode, expressionNode, connectorEdge);
     }
 
-    private DotNode CreateConsantNode(IValue value)
+    private static DotNode CreateConsantNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_value"))
@@ -70,7 +67,7 @@ public class GraphStyleColorful : IGraphStyle
         return node;
     }
 
-    private DotNode CreateValueNode(IValue value)
+    private static DotNode CreateValueNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_value"))
@@ -84,7 +81,7 @@ public class GraphStyleColorful : IGraphStyle
         return node;
     }
 
-    private DotNode CreateExpressionNode(IValue value)
+    private static DotNode CreateExpressionNode(IValue value)
     {
         var node = new DotNode()
               .WithIdentifier(Html($"{value.Name}_expression"))
@@ -137,7 +134,7 @@ public class GraphStyleColorful : IGraphStyle
 
     private static string Html(string value) => HttpUtility.HtmlEncode(value);
 
-    private DotEdge ConnectTwoSubNodes(DotNode firstNode, DotNode lastNode) =>
+    private static DotEdge ConnectTwoSubNodes(DotNode firstNode, DotNode lastNode) =>
         new DotEdge().From(firstNode).To(lastNode).WithPenWidth(2);
 
     public DotEdge ConnectValues(DotNode firstNode, DotNode lastNode) =>

@@ -12,7 +12,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
-    private Func<EvaluationContext<T>, T>? calculationFunc;
+    private readonly Func<EvaluationContext<T>, T>? calculationFunc;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
     public EvaluationContext() : this(EvaluationOptions.Default) { }
@@ -51,7 +51,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     public TValue Evaluate<TValue>(
         Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN)
+        [CallerArgumentExpression(nameof(lambdaExpression))] string lambdaExpressionBody = StringConstants.NaN)
             where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
@@ -64,7 +64,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
 
         return result;
 
-        string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
+        static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
     private TValue EvaluateInternal<TValue>(

@@ -24,7 +24,7 @@ public class DotNodeBlock : IEnumerable<IDotElement>
 
     public DotNode FirstNode { get; set; }
 
-    public DotEdge ConnectorEdge { get; set; }
+    public DotEdge? ConnectorEdge { get; set; }
 
     public DotNode LastNode { get; set; }
 

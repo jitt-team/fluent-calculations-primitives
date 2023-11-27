@@ -10,7 +10,7 @@ public class ValuesTests
     public void MakeOfThisElementType_CreatesNewInstance_OfElementType()
     {
         string expectedName = "EXPECTED-NAME";
-        Values<FakeValue> values = new();
+        Values<FakeValue> values = [];
         IValueProvider element = values.MakeOfThisElementType(MakeValueArgs.Compose(expectedName, ExpressionNode.None, 0));
         element.Should().NotBeNull();
         element.Name.Should().Be(expectedName);

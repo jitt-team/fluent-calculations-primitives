@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 public class ReflectionProviderTests
 {
-    ReflectionProvider memberAccessReflectionProvider = new ReflectionProvider();
+    readonly ReflectionProvider memberAccessReflectionProvider = new();
 
     [Fact]
     public void HasValue_ReturnsResult()
@@ -20,8 +20,13 @@ public class ReflectionProviderTests
     [Fact]
     public void NullValue_Throws()
     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         Number testValue = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8603 // Possible null reference return.
         Expression<Func<Number>> testExpression = () => testValue;
+#pragma warning restore CS8603 // Possible null reference return.
         Assert.Throws<NullExpressionResultException>(() => memberAccessReflectionProvider.GetValue(testExpression.Body));
+
     }
 }

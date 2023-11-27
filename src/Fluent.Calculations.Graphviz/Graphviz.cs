@@ -5,7 +5,7 @@ namespace Fluent.Calculations.Graphviz
 {
     internal class Graphviz
     {
-        public void ConvertToPNG(string dotFilePath)
+        public static void ConvertToPNG(string dotFilePath)
         {
             string? applicationPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 

@@ -29,7 +29,7 @@ DotGraph dotGraph = new DotGraphValueBuilder().Build(resultFromJson);
 await new DotGraphToFileWriter().SaveToDot(dotGraph, dotFileName);
 
 // Convert .dot graph to PNG image using Graphviz tool
-new Graphviz().ConvertToPNG(dotFileName);
+Graphviz.ConvertToPNG(dotFileName);
 
 Console.WriteLine($@"Result file name ""{pngFileName}""");
 

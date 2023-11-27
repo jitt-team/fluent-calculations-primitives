@@ -5,13 +5,13 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 {
     internal class FakeValue : IValueProvider
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = StringConstants.NaN;
 
         public decimal Primitive { get; set; }
 
-        public IExpression Expression { get; set; }
+        public IExpression Expression { get; set; } = ExpressionNode.None;
 
-        public ITags Tags { get; set; }
+        public ITags Tags { get; set; } = TagsCollection.Empty;
 
         public ValueOriginType Origin => ValueOriginType.Parameter;
 

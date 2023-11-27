@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
-public sealed class Condition : Value,
+public sealed class Condition(MakeValueArgs createValueArgs) : Value(createValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
@@ -18,8 +18,6 @@ public sealed class Condition : Value,
     {
     }
 
-    public Condition(MakeValueArgs createValueArgs) : base(createValueArgs) { }
-
     public bool IsTrue => Primitive > 0;
 
     public override IValueProvider MakeDefault() => False();
@@ -30,9 +28,9 @@ public sealed class Condition : Value,
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
+    public static Condition True([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
-    public static Condition False([CallerMemberName] string expressionName = "") => new Condition(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
+    public static Condition False([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 

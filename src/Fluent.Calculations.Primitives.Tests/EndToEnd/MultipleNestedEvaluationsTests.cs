@@ -6,7 +6,7 @@ namespace Fluent.Calculations.Primitives.Tests.Demo
     public class MultipleNestedEvaluationsTests
     {
         [Fact]
-        public async Task NestedEvaluations_IsExpectedResult()
+        public void NestedEvaluations_IsExpectedResult()
         {
             MultipleNestedEvaluations evaluation = new()
             {
