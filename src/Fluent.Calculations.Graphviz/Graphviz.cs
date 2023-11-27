@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Fluent.Calculations.Graphviz
 {
-    internal class Graphviz
+    internal static class Graphviz
     {
         public static void ConvertToPNG(string dotFilePath)
         {
