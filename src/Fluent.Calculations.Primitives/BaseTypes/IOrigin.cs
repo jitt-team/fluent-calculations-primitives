@@ -4,7 +4,7 @@
     {
         bool IsSet { get; }
 
-        IValue AsResult();
+        IValueProvider AsResult();
 
         void MarkAsParameter(string name);
     }

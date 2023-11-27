@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Evalueation_ExpressionArguments_AreExpected()
+        public void Evaluation_ExpressionArguments_AreExpected()
         {
             var expected = new ExpectedTestValues();
             Number result = RunNonCachedParameterTestCase(expected);
@@ -38,7 +38,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             Number result = RunNonCachedParameterTestCase(inpuexpected);
             _valuesCacheMock.Verify(c => c.ContainsKey(inpuexpected.CalculationName), Times.Once());
             _valuesCacheMock.Verify(c => c.Add(inpuexpected.CalculationName,
-                It.Is<IValue>(value => value.Name.Equals(inpuexpected.CalculationName) && value.Primitive.Equals(inpuexpected.PrimitiveValue))),
+                It.Is<IValueProvider>(value => value.Name.Equals(inpuexpected.CalculationName) && value.Primitive.Equals(inpuexpected.PrimitiveValue))),
                 Times.Once());
         }
 
@@ -106,7 +106,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         private EvaluationContext<Number> MockAndBuildNonCachedCalculation(string expectedCalculationName, CapturedExpressionMembers capturedMembersMock)
         {
             _valuesCacheMock.Setup(c => c.ContainsKey(expectedCalculationName)).Returns(false).Verifiable();
-            _valuesCacheMock.Setup(c => c.Add(expectedCalculationName, It.IsAny<IValue>())).Verifiable();
+            _valuesCacheMock.Setup(c => c.Add(expectedCalculationName, It.IsAny<IValueProvider>())).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
 
             EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
@@ -124,7 +124,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         private EvaluationContext<Number> MockAndBuildCachedParameterCalculation(string cachedValueName, Number cachedValue, CapturedExpressionMembers capturedMembersMock)
         {
             _valuesCacheMock.Setup(c => c.ContainsKey(It.IsAny<string>())).Returns(false).Verifiable();
-            _valuesCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValue>())).Verifiable();
+            _valuesCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValueProvider>())).Verifiable();
             _valuesCacheMock.Setup(c => c.ContainsName(cachedValueName)).Returns(true).Verifiable();
             _valuesCacheMock.Setup(c => c.GetByName(cachedValueName)).Returns(cachedValue).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
@@ -133,7 +133,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             return calculation;
         }
 
-        private CapturedExpressionMembers MockParameterCaptureResult(IValue value1, string name1, IValue value2, string name2)
+        private CapturedExpressionMembers MockParameterCaptureResult(IValueProvider value1, string name1, IValueProvider value2, string name2)
         {
             var parameterMemberers = new[] {
                 new CapturedParameterMember(value1, name1),

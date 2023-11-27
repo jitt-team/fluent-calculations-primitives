@@ -3,8 +3,10 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
 [DebuggerDisplay("Body = {Body}")]
-public class ExpressionNode
+public class ExpressionNode : IExpression
 {
+    private ArgumentsCollection arguments;
+
     public override string ToString() => $"{Body}";
 
     internal static ExpressionNode None => new ExpressionNode(StringConstants.NaN, ExpressionNodeType.None);
@@ -13,14 +15,14 @@ public class ExpressionNode
     {
         Body = body;
         Type = type;
-        Arguments = ArgumentsCollection.Empty;
+        arguments = ArgumentsCollection.Empty;
     }
 
     public string Body { get; private set; }
 
     public string Type { get; }
 
-    public virtual ArgumentsCollection Arguments { get; internal set; }
+    public virtual IArguments Arguments => arguments;
 
     internal ExpressionNode WithBody(string body)
     {
@@ -32,9 +34,11 @@ public class ExpressionNode
 
     public ExpressionNode WithArguments(IEnumerable<IValue> arguments)
     {
-        Arguments = new ArgumentsCollection(arguments);
+        this.arguments = new ArgumentsCollection(arguments);
         return this;
     }
 
-    internal void UpdateBody(string body) => Body = body;
+    internal void SetBody(string body) => Body = body;
+
+    internal void AppendArgument(IValue value) => arguments.Add(value);
 }

@@ -18,7 +18,7 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
         this.parameterCache = valuesCache;
     }
 
-    public CapturedExpressionMembers Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValue
+    public CapturedExpressionMembers Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lambdaExpression) where TExpressionResulValue : class, IValueProvider
     {
         var parameters = new List<CapturedParameterMember>();
         var evaluations = new List<CapturedEvaluationMember>();
@@ -47,12 +47,12 @@ internal class MemberExpressionValueCapturer : IMemberExpressionValueCapturer
 
     private CapturedEvaluationMember ToEvaluation(MemberExpression memberExpression) => new CapturedEvaluationMember(GetName(memberExpression.Member));
 
-    private IValue GetValue(MemberExpression expression, string name)
+    private IValueProvider GetValue(MemberExpression expression, string name)
     {
         if (!name.Equals(StringConstants.NaN) && parameterCache.ContainsKey(name))
             return parameterCache.GetByKey(name);
 
-        IValue value = reflectionProvider.GetValue(expression);
+        IValueProvider value = reflectionProvider.GetValue(expression);
 
         if (!name.Equals(StringConstants.NaN))
             parameterCache.Add(name, value);

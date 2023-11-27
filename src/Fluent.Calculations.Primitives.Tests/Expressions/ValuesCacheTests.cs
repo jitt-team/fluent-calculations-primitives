@@ -8,7 +8,7 @@ public class ValuesCacheTests
     [Fact]
     public void ValueIsAddedToCache()
     {
-        Dictionary<string, IValue> cacheStorage = new();
+        Dictionary<string, IValueProvider> cacheStorage = new();
         ValuesCache cache = new(cacheStorage);
         string testValueName = "TEST-VALUE";
         cache.Add(Number.Of(1, testValueName));

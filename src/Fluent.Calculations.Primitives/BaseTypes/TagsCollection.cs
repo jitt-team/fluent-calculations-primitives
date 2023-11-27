@@ -3,7 +3,7 @@ using System.Collections;
 using System.Diagnostics;
 
 [DebuggerDisplay("Count = {Count}")]
-public sealed class TagsCollection : IReadOnlyCollection<Tag>
+public sealed class TagsCollection : ITags
 {
     private readonly List<Tag> items;
 

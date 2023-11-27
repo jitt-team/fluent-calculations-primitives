@@ -2,24 +2,18 @@
 using Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/class/*' />
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
-public abstract class Value : IValue, IOrigin
+public abstract class Value : IValueProvider, IOrigin
 {
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/prop-name/*' />
     public string Name { get; private set; }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/prop-expression/*' />
-    public ExpressionNode Expression { get; init; }
+    public IExpression Expression { get; init; }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/prop-primitive/*' />
     public decimal Primitive { get; init; }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/prop-origin/*' />
     public ValueOriginType Origin { get; protected set; }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/prop-tags/*' />
-    public TagsCollection Tags { get; init; }
+    public ITags Tags { get; init; }
 
     private Value()
     {
@@ -28,7 +22,6 @@ public abstract class Value : IValue, IOrigin
         Tags = TagsCollection.Empty;
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/ctor-value/*' />
     public Value(Value value)
     {
         Name = value.Name;
@@ -38,33 +31,32 @@ public abstract class Value : IValue, IOrigin
         Tags = value.Tags;
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/ctor-args/*' />
-    protected Value(MakeValueArgs createValueArgs)
+    protected Value(MakeValueArgs makeValueArgs)
     {
-        Name = createValueArgs.Name;
-        Primitive = createValueArgs.PrimitiveValue;
-        Origin = createValueArgs.Origin;
-        Expression = createValueArgs.Expression;
-        Tags = createValueArgs.Tags;
+        Name = makeValueArgs.Name;
+        Primitive = makeValueArgs.PrimitiveValue;
+        Origin = makeValueArgs.Origin;
+        Expression = makeValueArgs.Expression;
+        Tags = makeValueArgs.Tags;
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-make/*' />
-    public abstract IValue MakeOfThisType(MakeValueArgs args);
+    public abstract IValueProvider MakeOfThisType(MakeValueArgs args);
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-getdefault/*' />
-    public abstract IValue GetDefault();
+    public abstract IValueProvider MakeDefault();
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-handlebinaryexpression/*' />
     public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
-        IValue right, 
-        Func<IValue, IValue, ResultPrimitiveType> expressionFunc,
-        string operatorName) where ResultType : IValue, new() =>
+        IValueProvider right,
+        Func<IValueProvider, IValueProvider, ResultPrimitiveType> expressionFunc,
+        string operatorName) where ResultType : IValueProvider, new() =>
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
-    IValue IOrigin.AsResult()
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    public string Type => this.GetType().Name;
+
+    IValueProvider IOrigin.AsResult()
     {
         Origin = ValueOriginType.Result;
         return this;
@@ -76,22 +68,17 @@ public abstract class Value : IValue, IOrigin
         Origin = ValueOriginType.Parameter;
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-equals-value/*' />
-    public bool Equals(IValue? value) => value != null && Primitive.Equals(value.Primitive);
+    public bool Equals(IValueProvider? value) => value != null && Primitive.Equals(value.Primitive);
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-equals-object/*' />
     public override bool Equals(object? obj)
     {
-        if (obj is not IValue value) return false;
+        if (obj is not IValueProvider value) return false;
         return Equals(value);
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-gethashcode/*' />
     public override int GetHashCode() => Primitive.GetHashCode();
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-tostring/*' />
     public override string ToString() => $"{Name}";
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/method-valuetostring/*' />
-    public virtual string ValueToString() => $"{Primitive:0.00}";
+    public virtual string PrimitiveString => $"{Primitive:0.00}";
 }

@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValue, new()
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
+public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValueProvider, new()
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
-    private Func<EvaluationContext<T>, T>? calculationFunc;
+    private readonly Func<EvaluationContext<T>, T>? calculationFunc;
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
     public EvaluationContext() : this(EvaluationOptions.Default) { }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
     public EvaluationContext(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
     public EvaluationContext(Func<EvaluationContext<T>, T> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
@@ -32,9 +32,11 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         this.valuesCache = valuesCache;
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public T ToResult()
     {
+        valuesCache.Clear();
+
         T result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
              Return();
@@ -42,15 +44,15 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         return (T)((IOrigin)result).AsResult();
     }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual T Return() { return (T)new T().GetDefault(); }
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
+    public virtual T Return() { return (T)new T().MakeDefault(); }
 
-    /// <include file="IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
         Expression<Func<TValue>> lambdaExpression,
         [CallerMemberName] string name = StringConstants.NaN,
-        [CallerArgumentExpression("lambdaExpression")] string lambdaExpressionBody = StringConstants.NaN)
-            where TValue : class, IValue, new()
+        [CallerArgumentExpression(nameof(lambdaExpression))] string lambdaExpressionBody = StringConstants.NaN)
+            where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);
@@ -62,37 +64,34 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
 
         return result;
 
-        string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
+        static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
     private TValue EvaluateInternal<TValue>(
        Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)
-           where TValue : class, IValue, new()
+           where TValue : class, IValueProvider, new()
     {
         TValue result = lambdaExpression.Compile().Invoke();
-
-        ExpressionNode expressionNode;
 
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
-        IEnumerable<IValue>
+        IEnumerable<IValueProvider>
             parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             expressionArguments = parameterValues.Concat(evaluationValues);
 
-        expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
+        ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
         return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
     }
 
-    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
+    private IValueProvider[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
         bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
-        IValue GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
+        IValueProvider GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
-
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
         foreach (CapturedParameterMember parameter in parameters)
