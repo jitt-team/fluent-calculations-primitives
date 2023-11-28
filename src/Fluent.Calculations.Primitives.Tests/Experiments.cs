@@ -46,8 +46,8 @@ namespace Fluent.Calculations.Primitives.Tests
 
             public NextCaseBuilder<TCase, TReturn> Return(TReturn returnValue)
             {
-                switchCases.Add(caseValue,returnValue);
-                return new NextCaseBuilder<TCase, TReturn>(checkValue, switchCases, caseValue);
+                switchCases.Add(caseValue, returnValue);
+                return new NextCaseBuilder<TCase, TReturn>(checkValue, switchCases);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Fluent.Calculations.Primitives.Tests
             private readonly TCase checkValue;
             private readonly IDictionary<TCase, TReturn> switchCases;
 
-            public NextCaseBuilder(TCase? checkValue, IDictionary<TCase, TReturn> switchCases, TCase? caseValue)
+            public NextCaseBuilder(TCase? checkValue, IDictionary<TCase, TReturn> switchCases)
             {
                 this.checkValue = checkValue;
                 this.switchCases = switchCases;
