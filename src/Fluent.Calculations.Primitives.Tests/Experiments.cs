@@ -1,7 +1,6 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using System;
 using System.Linq.Expressions;
-using static Fluent.Calculations.Primitives.Tests.Evaluate<TValue>;
 
 namespace Fluent.Calculations.Primitives.Tests
 {
@@ -13,14 +12,14 @@ namespace Fluent.Calculations.Primitives.Tests
         {
             Number Value = 10;
 
-            Number result = Result.Of(Evaluate<Number, Number>
+            Number result = Result.Of(SwitchExpression<Number, Number>
                 .Switch(Value)
                     .Case(Number.Of(10)).Return(Number.Of(15))
                     .Case(Number.Of(20)).Return(Number.Of(30))
                     .Default(Number.Of(20)));
         }
     }
-    public static class Evaluate<TCase, TReturn>
+    public static class SwitchExpression<TCase, TReturn>
     {
         public static SwichExpressionBuilder<TCase, TReturn> Switch(TCase value)
         {
@@ -29,6 +28,15 @@ namespace Fluent.Calculations.Primitives.Tests
 
         public sealed class ThenBuilder<TCase, TReturn>
         {
+            private Dictionary<TCase, TReturn> switchCases;
+            private TCase? caseValue;
+
+            public ThenBuilder(Dictionary<TCase, TReturn> switchCases, TCase? caseValue)
+            {
+                this.switchCases = switchCases;
+                this.caseValue = caseValue;
+            }
+
             public NextWhenBuilder<TCase, TReturn> Return(TReturn number)
             {
                 return new NextWhenBuilder<TCase, TReturn>();
@@ -56,7 +64,7 @@ namespace Fluent.Calculations.Primitives.Tests
 
             public ThenBuilder<TCase, TReturn> Case(TCase caseValue)
             {
-                return new ThenBuilder<TCase, TReturn>(switchCases, );
+                return new ThenBuilder<TCase, TReturn>(switchCases, caseValue);
             }
         }
     }
