@@ -6,6 +6,7 @@ public static class ExpressionNodeType
     public const string Constant = "Constant";
     public const string Collection = "Collection";
     public const string Lambda = "Lambda";
+    public const string Switch = "Switch";
     public const string BinaryExpression = "Binary";
     public const string MathExpression = "Math";
 }
