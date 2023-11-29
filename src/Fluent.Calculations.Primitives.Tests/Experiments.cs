@@ -1,8 +1,5 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 
 namespace Fluent.Calculations.Primitives.Tests
 {
@@ -56,7 +53,7 @@ namespace Fluent.Calculations.Primitives.Tests
             private readonly TCase checkValue;
             private readonly IDictionary<TCase, TReturn> switchCases;
 
-            public NextCaseBuilder(TCase? checkValue, IDictionary<TCase, TReturn> switchCases)
+            public NextCaseBuilder(TCase checkValue, IDictionary<TCase, TReturn> switchCases)
             {
                 this.checkValue = checkValue;
                 this.switchCases = switchCases;
