@@ -20,6 +20,8 @@ public class Number : Value,
 
     public Number(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
+    public static implicit operator int(Number value) => Convert.ToInt32(value.Primitive);
+
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);

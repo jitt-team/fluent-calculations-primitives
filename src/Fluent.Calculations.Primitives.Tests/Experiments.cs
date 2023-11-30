@@ -26,7 +26,7 @@ namespace Fluent.Calculations.Primitives.Tests
             //            .Case(Number.Of(20)).Return(Number.Of(30))
             //            .Default(Number.Of(20));
 
-            Number someResult = Switch<Number>.For(Value)
+            Number someResult = SwitchExpression<Number>.For(Value)
                     .Case(Number.Of(10)).Return(Number.Of(15))
                     .Case(Number.Of(20)).Return(Number.Of(30))
                     .Default(Number.Of(20));

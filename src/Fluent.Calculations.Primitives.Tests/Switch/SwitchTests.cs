@@ -15,7 +15,7 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
 
             Number NumberSum = NumberTwo + NumberThree;
 
-            Number SwitchResult = Switch<Number>.For(NumberOne)
+            Number SwitchResult = SwitchExpression<Number>.For(NumberOne)
                 .Case(Number.Of(1)).Return(Number.Of(10))
                 .Case(Number.Of(3)).Return(Number.Of(30))
                 .Case(Number.Of(5)).Return(NumberSum)

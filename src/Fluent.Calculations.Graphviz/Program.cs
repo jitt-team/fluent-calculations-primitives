@@ -49,8 +49,15 @@ namespace Fluent.Calculations.Graphviz
 
         Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne : ValueTwo);
 
-        Number FinalResult => Evaluate(() => ResultOne * ValueThree);
+        Number OtherResult => Evaluate(() => ResultOne * ValueThree);
 
-        public override Number Return() => FinalResult;
+        Number SwitchResult => Evaluate(() =>
+            Switch(OtherResult)
+                .Case(Number.Of(20)).Return(Number.Of(10))
+                .Case(Number.Of(40)).Return(Number.Of(30))
+                .Case(Number.Of(60)).Return(ResultOne)
+                .Default(Number.Of(100)));
+
+        public override Number Return() => SwitchResult;
     }
 }
