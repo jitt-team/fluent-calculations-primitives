@@ -58,10 +58,8 @@ namespace Fluent.Calculations.Graphviz
         Number OtherResult => Evaluate(() => ResultOne * ValueThree);
 
         Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
-                .Case(SomeOptions.OptionOne)
+                .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
                     .Return(10)
-                .Case(SomeOptions.OptionTwo)
-                    .Return(20)
                 .Case(SomeOptions.OptionThree)
                     .Return(OtherResult)
                     .Default(100));

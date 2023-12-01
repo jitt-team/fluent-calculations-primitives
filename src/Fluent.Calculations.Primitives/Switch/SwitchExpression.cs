@@ -17,33 +17,36 @@ public static class SwitchExpression<T, TReturn>
 
         private SwichBuilder() { }
 
-        internal SwichBuilder(Option<T>  checkValue, IDictionary<T, TReturn> switchCases)
+        internal SwichBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
         }
 
-        public CaseBuilder Case(T caseValue) => new CaseBuilder(checkValue, switchCases, caseValue);
+        public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
+            new CaseBuilder(checkValue, switchCases, new T[] { caseValue }.Concat(otherCaseValues ?? new T[0]).ToArray());
     }
 
     public sealed class CaseBuilder
     {
         private readonly Option<T> checkValue;
-        private readonly T caseValue;
+        private readonly T[] caseValues;
         private readonly IDictionary<T, TReturn> switchCases;
 
         private CaseBuilder() { }
 
-        internal CaseBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases, T caseValue)
+        internal CaseBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases, T[] caseValues)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
-            this.caseValue = caseValue;
+            this.caseValues = caseValues;
         }
 
         public NextCaseBuilder Return(TReturn returnValue)
         {
-            switchCases.Add(caseValue, returnValue);
+            foreach (T caseValue in caseValues)
+                switchCases.Add(caseValue, returnValue);
+
             return new NextCaseBuilder(checkValue, switchCases);
         }
     }
@@ -53,7 +56,8 @@ public static class SwitchExpression<T, TReturn>
         private readonly Option<T> checkValue;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        public CaseBuilder Case(T caseValue) => new CaseBuilder(checkValue, switchCases, caseValue);
+        public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
+            new CaseBuilder(checkValue, switchCases, new T[] { caseValue }.Concat(otherCaseValues ?? new T[0]).ToArray());
 
         private NextCaseBuilder() { }
 
