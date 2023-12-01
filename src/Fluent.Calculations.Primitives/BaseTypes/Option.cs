@@ -17,19 +17,13 @@ public class Option<T> : Value where T : struct, Enum
 
     public Option(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
-    // public static implicit operator T(Option<T> value) =>  Convert.ToInt32(value.Primitive);
+    public static implicit operator T(Option<T> value) => (T)(object)Convert.ToInt32(value.Primitive);
 
-    // public static implicit operator Option<T>(T value) => Option.Of(value);
+    public static implicit operator Option<T>(T value) => Option.Of(value);
 
-    public override IValueProvider MakeDefault()
-    {
-        throw new NotImplementedException();
-    }
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Number(args);
 
-    public override IValueProvider MakeOfThisType(MakeValueArgs args)
-    {
-        throw new NotImplementedException();
-    }
+    public override IValueProvider MakeDefault() => new Option<T>(default(T));
 
     public SwitchExpression<T, TResult>.SwichBuilder Switch<TResult>()
         where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);

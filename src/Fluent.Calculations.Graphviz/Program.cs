@@ -46,7 +46,7 @@ namespace Fluent.Calculations.Graphviz
             ValueThree = Number.Of(2);
 
         private Option<SomeOptions>
-            MyEnum = Option.Of(SomeOptions.OptionOne);
+            MyEnum = Option.Of(SomeOptions.OptionThree);
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
