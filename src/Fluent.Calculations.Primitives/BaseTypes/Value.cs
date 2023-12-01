@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
 public abstract class Value : IValueProvider, IOrigin
@@ -44,7 +45,7 @@ public abstract class Value : IValueProvider, IOrigin
 
     public abstract IValueProvider MakeDefault();
 
-    public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
+    protected ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValueProvider right,
         Func<IValueProvider, IValueProvider, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValueProvider, new() =>
