@@ -12,9 +12,4 @@ public static class Result
         TValue result = new EvaluationContext<TValue>().Evaluate(lambdaExpression, name, lambdaExpressionBody);
         return (TValue)((IOrigin)result).AsResult();
     }
-
-    internal static Number Of(object value)
-    {
-        throw new NotImplementedException();
-    }
 }
