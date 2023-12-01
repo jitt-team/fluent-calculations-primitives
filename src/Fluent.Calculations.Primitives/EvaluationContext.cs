@@ -48,13 +48,9 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual T Return() { return (T)new T().MakeDefault(); }
 
-    protected static SwitchExpression<TCase, TValue>.SwichBuilder Switch<TValue>(TValue value) 
-        where TValue : class, IValueProvider, new() => SwitchExpression<TValue>.For(value);
-
-    public TValue Evaluate<TValue>(
-      Func<SwitchExpression<TValue>.SwitchEvaluator> getSwitchResultFunc,
-      [CallerMemberName] string name = StringConstants.NaN)
-          where TValue : class, IValueProvider, new()
+    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.SwitchEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
+            where TCase : struct, Enum
+            where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);

@@ -53,17 +53,20 @@ namespace Fluent.Calculations.Graphviz
 
         Number OtherResult => Evaluate(() => ResultOne * ValueThree);
 
-        Number SwitchResult => Evaluate(() => MyEnum
-                .Case(SomeOptions.OptionOne).Return(Number.Of(10))
-                .Case(SomeOptions.OptionTwo).Return(Number.Of(30))
-                .Case(SomeOptions.OptionThree).Return(ResultOne)
-                .Default(Number.Of(100)));
+        Number SwitchResult => Evaluate(() => MyEnum.Switch<Number>()
+                .Case(SomeOptions.OptionOne)
+                    .Return(10)
+                .Case(SomeOptions.OptionTwo)
+                    .Return(20)
+                .Case(SomeOptions.OptionThree)
+                    .Return(OtherResult)
+                    .Default(Number.Of(100)));
 
         public override Number Return() => SwitchResult;
     }
 
     public enum SomeOptions
-    { 
+    {
         NotSet = 1,
         OptionOne = 2,
         OptionTwo = 3,
