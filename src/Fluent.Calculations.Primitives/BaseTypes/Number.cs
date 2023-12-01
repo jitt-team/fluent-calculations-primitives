@@ -28,7 +28,7 @@ public class Number : Value,
 
     public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = "") =>
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) =>
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);

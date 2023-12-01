@@ -45,19 +45,28 @@ namespace Fluent.Calculations.Graphviz
             ValueTwo = Number.Of(20),
             ValueThree = Number.Of(2);
 
+        private Option<SomeOptions> MyEnum = Option.Of(SomeOptions.OptionOne);
+
         public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
         Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne : ValueTwo);
 
         Number OtherResult => Evaluate(() => ResultOne * ValueThree);
 
-        Number SwitchResult => Evaluate(() =>
-            Switch(OtherResult)
-                .Case(Number.Of(20)).Return(Number.Of(10))
-                .Case(Number.Of(40)).Return(Number.Of(30))
-                .Case(Number.Of(60)).Return(ResultOne)
+        Number SwitchResult => Evaluate(() => MyEnum
+                .Case(SomeOptions.OptionOne).Return(Number.Of(10))
+                .Case(SomeOptions.OptionTwo).Return(Number.Of(30))
+                .Case(SomeOptions.OptionThree).Return(ResultOne)
                 .Default(Number.Of(100)));
 
         public override Number Return() => SwitchResult;
+    }
+
+    public enum SomeOptions
+    { 
+        NotSet = 1,
+        OptionOne = 2,
+        OptionTwo = 3,
+        OptionThree = 4,
     }
 }

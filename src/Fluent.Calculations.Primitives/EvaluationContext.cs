@@ -48,7 +48,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual T Return() { return (T)new T().MakeDefault(); }
 
-    protected static SwitchExpression<TValue>.SwichBuilder Switch<TValue>(TValue value) 
+    protected static SwitchExpression<TCase, TValue>.SwichBuilder Switch<TValue>(TValue value) 
         where TValue : class, IValueProvider, new() => SwitchExpression<TValue>.For(value);
 
     public TValue Evaluate<TValue>(
