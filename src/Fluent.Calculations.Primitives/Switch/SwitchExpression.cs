@@ -91,9 +91,9 @@ public static class SwitchExpression<T, TReturn>
             bodyBuilder.AppendLine($"Switch({checkValue})");
 
             foreach (KeyValuePair<T, TReturn> item in switchCases)
-                bodyBuilder.AppendLine($"{item.Key} => {ComposeReturnBlock(item.Value)}");
+                bodyBuilder.AppendLine($"   {item.Key} => {ComposeReturnBlock(item.Value)}");
 
-            bodyBuilder.AppendLine($"default => {ComposeReturnBlock(defaultValue)}");
+            bodyBuilder.AppendLine($"   default => {ComposeReturnBlock(defaultValue)}");
 
             return bodyBuilder.ToString();
 
