@@ -45,14 +45,11 @@ namespace Fluent.Calculations.Graphviz
             ValueTwo = Number.Of(20),
             ValueThree = Number.Of(2);
 
-        private Option<SomeOptions>
+        private readonly Option<SomeOptions>
             OptionOne = Option.Of(SomeOptions.OptionThree),
             OptionTwo = Option.Of(SomeOptions.OptionTwo);
 
         Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
-
-        // TO BE IMPLEMENTED
-        // Condition IsOneOfTwo => Evaluate(() => OptionOne.IsOneOf(SomeOptions.OptionOne, SomeOptions.OptionTwo));
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
