@@ -12,7 +12,7 @@ string
     dotFileName = $"{fileName}.dot",
     pngFileName = $"{dotFileName}.png";
 
-// Run the calculation (See implementation below)
+// Run the calculation
 Number resultValue = new DemoCalculation().ToResult();
 
 // Serialize to Json
