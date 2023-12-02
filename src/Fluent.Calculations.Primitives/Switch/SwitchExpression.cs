@@ -135,15 +135,11 @@ public static class SwitchExpression<T, TReturn>
         private TReturn MakeSwitchResult(TReturn value, TReturn defaultValue, string name)
         {
             List<IValue> expressionArguments = [checkValue];
-
             TReturn[] nonConstanArguments = switchCases.Values.Where(AsssumeNotInlineConstant).ToArray();
-
             expressionArguments.AddRange(nonConstanArguments);
 
             string expressionBody = SwitchExpressionBodyComposer.Compose(switchCases, checkValue, defaultValue);
-
             ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Switch).WithArguments(expressionArguments);
-
             return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Evaluation));
 
             static bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
