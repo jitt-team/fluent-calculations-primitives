@@ -1,4 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+
+using Fluent.Calculations.Primitives.Collections;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
@@ -11,11 +13,10 @@ public static class Option
             Convert.ToDecimal((int)(object)primitiveValue)) /* explore if this cast can be optimized */);
 }
 
-public class Option<T> : Value, 
+public class Option<T> : Value,
     IEqualityOperators<Option<T>, Option<T>, Condition>
     where T : struct, Enum
 {
-
     public Option() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Constant), 0)) { }
 
     public Option(Option<T> enumValue) : base(enumValue) { }
@@ -34,17 +35,25 @@ public class Option<T> : Value,
 
     public override int GetHashCode() => base.GetHashCode();
 
-    public SwitchExpression<T, TResult>.SwichBuilder Switch<TResult>()
-        where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);
+    public SwitchExpression<T, TResult>.SwichBuilder Switch<TResult>() where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);
+
+    public Condition IsOneOf(T value, params T[] otherValues) => Contains(ArrayHelpers.Concat(value, otherValues));
+
+    private Condition Contains(T[] values) => HandlePrimitiveComparisionOperation(a => values.Contains((T)(object)a));
+
+    private Condition HandlePrimitiveComparisionOperation(Func<T, bool> value)
+    {
+        throw new NotImplementedException("TO BE IMPLEMENTED");
+    }
 
     public static Condition operator ==(Option<T>? left, Option<T>? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
     public static Condition operator !=(Option<T>? left, Option<T>? right) => Enforce.NotNull(left).NotEqualToRight(right);
 
-    private Condition IsEqualToRight(Option<T>? right) => HandleComparisonOperation(Enforce.NotNull(right), (a, b) => a == b);
+    private Condition IsEqualToRight(Option<T>? right) => HandleBinaryComparisonOperation(Enforce.NotNull(right), (a, b) => a == b);
 
-    private Condition NotEqualToRight(Option<T>? right) => HandleComparisonOperation(Enforce.NotNull(right), (a, b) => a != b);
+    private Condition NotEqualToRight(Option<T>? right) => HandleBinaryComparisonOperation(Enforce.NotNull(right), (a, b) => a != b);
 
-    private Condition HandleComparisonOperation(IValueProvider value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
+    private Condition HandleBinaryComparisonOperation(IValueProvider value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
 }

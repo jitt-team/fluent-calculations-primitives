@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.Utils;
 using System;
 using System.Text;
 
@@ -24,7 +25,7 @@ public static class SwitchExpression<T, TReturn>
         }
 
         public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
-            new CaseBuilder(checkValue, switchCases, new T[] { caseValue }.Concat(otherCaseValues ?? new T[0]).ToArray());
+            new CaseBuilder(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
     }
 
     public sealed class CaseBuilder
@@ -57,7 +58,7 @@ public static class SwitchExpression<T, TReturn>
         private readonly IDictionary<T, TReturn> switchCases;
 
         public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
-            new CaseBuilder(checkValue, switchCases, new T[] { caseValue }.Concat(otherCaseValues ?? new T[0]).ToArray());
+            new CaseBuilder(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
 
         private NextCaseBuilder() { }
 
@@ -120,14 +121,18 @@ public static class SwitchExpression<T, TReturn>
         private TReturn MakeSwitchResult(TReturn value, TReturn defaultValue, string name)
         {
             List<IValue> expressionArguments = new() { checkValue };
-            var nonConstanArguments = switchCases.Values.Where(v => v.Origin != ValueOriginType.Constant);
-            // expressionArguments.AddRange(nonConstanArguments);
+
+            TReturn[] nonConstanArguments = switchCases.Values.Where(AsssumeNotInlineConstant).ToArray();
+
+            expressionArguments.AddRange(nonConstanArguments);
 
             string expressionBody = SwitchExpressionBodyComposer.Compose(switchCases, checkValue, defaultValue);
 
             ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Switch).WithArguments(expressionArguments);
 
             return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Evaluation));
+
+            bool AsssumeNotInlineConstant(TReturn v) => v.Origin == ValueOriginType.Constant;
         }
     }
 }

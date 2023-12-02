@@ -51,6 +51,9 @@ namespace Fluent.Calculations.Graphviz
 
         Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
 
+        // TO BE IMPLEMENTED
+        // Condition IsOneOfTwo => Evaluate(() => OptionOne.IsOneOf(SomeOptions.OptionOne, SomeOptions.OptionTwo));
+
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
         Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : ValueTwo);
