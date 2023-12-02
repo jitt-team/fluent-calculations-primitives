@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
-[DebuggerDisplay("Body = {Body}")]
+[DebuggerDisplay("Body = {FirstLineOfBody}")]
 public class ExpressionNode : IExpression
 {
     private ArgumentsCollection arguments;
@@ -13,12 +13,17 @@ public class ExpressionNode : IExpression
 
     public ExpressionNode(string body, string type)
     {
+        int firstNewLineIndex = body.IndexOf(Environment.NewLine);
+        FirstLineOfBody = firstNewLineIndex > 0 ? body.Substring(0, firstNewLineIndex) : body;
         Body = body;
         Type = type;
         arguments = ArgumentsCollection.Empty;
     }
 
     public string Body { get; private set; }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    internal string FirstLineOfBody { get; private set; }
 
     public string Type { get; }
 

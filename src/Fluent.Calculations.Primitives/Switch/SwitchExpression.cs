@@ -89,7 +89,7 @@ public static class SwitchExpression<T, TReturn>
             return sb.ToString();
 
             static string ComposeReturnBlock(TReturn value) => value.Origin == ValueOriginType.Constant ?
-                value.Primitive.ToString() : value.ToString() ?? StringConstants.NaN;
+                value.PrimitiveString : $"{value.PrimitiveString} ({value.Name})" ?? StringConstants.NaN;
         }
     }
 
@@ -132,7 +132,7 @@ public static class SwitchExpression<T, TReturn>
 
             return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Evaluation));
 
-            bool AsssumeNotInlineConstant(TReturn v) => v.Origin == ValueOriginType.Constant;
+            bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
         }
     }
 }

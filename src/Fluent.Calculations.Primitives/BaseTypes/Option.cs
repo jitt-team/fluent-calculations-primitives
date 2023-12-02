@@ -27,7 +27,7 @@ public class Option<T> : Value,
 
     public static implicit operator Option<T>(T value) => Option.Of(value);
 
-    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Number(args);
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Option<T>(args);
 
     public override IValueProvider MakeDefault() => new Option<T>(default(T));
 
