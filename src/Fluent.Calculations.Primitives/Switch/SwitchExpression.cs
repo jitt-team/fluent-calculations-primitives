@@ -9,14 +9,17 @@ public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
-    public static SwichBuilder For(Option<T> checkValue) => new SwichBuilder(checkValue, new Dictionary<T, TReturn>());
+    public static SwichBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, TReturn>());
 
     public sealed class SwichBuilder
     {
-        private Option<T> checkValue;
+        private readonly Option<T> checkValue;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        private SwichBuilder() { }
+        private SwichBuilder() {
+            checkValue = new Option<T>();
+            switchCases = new Dictionary<T, TReturn>();
+        }
 
         internal SwichBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases)
         {
@@ -25,7 +28,7 @@ public static class SwitchExpression<T, TReturn>
         }
 
         public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
-            new CaseBuilder(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
+            new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
     }
 
     public sealed class CaseBuilder
@@ -34,7 +37,12 @@ public static class SwitchExpression<T, TReturn>
         private readonly T[] caseValues;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        private CaseBuilder() { }
+        private CaseBuilder()
+        {
+            checkValue = new Option<T>();
+            caseValues = [];
+            switchCases = new Dictionary<T, TReturn>();
+        }
 
         internal CaseBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases, T[] caseValues)
         {
@@ -58,9 +66,12 @@ public static class SwitchExpression<T, TReturn>
         private readonly IDictionary<T, TReturn> switchCases;
 
         public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
-            new CaseBuilder(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
+            new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
 
-        private NextCaseBuilder() { }
+        private NextCaseBuilder() {
+            checkValue = new Option<T>();
+            switchCases = new Dictionary<T, TReturn>();
+        }
 
         internal NextCaseBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases)
         {
@@ -68,25 +79,23 @@ public static class SwitchExpression<T, TReturn>
             this.switchCases = switchCases;
         }
 
-        public SwitchEvaluator Default(TReturn defaultValue) => new SwitchEvaluator(checkValue, switchCases, defaultValue);
+        public SwitchEvaluator Default(TReturn defaultValue) => new(checkValue, switchCases, defaultValue);
     }
 
     internal static class SwitchExpressionBodyComposer
     {
         public static string Compose(IDictionary<T, TReturn> switchCases, Option<T> checkValue, TReturn defaultValue)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder bodyBuilder = new();
 
-            sb.AppendLine($"Switch({checkValue})");
+            bodyBuilder.AppendLine($"Switch({checkValue})");
 
             foreach (KeyValuePair<T, TReturn> item in switchCases)
-            {
-                sb.AppendLine($"{item.Key} => {ComposeReturnBlock(item.Value)}");
-            }
+                bodyBuilder.AppendLine($"{item.Key} => {ComposeReturnBlock(item.Value)}");
 
-            sb.AppendLine($"default => {ComposeReturnBlock(defaultValue)}");
+            bodyBuilder.AppendLine($"default => {ComposeReturnBlock(defaultValue)}");
 
-            return sb.ToString();
+            return bodyBuilder.ToString();
 
             static string ComposeReturnBlock(TReturn value) => value.Origin == ValueOriginType.Constant ?
                 value.PrimitiveString : $"{value.PrimitiveString} ({value.Name})" ?? StringConstants.NaN;
@@ -95,9 +104,9 @@ public static class SwitchExpression<T, TReturn>
 
     public sealed class SwitchEvaluator
     {
-        private IDictionary<T, TReturn> switchCases;
-        private Option<T> checkValue;
-        private TReturn defaultValue;
+        private readonly IDictionary<T, TReturn> switchCases;
+        private readonly Option<T> checkValue;
+        private readonly TReturn defaultValue;
 
         public SwitchEvaluator(Option<T> checkValue, IDictionary<T, TReturn> switchCases, TReturn defaultValue)
         {
@@ -106,7 +115,12 @@ public static class SwitchExpression<T, TReturn>
             this.defaultValue = defaultValue;
         }
 
-        private SwitchEvaluator() { }
+        private SwitchEvaluator() 
+        {
+            checkValue = new Option<T>();
+            defaultValue = new TReturn();
+            switchCases = new Dictionary<T, TReturn>();
+        }
 
         internal TReturn GetResult(string name)
         {
@@ -120,7 +134,7 @@ public static class SwitchExpression<T, TReturn>
 
         private TReturn MakeSwitchResult(TReturn value, TReturn defaultValue, string name)
         {
-            List<IValue> expressionArguments = new() { checkValue };
+            List<IValue> expressionArguments = [checkValue];
 
             TReturn[] nonConstanArguments = switchCases.Values.Where(AsssumeNotInlineConstant).ToArray();
 
@@ -132,7 +146,7 @@ public static class SwitchExpression<T, TReturn>
 
             return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Evaluation));
 
-            bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
+            static bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
         }
     }
 }
