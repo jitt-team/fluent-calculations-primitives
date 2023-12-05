@@ -29,11 +29,6 @@ public class MakeValueArgs
             Origin = origin
         };
 
-    internal static object Compose(string fieldName, ExpressionNode expressionNode, object primitiveValue)
-    {
-        throw new NotImplementedException();
-    }
-
     public MakeValueArgs WithTags(params Tag[] tags)
     {
         Tags = new TagsCollection(tags);

@@ -3,6 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -47,12 +48,22 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual T Return() { return (T)new T().MakeDefault(); }
 
+    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
+            where TCase : struct, Enum
+            where TValue : class, IValueProvider, new()
+    {
+        if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
+            return (TValue)valuesCache.GetByKey(name);
+
+        return getSwitchResultFunc().GetResult(name);
+    }
+
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
-        Expression<Func<TValue>> lambdaExpression,
-        [CallerMemberName] string name = StringConstants.NaN,
-        [CallerArgumentExpression(nameof(lambdaExpression))] string lambdaExpressionBody = StringConstants.NaN)
-            where TValue : class, IValueProvider, new()
+    Expression<Func<TValue>> lambdaExpression,
+    [CallerMemberName] string name = StringConstants.NaN,
+    [CallerArgumentExpression(nameof(lambdaExpression))] string lambdaExpressionBody = StringConstants.NaN)
+        where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);

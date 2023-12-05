@@ -33,6 +33,12 @@ public sealed class Condition : Value,
     public static Condition True([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
 
     public static Condition False([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
+    
+    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
+
+    public override bool Equals(object? obj) => Equals(obj as IValueProvider);
+
+    public override int GetHashCode() => base.GetHashCode();
 
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 
@@ -48,23 +54,17 @@ public sealed class Condition : Value,
 
     private Condition OnesComplement() => throw new NotSupportedException();
 
-    private Condition ExlusiveOr(Condition value) => ReturnCondition(value, (a, b) => a ^ b);
+    private Condition ExlusiveOr(Condition value) => HandleBinaryOperation(value, (a, b) => a ^ b);
 
-    private Condition IsEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a == b);
+    private Condition IsEqualToRight(Condition? right) => HandleBinaryOperation(Enforce.NotNull(right), (a, b) => a == b);
 
-    private Condition NotEqualToRight(Condition? right) => ReturnCondition(Enforce.NotNull(right), (a, b) => a != b);
+    private Condition NotEqualToRight(Condition? right) => HandleBinaryOperation(Enforce.NotNull(right), (a, b) => a != b);
 
-    private Condition And(Condition value) => ReturnCondition(value, (a, b) => a & b);
+    private Condition And(Condition value) => HandleBinaryOperation(value, (a, b) => a & b);
 
-    private Condition Or(Condition value) => ReturnCondition(value, (a, b) => a & b);
+    private Condition Or(Condition value) => HandleBinaryOperation(value, (a, b) => a & b);
 
-    private Condition ReturnCondition(IValueProvider value, Func<bool, bool, bool> compareFunc,
-        [CallerMemberName] string operatorName = "") =>
-        HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
-
-    public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
-
-    public override bool Equals(object? obj) => Equals(obj as IValueProvider);
-
-    public override int GetHashCode() => base.GetHashCode();
+    private Condition HandleBinaryOperation(IValueProvider value, Func<bool, bool, bool> compareFunc,
+            [CallerMemberName] string operatorName = StringConstants.NaN) =>
+            HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
 }
