@@ -12,7 +12,7 @@ string
     dotFileName = $"{fileName}.dot",
     pngFileName = $"{dotFileName}.png";
 
-// Run the calculation (See implementation below)
+// Run the calculation
 Number resultValue = new DemoCalculation().ToResult();
 
 // Serialize to Json
@@ -45,12 +45,33 @@ namespace Fluent.Calculations.Graphviz
             ValueTwo = Number.Of(20),
             ValueThree = Number.Of(2);
 
-        public Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
+        private readonly Option<SomeOptions>
+            OptionOne = Option.Of(SomeOptions.OptionThree),
+            OptionTwo = Option.Of(SomeOptions.OptionTwo);
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo ? ValueOne : ValueTwo);
+        Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
 
-        Number FinalResult => Evaluate(() => ResultOne * ValueThree);
+        Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        public override Number Return() => FinalResult;
+        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : ValueTwo);
+
+        Number OtherResult => Evaluate(() => ResultOne * ValueThree);
+
+        Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
+                .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
+                    .Return(10)
+                .Case(SomeOptions.OptionThree)
+                    .Return(OtherResult)
+                    .Default(100));
+
+        public override Number Return() => SwitchResult;
+    }
+
+    public enum SomeOptions
+    {
+        NotSet = 1,
+        OptionOne = 2,
+        OptionTwo = 3,
+        OptionThree = 4,
     }
 }

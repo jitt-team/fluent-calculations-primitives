@@ -2,23 +2,28 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
-[DebuggerDisplay("Body = {Body}")]
+[DebuggerDisplay("Body = {FirstLineOfBody}")]
 public class ExpressionNode : IExpression
 {
     private ArgumentsCollection arguments;
 
     public override string ToString() => $"{Body}";
 
-    internal static ExpressionNode None => new ExpressionNode(StringConstants.NaN, ExpressionNodeType.None);
+    internal static ExpressionNode None => new(StringConstants.NaN, ExpressionNodeType.None);
 
     public ExpressionNode(string body, string type)
     {
+        int firstNewLineIndex = body.IndexOf(Environment.NewLine);
+        FirstLineOfBody = firstNewLineIndex > 0 ? body[..firstNewLineIndex] : body;
         Body = body;
         Type = type;
         arguments = ArgumentsCollection.Empty;
     }
 
     public string Body { get; private set; }
+
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    internal string FirstLineOfBody { get; private set; }
 
     public string Type { get; }
 

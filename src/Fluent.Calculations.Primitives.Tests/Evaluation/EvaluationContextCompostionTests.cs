@@ -32,6 +32,15 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
+        public void Calcuation_ExtensionMethod_ResultAndArgumentsExpected()
+        {
+            Number result = TestCalcuationExtensionMethod.Return();
+            result.Primitive.Should().Be(5);
+            result.Name.Should().Be(Constant.TestEvaluationName);
+            result.Expression.Arguments.Should().HaveCount(2);
+        }
+
+        [Fact]
         public void Calcuation_EncapsulatedContext_ResultAndArgumentsExpected()
         {
             Number result = new TestCalculationEncapsulated().Return();
@@ -86,7 +95,19 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
             return Calculation.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
         }
+    }
 
+
+    public class TestCalcuationExtensionMethod
+    {
+        public static Number Return()
+        {
+            Number
+                NumberOne = Number.Of(2),
+                NumberTwo = Number.Of(3);
+
+            return Result.Of(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+        }
     }
 
     public class TestCalculationEncapsulated

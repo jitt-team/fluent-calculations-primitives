@@ -34,7 +34,7 @@ public class NumberTests
     [Fact]
     public void LessThanOrEqual_Numbers_ExpectedResult() => ExecuteLogicalExpressionAndAssertResult((left, right) => left <= right, false);
 
-    private void ExecuteMathExpressionAndAssertResult(Func<Number, Number, Number> calcFun, decimal expected)
+    private static void ExecuteMathExpressionAndAssertResult(Func<Number, Number, Number> calcFun, decimal expected)
     {
         string leftName = "left", rightName = "right";
 
@@ -50,7 +50,7 @@ public class NumberTests
         result.Expression.Arguments.Last().Name.Should().Be(rightName);
     }
 
-    private void ExecuteLogicalExpressionAndAssertResult(Func<Number, Number, Condition> calcFun, bool expected)
+    private static void ExecuteLogicalExpressionAndAssertResult(Func<Number, Number, Condition> calcFun, bool expected)
     {
         string leftName = "left", rightName = "right";
 

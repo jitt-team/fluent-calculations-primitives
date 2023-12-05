@@ -44,7 +44,7 @@ public abstract class Value : IValueProvider, IOrigin
 
     public abstract IValueProvider MakeDefault();
 
-    public ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
+    protected ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
         IValueProvider right,
         Func<IValueProvider, IValueProvider, ResultPrimitiveType> expressionFunc,
         string operatorName) where ResultType : IValueProvider, new() =>
