@@ -9,19 +9,19 @@ public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
-    public static SwichBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, TReturn>());
+    public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, TReturn>());
 
-    public sealed class SwichBuilder
+    public sealed class SwitchBuilder
     {
         private readonly Option<T> checkValue;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        private SwichBuilder() {
+        private SwitchBuilder() {
             checkValue = new Option<T>();
             switchCases = new Dictionary<T, TReturn>();
         }
 
-        internal SwichBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases)
+        internal SwitchBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;

@@ -27,7 +27,7 @@ namespace Fluent.Calculations.Primitives.BaseTypes
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public SwitchExpression<T, TResult>.SwichBuilder Switch<TResult>() where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);
+        public SwitchExpression<T, TResult>.SwitchBuilder Switch<TResult>() where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);
 
         public static Condition operator ==(Option<T>? left, Option<T>? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
