@@ -27,24 +27,24 @@ public static class SwitchExpression<T, TReturn>
             this.switchCases = switchCases;
         }
 
-        public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
+        public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
             new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
     }
 
-    public sealed class CaseBuilder
+    public sealed class ReturnBuilder
     {
         private readonly Option<T> checkValue;
         private readonly T[] caseValues;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        private CaseBuilder()
+        private ReturnBuilder()
         {
             checkValue = new Option<T>();
             caseValues = [];
             switchCases = new Dictionary<T, TReturn>();
         }
 
-        internal CaseBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases, T[] caseValues)
+        internal ReturnBuilder(Option<T> checkValue, IDictionary<T, TReturn> switchCases, T[] caseValues)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
@@ -65,7 +65,7 @@ public static class SwitchExpression<T, TReturn>
         private readonly Option<T> checkValue;
         private readonly IDictionary<T, TReturn> switchCases;
 
-        public CaseBuilder Case(T caseValue, params T[] otherCaseValues) =>
+        public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
             new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
 
         private NextCaseBuilder() {
