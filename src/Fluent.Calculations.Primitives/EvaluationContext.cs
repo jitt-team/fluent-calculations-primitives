@@ -48,7 +48,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
     public virtual T Return() { return (T)new T().MakeDefault(); }
 
-    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.SwitchEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
+    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
             where TCase : struct, Enum
             where TValue : class, IValueProvider, new()
     {

@@ -79,7 +79,7 @@ public static class SwitchExpression<T, TReturn>
             this.switchCases = switchCases;
         }
 
-        public SwitchEvaluator Default(TReturn defaultValue) => new(checkValue, switchCases, defaultValue);
+        public ResultEvaluator Default(TReturn defaultValue) => new(checkValue, switchCases, defaultValue);
     }
 
     internal static class SwitchExpressionBodyComposer
@@ -102,20 +102,20 @@ public static class SwitchExpression<T, TReturn>
         }
     }
 
-    public sealed class SwitchEvaluator
+    public sealed class ResultEvaluator
     {
         private readonly IDictionary<T, TReturn> switchCases;
         private readonly Option<T> checkValue;
         private readonly TReturn defaultValue;
 
-        public SwitchEvaluator(Option<T> checkValue, IDictionary<T, TReturn> switchCases, TReturn defaultValue)
+        public ResultEvaluator(Option<T> checkValue, IDictionary<T, TReturn> switchCases, TReturn defaultValue)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
             this.defaultValue = defaultValue;
         }
 
-        private SwitchEvaluator() 
+        private ResultEvaluator() 
         {
             checkValue = new Option<T>();
             defaultValue = new TReturn();
