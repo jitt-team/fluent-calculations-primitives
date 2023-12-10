@@ -9,8 +9,8 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 {
     public class EvaluationContextTests
     {
-        private Mock<IValuesCache> _valuesCacheMock = new Mock<IValuesCache>(MockBehavior.Strict);
-        private Mock<IMemberExpressionValueCapturer> _memberCapturerMock = new Mock<IMemberExpressionValueCapturer>(MockBehavior.Strict);
+        private readonly Mock<IValuesCache> _valuesCacheMock = new(MockBehavior.Strict);
+        private readonly Mock<IMemberExpressionValueCapturer> _memberCapturerMock = new(MockBehavior.Strict);
 
         [Fact]
         public void Evaluation_Result_IsExpected()
@@ -133,21 +133,21 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             return calculation;
         }
 
-        private CapturedExpressionMembers MockParameterCaptureResult(IValueProvider value1, string name1, IValueProvider value2, string name2)
+        private static CapturedExpressionMembers MockParameterCaptureResult(IValueProvider value1, string name1, IValueProvider value2, string name2)
         {
             var parameterMemberers = new[] {
                 new CapturedParameterMember(value1, name1),
                 new CapturedParameterMember(value2, name2)
             };
 
-            var evaluationMembers = new CapturedEvaluationMember[0];
+            var evaluationMembers = Array.Empty<CapturedEvaluationMember>();
 
             return new CapturedExpressionMembers(parameterMemberers, evaluationMembers);
         }
 
-        private CapturedExpressionMembers MockEvaluationCaptureResult(string name)
+        private static CapturedExpressionMembers MockEvaluationCaptureResult(string name)
         {
-            var parameterMemberers = new CapturedParameterMember[0];
+            var parameterMemberers = Array.Empty<CapturedParameterMember>();
 
             var evaluationMembers = new[] { new CapturedEvaluationMember(name) };
 

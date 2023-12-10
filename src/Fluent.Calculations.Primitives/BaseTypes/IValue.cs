@@ -10,6 +10,9 @@ public interface IValue
     [JsonPropertyName("Name")]
     string Name { get; }
 
+    [JsonPropertyName("Calculation")]
+    string Scope { get; }
+
     [JsonPropertyName("Primitive")]
     decimal Primitive { get; }
 

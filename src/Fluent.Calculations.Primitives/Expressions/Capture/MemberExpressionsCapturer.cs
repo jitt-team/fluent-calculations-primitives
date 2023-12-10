@@ -5,15 +5,15 @@ using System.Linq.Expressions;
 
 public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCapturer
 {
-    private Dictionary<string, MemberExpression> capturedMemberExpressions = new Dictionary<string, MemberExpression>();
+    private Dictionary<string, MemberExpression> capturedMemberExpressions = [];
 
     public MemberExpression[] Capture<TExpressionResulValue>(Expression<Func<TExpressionResulValue>> lamdaExpression) where TExpressionResulValue : class, IValueProvider
     {
-        capturedMemberExpressions = new Dictionary<string, MemberExpression>();
+        capturedMemberExpressions = [];
 
         Visit(lamdaExpression);
 
-        return capturedMemberExpressions.Values.ToArray();
+        return [.. capturedMemberExpressions.Values];
     }
 
     protected override Expression VisitMember(MemberExpression node) => base.VisitMember(CaptureIfNotExists(node));
@@ -23,11 +23,8 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
         if (!typeof(IValueProvider).IsAssignableFrom(node.Type))
             return node;
 
-        string memberName = node.Member.Name;
-
-        if (!capturedMemberExpressions.ContainsKey(memberName))
-            capturedMemberExpressions.Add(memberName, node);
-
+        capturedMemberExpressions.TryAdd(node.Member.Name, node);
+        
         return node;
     }
 }

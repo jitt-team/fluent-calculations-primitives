@@ -3,7 +3,6 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -13,6 +12,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
+    private readonly IValueArgumentsSelector valueArgumentsSelector;
     private readonly Func<EvaluationContext<T>, T>? calculationFunc;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
@@ -26,11 +26,18 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     public EvaluationContext(Func<EvaluationContext<T>, T> func) :
         this(EvaluationOptions.Default) => calculationFunc = func;
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer)
+    public EvaluationContext(string scope) : this(new EvaluationOptions { Scope = scope }) { }
+
+    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) :
+        this(valuesCache, memberCapturer, new ValueArgumentsSelector())
+    { }
+
+    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector squasher)
     {
         this.options = EvaluationOptions.Default;
         this.memberCapturer = memberCapturer;
         this.valuesCache = valuesCache;
+        this.valueArgumentsSelector = squasher;
     }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
@@ -83,21 +90,24 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
            where TValue : class, IValueProvider, new()
     {
         TValue result = lambdaExpression.Compile().Invoke();
+        IValue[] resultArguments = valueArgumentsSelector.SelectArguments(result);
 
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
 
-        IEnumerable<IValueProvider>
+        IEnumerable<IValue>
             parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
+            capturedExpressionArguments = parameterValues.Concat(evaluationValues),
+            missingArguments = resultArguments.Where(a => !capturedExpressionArguments.Any(e => e.Name.Equals(a.Name))),
             expressionArguments = parameterValues.Concat(evaluationValues);
 
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 
-        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation));
+        return (TValue)result.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, result.Primitive, ValueOriginType.Evaluation, options.Scope));
     }
 
-    private IValueProvider[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
+    private IValue[] SelectCachedEvaluationsValues(CapturedEvaluationMember[] evaluations)
     {
         return evaluations.Where(IsCached).Select(GetCachedValue).ToArray();
         bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
@@ -109,7 +119,7 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         {
             IOrigin parameterOrigin = ((IOrigin)parameter.Value);
             if (options.AlwaysReadNamesFromExpressions || !parameterOrigin.IsSet)
-                parameterOrigin.MarkAsParameter(parameter.MemberName);
+                parameterOrigin.MarkAsParameter(parameter.MemberName, options.Scope);
         }
     }
 }

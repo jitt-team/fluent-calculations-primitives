@@ -72,11 +72,13 @@ public class JsonSerializationTests
     [Fact]
     public void SumOfElements_Deserialized_ExpectedValueTree()
     {
-        Values<Number> valuesCollection = Values<Number>.ListOf(() => new Number[]
+        var numbers = new Number[]
         {
                 Number.Of(5, "ITEM-1"),
                 Number.Of(5, "ITEM-2")
-        }, nameof(valuesCollection));
+        };
+
+        Values<Number> valuesCollection = Values<Number>.ListOf(() => numbers, nameof(valuesCollection));
 
         Number result = Result.Of(() => valuesCollection.Sum(), nameof(result));
 

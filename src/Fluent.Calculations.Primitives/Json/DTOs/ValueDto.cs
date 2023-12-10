@@ -19,4 +19,6 @@ internal sealed class ValueDto : IValue
     public ITags Tags { get; set; } = new TagsDto();
 
     public string PrimitiveString { get; set; } = StringConstants.NaN;
+
+    public string Scope { get; set; } = StringConstants.NaN;
 }

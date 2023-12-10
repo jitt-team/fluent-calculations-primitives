@@ -140,7 +140,7 @@ public static class SwitchExpression<T, TReturn>
 
             string expressionBody = SwitchExpressionBodyComposer.Compose(switchCases, checkValue, defaultValue);
             ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Switch).WithArguments(expressionArguments);
-            return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Evaluation));
+            return (TReturn)value.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value.Primitive, ValueOriginType.Operation));
 
             static bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
         }

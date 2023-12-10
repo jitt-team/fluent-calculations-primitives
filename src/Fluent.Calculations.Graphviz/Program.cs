@@ -13,7 +13,7 @@ string
     pngFileName = $"{dotFileName}.png";
 
 // Run the calculation
-Number resultValue = new DemoCalculation().ToResult();
+Number resultValue = DemoCalculation.ScopeOne();
 
 // Serialize to Json
 string resultAsJson = ValueJsonConverter.Serialize(resultValue);
@@ -36,35 +36,35 @@ Console.WriteLine($@"Result file name ""{pngFileName}""");
 // Demo calculation
 namespace Fluent.Calculations.Graphviz
 {
-    public class DemoCalculation : EvaluationContext<Number>
+
+    public class DemoCalculation
     {
-        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+        public static Number ScopeOne()
+        {
+            Scope scope = new();
+            var context = scope.CreateContext<Number>();
 
-        private readonly Number
-            ValueOne = Number.Of(30),
-            ValueTwo = Number.Of(20),
-            ValueThree = Number.Of(2);
+            Number
+                Scope1Value1 = Number.Of(30, scope.Name, nameof(Scope1Value1)),
+                Scope1Value2 = Number.Of(20, scope.Name, nameof(Scope1Value2));
 
-        private readonly Option<SomeOptions>
-            OptionOne = Option.Of(SomeOptions.OptionThree),
-            OptionTwo = Option.Of(SomeOptions.OptionTwo);
+            Number Scope1Result1 = context.Evaluate(() => Scope1Value1 + ScopeTwo(Scope1Value2), nameof(Scope1Result1));
 
-        Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
+            return Scope1Result1;
+        }
 
-        Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
+        private static Number ScopeTwo(Number valueFromOtherScope)
+        {
+            Scope scope = new();
+            var context = scope.CreateContext<Number>();
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : ValueTwo);
+            Number
+                Scope2Value1 = Number.Of(30, scope.Name, nameof(Scope2Value1));
 
-        Number OtherResult => Evaluate(() => ResultOne * ValueThree);
+            Number Scope2Result1 = context.Evaluate(() => valueFromOtherScope * Scope2Value1, nameof(Scope2Result1));
 
-        Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
-                .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
-                    .Return(10)
-                .Case(SomeOptions.OptionThree)
-                    .Return(OtherResult)
-                    .Default(100));
-
-        public override Number Return() => SwitchResult;
+            return Scope2Result1;
+        }
     }
 
     public enum SomeOptions

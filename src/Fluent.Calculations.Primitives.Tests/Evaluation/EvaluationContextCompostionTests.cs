@@ -112,9 +112,9 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private EvaluationContext<Number> context = new();
+        private readonly EvaluationContext<Number> context = new();
 
-        Number
+        readonly Number
             NumberOne = Number.Of(2),
             NumberTwo = Number.Of(3);
 
@@ -123,7 +123,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationInherited : EvaluationContext<Number>
     {
-        Number
+        readonly Number
             NumberOne = Number.Of(2),
             NumberTwo = Number.Of(3);
 
