@@ -7,13 +7,12 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValueProvider, new()
+public class EvaluationContext : IEvaluationContext
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private readonly IValueArgumentsSelector valueArgumentsSelector;
-    private readonly Func<EvaluationContext<T>, T>? calculationFunc;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
     public EvaluationContext() : this(EvaluationOptions.Default) { }
@@ -22,38 +21,22 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
     public EvaluationContext(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
-    public EvaluationContext(Func<EvaluationContext<T>, T> func) :
-        this(EvaluationOptions.Default) => calculationFunc = func;
-
     public EvaluationContext(string scope) : this(new EvaluationOptions { Scope = scope }) { }
 
     internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) :
         this(valuesCache, memberCapturer, new ValueArgumentsSelector())
     { }
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector squasher)
+    public static EvaluationContext Create([CallerMemberName] string scope = StringConstants.NaN) =>
+        new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
+
+    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector)
     {
         this.options = EvaluationOptions.Default;
         this.memberCapturer = memberCapturer;
         this.valuesCache = valuesCache;
-        this.valueArgumentsSelector = squasher;
+        this.valueArgumentsSelector = selector;
     }
-
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
-    public T ToResult()
-    {
-        valuesCache.Clear();
-
-        T result = calculationFunc != null ?
-             calculationFunc.Invoke(this) :
-             Return();
-
-        return (T)((IOrigin)result).AsResult();
-    }
-
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
-    public virtual T Return() { return (T)new T().MakeDefault(); }
 
     public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
             where TCase : struct, Enum
@@ -85,12 +68,13 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
         static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
+    protected void ClearValuesCache() => valuesCache.Clear();
+
     private TValue EvaluateInternal<TValue>(
        Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)
            where TValue : class, IValueProvider, new()
     {
         TValue result = lambdaExpression.Compile().Invoke();
-        IValue[] resultArguments = valueArgumentsSelector.SelectArguments(result);
 
         CapturedExpressionMembers members = memberCapturer.Capture(lambdaExpression);
         MarkValuesAsParameters(members.Parameters);
@@ -99,8 +83,9 @@ public class EvaluationContext<T> : IEvaluationContext<T> where T : class, IValu
             parameterValues = members.Parameters.Select(capture => capture.Value),
             evaluationValues = SelectCachedEvaluationsValues(members.Evaluations),
             capturedExpressionArguments = parameterValues.Concat(evaluationValues),
+            resultArguments = valueArgumentsSelector.Select(result),
             missingArguments = resultArguments.Where(a => !capturedExpressionArguments.Any(e => e.Name.Equals(a.Name))),
-            expressionArguments = parameterValues.Concat(evaluationValues);
+            expressionArguments = capturedExpressionArguments.Concat(missingArguments);
 
         ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Lambda).WithArguments(expressionArguments);
 

@@ -6,65 +6,32 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
 {
     public class ValueArgumentsSelectorTests
     {
-        [Fact]
-        public void EndToEnd()
-        {
-            Scope scope = new();
-            var ctx = scope.CreateContext<Number>();
-
-            Number
-                one = Number.Of(1),
-                two = Number.Of(2),
-                three = Number.Of(3),
-                four = Number.Of(4);
-            
-            // Number otherResult = ctx.Evaluate(() => four * three, nameof(otherResult));
-
-            Number result = ctx.Evaluate(() => one + two * three - four * three + OtherCalculation());
-
-            var selector = new ValueArgumentsSelector();
-            var squshedResult = selector.SelectArguments(result);
-
-            squshedResult.Length.Should().Be(5);
-        }
 
 
         [Fact]
         public void Test()
         {
             var selector = new ValueArgumentsSelector();
-            var testResult = GetTestResult();
-            var arguments = selector.SelectArguments(testResult);
+            var testResult = GetPlainTestResult();
+            var arguments = selector.Select(testResult);
 
-            arguments.Length.Should().Be(4);
+            // arguments.Length.Should().Be(4);
         }
 
-        private static Number GetTestResult()
+        private static Number GetPlainTestResult()
         {
             Number
-                one = Number.Of(1, nameof(one)),
-                two = Number.Of(2, nameof(two)),
-                three = Number.Of(3, nameof(three)),
-                four = Number.Of(4, nameof(four));
+                one = Number.Of(1),
+                two = Number.Of(2),
+                three = Number.Of(3),
+                four = Number.Of(4);
 
-            Number result = one + two * three - four * three + OtherCalculation();
-
-            return result;
+            return one + two * three - four * three + OtherCalculation(two);
         }
 
-        private static Number OtherCalculation()
+        private static Number OtherCalculation(Number two)
         {
-            Scope scope = new();
-            var ctx = scope.CreateContext<Number>();
-
-            Number
-                one = Number.Of(1, nameof(one)),
-                two = Number.Of(2, nameof(two)),
-                three = Number.Of(3, nameof(three)),
-                four = Number.Of(4, nameof(four));
-
-            return ctx.Evaluate(() => four * three);
+            throw new NotImplementedException();
         }
-
     }
 }

@@ -3,12 +3,12 @@ using FluentAssertions;
 
 namespace Fluent.Calculations.Primitives.Tests.Demo
 {
-    public class MultipleNestedEvaluationsTests
+    public class ChainOfEvaluationsTests
     {
         [Fact]
         public void NestedEvaluations_IsExpectedResult()
         {
-            MultipleNestedEvaluations evaluation = new()
+            ChainOfEvaluations evaluation = new()
             {
                 ConstantOne = Number.Of(2),
                 ConstantTwo = Number.Of(10),
@@ -22,9 +22,9 @@ namespace Fluent.Calculations.Primitives.Tests.Demo
             result.Name.Should().Be(nameof(evaluation.ConstantFourPlusWhenTrue));
         }
 
-        internal class MultipleNestedEvaluations : EvaluationContext<Number>
+        internal class ChainOfEvaluations : EvaluationContext<Number>
         {
-            public MultipleNestedEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+            public ChainOfEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
             public Number
                 ConstantOne = Number.Zero,

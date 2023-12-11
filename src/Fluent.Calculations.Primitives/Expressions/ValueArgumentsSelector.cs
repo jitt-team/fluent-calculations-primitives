@@ -5,7 +5,7 @@ internal class ValueArgumentsSelector : ValueVisitor, IValueArgumentsSelector
 {
     private readonly Dictionary<string, IValue> arguments = new(5);
 
-    public IValue[] SelectArguments(IValue value)
+    public IValue[] Select(IValue value)
     {
         Visit(value);
 
