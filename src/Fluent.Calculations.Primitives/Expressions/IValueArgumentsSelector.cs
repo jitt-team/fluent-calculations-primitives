@@ -1,9 +1,7 @@
-﻿using Fluent.Calculations.Primitives.BaseTypes;
+﻿namespace Fluent.Calculations.Primitives.Expressions;
+using Fluent.Calculations.Primitives.BaseTypes;
 
-namespace Fluent.Calculations.Primitives.Expressions
+internal interface IValueArgumentsSelector
 {
-    internal interface IValueArgumentsSelector
-    {
-        IValue[] Select(IValue value);
-    }
+    IValue[] Select(IValue value);
 }

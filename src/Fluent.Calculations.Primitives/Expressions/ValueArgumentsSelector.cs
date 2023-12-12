@@ -3,22 +3,28 @@ using Fluent.Calculations.Primitives.BaseTypes;
 
 internal class ValueArgumentsSelector : ValueVisitor, IValueArgumentsSelector
 {
-    private readonly Dictionary<string, IValue> arguments = new(5);
+    private readonly Dictionary<string, IValue> evaluationsAndParameters = new(5);
 
     public IValue[] Select(IValue value)
     {
-        Visit(value);
+        if(IsOperationResult(value))
+            Visit(value);
 
-        return [.. arguments.Values];
+        IValue[] arguments = [.. evaluationsAndParameters.Values];
+
+        evaluationsAndParameters.Clear();
+
+        return arguments;
     }
 
-    public override void VisitArgument(IValue value) => base.VisitArgument(CaptureIgnoreOperationResults(value));
-
-    private IValue CaptureIgnoreOperationResults(IValue value)
+    public override void VisitArgument(IValue value)
     {
-        if (value.Origin != ValueOriginType.Operation && value.Origin != ValueOriginType.NaN)
-            arguments.TryAdd(value.Name, value);
-
-        return value;
+        if (IsOperationResult(value))
+            base.VisitArgument(value);
+        else
+            evaluationsAndParameters.TryAdd(value.Name, value);
     }
+
+    private static bool IsOperationResult(IValue value) => value.Origin == ValueOriginType.Operation || value.Origin == ValueOriginType.NaN;
+
 }
