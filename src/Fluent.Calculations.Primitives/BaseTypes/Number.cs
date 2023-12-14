@@ -28,11 +28,12 @@ public class Number : Value,
 
     public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) => Of(primitiveValue, StringConstants.NaN, fieldName);
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) => 
+        Of(primitiveValue, StringConstants.NaN, fieldName);
 
     public static Number Of(decimal primitiveValue, string scope, [CallerMemberName] string fieldName = StringConstants.NaN) =>
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue, 
-            ValueOriginType.Parameter, scope));
+            ValueOriginType.Constant, scope));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 
