@@ -3,27 +3,52 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
-using static System.Formats.Asn1.AsnWriter;
 
 public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
-    public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, Func<TReturn>>());
+    internal class ReturnValue
+    {
+        private ReturnValue() { }
+
+        private ReturnValue(string name) => Name = name;
+
+        public ReturnValue(Func<TReturn> getter, string name) : this(name) => Get = getter;
+
+        public ReturnValue(decimal primitive, string name) : this(name) => PrimitiveValue = primitive;
+
+        public Func<TReturn> Get { get; private set; }
+
+        public decimal PrimitiveValue { get; private set; }
+
+        public string Name { get; private set; }
+
+        public bool IsPrimitive => Get == null;
+    }
+
+    private static readonly TReturn DefaultProvider = new();
+
+    internal static TReturn MakeOfReturnType(decimal primitive) => (TReturn)DefaultProvider
+        .MakeOfThisType(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(primitive.ToString(), ExpressionNodeType.Constant), primitive));
+
+    public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, ReturnValue>());
 
     public sealed class SwitchBuilder
     {
         private readonly Option<T> checkValue;
-        private readonly IDictionary<T, Func<TReturn>> switchCases;
+        private readonly IDictionary<T, ReturnValue> switchCases;
 
         private SwitchBuilder()
         {
             checkValue = new Option<T>();
-            switchCases = new Dictionary<T, Func<TReturn>>();
+            switchCases = new Dictionary<T, ReturnValue>();
         }
 
-        internal SwitchBuilder(Option<T> checkValue, IDictionary<T, Func<TReturn>> switchCases)
+        internal SwitchBuilder(Option<T> checkValue, IDictionary<T, ReturnValue> switchCases)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
@@ -35,28 +60,31 @@ public static class SwitchExpression<T, TReturn>
 
     public sealed class ReturnBuilder
     {
-        private readonly TReturn DefaultProvider = new();
         private readonly Option<T> checkValue;
         private readonly T[] caseValues;
-        private readonly IDictionary<T, Func<TReturn>> switchCases;
+        private readonly IDictionary<T, ReturnValue> switchCases;
 
         private ReturnBuilder()
         {
             checkValue = new Option<T>();
             caseValues = [];
-            switchCases = new Dictionary<T, Func<TReturn>>();
+            switchCases = new Dictionary<T, ReturnValue>();
         }
 
-        internal ReturnBuilder(Option<T> checkValue, IDictionary<T, Func<TReturn>> switchCases, T[] caseValues)
+        internal ReturnBuilder(Option<T> checkValue, IDictionary<T, ReturnValue> switchCases, T[] caseValues)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
             this.caseValues = caseValues;
         }
 
-        public CaseBuilder Return(decimal primitiveValue) => Return(() => (TReturn)DefaultProvider.MakeOfThisType(primitiveValue));
+        public CaseBuilder Return(decimal primitiveValue, [CallerArgumentExpression(nameof(primitiveValue))] string valueBody = StringConstants.NaN) =>
+            Return(new ReturnValue(primitiveValue, valueBody));
 
-        public CaseBuilder Return(Func<TReturn> returnValue)
+        public CaseBuilder Return(Func<TReturn> returnValueFunc, [CallerArgumentExpression(nameof(returnValueFunc))] string funcBody = StringConstants.NaN) =>
+            Return(new ReturnValue(returnValueFunc, funcBody));
+
+        private CaseBuilder Return(ReturnValue returnValue)
         {
             foreach (T caseValue in caseValues)
                 switchCases.Add(caseValue, returnValue);
@@ -67,9 +95,8 @@ public static class SwitchExpression<T, TReturn>
 
     public sealed class CaseBuilder
     {
-        private readonly TReturn DefaultProvider = new();
         private readonly Option<T> checkValue;
-        private readonly IDictionary<T, Func<TReturn>> switchCases;
+        private readonly IDictionary<T, ReturnValue> switchCases;
 
         public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
             new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
@@ -77,46 +104,28 @@ public static class SwitchExpression<T, TReturn>
         private CaseBuilder()
         {
             checkValue = new Option<T>();
-            switchCases = new Dictionary<T, Func<TReturn>>();
+            switchCases = new Dictionary<T, ReturnValue>();
         }
 
-        internal CaseBuilder(Option<T> checkValue, IDictionary<T, Func<TReturn>> switchCases)
+        internal CaseBuilder(Option<T> checkValue, IDictionary<T, ReturnValue> switchCases)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
         }
-        public ResultEvaluator Default(decimal primitiveValue) => Default(() => (TReturn) DefaultProvider.MakeOfThisType(primitiveValue));
+        public ResultEvaluator Default(decimal primitiveValue, [CallerArgumentExpression(nameof(primitiveValue))] string valueBody = StringConstants.NaN) =>
+            new(checkValue, switchCases, new ReturnValue(primitiveValue, valueBody));
 
-        public ResultEvaluator Default(Func<TReturn> defaultValue) => new(checkValue, switchCases, defaultValue);
-    }
-
-    internal static class SwitchExpressionBodyComposer
-    {
-        public static string Compose(IDictionary<T, Func<TReturn>> switchCases, Option<T> checkValue, Func<TReturn> defaultValue)
-        {
-            StringBuilder bodyBuilder = new();
-
-            bodyBuilder.AppendLine($"Switch({checkValue})");
-
-            foreach (KeyValuePair<T, Func<TReturn>> item in switchCases)
-                bodyBuilder.AppendLine($"   {item.Key} => {ComposeReturnBlock(item.Value())}");
-
-            bodyBuilder.AppendLine($"   default => {ComposeReturnBlock(defaultValue())}");
-
-            return bodyBuilder.ToString();
-
-            static string ComposeReturnBlock(TReturn value) => value.Origin == ValueOriginType.Constant ?
-                value.PrimitiveString : $"{value.PrimitiveString} ({value.Name})" ?? StringConstants.NaN;
-        }
+        public ResultEvaluator Default(Func<TReturn> defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string funcBody = StringConstants.NaN) =>
+            new(checkValue, switchCases, new ReturnValue(defaultValue, funcBody));
     }
 
     public sealed class ResultEvaluator
     {
-        private readonly IDictionary<T, Func<TReturn>> switchCases;
+        private readonly IDictionary<T, ReturnValue> switchCases;
         private readonly Option<T> checkValue;
-        private readonly Func<TReturn> defaultValue;
+        private readonly ReturnValue defaultValue;
 
-        public ResultEvaluator(Option<T> checkValue, IDictionary<T, Func<TReturn>> switchCases, Func<TReturn> defaultValue)
+        internal ResultEvaluator(Option<T> checkValue, IDictionary<T, ReturnValue> switchCases, ReturnValue defaultValue)
         {
             this.checkValue = checkValue;
             this.switchCases = switchCases;
@@ -126,31 +135,54 @@ public static class SwitchExpression<T, TReturn>
         private ResultEvaluator()
         {
             checkValue = new Option<T>();
-            defaultValue = () => new TReturn();
-            switchCases = new Dictionary<T, Func<TReturn>>();
+            defaultValue = new ReturnValue(() => new TReturn(), StringConstants.NaN);
+            switchCases = new Dictionary<T, ReturnValue>();
         }
 
         internal TReturn GetResult(string name)
         {
-            if (switchCases.TryGetValue(checkValue, out Func<TReturn>? foundCase))
+            if (switchCases.TryGetValue(checkValue, out ReturnValue? foundCase))
                 return MakeResult(foundCase);
 
             return MakeResult(defaultValue);
 
-            TReturn MakeResult(Func<TReturn> resultValue) => MakeSwitchResult(resultValue, defaultValue, name);
+            TReturn MakeResult(ReturnValue resultValue) => MakeSwitchResult(resultValue, defaultValue, name);
         }
 
-        private TReturn MakeSwitchResult(Func<TReturn> value, Func<TReturn> defaultValue, string name)
+        private TReturn MakeSwitchResult(ReturnValue switchResult, ReturnValue defaultValue, string name)
         {
             List<IValue> expressionArguments = [checkValue];
-            TReturn[] nonConstanArguments = switchCases.Values.Select(v => v()).Where(AsssumeNotInlineConstant).ToArray();
-            expressionArguments.AddRange(nonConstanArguments);
+
+            if (switchResult.IsPrimitive)
+                return MakeOfReturnType(switchResult.PrimitiveValue);
+
+            TReturn resultValue = switchResult.Get();
+
+            expressionArguments.Add(resultValue);
 
             string expressionBody = SwitchExpressionBodyComposer.Compose(switchCases, checkValue, defaultValue);
             ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Switch).WithArguments(expressionArguments);
-            return (TReturn)value().MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, value().Primitive, ValueOriginType.Operation));
+            return (TReturn)DefaultProvider.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, resultValue.Primitive, ValueOriginType.Operation));
+        }
+    }
 
-            static bool AsssumeNotInlineConstant(TReturn v) => v.Origin != ValueOriginType.Constant;
+    internal static class SwitchExpressionBodyComposer
+    {
+        public static string Compose(IDictionary<T, ReturnValue> switchCases, Option<T> checkValue, ReturnValue defaultValue)
+        {
+            StringBuilder bodyBuilder = new();
+
+            bodyBuilder.AppendLine($"Switch({checkValue} – {checkValue.PrimitiveString})");
+
+            foreach (KeyValuePair<T, ReturnValue> item in switchCases)
+                bodyBuilder.AppendLine($"   {item.Key} => {ComposeReturnBlock(item.Value)}");
+
+            bodyBuilder.AppendLine($"   default => {ComposeReturnBlock(defaultValue)}");
+
+            return bodyBuilder.ToString();
+
+            static string ComposeReturnBlock(ReturnValue value) => value.IsPrimitive ?
+                value.PrimitiveValue.ToString() : $"({value.Name})" ?? StringConstants.NaN;
         }
     }
 }

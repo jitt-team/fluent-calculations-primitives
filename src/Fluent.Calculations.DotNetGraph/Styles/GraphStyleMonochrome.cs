@@ -75,5 +75,5 @@ internal class GraphStyleMonochrome : IGraphStyle
     private static string Html(string value) => HttpUtility.HtmlEncode(value).Replace(Environment.NewLine, @"<br align=""left""/>");
 
 
-    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, "([A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, @"(\B[A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
 }

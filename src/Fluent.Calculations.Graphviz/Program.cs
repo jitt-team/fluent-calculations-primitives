@@ -44,20 +44,19 @@ namespace Fluent.Calculations.Graphviz
 
         private readonly Number
             ValueOne = Number.Of(30),
-            ValueTwo = Number.Of(20),
-            ValueThree = Number.Of(2);
+            ValueTwo = Number.Of(20);
 
         private readonly Option<SomeOptions>
-            OptionOne = Option.Of(SomeOptions.OptionThree),
-            OptionTwo = Option.Of(SomeOptions.OptionTwo);
+            SomeChoice = Option.Of(SomeOptions.OptionOne),
+            OtherChoice = Option.Of(SomeOptions.OptionTwo);
 
-        Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
+        Condition OptionsEqual => Evaluate(() => SomeChoice == OtherChoice);
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
         Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : Releated.CalculateRelated());
 
-        Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
+        Number SwitchResult => Evaluate(() => SomeChoice.Switch<Number>()
                 .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
                     .Return(ResultOne)
                 .Case(SomeOptions.OptionThree)

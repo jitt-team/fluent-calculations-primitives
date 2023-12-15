@@ -87,6 +87,4 @@ public class Number : Value,
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     public override int GetHashCode() => base.GetHashCode();
-
-    public override IValueProvider MakeOfThisType(decimal primitiveValue) => Of(primitiveValue);
 }
