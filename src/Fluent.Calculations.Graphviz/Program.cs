@@ -40,6 +40,8 @@ namespace Fluent.Calculations.Graphviz
     {
         public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
+        private readonly RelatedCalculation Releated = new RelatedCalculation();
+
         private readonly Number
             ValueOne = Number.Of(30),
             ValueTwo = Number.Of(20),
@@ -53,18 +55,30 @@ namespace Fluent.Calculations.Graphviz
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : ValueTwo);
-
-        Number OtherResult => Evaluate(() => ResultOne * ValueThree);
+        Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : Releated.CalculateRelated());
 
         Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
                 .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
-                    .Return(10)
+                    .Return(ResultOne)
                 .Case(SomeOptions.OptionThree)
-                    .Return(OtherResult)
+                    .Return(10)
                     .Default(100));
 
         public override Number Return() => SwitchResult;
+    }
+
+    public class RelatedCalculation
+    {
+        public Number CalculateRelated()
+        {
+            var scope = this.GetScope();
+
+            Number
+                A = Number.Of(5),
+                B = Number.Of(3);
+
+            return scope.Evaluate(() => A * B);
+        }
     }
 
     public enum SomeOptions

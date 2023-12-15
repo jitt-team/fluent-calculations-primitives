@@ -24,6 +24,8 @@ public sealed class Condition : Value,
 
     public override IValueProvider MakeDefault() => False();
 
+    public static  implicit operator Condition(bool condition) => condition ? True() : False();
+
     public static bool operator true(Condition condition) => condition.IsTrue;
 
     public static bool operator false(Condition condition) => !condition.IsTrue;
@@ -67,4 +69,6 @@ public sealed class Condition : Value,
     private Condition HandleBinaryOperation(IValueProvider value, Func<bool, bool, bool> compareFunc,
             [CallerMemberName] string operatorName = StringConstants.NaN) =>
             HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc((Condition)a, (Condition)b), operatorName);
+
+    public override IValueProvider MakeOfThisType(decimal primitiveValue) =>  (Condition)Convert.ToBoolean(primitiveValue);
 }

@@ -7,13 +7,13 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
     {
         [Fact]
         public void SimpleSwitch_ExistinCase_ReturnsCorrectItem()
-        { 
+        {
             Option<TestEnum> TestOption = Option.Of(TestEnum.Second, nameof(TestOption));
 
             Number SwitchResult = SwitchExpression<TestEnum, Number>.For(TestOption)
-                .Case(TestEnum.First).Return(10)
-                .Case(TestEnum.Second).Return(20)
-                .Default(40)
+                .Case(TestEnum.First).Return(() => 10)
+                .Case(TestEnum.Second).Return(() => 20)
+                .Default(() => 40)
                 .GetResult(nameof(SwitchResult));
 
             SwitchResult.Name.Should().Be(nameof(SwitchResult));
@@ -42,14 +42,14 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
         [Fact]
         public void SimpleSwitch_WithCalculatedReturn_IncludedAsArgumet()
         {
-            Option<TestEnum> 
+            Option<TestEnum>
                 TestOption = Option.Of(TestEnum.Second, nameof(TestOption));
 
-            Number 
-                NumberOne = Number.Of(2, nameof(NumberOne)), 
+            Number
+                NumberOne = Number.Of(2, nameof(NumberOne)),
                 NumberTwo = Number.Of(3, nameof(NumberTwo));
 
-            Number SomeResultNumber = Result.Of(() => NumberOne + NumberTwo, nameof(SomeResultNumber));
+            Number SomeResultNumber() => Result.Of(() => NumberOne + NumberTwo, nameof(SomeResultNumber));
 
             Number SwitchResult = SwitchExpression<TestEnum, Number>.For(TestOption)
                 .Case(TestEnum.First).Return(10)
@@ -58,12 +58,12 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
                 .GetResult(nameof(SwitchResult));
 
             SwitchResult.Expression.Arguments.Count.Should().Be(2);
-            SwitchResult.Expression.Arguments.Last().Name.Should().Be(nameof(SomeResultNumber));   
+            SwitchResult.Expression.Arguments.Last().Name.Should().Be(nameof(SomeResultNumber));
         }
     }
 
     public enum TestEnum
-    { 
+    {
         First,
         Second,
         Third

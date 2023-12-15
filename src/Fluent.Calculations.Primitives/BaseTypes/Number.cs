@@ -20,7 +20,6 @@ public class Number : Value,
 
     public Number(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
-    public static implicit operator int(Number value) => Convert.ToInt32(value.Primitive);
 
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 
@@ -88,4 +87,6 @@ public class Number : Value,
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    public override IValueProvider MakeOfThisType(decimal primitiveValue) => Of(primitiveValue);
 }

@@ -9,6 +9,8 @@ internal class ValueArgumentsSelector : ValueVisitor, IValueArgumentsSelector
     {
         if(IsOperationResult(value))
             Visit(value);
+        else
+            evaluationsAndParameters.TryAdd(value.Name, value);
 
         IValue[] arguments = [.. evaluationsAndParameters.Values];
 

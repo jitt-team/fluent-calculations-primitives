@@ -47,6 +47,8 @@ public abstract class Value : IValueProvider, IOrigin
 
     public abstract IValueProvider MakeOfThisType(MakeValueArgs args);
 
+    public abstract IValueProvider MakeOfThisType(decimal primitiveValue);
+
     public abstract IValueProvider MakeDefault();
 
     protected ResultType HandleBinaryOperation<ResultType, ResultPrimitiveType>(
