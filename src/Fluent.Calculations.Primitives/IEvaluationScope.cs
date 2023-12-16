@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-public interface IEvaluationContext
+public interface IEvaluationScope
 {
     TValue Evaluate<TValue>(
         Expression<Func<TValue>> lambdaExpression,

@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationScope : IEvaluationContext
+public class EvaluationScope : IEvaluationScope
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;

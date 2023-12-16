@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.Expressions;
 
-public class EvaluationScope<T> : EvaluationScope, IEvaluationContext<T> where T : class, IValueProvider, new()
+public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T : class, IValueProvider, new()
 {
     private readonly Func<EvaluationScope<T>, T>? calculationFunc;
 
