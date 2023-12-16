@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Fluent.Calculations.Primitives.Tests.Evaluation
 {
-    public class EvaluationContextTests
+    public class EvaluationScopeTests
     {
         private readonly Mock<IValuesCache> _valuesCacheMock = new(MockBehavior.Strict);
         private readonly Mock<IMemberExpressionValueCapturer> _memberCapturerMock = new(MockBehavior.Strict);

@@ -10,7 +10,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public const string TestEvaluationNameTwo = "TEST-EVALUATION-NAME-TWO";
     }
 
-    public class EvaluationContextCompostionTests
+    public class EvaluationScopeCompostionTests
     {
 
         [Fact]
