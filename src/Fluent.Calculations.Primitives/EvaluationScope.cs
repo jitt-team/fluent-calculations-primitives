@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
-public class EvaluationContext : IEvaluationContext
+public class EvaluationScope : IEvaluationContext
 {
     private readonly EvaluationOptions options;
     private readonly IValuesCache valuesCache;
@@ -15,22 +15,22 @@ public class EvaluationContext : IEvaluationContext
     private readonly IValueArgumentsSelector valueArgumentsSelector;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
-    public EvaluationContext() : this(EvaluationOptions.Default) { }
+    public EvaluationScope() : this(EvaluationOptions.Default) { }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
-    public EvaluationContext(EvaluationOptions options) :
+    public EvaluationScope(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
-    public EvaluationContext(string scope) : this(new EvaluationOptions { Scope = scope }) { }
+    public EvaluationScope(string scope) : this(new EvaluationOptions { Scope = scope }) { }
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) :
+    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) :
         this(valuesCache, memberCapturer, new ValueArgumentsSelector())
     { }
 
-    public static EvaluationContext Create([CallerMemberName] string scope = StringConstants.NaN) =>
+    public static EvaluationScope Create([CallerMemberName] string scope = StringConstants.NaN) =>
         new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector)
+    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector)
     {
         this.options = EvaluationOptions.Default;
         this.memberCapturer = memberCapturer;

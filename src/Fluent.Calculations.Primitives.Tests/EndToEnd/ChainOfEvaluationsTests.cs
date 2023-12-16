@@ -22,7 +22,7 @@ namespace Fluent.Calculations.Primitives.Tests.Demo
             result.Name.Should().Be(nameof(evaluation.ConstantFourPlusWhenTrue));
         }
 
-        internal class ChainOfEvaluations : EvaluationContext<Number>
+        internal class ChainOfEvaluations : EvaluationScope<Number>
         {
             public ChainOfEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

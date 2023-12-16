@@ -3,25 +3,25 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.Expressions;
 
-public class EvaluationContext<T> : EvaluationContext, IEvaluationContext<T> where T : class, IValueProvider, new()
+public class EvaluationScope<T> : EvaluationScope, IEvaluationContext<T> where T : class, IValueProvider, new()
 {
-    private readonly Func<EvaluationContext<T>, T>? calculationFunc;
+    private readonly Func<EvaluationScope<T>, T>? calculationFunc;
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) : base(valuesCache, memberCapturer)
+    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) : base(valuesCache, memberCapturer)
     { }
 
-    public EvaluationContext() : base() { }
+    public EvaluationScope() : base() { }
 
-    public EvaluationContext(EvaluationOptions options) : base(options) { }
+    public EvaluationScope(EvaluationOptions options) : base(options) { }
 
-    public EvaluationContext(string scope) : base(scope) { }
+    public EvaluationScope(string scope) : base(scope) { }
 
-    internal EvaluationContext(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector) :
+    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector) :
         base(valuesCache, memberCapturer, selector)
     { }
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
-    public EvaluationContext(Func<EvaluationContext<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
+    public EvaluationScope(Func<EvaluationScope<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
 
     /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
     public T ToResult()

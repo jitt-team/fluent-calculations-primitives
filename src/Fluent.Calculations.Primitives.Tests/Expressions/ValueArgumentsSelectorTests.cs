@@ -18,7 +18,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
             // arguments.Length.Should().Be(4);
         }
 
-        private static Number GetPlainTestResult()
+        private Number GetPlainTestResult()
         {
             Number
                 one = Number.Of(1),
@@ -29,9 +29,13 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
             return one + two * three - four * three + OtherCalculation(two);
         }
 
-        private static Number OtherCalculation(Number two)
+        private Number OtherCalculation(Number two)
         {
-            throw new NotImplementedException();
+            Number
+                a = Number.Of(1),
+                b = Number.Of(2);
+
+            return a + b;
         }
     }
 }

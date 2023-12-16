@@ -65,7 +65,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
 
-            EvaluationContext<Number>
+            EvaluationScope<Number>
                 CalculationOne = new(options),
                 CalculationOther = new(options);
 
@@ -87,7 +87,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public static Number Return()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-            EvaluationContext<Number> Calculation = new(options);
+            EvaluationScope<Number> Calculation = new(options);
 
             Number
                 NumberOne = Number.Of(2),
@@ -96,7 +96,6 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             return Calculation.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
         }
     }
-
 
     public class TestCalcuationExtensionMethod
     {
@@ -112,7 +111,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private readonly EvaluationContext<Number> context = new();
+        private readonly EvaluationScope<Number> context = new();
 
         readonly Number
             NumberOne = Number.Of(2),
@@ -121,7 +120,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public Number Return() => context.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
     }
 
-    public class TestCalculationInherited : EvaluationContext<Number>
+    public class TestCalculationInherited : EvaluationScope<Number>
     {
         readonly Number
             NumberOne = Number.Of(2),

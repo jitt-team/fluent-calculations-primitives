@@ -11,9 +11,9 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
             Option<TestEnum> TestOption = Option.Of(TestEnum.Second, nameof(TestOption));
 
             Number SwitchResult = SwitchExpression<TestEnum, Number>.For(TestOption)
-                .Case(TestEnum.First).Return(() => 10)
-                .Case(TestEnum.Second).Return(() => 20)
-                .Default(() => 40)
+                .Case(TestEnum.First).Return(10)
+                .Case(TestEnum.Second).Return(20)
+                .Default(40)
                 .GetResult(nameof(SwitchResult));
 
             SwitchResult.Name.Should().Be(nameof(SwitchResult));

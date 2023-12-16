@@ -36,7 +36,7 @@ Console.WriteLine($@"Result file name ""{pngFileName}""");
 // Demo calculation
 namespace Fluent.Calculations.Graphviz
 {
-    public class DemoCalculation : EvaluationContext<Number>
+    public class DemoCalculation : EvaluationScope<Number>
     {
         public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

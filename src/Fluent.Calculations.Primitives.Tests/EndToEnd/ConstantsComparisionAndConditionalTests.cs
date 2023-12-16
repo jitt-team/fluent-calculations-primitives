@@ -21,7 +21,7 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
         }
     }
 
-    internal class ConstantsComparisionAndConditional : EvaluationContext<Number>
+    internal class ConstantsComparisionAndConditional : EvaluationScope<Number>
     {
         public ConstantsComparisionAndConditional() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

@@ -11,30 +11,6 @@ public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
-    internal class ReturnValue
-    {
-        private ReturnValue() { }
-
-        private ReturnValue(string name) => Name = name;
-
-        public ReturnValue(Func<TReturn> getter, string name) : this(name) => Get = getter;
-
-        public ReturnValue(decimal primitive, string name) : this(name) => PrimitiveValue = primitive;
-
-        public Func<TReturn> Get { get; private set; }
-
-        public decimal PrimitiveValue { get; private set; }
-
-        public string Name { get; private set; }
-
-        public bool IsPrimitive => Get == null;
-    }
-
-    private static readonly TReturn DefaultProvider = new();
-
-    internal static TReturn MakeOfReturnType(decimal primitive) => (TReturn)DefaultProvider
-        .MakeOfThisType(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(primitive.ToString(), ExpressionNodeType.Constant), primitive));
-
     public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, ReturnValue>());
 
     public sealed class SwitchBuilder
@@ -124,6 +100,7 @@ public static class SwitchExpression<T, TReturn>
         private readonly IDictionary<T, ReturnValue> switchCases;
         private readonly Option<T> checkValue;
         private readonly ReturnValue defaultValue;
+        private static readonly TReturn DefaultProvider = new();
 
         internal ResultEvaluator(Option<T> checkValue, IDictionary<T, ReturnValue> switchCases, ReturnValue defaultValue)
         {
@@ -152,17 +129,20 @@ public static class SwitchExpression<T, TReturn>
         private TReturn MakeSwitchResult(ReturnValue switchResult, ReturnValue defaultValue, string name)
         {
             List<IValue> expressionArguments = [checkValue];
+            decimal resultPrimitive;
 
             if (switchResult.IsPrimitive)
-                return MakeOfReturnType(switchResult.PrimitiveValue);
-
-            TReturn resultValue = switchResult.Get();
-
-            expressionArguments.Add(resultValue);
+                resultPrimitive = switchResult.PrimitiveValue;
+            else
+            {
+                TReturn resultValue = switchResult.Get();
+                resultPrimitive = resultValue.Primitive;
+                expressionArguments.Add(resultValue);
+            }
 
             string expressionBody = SwitchExpressionBodyComposer.Compose(switchCases, checkValue, defaultValue);
             ExpressionNode expressionNode = new ExpressionNode(expressionBody, ExpressionNodeType.Switch).WithArguments(expressionArguments);
-            return (TReturn)DefaultProvider.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, resultValue.Primitive, ValueOriginType.Operation));
+            return (TReturn)DefaultProvider.MakeOfThisType(MakeValueArgs.Compose(name, expressionNode, resultPrimitive, ValueOriginType.Operation));
         }
     }
 
@@ -184,5 +164,24 @@ public static class SwitchExpression<T, TReturn>
             static string ComposeReturnBlock(ReturnValue value) => value.IsPrimitive ?
                 value.PrimitiveValue.ToString() : $"({value.Name})" ?? StringConstants.NaN;
         }
+    }
+
+    internal class ReturnValue
+    {
+        private ReturnValue() { }
+
+        private ReturnValue(string name) => Name = name;
+
+        public ReturnValue(Func<TReturn> getter, string name) : this(name) => Get = getter;
+
+        public ReturnValue(decimal primitive, string name) : this(name) => PrimitiveValue = primitive;
+
+        public Func<TReturn> Get { get; private set; }
+
+        public decimal PrimitiveValue { get; private set; }
+
+        public string Name { get; private set; }
+
+        public bool IsPrimitive => Get == null;
     }
 }
