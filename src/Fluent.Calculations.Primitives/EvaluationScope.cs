@@ -27,9 +27,6 @@ public class EvaluationScope : IEvaluationScope
         this(valuesCache, memberCapturer, new ValueArgumentsSelector())
     { }
 
-    public static EvaluationScope Create([CallerMemberName] string scope = StringConstants.NaN) =>
-        new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
-
     internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector)
     {
         this.options = EvaluationOptions.Default;
@@ -37,6 +34,10 @@ public class EvaluationScope : IEvaluationScope
         this.valuesCache = valuesCache;
         this.valueArgumentsSelector = selector;
     }
+
+    public static EvaluationScope Create([CallerMemberName] string scope = StringConstants.NaN) =>
+     new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
+
 
     public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
             where TCase : struct, Enum
