@@ -21,11 +21,11 @@ public class GraphStyleColorful : IGraphStyle
             _ => CreateValueBlock(value),
         };
     }
-    public DotSubgraph CreateParametersCluster()
+    public DotSubgraph CreateParametersCluster(string scope, int index)
     {
         DotSubgraph subgraph = new DotSubgraph()
-            .WithIdentifier("cluster_0")
-            .WithLabel("INPUT PARAMETERS")
+            .WithIdentifier($"cluster_{index}")
+            .WithLabel($"{scope.ToUpper()} PARAMETERS")
             .WithColor(DotColor.Black)
             .WithStyle("filled, solid");
 

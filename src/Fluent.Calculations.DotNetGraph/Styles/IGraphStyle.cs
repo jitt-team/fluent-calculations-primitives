@@ -5,7 +5,7 @@ namespace Fluent.Calculations.DotNetGraph.Styles;
 
 public interface IGraphStyle
 {
-    DotSubgraph CreateParametersCluster();
+    DotSubgraph CreateParametersCluster(string scope, int index);
 
     DotNodeBlock CreateBlock(IValue value);
 

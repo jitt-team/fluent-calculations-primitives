@@ -11,11 +11,11 @@ namespace Fluent.Calculations.DotNetGraph.Styles;
 
 internal class GraphStyleMonochrome : IGraphStyle
 {
-    public DotSubgraph CreateParametersCluster()
+    public DotSubgraph CreateParametersCluster(string scope, int index)
     {
         DotSubgraph subgraph = new DotSubgraph()
-            .WithIdentifier("cluster_0")
-            .WithLabel("Parameters")
+            .WithIdentifier($"cluster_{index}")
+            .WithLabel($"{Humanize(scope)}")
             .WithColor(DotColor.LightGrey)
             .WithStyle("filled, solid");
 

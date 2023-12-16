@@ -38,7 +38,7 @@ namespace Fluent.Calculations.Graphviz
 {
     public class DemoCalculation : EvaluationScope<Number>
     {
-        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = "DemoCalculation" }) { }
 
         private readonly RelatedCalculation ChildCalculation = new RelatedCalculation();
 
