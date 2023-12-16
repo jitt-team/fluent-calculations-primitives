@@ -87,13 +87,13 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public static Number Return()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-            EvaluationScope<Number> Calculation = new(options);
+            EvaluationScope<Number> scope = new(options);
 
             Number
                 NumberOne = Number.Of(2),
                 NumberTwo = Number.Of(3);
 
-            return Calculation.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+            return scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
         }
     }
 
@@ -111,13 +111,13 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private readonly EvaluationScope<Number> context = new();
+        private readonly EvaluationScope<Number> scope = new();
 
         readonly Number
             NumberOne = Number.Of(2),
             NumberTwo = Number.Of(3);
 
-        public Number Return() => context.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+        public Number Return() => scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
     }
 
     public class TestCalculationInherited : EvaluationScope<Number>

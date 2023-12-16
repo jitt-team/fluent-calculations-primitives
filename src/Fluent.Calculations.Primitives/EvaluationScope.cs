@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/class/*' />
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/class/*' />
 public class EvaluationScope : IEvaluationScope
 {
     private readonly EvaluationOptions options;
@@ -14,10 +14,10 @@ public class EvaluationScope : IEvaluationScope
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private readonly IValueArgumentsSelector valueArgumentsSelector;
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/ctor/*' />
     public EvaluationScope() : this(EvaluationOptions.Default) { }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-options/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/ctor-options/*' />
     public EvaluationScope(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
@@ -49,7 +49,7 @@ public class EvaluationScope : IEvaluationScope
         return getSwitchResultFunc().GetResult(name);
     }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Evaluate/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/method-Evaluate/*' />
     public TValue Evaluate<TValue>(
     Expression<Func<TValue>> lambdaExpression,
     [CallerMemberName] string name = StringConstants.NaN,

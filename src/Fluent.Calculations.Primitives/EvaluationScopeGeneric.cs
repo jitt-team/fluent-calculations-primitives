@@ -20,10 +20,10 @@ public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T :
         base(valuesCache, memberCapturer, selector)
     { }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/ctor-func/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/ctor-func/*' />
     public EvaluationScope(Func<EvaluationScope<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-ToResult/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/method-ToResult/*' />
     public T ToResult()
     {
         ClearValuesCache();
@@ -35,6 +35,6 @@ public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T :
         return (T)((IOrigin)result).AsResult();
     }
 
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationContext"]/method-Return/*' />
+    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScope"]/method-Return/*' />
     public virtual T Return() { return (T)new T().MakeDefault(); }
 }
