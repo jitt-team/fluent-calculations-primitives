@@ -8,13 +8,14 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public const string TestEvaluationName = "TEST-EVALUATION-NAME";
         public const string TestEvaluationNameOne = "TEST-EVALUATION-NAME-ONE";
         public const string TestEvaluationNameTwo = "TEST-EVALUATION-NAME-TWO";
+        public const string TestEvaluationScope = "TEST-EVALUATION-SCOPE";
     }
 
     public class EvaluationScopeCompostionTests
     {
 
         [Fact]
-        public void Calculation_MixedContexts_ResultAndArgumentsExpected()
+        public void Calculation_MixedScopes_ResultAndArgumentsExpected()
         {
             Number result = TestCalculationMixedContexts.Return();
             result.Primitive.Should().Be(20);
@@ -41,7 +42,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Calcuation_EncapsulatedContext_ResultAndArgumentsExpected()
+        public void Calcuation_EncapsulatedScope_ResultAndArgumentsExpected()
         {
             Number result = new TestCalculationEncapsulated().Return();
             result.Primitive.Should().Be(5);
@@ -50,12 +51,31 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Calcuation_InhertiedFromContext_ResultAndArgumentsExpected()
+        public void Calcuation_InhertiedFromScope_ResultAndArgumentsExpected()
         {
             Number result = new TestCalculationInherited().Return();
             result.Primitive.Should().Be(5);
             result.Name.Should().Be(Constant.TestEvaluationName);
             result.Expression.Arguments.Should().HaveCount(2);
+        }
+
+        [Fact]
+        public void Calcuation_LocalScope_ResultAndArgumentsExpected()
+        {
+            EvaluationScope scope = this.GetScope(Constant.TestEvaluationScope);
+
+            Number
+                NumberOne = Number.Of(2, nameof(NumberOne)),
+                NumberTwo = Number.Of(3, nameof(NumberTwo));
+
+            Number result = scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+
+            result.Primitive.Should().Be(5);
+            result.Name.Should().Be(Constant.TestEvaluationName);
+            result.Scope.Should().Be(Constant.TestEvaluationScope);
+            result.Expression.Arguments.Should().HaveCount(2);
+            result.Expression.Arguments.First().Scope.Should().Be(Constant.TestEvaluationScope);
+            result.Expression.Arguments.Last().Scope.Should().Be(Constant.TestEvaluationScope);
         }
     }
 
