@@ -63,7 +63,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public void Calcuation_LocalScope_ResultAndArgumentsExpected()
         {
             string
-              expectedScope = string.Concat(GetType().Name, ".", Constant.TestEvaluationScope);
+                expectedScope = string.Concat(GetType().Name, ".", Constant.TestEvaluationScope);
 
             EvaluationScope scope = this.GetScope(Constant.TestEvaluationScope);
 
