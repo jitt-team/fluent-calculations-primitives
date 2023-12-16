@@ -77,7 +77,9 @@ namespace Fluent.Calculations.Graphviz
                 A = Number.Of(5),
                 B = Number.Of(3);
 
-            return scope.Evaluate(() => A * B);
+            var result = scope.Evaluate(() => A * B);
+
+            return result;
         }
     }
 

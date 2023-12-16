@@ -62,6 +62,9 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         [Fact]
         public void Calcuation_LocalScope_ResultAndArgumentsExpected()
         {
+            string
+              expectedScope = string.Concat(GetType().Name, ".", Constant.TestEvaluationScope);
+
             EvaluationScope scope = this.GetScope(Constant.TestEvaluationScope);
 
             Number
@@ -72,23 +75,27 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
             result.Primitive.Should().Be(5);
             result.Name.Should().Be(Constant.TestEvaluationName);
-            result.Scope.Should().Be(Constant.TestEvaluationScope);
+            result.Scope.Should().Be(expectedScope);
             result.Expression.Arguments.Should().HaveCount(2);
-            result.Expression.Arguments.First().Scope.Should().Be(Constant.TestEvaluationScope);
-            result.Expression.Arguments.Last().Scope.Should().Be(Constant.TestEvaluationScope);
+            result.Expression.Arguments.First().Scope.Should().Be(expectedScope);
+            result.Expression.Arguments.Last().Scope.Should().Be(expectedScope);
         }
 
         [Fact]
         public void Calculation_WithDependentScope_ResultAndArgumentsExpected()
         {
+            string 
+                expectedMainScope = string.Concat(typeof(TestCalculationWithDependentScope).Name, ".MAIN-SCOPE"),
+                expectedChildScope = string.Concat(typeof(TestCalculationWithDependentScope).Name, ".CHILD-SCOPE"); ;
+
             Number result = new TestCalculationWithDependentScope().Return();
             result.Primitive.Should().Be(10);
-            result.Scope.Should().Be("MAIN-SCOPE");
+            result.Scope.Should().Be(expectedMainScope);
 
             var dependentCalculationResult = result.Expression.Arguments.Last();
-            dependentCalculationResult.Scope.Should().Be("CHILD-SCOPE");
+            dependentCalculationResult.Scope.Should().Be(expectedChildScope);
             dependentCalculationResult.Primitive.Should().Be(5);
-            dependentCalculationResult.Expression.Arguments.First().Scope.Should().Be("CHILD-SCOPE");
+            dependentCalculationResult.Expression.Arguments.First().Scope.Should().Be(expectedChildScope);
         }
     }
 
