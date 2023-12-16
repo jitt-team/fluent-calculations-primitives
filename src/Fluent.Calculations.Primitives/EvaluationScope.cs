@@ -98,6 +98,7 @@ public class EvaluationScope : IEvaluationScope
         bool IsCached(CapturedEvaluationMember evaluation) => valuesCache.ContainsName(evaluation.MemberName);
         IValueProvider GetCachedValue(CapturedEvaluationMember evaluation) => valuesCache.GetByName(evaluation.MemberName);
     }
+
     private void MarkValuesAsParameters(CapturedParameterMember[] parameters)
     {
         foreach (CapturedParameterMember parameter in parameters)
