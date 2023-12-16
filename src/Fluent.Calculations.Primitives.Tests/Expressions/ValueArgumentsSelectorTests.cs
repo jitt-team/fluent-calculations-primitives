@@ -15,7 +15,7 @@ namespace Fluent.Calculations.Primitives.Tests.Expressions
             var testResult = GetPlainTestResult();
             var arguments = selector.Select(testResult);
 
-            // arguments.Length.Should().Be(4);
+            arguments.Length.Should().Be(2);
         }
 
         private Number GetPlainTestResult()
