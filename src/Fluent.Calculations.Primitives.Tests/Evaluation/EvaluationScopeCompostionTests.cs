@@ -17,7 +17,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         [Fact]
         public void Calculation_MixedScopes_ResultAndArgumentsExpected()
         {
-            Number result = TestCalculationMixedContexts.Return();
+            Number result = TestCalculationMixedScopes.Return();
             result.Primitive.Should().Be(20);
             result.Name.Should().Be(Constant.TestEvaluationName);
             result.Expression.Arguments.Should().HaveCount(2);
@@ -77,9 +77,47 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             result.Expression.Arguments.First().Scope.Should().Be(Constant.TestEvaluationScope);
             result.Expression.Arguments.Last().Scope.Should().Be(Constant.TestEvaluationScope);
         }
+
+        [Fact]
+        public void Calculation_WithDependentScope_ResultAndArgumentsExpected()
+        {
+            Number result = new TestCalculationWithDependentScope().Return();
+            result.Primitive.Should().Be(10);
+            result.Scope.Should().Be("MAIN-SCOPE");
+
+            var dependentCalculationResult = result.Expression.Arguments.Last();
+            dependentCalculationResult.Scope.Should().Be("CHILD-SCOPE");
+            dependentCalculationResult.Primitive.Should().Be(5);
+            dependentCalculationResult.Expression.Arguments.First().Scope.Should().Be("CHILD-SCOPE");
+        }
     }
 
-    public class TestCalculationMixedContexts
+    public class TestCalculationWithDependentScope
+    {
+        public Number Return()
+        {
+            var scope = this.GetScope("MAIN-SCOPE");
+
+            Number
+                NumberOne = Number.Of(2, nameof(NumberOne)),
+                NumberTwo = Number.Of(3, nameof(NumberTwo));
+
+            return scope.Evaluate(() => NumberOne + NumberTwo + DependencyCalculation(), "MAIN-RESULT");
+        }
+
+        public Number DependencyCalculation()
+        {
+            var scope = this.GetScope("CHILD-SCOPE");
+
+            Number
+                A = Number.Of(2, nameof(A)),
+                B = Number.Of(3, nameof(B));
+
+            return scope.Evaluate(() => A + B, "CHILD-RESULT");
+        }
+    }
+
+    public class TestCalculationMixedScopes
     {
         public static Number Return()
         {
