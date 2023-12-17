@@ -60,13 +60,13 @@ internal class GraphStyleMonochrome : IGraphStyle
         return node;
     }
 
-    private DotNodeBlock CreateValueBlock(IValue value)
+    private static DotNodeBlock CreateValueBlock(IValue value)
     {
         DotNode node = CreateBaseNodeStyle(value.Name).WithLabel(ComposeHtmlLabel(value), isHtml: true);
         return new DotNodeBlock(node, true);
     }
 
-    private DotNode CreateBaseNodeStyle(string name)
+    private static DotNode CreateBaseNodeStyle(string name)
     {
         DotNode node = new DotNode()
                 .WithIdentifier(Html($"{name}_value"))
@@ -80,7 +80,7 @@ internal class GraphStyleMonochrome : IGraphStyle
         return node;
     }
 
-    private string ComposeHtmlLabel(IValue value) => $@"
+    private static string ComposeHtmlLabel(IValue value) => $@"
             <table border=""0"" cellborder=""0"" cellpadding=""3"" bgcolor=""white"">
                 <tr>
                     <td bgcolor=""black"" align=""center"" colspan=""2""><font color=""white"">{Humanize(value.Name)}</font></td>
@@ -88,7 +88,7 @@ internal class GraphStyleMonochrome : IGraphStyle
                  {ValueRow(value)}
             </table>";
 
-    private string ValueRow(IValue value) => IsParameter(value) ?
+    private static string ValueRow(IValue value) => IsParameter(value) ?
             $@"<tr>
                 <td align=""center"" port=""r1"">{Html(value.Expression.Body)}</td>
             </tr>" :
@@ -98,11 +98,10 @@ internal class GraphStyleMonochrome : IGraphStyle
                 <td bgcolor=""grey"" align=""center"">{value.PrimitiveString}</td>
             </tr>";
 
-    private bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
+    private static bool IsParameter(IValue value) => value.Origin == ValueOriginType.Constant || value.Origin == ValueOriginType.Parameter;
 
     private static string Html(string value) => HttpUtility.HtmlEncode(value).Replace(Environment.NewLine, @"<br align=""left""/>");
 
-
-    private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, @"(\B[A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+    private static string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, @"(\B[A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
 
 }
