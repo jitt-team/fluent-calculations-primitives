@@ -132,7 +132,7 @@ public static class SwitchExpression<T, TReturn>
             decimal resultPrimitive;
 
             if (switchResult.IsPrimitive)
-                resultPrimitive = switchResult?.PrimitiveValue ?? 0;
+                resultPrimitive = switchResult.PrimitiveValue;
             else
             {
                 TReturn resultValue = switchResult.Get();
