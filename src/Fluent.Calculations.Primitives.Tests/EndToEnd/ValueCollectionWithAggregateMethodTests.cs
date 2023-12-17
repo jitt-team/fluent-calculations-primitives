@@ -50,14 +50,14 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
         {
             public CollectionsEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 
-            Number SingleNumber = Number.Of(2);
+            readonly Number SingleNumber = Number.Of(2);
 
-            Values<Number> MultipleNumbers = new()
-            {
+            readonly Values<Number> MultipleNumbers =
+            [
                 Number.Of(2, "COLLECTION-NUMBER-1"),
                 Number.Of(4, "COLLECTION-NUMBER-2"),
                 Number.Of(6, "COLLECTION-NUMBER-3")
-            };
+            ];
 
             public Number AverageFromMultipleNumbers => Evaluate(() => MultipleNumbers.Average());
 
