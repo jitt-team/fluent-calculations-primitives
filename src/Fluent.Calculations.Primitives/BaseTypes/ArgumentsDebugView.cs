@@ -1,14 +1,12 @@
-﻿namespace Fluent.Calculations.Primitives.BaseTypes
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+using System.Diagnostics;
+
+public class ArgumentsDebugView
 {
-    using System.Diagnostics;
+    private readonly IArguments arguments;
 
-    public class ArgumentsDebugView
-    {
-        private readonly IArguments arguments;
+    public ArgumentsDebugView(IArguments arguments) => this.arguments = arguments;
 
-        public ArgumentsDebugView(IArguments arguments) => this.arguments = arguments;
-
-        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-        public IValue[] Arguments => arguments.ToArray();
-    }
+    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+    public IValue[] Arguments => arguments.ToArray();
 }

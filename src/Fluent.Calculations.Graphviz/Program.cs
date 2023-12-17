@@ -40,7 +40,7 @@ namespace Fluent.Calculations.Graphviz
     {
         public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = "DemoCalculation" }) { }
 
-        private readonly RelatedCalculation ChildCalculation = new RelatedCalculation();
+        private readonly RelatedCalculation ChildCalculation = new();
 
         private readonly Number
             ValueOne = Number.Of(30),
