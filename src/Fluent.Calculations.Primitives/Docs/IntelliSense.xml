@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <docs>
-	<members name="EvaluationContext">
+	<members name="EvaluationScope">
 		<class>
 			<summary>
 				Base class for implementing a calculation.
@@ -21,9 +21,9 @@
 					<item>
 						<term>Examples</term>
 						<description>
-							<para>See below a class inheriting from EvaluationContext<![CDATA[<T>]]>, where T is a result class type.</para>
+							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
 							<code>
-	public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
+	public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 	{
 		public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 		public override Number Return() => Number.Of(0);
@@ -42,18 +42,18 @@
 		</class>
 		<ctor>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/>.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
 			</summary>
 		</ctor>
 		<ctor-options>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with custom options.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
 			</summary>
 			<param name="options">Options to be used to run the calculation</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with standalone labda expression.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
 			</summary>
 			<param name="func">
 				Lambda expression using <see cref="IValue"/> types

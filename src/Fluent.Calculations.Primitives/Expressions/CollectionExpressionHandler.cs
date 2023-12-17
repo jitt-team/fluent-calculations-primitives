@@ -12,7 +12,7 @@ internal static class CollectionExpressionHandler
     {
         return (TSource)MakeOfSourceType();
 
-        IValueProvider MakeOfSourceType() => new Values<TSource>().MakeOfThisElementType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc(), ValueOriginType.Evaluation));
+        IValueProvider MakeOfSourceType() => new Values<TSource>().MakeOfThisElementType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), primitiveValueAggregateFunc(), ValueOriginType.Operation));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeCollectionExpressionBody(), ExpressionNodeType.Collection).WithArguments((IValueProvider)source);
         string MakeCollectionExpressionBody() => $"{operatorName}({source})";
     }

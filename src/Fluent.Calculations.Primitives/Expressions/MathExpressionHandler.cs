@@ -11,7 +11,7 @@ internal static class MathExpressionHandler
     {
         return (ResultType)MakeOfResultType();
 
-        IValueProvider MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(methodName, MakeExpressionNode(), ToPrimitiveResult()));
+        IValueProvider MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(methodName, MakeExpressionNode(), ToPrimitiveResult(), ValueOriginType.Operation));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(MakeBinaryExpressionBody(), ExpressionNodeType.MathExpression).WithArguments(input);
         decimal ToPrimitiveResult() => primitiveCalcFunc(input.Primitive);
         string MakeBinaryExpressionBody() => $"{methodName}({input})";

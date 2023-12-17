@@ -21,11 +21,11 @@ public class GraphStyleColorful : IGraphStyle
             _ => CreateValueBlock(value),
         };
     }
-    public DotSubgraph CreateParametersCluster()
+    public DotSubgraph CreateParametersCluster(string scope, int index)
     {
         DotSubgraph subgraph = new DotSubgraph()
-            .WithIdentifier("cluster_0")
-            .WithLabel("INPUT PARAMETERS")
+            .WithIdentifier($"cluster_{index}")
+            .WithLabel($"{scope.ToUpper()} PARAMETERS")
             .WithColor(DotColor.Black)
             .WithStyle("filled, solid");
 
@@ -141,4 +141,14 @@ public class GraphStyleColorful : IGraphStyle
         new DotEdge().From(lastNode).To(firstNode)
                 .WithStyle(DotEdgeStyle.Dashed)
                 .WithArrowHead(DotEdgeArrowType.Open);
+
+    public DotSubgraph CreateScopeCluster(string scope, int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public DotNode CreateFinalResult(IValue value)
+    {
+        throw new NotImplementedException();
+    }
 }

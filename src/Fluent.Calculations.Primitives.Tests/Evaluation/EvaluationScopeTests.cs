@@ -7,10 +7,10 @@ using System.Linq.Expressions;
 
 namespace Fluent.Calculations.Primitives.Tests.Evaluation
 {
-    public class EvaluationContextTests
+    public class EvaluationScopeTests
     {
-        private Mock<IValuesCache> _valuesCacheMock = new Mock<IValuesCache>(MockBehavior.Strict);
-        private Mock<IMemberExpressionValueCapturer> _memberCapturerMock = new Mock<IMemberExpressionValueCapturer>(MockBehavior.Strict);
+        private readonly Mock<IValuesCache> _valuesCacheMock = new(MockBehavior.Strict);
+        private readonly Mock<IMemberExpressionValueCapturer> _memberCapturerMock = new(MockBehavior.Strict);
 
         [Fact]
         public void Evaluation_Result_IsExpected()
@@ -70,7 +70,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
                 NumberOne, expected.NumberOneName,
                 NumberTwo, expected.NumberTwoName);
 
-            EvaluationContext<Number> calculation = MockAndBuildNonCachedCalculation(expected.CalculationName, capturedMembersMock);
+            EvaluationScope<Number> calculation = MockAndBuildNonCachedCalculation(expected.CalculationName, capturedMembersMock);
 
             return calculation.Evaluate(() => NumberOne * NumberTwo, expected.CalculationName);
         }
@@ -85,7 +85,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             Number
                 CachedResult = Number.Of(expected.PrimitiveValue, expected.CalculationName);
 
-            EvaluationContext<Number> calculation = MockAndBuildCachedCalculation(expected.CalculationName, CachedResult);
+            EvaluationScope<Number> calculation = MockAndBuildCachedCalculation(expected.CalculationName, CachedResult);
 
             return calculation.Evaluate(() => NumberOne * NumberTwo, expected.CalculationName);
         }
@@ -98,30 +98,30 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
             CapturedExpressionMembers capturedMembersMock = MockEvaluationCaptureResult(expected.NumberTwoName);
 
-            EvaluationContext<Number> calculation = MockAndBuildCachedParameterCalculation(expected.NumberTwoName, NumberTwo, capturedMembersMock);
+            EvaluationScope<Number> calculation = MockAndBuildCachedParameterCalculation(expected.NumberTwoName, NumberTwo, capturedMembersMock);
 
             return calculation.Evaluate(() => NumberOne * NumberTwo, expected.CalculationName);
         }
 
-        private EvaluationContext<Number> MockAndBuildNonCachedCalculation(string expectedCalculationName, CapturedExpressionMembers capturedMembersMock)
+        private EvaluationScope<Number> MockAndBuildNonCachedCalculation(string expectedCalculationName, CapturedExpressionMembers capturedMembersMock)
         {
             _valuesCacheMock.Setup(c => c.ContainsKey(expectedCalculationName)).Returns(false).Verifiable();
             _valuesCacheMock.Setup(c => c.Add(expectedCalculationName, It.IsAny<IValueProvider>())).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
 
-            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationScope<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
-        private EvaluationContext<Number> MockAndBuildCachedCalculation(string expectedCalculationName, Number cachedResult)
+        private EvaluationScope<Number> MockAndBuildCachedCalculation(string expectedCalculationName, Number cachedResult)
         {
             _valuesCacheMock.Setup(c => c.ContainsKey(expectedCalculationName)).Returns(true).Verifiable();
             _valuesCacheMock.Setup(c => c.GetByKey(expectedCalculationName)).Returns(cachedResult).Verifiable();
 
-            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationScope<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
 
-        private EvaluationContext<Number> MockAndBuildCachedParameterCalculation(string cachedValueName, Number cachedValue, CapturedExpressionMembers capturedMembersMock)
+        private EvaluationScope<Number> MockAndBuildCachedParameterCalculation(string cachedValueName, Number cachedValue, CapturedExpressionMembers capturedMembersMock)
         {
             _valuesCacheMock.Setup(c => c.ContainsKey(It.IsAny<string>())).Returns(false).Verifiable();
             _valuesCacheMock.Setup(c => c.Add(It.IsAny<string>(), It.IsAny<IValueProvider>())).Verifiable();
@@ -129,25 +129,25 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             _valuesCacheMock.Setup(c => c.GetByName(cachedValueName)).Returns(cachedValue).Verifiable();
             _memberCapturerMock.Setup(c => c.Capture(It.IsAny<Expression<Func<Number>>>())).Returns(capturedMembersMock).Verifiable();
 
-            EvaluationContext<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
+            EvaluationScope<Number> calculation = new(_valuesCacheMock.Object, _memberCapturerMock.Object);
             return calculation;
         }
 
-        private CapturedExpressionMembers MockParameterCaptureResult(IValueProvider value1, string name1, IValueProvider value2, string name2)
+        private static CapturedExpressionMembers MockParameterCaptureResult(IValueProvider value1, string name1, IValueProvider value2, string name2)
         {
             var parameterMemberers = new[] {
                 new CapturedParameterMember(value1, name1),
                 new CapturedParameterMember(value2, name2)
             };
 
-            var evaluationMembers = new CapturedEvaluationMember[0];
+            var evaluationMembers = Array.Empty<CapturedEvaluationMember>();
 
             return new CapturedExpressionMembers(parameterMemberers, evaluationMembers);
         }
 
-        private CapturedExpressionMembers MockEvaluationCaptureResult(string name)
+        private static CapturedExpressionMembers MockEvaluationCaptureResult(string name)
         {
-            var parameterMemberers = new CapturedParameterMember[0];
+            var parameterMemberers = Array.Empty<CapturedParameterMember>();
 
             var evaluationMembers = new[] { new CapturedEvaluationMember(name) };
 

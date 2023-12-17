@@ -41,7 +41,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
         }.ToResult();
     }
 
-    internal class AdditionCalculation : EvaluationContext<Number>
+    internal class AdditionCalculation : EvaluationScope<Number>
     {
         public AdditionCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

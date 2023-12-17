@@ -20,7 +20,7 @@ namespace Fluent.Calculations.Primitives.Tests.CustomMath
         public void Calculate_CustomFunction_Decimal_ResultExpected()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-            EvaluationContext<Number> context = new(options);
+            EvaluationScope<Number> context = new(options);
             Number One = 1, Two = 2, Three = 3;
 
             Number result = context.Evaluate(() => CustomGenericCalculation.CalculateTestFormula(One, Two, Three));

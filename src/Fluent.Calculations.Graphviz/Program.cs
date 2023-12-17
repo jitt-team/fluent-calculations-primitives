@@ -36,35 +36,51 @@ Console.WriteLine($@"Result file name ""{pngFileName}""");
 // Demo calculation
 namespace Fluent.Calculations.Graphviz
 {
-    public class DemoCalculation : EvaluationContext<Number>
+    public class DemoCalculation : EvaluationScope<Number>
     {
-        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = "DemoCalculation" }) { }
+
+        private readonly RelatedCalculation ChildCalculation = new RelatedCalculation();
 
         private readonly Number
             ValueOne = Number.Of(30),
-            ValueTwo = Number.Of(20),
-            ValueThree = Number.Of(2);
+            ValueTwo = Number.Of(20);
 
         private readonly Option<SomeOptions>
-            OptionOne = Option.Of(SomeOptions.OptionThree),
-            OptionTwo = Option.Of(SomeOptions.OptionTwo);
+            SomeChoice = Option.Of(SomeOptions.OptionOne),
+            OtherChoice = Option.Of(SomeOptions.OptionTwo);
 
-        Condition OptionsEqual => Evaluate(() => OptionOne == OptionTwo);
+        Condition OptionsEqual => Evaluate(() => SomeChoice == OtherChoice);
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        Number ResultOne => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? ValueOne : ValueTwo);
+        Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? 
+            ValueOne : ChildCalculation.Calculate());
 
-        Number OtherResult => Evaluate(() => ResultOne * ValueThree);
-
-        Number SwitchResult => Evaluate(() => OptionOne.Switch<Number>()
+        Number SwitchResult => Evaluate(() => SomeChoice.Switch<Number>()
                 .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
-                    .Return(10)
+                    .Return(ResultOne)
                 .Case(SomeOptions.OptionThree)
-                    .Return(OtherResult)
+                    .Return(10)
                     .Default(100));
 
         public override Number Return() => SwitchResult;
+    }
+
+    public class RelatedCalculation
+    {
+        public Number Calculate()
+        {
+            var scope = this.GetScope();
+
+            Number
+                A = Number.Of(5),
+                B = Number.Of(3);
+
+            var result = scope.Evaluate(() => A * B);
+
+            return result;
+        }
     }
 
     public enum SomeOptions

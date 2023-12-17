@@ -17,7 +17,11 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
 
         public string Type => GetType().Name;
 
+        public string Scope => StringConstants.NaN;
+
         public string PrimitiveString => "VALUE-AS-STRING";
+
+        public IValue Accept(ValueVisitor visitor) => ArgumentsVisitorInvoker.VisitArguments(this, visitor);
 
         public IValueProvider MakeDefault() => new FakeValue();
 
@@ -25,10 +29,5 @@ namespace Fluent.Calculations.Primitives.Tests.Collections
         {
             Name = args.Name
         };
-
-        public string ToJson()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

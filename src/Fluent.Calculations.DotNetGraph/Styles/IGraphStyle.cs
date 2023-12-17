@@ -5,9 +5,13 @@ namespace Fluent.Calculations.DotNetGraph.Styles;
 
 public interface IGraphStyle
 {
-    DotSubgraph CreateParametersCluster();
+    DotSubgraph CreateParametersCluster(string scope, int index);
 
+    DotSubgraph CreateScopeCluster(string scope, int index);
+    
     DotNodeBlock CreateBlock(IValue value);
 
     DotEdge ConnectValues(DotNode firstNode, DotNode lastNode);
+
+    DotNode CreateFinalResult(IValue value);
 }
