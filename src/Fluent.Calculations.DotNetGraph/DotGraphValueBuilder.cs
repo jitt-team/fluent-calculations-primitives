@@ -56,14 +56,14 @@ public class DotGraphValueBuilder
         bool IsParameter() => value.Origin == ValueOriginType.Parameter || value.Origin == ValueOriginType.Constant;
     }
 
-    private class ClusterProvider
+    private sealed class ClusterProvider
     {
         private readonly Dictionary<string, DotSubgraph>
             scopeParameterContainers = new Dictionary<string, DotSubgraph>(),
             scopeContainers = new Dictionary<string, DotSubgraph>();
 
         private readonly IGraphStyle builder;
-        private DotGraph mainGraph;
+        private readonly DotGraph mainGraph;
 
         public ClusterProvider(IGraphStyle builder, DotGraph mainGraph)
         {
