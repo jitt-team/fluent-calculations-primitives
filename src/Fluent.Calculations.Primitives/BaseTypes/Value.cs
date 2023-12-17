@@ -15,11 +15,14 @@ public abstract class Value : IValueProvider, IOrigin
 
     public ITags Tags { get; init; }
 
+    public string Scope { get; private set; }
+
     private Value()
     {
         Name = StringConstants.NaN;
         Expression = ExpressionNode.None;
         Tags = TagsCollection.Empty;
+        Scope = StringConstants.NaN;
     }
 
     public Value(Value value)
@@ -29,6 +32,7 @@ public abstract class Value : IValueProvider, IOrigin
         Primitive = value.Primitive;
         Origin = value.Origin;
         Tags = value.Tags;
+        Scope = value.Scope;
     }
 
     protected Value(MakeValueArgs makeValueArgs)
@@ -38,6 +42,7 @@ public abstract class Value : IValueProvider, IOrigin
         Origin = makeValueArgs.Origin;
         Expression = makeValueArgs.Expression;
         Tags = makeValueArgs.Tags;
+        Scope = makeValueArgs.Scope;
     }
 
     public abstract IValueProvider MakeOfThisType(MakeValueArgs args);
@@ -51,7 +56,7 @@ public abstract class Value : IValueProvider, IOrigin
         BinaryOperatorHandler.Handle<ResultType, ResultPrimitiveType>(this, right, expressionFunc, operatorName, ExpressionNodeType.BinaryExpression);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    bool IOrigin.IsSet => !Name.IsNaNOrNull();
+    bool IOrigin.IsSet => !Name.IsNaNOrNull() && Origin != ValueOriginType.NaN;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public string Type => this.GetType().Name;
@@ -62,11 +67,18 @@ public abstract class Value : IValueProvider, IOrigin
         return this;
     }
 
-    void IOrigin.MarkAsParameter(string name)
+    void IOrigin.MarkAsParameter(string name, string scope)
     {
         Name = name;
-        Origin = ValueOriginType.Parameter;
+
+        if (Origin == ValueOriginType.NaN)
+            Origin = ValueOriginType.Parameter;
+
+        if (Scope.Equals(StringConstants.NaN))
+            Scope = scope;
     }
+
+    public void SetScope(string scope) => Scope = scope;
 
     public bool Equals(IValueProvider? value) => value != null && Primitive.Equals(value.Primitive);
 
@@ -79,6 +91,8 @@ public abstract class Value : IValueProvider, IOrigin
     public override int GetHashCode() => Primitive.GetHashCode();
 
     public override string ToString() => $"{Name}";
+
+    IValue IValueProvider.Accept(ValueVisitor visitor) => ArgumentsVisitorInvoker.VisitArguments(this, visitor);
 
     public virtual string PrimitiveString => $"{Primitive:0.00}";
 }

@@ -1,7 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
-
 using Fluent.Calculations.Primitives.Expressions;
-using System;
 
 public class MakeValueArgs
 {
@@ -17,16 +15,22 @@ public class MakeValueArgs
 
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
+    public string Scope { get; private set; } = StringConstants.NaN;
+
     internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue) =>
-        Compose(name, expression, primitiveValue, ValueOriginType.Constant);
+        Compose(name, expression, primitiveValue, ValueOriginType.Constant, StringConstants.NaN);
 
     internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue, ValueOriginType origin) =>
+        Compose(name, expression, primitiveValue, origin, StringConstants.NaN);
+
+    internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue, ValueOriginType origin, string scope) =>
         new()
         {
             Name = name,
             Expression = expression,
             PrimitiveValue = primitiveValue,
-            Origin = origin
+            Origin = origin,
+            Scope = scope
         };
 
     public MakeValueArgs WithTags(params Tag[] tags)

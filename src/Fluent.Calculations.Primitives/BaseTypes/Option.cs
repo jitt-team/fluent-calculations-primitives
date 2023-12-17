@@ -27,6 +27,8 @@ namespace Fluent.Calculations.Primitives.BaseTypes
 
         public override int GetHashCode() => base.GetHashCode();
 
+        public override string PrimitiveString => Enum.GetName(typeof(T), Convert.ToInt32(Primitive)) ?? StringConstants.NaN;
+
         public SwitchExpression<T, TResult>.SwitchBuilder Switch<TResult>() where TResult : class, IValueProvider, new() => SwitchExpression<T, TResult>.For(this);
 
         public static Condition operator ==(Option<T>? left, Option<T>? right) => Enforce.NotNull(left).IsEqualToRight(right);

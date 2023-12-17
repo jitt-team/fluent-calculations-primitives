@@ -6,7 +6,7 @@ public class ComplexValueTypesTests
     private Money Return()
     {
         EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-        EvaluationContext<Money> Calculation = new EvaluationContext<Money>();
+        EvaluationScope<Money> Calculation = new EvaluationScope<Money>();
 
         Money
             MoneyOne = Number.Of(10).AsMoney().EUR,

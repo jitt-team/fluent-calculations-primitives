@@ -20,7 +20,6 @@ public class Number : Value,
 
     public Number(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
-    public static implicit operator int(Number value) => Convert.ToInt32(value.Primitive);
 
     public static implicit operator Number(int primitiveValue) => Number.Of(primitiveValue);
 
@@ -28,8 +27,12 @@ public class Number : Value,
 
     public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) =>
-        new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue));
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) => 
+        Of(primitiveValue, StringConstants.NaN, fieldName);
+
+    public static Number Of(decimal primitiveValue, string scope, [CallerMemberName] string fieldName = StringConstants.NaN) =>
+        new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue, 
+            ValueOriginType.Constant, scope));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
 

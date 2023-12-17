@@ -4,6 +4,7 @@ using Fluent.Calculations.Primitives.Utils;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using static System.Formats.Asn1.AsnWriter;
 
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
 public sealed class Condition : Value,
@@ -24,15 +25,22 @@ public sealed class Condition : Value,
 
     public override IValueProvider MakeDefault() => False();
 
+
+    public static  implicit operator Condition(bool condition) => condition ? True() : False();
+
     public static bool operator true(Condition condition) => condition.IsTrue;
 
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
-    public static Condition True([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1));
+    public static Condition True([CallerMemberName] string expressionName = "") => True(StringConstants.NaN, expressionName);
 
-    public static Condition False([CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0));
+    public static Condition True(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1, ValueOriginType.Constant, scope));
+
+    public static Condition False([CallerMemberName] string expressionName = "") => False(StringConstants.NaN, expressionName);
+
+    public static Condition False(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0, ValueOriginType.Constant, scope));
     
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
 

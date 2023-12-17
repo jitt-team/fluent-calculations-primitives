@@ -23,7 +23,7 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
         }
     }
 
-    internal class ConstantsAndNestedEvaluations : EvaluationContext<Number>
+    internal class ConstantsAndNestedEvaluations : EvaluationScope<Number>
     {
         public ConstantsAndNestedEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

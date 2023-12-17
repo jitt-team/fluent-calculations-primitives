@@ -21,7 +21,7 @@ internal static class BinaryOperatorHandler
     {
         return (ResultType)MakeOfResultType();
 
-        IValueProvider MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult(), ValueOriginType.Evaluation));
+        IValueProvider MakeOfResultType() => new ResultType().MakeOfThisType(MakeValueArgs.Compose(operatorName, MakeExpressionNode(), ToPrimitiveResult(), ValueOriginType.Operation));
         ExpressionNode MakeExpressionNode() => new ExpressionNode(composeBodyFunc(left, right, operatorName), expressionType).WithArguments(left, right);
         decimal ToPrimitiveResult() => Convert.ToDecimal(primitiveCalcFunc(left, right));
     }

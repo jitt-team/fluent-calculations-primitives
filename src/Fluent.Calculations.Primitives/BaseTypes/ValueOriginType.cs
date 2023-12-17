@@ -2,9 +2,10 @@
 
 public enum ValueOriginType
 {
-    NotSet,
+    NaN,
     Parameter,
     Constant,
     Evaluation,
+    Operation,
     Result,
 }

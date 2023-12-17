@@ -8,15 +8,16 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public const string TestEvaluationName = "TEST-EVALUATION-NAME";
         public const string TestEvaluationNameOne = "TEST-EVALUATION-NAME-ONE";
         public const string TestEvaluationNameTwo = "TEST-EVALUATION-NAME-TWO";
+        public const string TestEvaluationScope = "TEST-EVALUATION-SCOPE";
     }
 
-    public class EvaluationContextCompostionTests
+    public class EvaluationScopeCompostionTests
     {
 
         [Fact]
-        public void Calculation_MixedContexts_ResultAndArgumentsExpected()
+        public void Calculation_MixedScopes_ResultAndArgumentsExpected()
         {
-            Number result = TestCalculationMixedContexts.Return();
+            Number result = TestCalculationMixedScopes.Return();
             result.Primitive.Should().Be(20);
             result.Name.Should().Be(Constant.TestEvaluationName);
             result.Expression.Arguments.Should().HaveCount(2);
@@ -41,7 +42,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Calcuation_EncapsulatedContext_ResultAndArgumentsExpected()
+        public void Calcuation_EncapsulatedScope_ResultAndArgumentsExpected()
         {
             Number result = new TestCalculationEncapsulated().Return();
             result.Primitive.Should().Be(5);
@@ -50,22 +51,86 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         }
 
         [Fact]
-        public void Calcuation_InhertiedFromContext_ResultAndArgumentsExpected()
+        public void Calcuation_InhertiedFromScope_ResultAndArgumentsExpected()
         {
             Number result = new TestCalculationInherited().Return();
             result.Primitive.Should().Be(5);
             result.Name.Should().Be(Constant.TestEvaluationName);
             result.Expression.Arguments.Should().HaveCount(2);
         }
+
+        [Fact]
+        public void Calcuation_LocalScope_ResultAndArgumentsExpected()
+        {
+            string
+                expectedScope = string.Concat(GetType().Name, ".", Constant.TestEvaluationScope);
+
+            EvaluationScope scope = this.GetScope(Constant.TestEvaluationScope);
+
+            Number
+                NumberOne = Number.Of(2, nameof(NumberOne)),
+                NumberTwo = Number.Of(3, nameof(NumberTwo));
+
+            Number result = scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+
+            result.Primitive.Should().Be(5);
+            result.Name.Should().Be(Constant.TestEvaluationName);
+            result.Scope.Should().Be(expectedScope);
+            result.Expression.Arguments.Should().HaveCount(2);
+            result.Expression.Arguments.First().Scope.Should().Be(expectedScope);
+            result.Expression.Arguments.Last().Scope.Should().Be(expectedScope);
+        }
+
+        [Fact]
+        public void Calculation_WithDependentScope_ResultAndArgumentsExpected()
+        {
+            string 
+                expectedMainScope = string.Concat(typeof(TestCalculationWithDependentScope).Name, ".MAIN-SCOPE"),
+                expectedChildScope = string.Concat(typeof(TestCalculationWithDependentScope).Name, ".CHILD-SCOPE"); ;
+
+            Number result = new TestCalculationWithDependentScope().Return();
+            result.Primitive.Should().Be(10);
+            result.Scope.Should().Be(expectedMainScope);
+
+            var dependentCalculationResult = result.Expression.Arguments.Last();
+            dependentCalculationResult.Scope.Should().Be(expectedChildScope);
+            dependentCalculationResult.Primitive.Should().Be(5);
+            dependentCalculationResult.Expression.Arguments.First().Scope.Should().Be(expectedChildScope);
+        }
     }
 
-    public class TestCalculationMixedContexts
+    public class TestCalculationWithDependentScope
+    {
+        public Number Return()
+        {
+            var scope = this.GetScope("MAIN-SCOPE");
+
+            Number
+                NumberOne = Number.Of(2, nameof(NumberOne)),
+                NumberTwo = Number.Of(3, nameof(NumberTwo));
+
+            return scope.Evaluate(() => NumberOne + NumberTwo + DependencyCalculation(), "MAIN-RESULT");
+        }
+
+        public Number DependencyCalculation()
+        {
+            var scope = this.GetScope("CHILD-SCOPE");
+
+            Number
+                A = Number.Of(2, nameof(A)),
+                B = Number.Of(3, nameof(B));
+
+            return scope.Evaluate(() => A + B, "CHILD-RESULT");
+        }
+    }
+
+    public class TestCalculationMixedScopes
     {
         public static Number Return()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
 
-            EvaluationContext<Number>
+            EvaluationScope<Number>
                 CalculationOne = new(options),
                 CalculationOther = new(options);
 
@@ -87,16 +152,15 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public static Number Return()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-            EvaluationContext<Number> Calculation = new(options);
+            EvaluationScope<Number> scope = new(options);
 
             Number
                 NumberOne = Number.Of(2),
                 NumberTwo = Number.Of(3);
 
-            return Calculation.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+            return scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
         }
     }
-
 
     public class TestCalcuationExtensionMethod
     {
@@ -112,18 +176,18 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private EvaluationContext<Number> context = new();
+        private readonly EvaluationScope<Number> scope = new();
 
-        Number
+        readonly Number
             NumberOne = Number.Of(2),
             NumberTwo = Number.Of(3);
 
-        public Number Return() => context.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
+        public Number Return() => scope.Evaluate(() => NumberOne + NumberTwo, Constant.TestEvaluationName);
     }
 
-    public class TestCalculationInherited : EvaluationContext<Number>
+    public class TestCalculationInherited : EvaluationScope<Number>
     {
-        Number
+        readonly Number
             NumberOne = Number.Of(2),
             NumberTwo = Number.Of(3);
 

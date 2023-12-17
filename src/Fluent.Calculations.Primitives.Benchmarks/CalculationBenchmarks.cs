@@ -28,7 +28,7 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
         public void Calculate_Native() => additionNative.Return();
     }
 
-    public class BasicAdditionWithContext : EvaluationContext<Number>
+    public class BasicAdditionWithContext : EvaluationScope<Number>
     {
         public BasicAdditionWithContext() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = false }) { }
         public Number

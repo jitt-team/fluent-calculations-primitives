@@ -28,7 +28,7 @@ namespace Fluent.Calculations.Primitives.Tests.Integration
         }
     }
 
-    internal class MathEvaluations : EvaluationContext<Number>
+    internal class MathEvaluations : EvaluationScope<Number>
     {
         public MathEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

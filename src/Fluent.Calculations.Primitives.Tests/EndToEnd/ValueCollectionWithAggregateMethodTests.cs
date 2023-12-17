@@ -34,7 +34,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
             public static Number Return()
             {
                 EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-                EvaluationContext<Number> Calculation = new(options);
+                EvaluationScope<Number> Calculation = new(options);
 
                 Number
                     NumberOne = Number.Of(2, nameof(NumberOne)),
@@ -46,7 +46,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
             }
         }
 
-        internal class CollectionsEvaluations : EvaluationContext<Number>
+        internal class CollectionsEvaluations : EvaluationScope<Number>
         {
             public CollectionsEvaluations() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 

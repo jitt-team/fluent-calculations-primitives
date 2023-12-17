@@ -1,11 +1,10 @@
-﻿namespace Fluent.Calculations.Primitives.BaseTypes
+﻿namespace Fluent.Calculations.Primitives.BaseTypes;
+
+internal interface IOrigin
 {
-    internal interface IOrigin
-    {
-        bool IsSet { get; }
+    bool IsSet { get; }
 
-        IValueProvider AsResult();
+    IValueProvider AsResult();
 
-        void MarkAsParameter(string name);
-    }
+    void MarkAsParameter(string name, string scope);
 }
