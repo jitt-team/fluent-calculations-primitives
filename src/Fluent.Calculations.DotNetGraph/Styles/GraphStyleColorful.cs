@@ -141,4 +141,14 @@ public class GraphStyleColorful : IGraphStyle
         new DotEdge().From(lastNode).To(firstNode)
                 .WithStyle(DotEdgeStyle.Dashed)
                 .WithArrowHead(DotEdgeArrowType.Open);
+
+    public DotSubgraph CreateScopeCluster(string scope, int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public DotNode CreateFinalResult(IValue value)
+    {
+        throw new NotImplementedException();
+    }
 }

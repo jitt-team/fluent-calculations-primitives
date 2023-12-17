@@ -3,6 +3,7 @@ using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
+using Fluent.Calculations.Primitives.Collections;
 namespace Fluent.Calculations.DotNetGraph;
 
 public class DotGraphValueBuilder
@@ -17,10 +18,18 @@ public class DotGraphValueBuilder
     {
         DotGraph mainGraph = CreateDirectedGraph("FluentCalculations");
         ClusterProvider parameterClustersProvider = new ClusterProvider(builder, mainGraph);
-
-        AddToGraph(value, mainGraph, parameterClustersProvider);
+        DotNodeBlock finalResultBlock = AddToGraph(value, mainGraph, parameterClustersProvider);
+        AddFinalResultNode(finalResultBlock.FirstNode, mainGraph, value);
 
         return mainGraph;
+    }
+
+    private void AddFinalResultNode(DotNode finalResult, DotGraph mainGraph, IValue value)
+    {
+        DotNode finalResultValueNode = builder.CreateFinalResult(value);
+        DotEdge finalResultEdge = builder.ConnectValues(finalResultValueNode, finalResult);
+        mainGraph.Add(finalResultValueNode);
+        mainGraph.Add(finalResultEdge);
     }
 
     public static DotGraph CreateDirectedGraph(string identifier) => new DotGraph().WithIdentifier(identifier).Directed();
@@ -28,7 +37,11 @@ public class DotGraphValueBuilder
     private DotNodeBlock AddToGraph(IValue value, DotGraph mainGraph, ClusterProvider parameterClustersProvider)
     {
         DotNodeBlock parentNode = builder.CreateBlock(value);
-        DotBaseGraph graph = IsParameter() ? parameterClustersProvider.GetOrCreate(value.Scope) : mainGraph;
+
+        DotBaseGraph graph = IsParameter() ? 
+            parameterClustersProvider.GetOrCreateParametersSubgraph(value.Scope) :
+            parameterClustersProvider.GetOrCreateScopeSubgraph(value.Scope);
+
         graph.AddRange(parentNode);
 
         foreach (IValue argument in value.Expression.Arguments)
@@ -45,7 +58,9 @@ public class DotGraphValueBuilder
 
     private class ClusterProvider
     {
-        private readonly Dictionary<string, DotSubgraph> scopeClusters = new Dictionary<string, DotSubgraph>();
+        private readonly Dictionary<string, DotSubgraph>
+            scopeParameterContainers = new Dictionary<string, DotSubgraph>(),
+            scopeContainers = new Dictionary<string, DotSubgraph>();
 
         private readonly IGraphStyle builder;
         private DotGraph mainGraph;
@@ -56,19 +71,35 @@ public class DotGraphValueBuilder
             this.builder = builder;
         }
 
-        public DotSubgraph GetOrCreate(string scope)
+        private int GetCurrentScopeIndex() => scopeParameterContainers.Count + scopeParameterContainers.Count - 1;
+
+        public DotSubgraph GetOrCreateScopeSubgraph(string scope)
         {
             DotSubgraph subgraph;
 
-            if (scopeClusters.TryGetValue(scope, out subgraph))
+            if (scopeContainers.TryGetValue(scope, out subgraph))
                 return subgraph;
 
-            int clusterCount = scopeClusters.Count - 1;
-            subgraph = builder.CreateParametersCluster(scope, clusterCount + 1);
-            scopeClusters.Add(scope, subgraph);
+            subgraph = builder.CreateScopeCluster(scope, GetCurrentScopeIndex() + 1);
+            scopeContainers.Add(scope, subgraph);
             mainGraph.Add(subgraph);
 
             return subgraph;
+
+        }
+
+        public DotSubgraph GetOrCreateParametersSubgraph(string scope)
+        {
+            DotSubgraph? scopeParametersSubgraph;
+
+            if (scopeParameterContainers.TryGetValue(scope, out scopeParametersSubgraph))
+                return scopeParametersSubgraph;
+
+            scopeParametersSubgraph = builder.CreateParametersCluster(scope, GetCurrentScopeIndex() + 1);
+            GetOrCreateScopeSubgraph(scope).Add(scopeParametersSubgraph);
+            scopeParameterContainers.Add(scope, scopeParametersSubgraph);
+
+            return scopeParametersSubgraph;
         }
     }
 }

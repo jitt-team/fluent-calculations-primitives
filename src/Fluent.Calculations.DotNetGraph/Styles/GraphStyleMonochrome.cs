@@ -3,10 +3,9 @@ using DotNetGraph.Core;
 using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Collections;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Xml.Linq;
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
 internal class GraphStyleMonochrome : IGraphStyle
@@ -15,9 +14,23 @@ internal class GraphStyleMonochrome : IGraphStyle
     {
         DotSubgraph subgraph = new DotSubgraph()
             .WithIdentifier($"cluster_{index}")
-            .WithLabel($"{Humanize(scope)}")
+            .WithLabel($"Parameters")
             .WithColor(DotColor.LightGrey)
             .WithStyle("filled, solid");
+
+        subgraph.SetAttribute("penwidth", new DotAttribute(@"""1"""));
+        subgraph.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
+
+        return subgraph;
+    }
+
+    public DotSubgraph CreateScopeCluster(string scope, int index)
+    {
+        DotSubgraph subgraph = new DotSubgraph()
+            .WithIdentifier($"cluster_{index}")
+            .WithLabel($"{Humanize(scope)}")
+            .WithColor(DotColor.Gray)
+            .WithStyle("dashed, rounded");
 
         subgraph.SetAttribute("penwidth", new DotAttribute(@"""1"""));
         subgraph.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
@@ -31,6 +44,21 @@ internal class GraphStyleMonochrome : IGraphStyle
                 .WithArrowHead(DotEdgeArrowType.Normal);
 
     public DotNodeBlock CreateBlock(IValue value) => CreateValueBlock(value);
+
+    public DotNode CreateFinalResult(IValue value)
+    {
+        DotNode node = new DotNode()
+            .WithIdentifier(Html($"{value.Name}_result"))
+            .WithPenWidth(1)
+            .WithFillColor(DotColor.LightGrey)
+            .WithShape("circle")
+            .WithStyle(DotNodeStyle.Filled)
+            .WithLabel(value.PrimitiveString);
+
+        node.SetAttribute("fontname", new DotAttribute(@"""Courier New"""));
+
+        return node;
+    }
 
     private DotNodeBlock CreateValueBlock(IValue value)
     {
@@ -76,4 +104,5 @@ internal class GraphStyleMonochrome : IGraphStyle
 
 
     private string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, @"(\B[A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+
 }
