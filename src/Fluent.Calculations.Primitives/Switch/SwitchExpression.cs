@@ -135,7 +135,7 @@ public static class SwitchExpression<T, TReturn>
                 resultPrimitive = switchResult?.PrimitiveValue ?? 0;
             else
             {
-                TReturn resultValue = switchResult?.Get != null ? switchResult.Get() : new TReturn();
+                TReturn resultValue = switchResult.Get();
                 resultPrimitive = resultValue.Primitive;
                 expressionArguments.Add(resultValue);
             }
@@ -176,7 +176,7 @@ public static class SwitchExpression<T, TReturn>
 
         public ReturnValue(decimal primitive, string name) : this(name) => PrimitiveValue = primitive;
 
-        public Func<TReturn>? Get { get; private set; }
+        public Func<TReturn> Get { get; private set; } = () => new TReturn();
 
         public decimal PrimitiveValue { get; private set; }
 
