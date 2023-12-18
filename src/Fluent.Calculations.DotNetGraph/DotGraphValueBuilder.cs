@@ -3,7 +3,6 @@ using DotNetGraph.Extensions;
 using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.DotNetGraph.Styles;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Collections;
 namespace Fluent.Calculations.DotNetGraph;
 
 public class DotGraphValueBuilder
@@ -17,7 +16,7 @@ public class DotGraphValueBuilder
     public DotGraph Build(IValue value)
     {
         DotGraph mainGraph = CreateDirectedGraph("FluentCalculations");
-        ClusterProvider parameterClustersProvider = new ClusterProvider(builder, mainGraph);
+        ClusterProvider parameterClustersProvider = new(builder, mainGraph);
         DotNodeBlock finalResultBlock = AddToGraph(value, mainGraph, parameterClustersProvider);
         AddFinalResultNode(finalResultBlock.FirstNode, mainGraph, value);
 
@@ -38,7 +37,7 @@ public class DotGraphValueBuilder
     {
         DotNodeBlock parentNode = builder.CreateBlock(value);
 
-        DotBaseGraph graph = IsParameter() ? 
+        DotBaseGraph graph = IsParameter() ?
             parameterClustersProvider.GetOrCreateParametersSubgraph(value.Scope) :
             parameterClustersProvider.GetOrCreateScopeSubgraph(value.Scope);
 
@@ -59,8 +58,8 @@ public class DotGraphValueBuilder
     private sealed class ClusterProvider
     {
         private readonly Dictionary<string, DotSubgraph>
-            scopeParameterContainers = new Dictionary<string, DotSubgraph>(),
-            scopeContainers = new Dictionary<string, DotSubgraph>();
+            scopeParameterContainers = [],
+            scopeContainers = [];
 
         private readonly IGraphStyle builder;
         private readonly DotGraph mainGraph;
@@ -75,9 +74,7 @@ public class DotGraphValueBuilder
 
         public DotSubgraph GetOrCreateScopeSubgraph(string scope)
         {
-            DotSubgraph subgraph;
-
-            if (scopeContainers.TryGetValue(scope, out subgraph))
+            if (scopeContainers.TryGetValue(scope, out DotSubgraph? subgraph))
                 return subgraph;
 
             subgraph = builder.CreateScopeCluster(scope, GetCurrentScopeIndex() + 1);
@@ -85,14 +82,11 @@ public class DotGraphValueBuilder
             mainGraph.Add(subgraph);
 
             return subgraph;
-
         }
 
         public DotSubgraph GetOrCreateParametersSubgraph(string scope)
         {
-            DotSubgraph? scopeParametersSubgraph;
-
-            if (scopeParameterContainers.TryGetValue(scope, out scopeParametersSubgraph))
+            if (scopeParameterContainers.TryGetValue(scope, out DotSubgraph? scopeParametersSubgraph))
                 return scopeParametersSubgraph;
 
             scopeParametersSubgraph = builder.CreateParametersCluster(scope, GetCurrentScopeIndex() + 1);

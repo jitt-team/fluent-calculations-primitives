@@ -12,16 +12,16 @@ public class MemberExpressionsCapturerTests
         MemberExpressionsCapturer capturer = new();
         TestClass testClass = new();
 
-        MemberExpression[] captureResult = capturer.Capture(() => testClass.TestFieldOne + testClass.TestFieldTwo + testClass.TestEvaluationOne + testClass.TestEvaluationTwo);
+        MemberExpression[] captureResult = capturer.Capture(() => TestClass.TestFieldOne + TestClass.TestFieldTwo + TestClass.TestEvaluationOne + TestClass.TestEvaluationTwo);
 
-        string[] expectedMemberNames = new[] {
-            nameof(testClass.TestFieldOne),
-            nameof(testClass.TestFieldTwo),
-            nameof(testClass.TestEvaluationOne),
-            nameof(testClass.TestEvaluationTwo)
-        };
+        string[] expectedMemberNames = [
+            nameof(TestClass.TestFieldOne),
+            nameof(TestClass.TestFieldTwo),
+            nameof(TestClass.TestEvaluationOne),
+            nameof(TestClass.TestEvaluationTwo)
+        ];
 
-        captureResult.Count().Should().Be(4);
+        captureResult.Length.Should().Be(4);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
@@ -31,14 +31,14 @@ public class MemberExpressionsCapturerTests
         MemberExpressionsCapturer capturer = new();
         TestClass testClass = new();
 
-        MemberExpression[] captureResult = capturer.Capture(() => testClass.TestFieldOne + testClass.TestFieldOne + testClass.TestEvaluationOne + testClass.TestEvaluationOne);
+        MemberExpression[] captureResult = capturer.Capture(() => TestClass.TestFieldOne + TestClass.TestFieldOne + TestClass.TestEvaluationOne + TestClass.TestEvaluationOne);
 
-        string[] expectedMemberNames = new[] {
-            nameof(testClass.TestFieldOne),
-            nameof(testClass.TestEvaluationOne)
-        };
+        string[] expectedMemberNames = [
+            nameof(TestClass.TestFieldOne),
+            nameof(TestClass.TestEvaluationOne)
+        ];
 
-        captureResult.Count().Should().Be(2);
+        captureResult.Length.Should().Be(2);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
@@ -48,14 +48,14 @@ public class MemberExpressionsCapturerTests
         MemberExpressionsCapturer capturer = new();
         TestClass testClass = new();
         decimal unsupportedValueType = 1;
-        MemberExpression[] captureResult = capturer.Capture(() => unsupportedValueType > 2 ? testClass.TestFieldOne : testClass.TestFieldTwo);
+        MemberExpression[] captureResult = capturer.Capture(() => unsupportedValueType > 2 ? TestClass.TestFieldOne : TestClass.TestFieldTwo);
 
-        string[] expectedMemberNames = new[] {
+        string[] expectedMemberNames = [
             nameof(testClass.TestFieldOne),
             nameof(testClass.TestFieldTwo)
-        };
+        ];
 
-        captureResult.Count().Should().Be(2);
+        captureResult.Length.Should().Be(2);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
@@ -65,15 +65,15 @@ public class MemberExpressionsCapturerTests
         MemberExpressionsCapturer capturer = new();
         TestClass testClass = new();
 
-        MemberExpression[] captureResult = capturer.Capture(() => testClass.TestCondition ? testClass.TestFieldOne : testClass.TestFieldTwo);
+        MemberExpression[] captureResult = capturer.Capture(() => TestClass.TestCondition ? TestClass.TestFieldOne : TestClass.TestFieldTwo);
 
-        string[] expectedMemberNames = new[] {
+        string[] expectedMemberNames = [
             nameof(testClass.TestFieldOne),
             nameof(testClass.TestFieldTwo),
             nameof(testClass.TestCondition)
-        };
+        ];
 
-        captureResult.Count().Should().Be(3);
+        captureResult.Length.Should().Be(3);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
@@ -83,29 +83,29 @@ public class MemberExpressionsCapturerTests
         MemberExpressionsCapturer capturer = new();
         TestClass testClass = new();
 
-        MemberExpression[] captureResult = capturer.Capture(() => CustomFunction(testClass.TestFieldOne, testClass.TestFieldTwo));
+        MemberExpression[] captureResult = capturer.Capture(() => CustomFunction(TestClass.TestFieldOne, TestClass.TestFieldTwo));
 
-        string[] expectedMemberNames = new[] {
+        string[] expectedMemberNames = [
             nameof(testClass.TestFieldOne),
             nameof(testClass.TestFieldTwo)
-        };
+        ];
 
-        captureResult.Count().Should().Be(2);
+        captureResult.Length.Should().Be(2);
         captureResult.Should().Contain(e => expectedMemberNames.Contains(e.Member.Name));
     }
 
-    private Number CustomFunction(Number val1, Number val2) => val1 + val2;
+    private static Number CustomFunction(Number val1, Number val2) => val1 + val2;
 }
 
 public class TestClass
 {
-    public Number TestFieldOne = Number.Of(5.00m);
+    public static Number TestFieldOne => Number.Of(5.00m);
 
-    public Number TestFieldTwo = Number.Of(6.00m);
+    public static Number TestFieldTwo => Number.Of(6.00m);
 
-    public Number TestEvaluationOne => Number.Of(7.00m);
+    public static Number TestEvaluationOne => Number.Of(7.00m);
 
-    public Number TestEvaluationTwo => Number.Of(8.00m);
+    public static Number TestEvaluationTwo => Number.Of(8.00m);
 
-    public Condition TestCondition => Condition.True();
+    public static Condition TestCondition => Condition.True();
 }

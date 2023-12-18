@@ -174,14 +174,18 @@ public static class SwitchExpression<T, TReturn>
 
         public ReturnValue(Func<TReturn> getter, string name) : this(name) => Get = getter;
 
-        public ReturnValue(decimal primitive, string name) : this(name) => PrimitiveValue = primitive;
+        public ReturnValue(decimal primitive, string name) : this(name)
+        {
+            IsPrimitive = true;
+            PrimitiveValue = primitive;
+        }
 
-        public Func<TReturn> Get { get; private set; }
+        public Func<TReturn> Get { get; private set; } = () => new TReturn();
 
         public decimal PrimitiveValue { get; private set; }
 
-        public string Name { get; private set; }
+        public string Name { get; private set; } = StringConstants.NaN;
 
-        public bool IsPrimitive => Get == null;
+        public bool IsPrimitive { get; private set; }
     }
 }

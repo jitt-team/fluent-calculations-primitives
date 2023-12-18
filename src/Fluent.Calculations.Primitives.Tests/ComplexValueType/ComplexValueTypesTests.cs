@@ -3,10 +3,10 @@ namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 
 public class ComplexValueTypesTests
 {
-    private Money Return()
+    private static Money Return()
     {
         EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-        EvaluationScope<Money> Calculation = new EvaluationScope<Money>();
+        EvaluationScope<Money> Calculation = new();
 
         Money
             MoneyOne = Number.Of(10).AsMoney().EUR,

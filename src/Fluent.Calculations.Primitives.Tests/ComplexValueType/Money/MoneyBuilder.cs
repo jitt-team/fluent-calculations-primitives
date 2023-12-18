@@ -3,14 +3,12 @@ using Fluent.Calculations.Primitives.BaseTypes;
 
 public class MoneyBuilder
 {
-    private Number value;
-    private string expressionName;
+    private readonly Number value;
 
-    public MoneyBuilder(Number value, string expressionName)
+    public MoneyBuilder(Number value)
     {
         this.value = value;
-        this.expressionName = expressionName;
     }
 
-    public Money EUR => new Money(value, new Currency("EUR"));
+    public Money EUR => new(value, new Currency("EUR"));
 }

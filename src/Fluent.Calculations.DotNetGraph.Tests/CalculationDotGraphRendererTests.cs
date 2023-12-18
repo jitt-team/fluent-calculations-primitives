@@ -34,7 +34,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
             }
         }
 
-        private Number RunCalculation() => new AdditionCalculation
+        private static Number RunCalculation() => new AdditionCalculation
         {
             ConstantOne = Number.Of(2),
             ConstantTwo = Number.Of(3)

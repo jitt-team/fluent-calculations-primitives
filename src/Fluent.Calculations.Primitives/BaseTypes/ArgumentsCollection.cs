@@ -8,15 +8,15 @@ public sealed class ArgumentsCollection : IArguments
 {
     private readonly List<IValue> items;
 
-    private ArgumentsCollection() => items = new List<IValue>();
+    private ArgumentsCollection() => items = [];
 
     internal ArgumentsCollection(IEnumerable<IValue> arguments) => items = new List<IValue>(arguments);
 
-    internal static ArgumentsCollection Empty => new ArgumentsCollection();
+    internal static ArgumentsCollection Empty => new();
 
     public int Count => items.Count;
 
-    internal static ArgumentsCollection CreateFrom(IValue[] arguments) => new ArgumentsCollection(arguments);
+    internal static ArgumentsCollection CreateFrom(IValue[] arguments) => new(arguments);
 
     public IEnumerator<IValue> GetEnumerator() => items.GetEnumerator();
 
