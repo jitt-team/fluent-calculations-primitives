@@ -34,6 +34,16 @@ public class NumberTests
     [Fact]
     public void LessThanOrEqual_Numbers_ExpectedResult() => ExecuteLogicalExpressionAndAssertResult((left, right) => left <= right, false);
 
+    [Fact]
+    public void LessThanOrEqual_Numbers_ExpectedBooleanResult()
+    {
+        Number
+            left = Number.Of(4, nameof(left)),
+            right = Number.Of(2, nameof(right));
+
+        bool result = left < right;
+    }
+
     private static void ExecuteMathExpressionAndAssertResult(Func<Number, Number, Number> calcFun, decimal expected)
     {
         string leftName = "left", rightName = "right";
