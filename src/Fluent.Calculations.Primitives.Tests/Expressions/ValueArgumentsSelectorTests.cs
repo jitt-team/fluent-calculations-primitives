@@ -19,16 +19,16 @@ public class ValueArgumentsSelectorTests
         arguments[3].Name.Should().Be("SomeEvaluaton");
     }
 
-    private Number GetResult()
+    private static Number GetResult()
     {
         Number
             one = Number.Of(1, nameof(one)),
             two = Number.Of(2, nameof(two)),
             three = Number.Of(3, nameof(three));
 
-        return one + two * three - three / MockEvaluationResult(two);
+        return one + two * three - three / MockEvaluationResult();
     }
 
-    private Number MockEvaluationResult(Number two) => new(MakeValueArgs.Compose("SomeEvaluaton",
+    private static Number MockEvaluationResult() => new(MakeValueArgs.Compose("SomeEvaluaton",
             new ExpressionNode("10", ExpressionNodeType.Lambda), 10, ValueOriginType.Evaluation));
 }

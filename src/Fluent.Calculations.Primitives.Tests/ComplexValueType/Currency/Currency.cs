@@ -4,7 +4,7 @@ public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
 {
     private const string NoneCorrencyCode = "None";
 
-    public static Currency None => new Currency(NoneCorrencyCode);
+    public static Currency None => new(NoneCorrencyCode);
 
     public string Code { get; }
 

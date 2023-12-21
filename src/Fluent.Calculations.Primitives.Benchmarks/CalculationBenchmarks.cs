@@ -50,7 +50,7 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
 
     public class BasicAdditionNative
     {
-        private decimal
+        private readonly decimal
             ValueOne = 10,
             ValueTwo = 20;
 

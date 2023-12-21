@@ -9,7 +9,7 @@ public class ValueTests
     public void ValueConstructor_WithArgs_CreatesExpectedInstance()
     {
         string expectedValueName = "TEST-VALUE-NAME";
-        ExpressionNode expectedExpressionNode = new ExpressionNode("TEST-BODY", "TEST-TYPE");
+        ExpressionNode expectedExpressionNode = new("TEST-BODY", "TEST-TYPE");
         decimal expectedPrimitiveValue = 10m;
 
         FakeInheritedValue fakeValue = new(MakeValueArgs.Compose(expectedValueName, expectedExpressionNode, expectedPrimitiveValue));
