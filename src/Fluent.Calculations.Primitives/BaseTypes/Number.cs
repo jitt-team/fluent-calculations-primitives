@@ -10,8 +10,7 @@ public class Number : Value,
     IMultiplyOperators<Number, Number, Number>,
     IDivisionOperators<Number, Number, Number>,
     IComparisonOperators<Number, Number, Condition>,
-    IComparisonOperators<Number, Number, bool>,
-    IEqualityOperators<Number, Number, Condition>
+    IComparisonOperators<Number, Number, bool>
 {
     public override string ToString() => $"{Name}";
 
