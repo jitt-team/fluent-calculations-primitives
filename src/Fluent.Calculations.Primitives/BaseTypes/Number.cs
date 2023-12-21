@@ -10,7 +10,7 @@ public class Number : Value,
     IMultiplyOperators<Number, Number, Number>,
     IDivisionOperators<Number, Number, Number>,
     IComparisonOperators<Number, Number, Condition>,
-    IEqualityOperators<Number, Number, Condition>
+    IComparisonOperators<Number, Number, bool>
 {
     public override string ToString() => $"{Name}";
 
@@ -27,11 +27,11 @@ public class Number : Value,
 
     public static Number Zero => new() { Origin = ValueOriginType.Constant };
 
-    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) => 
+    public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) =>
         Of(primitiveValue, StringConstants.NaN, fieldName);
 
     public static Number Of(decimal primitiveValue, string scope, [CallerMemberName] string fieldName = StringConstants.NaN) =>
-        new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue, 
+        new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue,
             ValueOriginType.Constant, scope));
 
     public static Number operator -(Number left, Number right) => left.Substract(right);
@@ -53,6 +53,18 @@ public class Number : Value,
     public static Condition operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right));
 
     public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right));
+
+    static bool IComparisonOperators<Number, Number, bool>.operator >(Number left, Number right) => left.Primitive > right.Primitive;
+
+    static bool IComparisonOperators<Number, Number, bool>.operator >=(Number left, Number right) => left.Primitive >= right.Primitive;
+
+    static bool IComparisonOperators<Number, Number, bool>.operator <(Number left, Number right) => left.Primitive < right.Primitive;
+
+    static bool IComparisonOperators<Number, Number, bool>.operator <=(Number left, Number right) => left.Primitive <= right.Primitive;
+
+    static bool IEqualityOperators<Number, Number, bool>.operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right)).IsTrue;
+
+    static bool IEqualityOperators<Number, Number, bool>.operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right)).IsTrue;
 
     private Condition IsEqual(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
 
@@ -82,7 +94,7 @@ public class Number : Value,
 
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Number(args);
 
-    public override IValueProvider MakeDefault()=> Zero;
+    public override IValueProvider MakeDefault() => Zero;
 
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
