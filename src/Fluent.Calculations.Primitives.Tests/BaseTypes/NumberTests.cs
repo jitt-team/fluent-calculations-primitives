@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Tests.BaseTypes;
 using Fluent.Calculations.Primitives.BaseTypes;
 using FluentAssertions;
+using System.Numerics;
 
 public class NumberTests
 {
@@ -35,14 +36,18 @@ public class NumberTests
     public void LessThanOrEqual_Numbers_ExpectedResult() => ExecuteLogicalExpressionAndAssertResult((left, right) => left <= right, false);
 
     [Fact]
-    public void LessThanOrEqual_Numbers_ExpectedBooleanResult()
+    public void LessThanOrEqual_NumbersGenericCompare_ExpectedBooleanResult()
     {
         Number
             left = Number.Of(4, nameof(left)),
             right = Number.Of(2, nameof(right));
 
-        bool result = left < right;
-    }
+        bool result = GenericLessThan(left, right);
+
+        result.Should().BeFalse();
+
+        static bool GenericLessThan<T>(T left, T right) where T : IComparisonOperators<T, T, bool> => left < right;
+    }    
 
     private static void ExecuteMathExpressionAndAssertResult(Func<Number, Number, Number> calcFun, decimal expected)
     {
