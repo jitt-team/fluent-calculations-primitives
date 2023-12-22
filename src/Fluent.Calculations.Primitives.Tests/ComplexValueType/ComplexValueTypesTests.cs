@@ -5,7 +5,7 @@ namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 public class ComplexValueTypesTests
 {
     [Fact]
-    private void Addition_OfTwoDerivedValues_CorrectResult()
+    public void Addition_OfTwoDerivedValues_CorrectResult()
     {
         Money result = Return();
         result.Currency.Code.Should().Be("EUR");
