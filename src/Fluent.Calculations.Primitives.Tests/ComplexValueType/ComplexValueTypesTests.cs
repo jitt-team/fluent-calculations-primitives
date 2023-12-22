@@ -1,17 +1,25 @@
 ﻿using Fluent.Calculations.Primitives.BaseTypes;
+using FluentAssertions;
 namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 
 public class ComplexValueTypesTests
 {
-    private static Money Return()
+    [Fact]
+    private void Addition_OfTwoDerivedValues_CorrectResult()
     {
-        EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-        EvaluationScope<Money> Calculation = new();
+        Money result = Return();
+        result.Currency.Code.Should().Be("EUR");
+        result.Primitive.Should().Be(30);
+    }
+
+    private Money Return()
+    {
+        var scope = this.GetScope();
 
         Money
             MoneyOne = Number.Of(10).AsMoney().EUR,
             MoneyTwo = Number.Of(20).AsMoney().EUR;
 
-        return Calculation.Evaluate(() => MoneyOne + MoneyTwo);
+        return scope.Evaluate(() => MoneyOne + MoneyTwo);
     }
 }
