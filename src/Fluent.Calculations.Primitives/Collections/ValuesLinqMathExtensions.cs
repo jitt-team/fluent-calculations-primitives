@@ -2,6 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ValuesLinqMathExtensions"]/class/*' />
 public static class ValuesLinqMathExtensions
 {
     public static TSource Sum<TSource>(this IValuesProvider<TSource> source) where TSource : class, IValueProvider, new() => source.Handle(Enumerable.Sum);

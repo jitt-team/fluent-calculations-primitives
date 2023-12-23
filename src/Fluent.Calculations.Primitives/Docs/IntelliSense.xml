@@ -23,11 +23,11 @@
 						<description>
 							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a calculations result type.</para>
 							<code>
-	public class ExampleEvaluationScope : EvaluationScope<![CDATA[<Number>]]>
-	{
-		public ExampleEvaluationScope() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-		public override Number Return() => Number.Of(0);
-	}
+								public class ExampleEvaluationScope : EvaluationScope<![CDATA[<Number>]]>
+								{
+								public ExampleEvaluationScope() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+								public override Number Return() => Number.Of(0);
+								}
 							</code>
 						</description>
 					</item>
@@ -75,6 +75,102 @@
 		</method-Evaluate>
 	</members>
 	<members name="Value">
+		<class>
+		</class>
+	</members>
+	<members name="IValue">
+		<class>
+		</class>
+	</members>
+	<members name="IValueProvider">
+		<class>
+		</class>
+	</members>
+	<members name="MakeValueArgs">
+		<class>
+		</class>
+	</members>
+	<members name="Number">
+		<class>
+		</class>
+	</members>
+	<members name="Option">
+		<class>
+		</class>
+	</members>
+	<members name="Tag">
+		<class>
+		</class>
+	</members>
+	<members name="TagsCollection">
+		<class>
+		</class>
+	</members>
+	<members name="Value">
+		<class>
+		</class>
+	</members>
+	<members name="ValueMath">
+		<class>
+		</class>
+	</members>
+	<members name="ValueMath">
+		<class>
+		</class>
+	</members>
+	<members name="ValueOriginType">
+		<enum>
+		</enum>
+	</members>
+	<members name="ValueVisitor">
+		<class>
+		</class>
+	</members>
+	<members name="ArgumentsCollection">
+		<class>
+		</class>
+	</members>
+	<members name="ArgumentsVisitorInvoker">
+		<class>
+		</class>
+	</members>
+	<members name="Condition">
+		<class>
+		</class>
+	</members>
+	<members name="IArguments">
+		<class>
+		</class>
+	</members>
+	<members name="ITags">
+		<class>
+		</class>
+	</members>
+	<members name="NullExpressionResultException">
+		<class>
+		</class>
+	</members>
+	<members name="ExpressionNode">
+		<class>
+		</class>
+	</members>
+	<members name="ExpressionNodeType">
+		<class>
+		</class>
+	</members>
+	<members name="IExpression">
+		<class>
+		</class>
+	</members>
+	<members name="JsonArgumentsReader">
+		<class>
+		</class>
+	</members>
+	<members name="JsonArgumentsReader">
+		<class>
+		</class>
+	</members>
+	<members name="SwitchExpression">
 		<class>
 		</class>
 	</members>
