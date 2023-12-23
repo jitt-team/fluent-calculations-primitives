@@ -74,120 +74,214 @@
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</method-Evaluate>
 	</members>
+	<members name="EvaluationScope">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
 	<members name="Value">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="IValue">
-		<class>
-		</class>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
 	</members>
 	<members name="IValueProvider">
-		<class>
-		</class>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
 	</members>
 	<members name="MakeValueArgs">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="Number">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="Option">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="Tag">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="TagsCollection">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="Value">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ValueMath">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ValueMath">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ValueOriginType">
 		<enum>
+			<summary>
+				TBD
+			</summary>
 		</enum>
 	</members>
 	<members name="ValueVisitor">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ArgumentsCollection">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ArgumentsVisitorInvoker">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="Condition">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="IArguments">
-		<class>
-		</class>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
 	</members>
 	<members name="ITags">
-		<class>
-		</class>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
 	</members>
 	<members name="NullExpressionResultException">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ExpressionNode">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ExpressionNodeType">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="IExpression">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="JsonArgumentsReader">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="JsonArgumentsReader">
 		<class>
-		</class>
-	</members>
-	<members name="JsonArgumentsReader">
-		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="SwitchExpression">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="IValuesProvider">
-		<class>
-		</class>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
 	</members>
 	<members name="Values">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ValuesDebugView">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 	<members name="ValuesLinqMathExtensions">
 		<class>
+			<summary>
+				TBD
+			</summary>
 		</class>
 	</members>
 </docs>
