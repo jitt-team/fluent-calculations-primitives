@@ -3,6 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="IEvaluationScope"]/interface/*' />
 public interface IEvaluationScope
 {
     TValue Evaluate<TValue>(

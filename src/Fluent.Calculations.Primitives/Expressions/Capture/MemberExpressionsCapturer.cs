@@ -1,9 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.BaseTypes;
-using System.Linq;
 using System.Linq.Expressions;
 
-public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCapturer
+internal class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCapturer
 {
     private Dictionary<string, MemberExpression> capturedMemberExpressions = [];
 
@@ -24,7 +23,7 @@ public class MemberExpressionsCapturer : ExpressionVisitor, IMemberExpressionsCa
             return node;
 
         capturedMemberExpressions.TryAdd(node.Member.Name, node);
-        
+
         return node;
     }
 }

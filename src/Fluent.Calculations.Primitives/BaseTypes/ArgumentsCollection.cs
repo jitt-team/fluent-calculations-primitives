@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ArgumentCollection"]/class/*' />
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(ArgumentsDebugView))]
 public sealed class ArgumentsCollection : IArguments

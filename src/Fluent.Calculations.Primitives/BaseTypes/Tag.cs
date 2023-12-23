@@ -2,6 +2,7 @@
 
 namespace Fluent.Calculations.Primitives.BaseTypes;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Tag"]/class/*' />
 [DebuggerDisplay("{Name}")]
 public sealed class Tag
 {

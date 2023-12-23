@@ -3,6 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="JsonArgumentsReader"]/class/*' />
 public class JsonArgumentsReader : JsonConverter<IArguments>
 {
     public override IArguments Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

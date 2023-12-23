@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-public class ValueVisitor
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ValueVisitor"]/class/*' />
+public abstract class ValueVisitor
 {
     protected virtual void Visit(IValue value) => ((IValueProvider)value).Accept(this);
 

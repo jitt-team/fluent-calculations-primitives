@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ValuesCache"]/class/*' />
 internal class ValuesCache : IValuesCache
 {
     private readonly IDictionary<string, IValueProvider> cache;

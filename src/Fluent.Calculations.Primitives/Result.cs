@@ -3,6 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Result"]/class/*' />
 public static class Result
 {
     public static TValue Of<TValue>(Expression<Func<TValue>> lambdaExpression,

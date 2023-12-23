@@ -3,6 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.Expressions;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationScopeGeneric"]/class/*' />
 public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T : class, IValueProvider, new()
 {
     private readonly Func<EvaluationScope<T>, T>? calculationFunc;

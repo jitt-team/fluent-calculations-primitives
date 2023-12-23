@@ -1,5 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="EvaluationOptions"]/class/*' />
 public class EvaluationOptions
 {
     public static EvaluationOptions Default => new();

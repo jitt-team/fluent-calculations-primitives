@@ -3,7 +3,7 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Linq.Expressions;
 using System.Reflection;
 
-public interface IReflectionProvider
+internal interface IReflectionProvider
 {
     bool IsParameter(MemberInfo member);
 

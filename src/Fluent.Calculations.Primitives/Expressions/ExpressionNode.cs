@@ -2,6 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
+/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ExpressionNode"]/class/*' />
 [DebuggerDisplay("Body = {FirstLineOfBody}")]
 public class ExpressionNode : IExpression
 {

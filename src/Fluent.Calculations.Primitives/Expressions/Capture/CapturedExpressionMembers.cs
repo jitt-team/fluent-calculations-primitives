@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions.Capture;
 
-public class CapturedExpressionMembers
+internal class CapturedExpressionMembers
 {
     internal CapturedParameterMember[] Parameters { get; }
 

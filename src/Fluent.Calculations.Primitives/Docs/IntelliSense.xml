@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <docs>
-	<members name="EvaluationScope">
+	<members name="EvaluationScopeGeneric">
 		<class>
 			<summary>
 				Base class for implementing a calculation.
@@ -11,21 +11,21 @@
 				</para>
 				<list type="table">
 					<item>
-						<term>Calculation</term>
+						<term>EvaluationScope</term>
 						<description>
 							<para></para>
-							Calculation is a logical compostion of lambda expressions implement operations with input parameters or <br/>
-							of types derived from <see cref="Value"/> or implementing <see cref="IValue"/> interface that ouputs single value as a result.
+							EvaluationScope<![CDATA[<T>]]> is a logical compostion of lambda expressions implementing operations with input parameters or <br/>
+							types derived from <see cref="Value"/>. Purpose of EvaluationScope<![CDATA[<T>]]> derived type is to ouput a single value as a result.
 						</description>
 					</item>
 					<item>
 						<term>Examples</term>
 						<description>
-							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
+							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a calculations result type.</para>
 							<code>
-	public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
+	public class ExampleEvaluationScope : EvaluationScope<![CDATA[<Number>]]>
 	{
-		public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+		public ExampleEvaluationScope() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 		public override Number Return() => Number.Of(0);
 	}
 							</code>
