@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="Condition"]/class/*' />
+/// <include file="Docs.xml" path='*/Condition/class/*' />
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
 public sealed class Condition : Value,
     IEqualityOperators<Condition, Condition, Condition>,

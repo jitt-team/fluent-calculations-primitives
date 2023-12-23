@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="TagsCollection"]/class/*' />
+/// <include file="Docs.xml" path='*/TagsCollection/class/*' />
 [DebuggerDisplay("Count = {Count}")]
 public sealed class TagsCollection : ITags
 {

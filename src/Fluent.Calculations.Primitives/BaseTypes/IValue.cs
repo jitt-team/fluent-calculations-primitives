@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.Expressions;
 using System.Text.Json.Serialization;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="IValue"]/class/*' />
+/// <include file="Docs.xml" path='*/IValue/class/*' />
 public interface IValue
 {
     [JsonPropertyName("Type")]

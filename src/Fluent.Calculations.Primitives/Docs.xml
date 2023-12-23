@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<docs>
-	<members name="EvaluationScopeGeneric">
+<IntelliSense>
+	<EvaluationScopeGeneric>
 		<class>
 			<summary>
 				Base class for implementing a calculation.
@@ -23,11 +23,11 @@
 						<description>
 							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
 							<code>
-public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
-{
-	public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-	public override Number Return() => Number.Of(0);
-}
+								public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
+								{
+								public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+								public override Number Return() => Number.Of(0);
+								}
 							</code>
 						</description>
 					</item>
@@ -73,15 +73,15 @@ public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</method-Evaluate>
-	</members>
-	<members name="EvaluationScope">
+	</EvaluationScopeGeneric>
+	<EvaluationScope>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Value">
+	</EvaluationScope>
+	<Value>
 		<class>
 			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
 		</class>
@@ -137,11 +137,11 @@ public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 			<returns>Result value of defined type containg input values as arguments</returns>
 		</method-handlebinaryexpression>
 		<method-equals-value>
-			 <summary>
-				 TBD
+			<summary>
+				TBD
 			</summary>
-			 <param name="value">TBD</param>
-			 <returns>TBD</returns>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
 		</method-equals-value>
 		<method-equals-object>
 			<summary>
@@ -168,201 +168,187 @@ public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 			</summary>
 			<returns>TBD</returns>
 		</method-valuetostring>
-	</members>
-	<members name="IValue">
+	</Value>
+	<IValue>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="IValueProvider">
+	</IValue>
+	<IValueProvider>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="MakeValueArgs">
+	</IValueProvider>
+	<MakeValueArgs>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Number">
+	</MakeValueArgs>
+	<Number>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Option">
+	</Number>
+	<Option>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Tag">
+	</Option>
+	<Tag>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="TagsCollection">
+	</Tag>
+	<TagsCollection>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Value">
+	</TagsCollection>
+	<ValueMath>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ValueMath">
+	</ValueMath>
+	<ValueMath>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ValueMath">
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</members>
-	<members name="ValueOriginType">
+	</ValueMath>
+	<ValueOriginType>
 		<enum>
 			<summary>
 				TBD
 			</summary>
 		</enum>
-	</members>
-	<members name="ValueVisitor">
+	</ValueOriginType>
+	<ValueVisitor>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ArgumentsCollection">
+	</ValueVisitor>
+	<ArgumentsCollection>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ArgumentsVisitorInvoker">
+	</ArgumentsCollection>
+	<ArgumentsVisitorInvoker>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="Condition">
+	</ArgumentsVisitorInvoker>
+	<Condition>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="IArguments">
+	</Condition>
+	<IArguments>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="ITags">
+	</IArguments>
+	<ITags>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="NullExpressionResultException">
+	</ITags>
+	<NullExpressionResultException>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ExpressionNode">
+	</NullExpressionResultException>
+	<ExpressionNode>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ExpressionNodeType">
+	</ExpressionNode>
+	<ExpressionNodeType>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="IExpression">
+	</ExpressionNodeType>
+	<IExpression>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="JsonArgumentsReader">
+	</IExpression>
+	<JsonArgumentsReader>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="JsonArgumentsReader">
+	</JsonArgumentsReader>
+	<SwitchExpression>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="SwitchExpression">
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</members>
-	<members name="IValuesProvider">
+	</SwitchExpression>
+	<IValuesProvider>
 		<inteface>
 			<summary>
 				TBD
 			</summary>
 		</inteface>
-	</members>
-	<members name="Values">
+	</IValuesProvider>
+	<Values>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ValuesDebugView">
+	</Values>
+	<ValuesDebugView>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-	<members name="ValuesLinqMathExtensions">
+	</ValuesDebugView>
+	<ValuesLinqMathExtensions>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
-	</members>
-</docs>
+	</ValuesLinqMathExtensions>
+</IntelliSense>

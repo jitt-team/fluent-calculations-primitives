@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="ValueOriginType"]/enum/*' />
+/// <include file="Docs.xml" path='*/ValueOriginType/enum/*' />
 public enum ValueOriginType
 {
     NaN,

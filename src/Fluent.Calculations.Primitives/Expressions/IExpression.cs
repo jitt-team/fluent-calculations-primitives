@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-/// <include file="IntelliSense.xml" path='docs/members[@name="IExpression"]/interface/*' />
+/// <include file="Docs.xml" path='*/IExpression/interface/*' />
 public interface IExpression
 {
     IArguments Arguments { get; }
