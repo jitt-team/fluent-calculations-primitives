@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.Expressions;
 using System.Diagnostics;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Value"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="Value"]/class/*' />
 [DebuggerDisplay("Name = {Name}, Value = {Primitive}")]
 public abstract class Value : IValueProvider, IOrigin
 {

@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Values"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="Values"]/class/*' />
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(ValuesDebugView))]
 public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProvider, new()

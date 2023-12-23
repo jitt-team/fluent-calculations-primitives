@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="IValueProvider"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="IValueProvider"]/class/*' />
 public interface IValueProvider : IValue
 {
     IValueProvider MakeOfThisType(MakeValueArgs args);

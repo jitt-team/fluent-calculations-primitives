@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ExpressionNodeType"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="ExpressionNodeType"]/class/*' />
 public static class ExpressionNodeType
 {
     public const string None = "None";

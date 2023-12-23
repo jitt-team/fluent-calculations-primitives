@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="IValuesCache"]/interface/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="IValuesCache"]/interface/*' />
 internal interface IValuesCache
 {
     void Add(IValueProvider value);

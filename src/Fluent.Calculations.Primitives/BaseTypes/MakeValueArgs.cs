@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="MakeValueArgs"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="MakeValueArgs"]/class/*' />
 public class MakeValueArgs
 {
     public string Name { get; private set; } = StringConstants.NaN;

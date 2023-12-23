@@ -2,7 +2,7 @@
 using System;
 using static Expressions.MathExpressionHandler;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ValueMath"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="ValueMath"]/class/*' />
 public static class ValueMath
 {
     public static T Abs<T>(T value) where T : IValueProvider, new() => HandleWithSingleArgument<T>(value, Math.Abs);

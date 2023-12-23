@@ -1,7 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ArgumentsDebugView"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="ArgumentsDebugView"]/class/*' />
 public class ArgumentsDebugView
 {
     private readonly IArguments arguments;

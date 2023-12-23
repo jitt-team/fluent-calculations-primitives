@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="ValueJsonConverter"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="ValueJsonConverter"]/class/*' />
 public static class ValueJsonConverter
 {
     public static string Serialize(IValue value, bool writeIndented = true)

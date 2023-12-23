@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Fluent.Calculations.Primitives.BaseTypes
 {
-    /// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Option<T>"]/class/*' />
+    /// <include file="IntelliSense.xml" path='docs/members[@name="Option<T>"]/class/*' />
     public class Option<T> : Value,
         IEqualityOperators<Option<T>, Option<T>, Condition>
         where T : struct, Enum

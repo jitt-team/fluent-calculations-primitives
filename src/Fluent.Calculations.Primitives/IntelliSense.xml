@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <docs>
-	<members name="EvaluationContext">
+	<members name="EvaluationScopeGeneric">
 		<class>
 			<summary>
 				Base class for implementing a calculation.
@@ -14,16 +14,16 @@
 						<term>Calculation</term>
 						<description>
 							<para></para>
-							Class inheriting from EvaluationContext is logical unit to compute desired result.  It will containt lambda expressions,<br/>
+							Class inheriting from EvaluationScope<![CDATA[<T>]]> is logical unit to compute desired result. It will containt lambda expressions,<br/>
 							input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/>.
 						</description>
 					</item>
 					<item>
 						<term>Examples</term>
 						<description>
-							<para>See below a class inheriting from EvaluationContext<![CDATA[<T>]]>, where T is a result class type.</para>
+							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
 							<code>
-public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
+public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 {
 	public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
 	public override Number Return() => Number.Of(0);
@@ -42,18 +42,18 @@ public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
 		</class>
 		<ctor>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/>.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
 			</summary>
 		</ctor>
 		<ctor-options>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with custom options.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
 			</summary>
 			<param name="options">Options to be used to run the calculation</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationContext{T}"/> class with standalone labda expression.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
 			</summary>
 			<param name="func">
 				Lambda expression using <see cref="IValue"/> types
@@ -73,6 +73,13 @@ public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
 			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</method-Evaluate>
+	</members>
+	<members name="EvaluationScope">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
 	</members>
 	<members name="Value">
 		<class>
@@ -161,5 +168,201 @@ public class ExampleCalculation : EvaluationContext<![CDATA[<Number>]]>
 			</summary>
 			<returns>TBD</returns>
 		</method-valuetostring>
+	</members>
+	<members name="IValue">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="IValueProvider">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="MakeValueArgs">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="Number">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="Option">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="Tag">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="TagsCollection">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="Value">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ValueMath">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ValueMath">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ValueOriginType">
+		<enum>
+			<summary>
+				TBD
+			</summary>
+		</enum>
+	</members>
+	<members name="ValueVisitor">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ArgumentsCollection">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ArgumentsVisitorInvoker">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="Condition">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="IArguments">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="ITags">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="NullExpressionResultException">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ExpressionNode">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ExpressionNodeType">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="IExpression">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="JsonArgumentsReader">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="JsonArgumentsReader">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="SwitchExpression">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="IValuesProvider">
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</members>
+	<members name="Values">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ValuesDebugView">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</members>
+	<members name="ValuesLinqMathExtensions">
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
 	</members>
 </docs>

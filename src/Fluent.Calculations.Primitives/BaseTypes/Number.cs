@@ -4,7 +4,7 @@ using Fluent.Calculations.Primitives.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs/IntelliSense.xml" path='docs/members[@name="Number"]/class/*' />
+/// <include file="IntelliSense.xml" path='docs/members[@name="Number"]/class/*' />
 public class Number : Value,
     IAdditionOperators<Number, Number, Number>,
     ISubtractionOperators<Number, Number, Number>,
