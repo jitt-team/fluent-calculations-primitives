@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-/// <include file="Docs.xml" path='*/SwitchExpression/class/*' />
+/// <include file="Docs.xml" path='*/SwitchExpression/class/*'/>
 public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()

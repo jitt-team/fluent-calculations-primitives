@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-/// <include file="Docs.xml" path='*/ValueJsonConverter/class/*' />
+/// <include file="Docs.xml" path='*/ValueJsonConverter/class/*'/>
 public static class ValueJsonConverter
 {
     public static string Serialize(IValue value, bool writeIndented = true)

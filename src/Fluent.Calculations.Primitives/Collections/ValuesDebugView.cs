@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Diagnostics;
 
-/// <include file="Docs.xml" path='*/ValuesDebugView/class/*' />
+/// <include file="Docs.xml" path='*/ValuesDebugView/class/*'/>
 public class ValuesDebugView
 {
     private readonly IValue collectionValue;

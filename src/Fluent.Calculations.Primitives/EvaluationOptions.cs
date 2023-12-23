@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives;
 
-/// <include file="Docs.xml" path='*/EvaluationOptions/class/*' />
+/// <include file="Docs.xml" path='*/EvaluationOptions/class/*'/>
 public class EvaluationOptions
 {
     public static EvaluationOptions Default => new();

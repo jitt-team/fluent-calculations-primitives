@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs.xml" path='*/EvaluationScope/class/*' />
+/// <include file="Docs.xml" path='*/EvaluationScope/class/*'/>
 public class EvaluationScope : IEvaluationScope
 {
     private readonly EvaluationOptions options;
@@ -14,13 +14,14 @@ public class EvaluationScope : IEvaluationScope
     private readonly IMemberExpressionValueCapturer memberCapturer;
     private readonly IValueArgumentsSelector valueArgumentsSelector;
 
-    /// <include file="Docs.xml" path='*/EvaluationScope/ctor/*' />
+    /// <include file="Docs.xml" path='*/EvaluationScope/ctor/*'/>
     public EvaluationScope() : this(EvaluationOptions.Default) { }
 
-    /// <include file="Docs.xml" path='*/EvaluationScope/ctor-options/*' />
+    /// <include file="Docs.xml" path='*/EvaluationScope/ctor-options/*'/>
     public EvaluationScope(EvaluationOptions options) :
         this(new ValuesCache(), new MemberExpressionValueCapturer()) => this.options = options;
 
+    /// <include file="Docs.xml" path='*/EvaluationScope/ctor-scope/*'/>
     public EvaluationScope(string scope) : this(new EvaluationOptions { Scope = scope }) { }
 
     internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) :
@@ -35,10 +36,11 @@ public class EvaluationScope : IEvaluationScope
         this.valueArgumentsSelector = selector;
     }
 
+    /// <include file="Docs.xml" path='*/EvaluationScope/Create/*'/>
     public static EvaluationScope Create([CallerMemberName] string scope = StringConstants.NaN) =>
      new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
 
-
+    /// <include file="Docs.xml" path='*/EvaluationScope/Evaluate-switch/*'/>
     public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
             where TCase : struct, Enum
             where TValue : class, IValueProvider, new()
@@ -49,7 +51,7 @@ public class EvaluationScope : IEvaluationScope
         return getSwitchResultFunc().GetResult(name);
     }
 
-    /// <include file="Docs.xml" path='*/EvaluationScope/method-Evaluate/*' />
+    /// <include file="Docs.xml" path='*/EvaluationScope/Evaluate/*'/>
     public TValue Evaluate<TValue>(
     Expression<Func<TValue>> lambdaExpression,
     [CallerMemberName] string name = StringConstants.NaN,
@@ -69,6 +71,7 @@ public class EvaluationScope : IEvaluationScope
         static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
+    /// <include file="Docs.xml" path='*/EvaluationScope/ClearValuesCache/*'/>
     protected void ClearValuesCache() => valuesCache.Clear();
 
     private TValue EvaluateInternal<TValue>(
