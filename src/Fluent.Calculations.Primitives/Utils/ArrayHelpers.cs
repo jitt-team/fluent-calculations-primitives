@@ -2,5 +2,5 @@
 
 internal  static class ArrayHelpers
 {
-    public static T[] Concat<T>( T value, params T[] otherValues) => new T[] { value }.Concat(otherValues ?? new T[0]).ToArray();
+    public static T[] Concat<T>( T value, params T[] otherValues) => new T[] { value }.Concat(otherValues ?? []).ToArray();
 }
