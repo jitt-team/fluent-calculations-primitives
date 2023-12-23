@@ -174,4 +174,20 @@
 		<class>
 		</class>
 	</members>
+	<members name="IValuesProvider">
+		<class>
+		</class>
+	</members>
+	<members name="Values">
+		<class>
+		</class>
+	</members>
+	<members name="ValuesDebugView">
+		<class>
+		</class>
+	</members>
+	<members name="ValuesLinqMathExtensions">
+		<class>
+		</class>
+	</members>
 </docs>
