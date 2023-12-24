@@ -145,8 +145,8 @@ public static class SwitchExpression<T, TReturn>
             List<IValue> expressionArguments = [checkValue];
             decimal resultPrimitive;
 
-            if (switchResult.IsPrimitive && switchResult == null)
-                resultPrimitive = switchResult?.PrimitiveValue ?? 0;
+            if (switchResult.IsPrimitive)
+                resultPrimitive = switchResult.PrimitiveValue;
             else
             {
                 TReturn resultValue = switchResult.Get();
