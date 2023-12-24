@@ -17,4 +17,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("d092f400-9a1e-4c84-900d-a7e2dd813a2c")]
 
-[assembly: InternalsVisibleToAttribute("Fluent.Calculations.Primitives.Tests")]
+[assembly: InternalsVisibleTo("Fluent.Calculations.Primitives.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
