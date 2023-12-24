@@ -1,14 +1,12 @@
 ﻿namespace Fluent.Calculations.Primitives.Tests.ComplexValueType;
 
-public class Currency : IComparable, IEquatable<Currency>, IComparable<Currency>
+public class Currency(string currencyCode) : IComparable, IEquatable<Currency>, IComparable<Currency>
 {
     private const string NoneCorrencyCode = "None";
 
     public static Currency None => new(NoneCorrencyCode);
 
-    public string Code { get; }
-
-    public Currency(string currencyCode) => Code = EnsureIsValid(currencyCode);
+    public string Code { get; } = EnsureIsValid(currencyCode);
 
     public override string ToString() => $"{Code}";
 

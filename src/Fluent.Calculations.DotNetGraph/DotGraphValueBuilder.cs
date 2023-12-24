@@ -53,20 +53,14 @@ public class DotGraphValueBuilder(IGraphStyle builder)
         bool IsParameter() => value.Origin == ValueOriginType.Parameter || value.Origin == ValueOriginType.Constant;
     }
 
-    private sealed class ClusterProvider
+    private sealed class ClusterProvider(IGraphStyle builder, DotGraph mainGraph)
     {
         private readonly Dictionary<string, DotSubgraph>
             scopeParameterContainers = [],
             scopeContainers = [];
 
-        private readonly IGraphStyle builder;
-        private readonly DotGraph mainGraph;
-
-        public ClusterProvider(IGraphStyle builder, DotGraph mainGraph)
-        {
-            this.mainGraph = mainGraph;
-            this.builder = builder;
-        }
+        private readonly IGraphStyle builder = builder;
+        private readonly DotGraph mainGraph = mainGraph;
 
         private int GetCurrentScopeIndex() => scopeParameterContainers.Count + scopeParameterContainers.Count - 1;
 
