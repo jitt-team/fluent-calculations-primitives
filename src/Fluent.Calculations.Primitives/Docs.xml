@@ -252,6 +252,16 @@
 				TBD
 			</summary>
 		</class>
+		<Count>
+			<summary>
+				TBD
+			</summary>
+		</Count>
+		<GetEnumerator>
+			<summary>
+				TBD
+			</summary>
+		</GetEnumerator>
 	</ArgumentsCollection>
 	<ArgumentsVisitorInvoker>
 		<class>
@@ -259,6 +269,14 @@
 				TBD
 			</summary>
 		</class>
+		<VisitArguments>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+			<param name="visitor">TBD</param>
+			<returns>TBD</returns>
+		</VisitArguments>
 	</ArgumentsVisitorInvoker>
 	<Condition>
 		<class>
@@ -351,4 +369,22 @@
 			</summary>
 		</class>
 	</ValuesLinqMathExtensions>
+	<ArgumentsDebugView>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<ctor-arguments>
+			<summary>
+				TBD
+			</summary>
+			<param name="arguments">TBD</param>
+		</ctor-arguments>
+		<Arguments>
+			<summary>
+				TBD
+			</summary>
+		</Arguments>
+	</ArgumentsDebugView>
 </IntelliSense>

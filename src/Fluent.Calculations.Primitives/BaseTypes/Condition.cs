@@ -21,9 +21,7 @@ public sealed class Condition : Value,
     public Condition(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     /// <include file="Docs.xml" path='*/Condition/ctor/*'/>
-    public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0))
-    {
-    }
+    public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0)) { }
 
     /// <include file="Docs.xml" path='*/Condition/IsTrue/*'/>
     public bool IsTrue => Primitive > 0;
@@ -32,7 +30,6 @@ public sealed class Condition : Value,
     public override IValueProvider MakeDefault() => False();
 
     /// <include file="Docs.xml" path='*/Condition/implicit-bool/*'/>
-
     public static implicit operator Condition(bool condition) => condition ? True() : False();
 
     /// <include file="Docs.xml" path='*/Condition/implicit-conditions/*'/>

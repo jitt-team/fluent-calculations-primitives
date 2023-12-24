@@ -2,14 +2,12 @@
 using System.Diagnostics;
 
 /// <include file="Docs.xml" path='*/ArgumentsDebugView/class/*'/>
-public class ArgumentsDebugView
+/// <include file="Docs.xml" path='*/ArgumentsDebugView/ctor-arguments/*'/>
+public class ArgumentsDebugView(IArguments arguments)
 {
-    private readonly IArguments arguments;
+    private readonly IArguments arguments = arguments;
 
-    /// <include file="Docs.xml" path='*/ArgumentCollection/ctor-arguments/*'/>
-    public ArgumentsDebugView(IArguments arguments) => this.arguments = arguments;
-
-    /// <include file="Docs.xml" path='*/ArgumentCollection/Arguments/*'/>
+    /// <include file="Docs.xml" path='*/ArgumentsDebugView/Arguments/*'/>
     [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
     public IValue[] Arguments => arguments.ToArray();
 }
