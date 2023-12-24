@@ -3,14 +3,12 @@ using Fluent.Calculations.Primitives.BaseTypes;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-/// <include file="Docs.xml" path='*/JsonArgumentsReader/class/*'/>
-public class JsonArgumentsReader : JsonConverter<IArguments>
+internal class JsonArgumentsReader : JsonConverter<IArguments>
 {
     public override IArguments Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         List<ValueDto>? argumentsList = JsonSerializer.Deserialize<List<ValueDto>>(ref reader, options);
-        ArgumentsDto arguments = new();
-        arguments.AddRange(argumentsList ?? new List<ValueDto>());
+        ArgumentsDto arguments = [.. argumentsList ?? []];
         return arguments;
     }
 
