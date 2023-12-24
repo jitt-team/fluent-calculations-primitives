@@ -11,7 +11,7 @@ public static class ValueJsonConverter
 {
     private readonly static JsonSerializerOptions
         IndentedSerializeOptions = CreateJsonSerializerOptions(true),
-        NotIndentedSerializeOptions = CreateJsonSerializerOptions(true),
+        NotIndentedSerializeOptions = CreateJsonSerializerOptions(false),
         DeserializerOptions = CreateJsonDeserializerOptions();
 
     /// <include file="Docs.xml" path='*/ValueJsonConverter/Serialize/*'/>
