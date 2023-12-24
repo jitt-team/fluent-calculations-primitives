@@ -14,12 +14,14 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
     private readonly ExpressionNode expression;
     private readonly TagsCollection tags;
 
+    /// <include file="Docs.xml" path='*/Values/ToString/*'/>
     public override string ToString() => $"{Name}";
 
     internal Values() : this(MakeValueArgs.Compose(StringConstants.Empty, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Collection), 0.00m)) { }
 
     private static readonly Values<T> Empty = [];
 
+    /// <include file="Docs.xml" path='*/Values/Add/*'/>
     public void Add(T value, [CallerMemberName] string fieldName = StringConstants.NaN)
     {
         expression.AppendArgument(value);
@@ -31,6 +33,7 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Scope = value.Scope;
     }
 
+    /// <include file="Docs.xml" path='*/Values/ctor-makeValueArgs/*'/>
     protected Values(MakeValueArgs makeValueArgs)
     {
         expression = makeValueArgs.Expression;
@@ -41,32 +44,44 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Scope = makeValueArgs.Scope;
     }
 
+    /// <include file="Docs.xml" path='*/Values/Name/*'/>
     public string Name { get; private set; }
 
+    /// <include file="Docs.xml" path='*/Values/Primitive/*'/>
     public decimal Primitive { get; private set; }
 
+    /// <include file="Docs.xml" path='*/Values/Origin/*'/>
     public ValueOriginType Origin { get; protected set; }
 
+    /// <include file="Docs.xml" path='*/Values/Expression/*'/>
     public IExpression Expression => expression;
 
+    /// <include file="Docs.xml" path='*/Values/Tags/*'/>
     public ITags Tags => tags;
 
+    /// <include file="Docs.xml" path='*/Values/Scope/*'/>
     public string Scope { get; private set; }
 
+    /// <include file="Docs.xml" path='*/Values/MakeOfThisType/*'/>
     public IValueProvider MakeOfThisType(MakeValueArgs args) => new Values<T>(args);
 
+    /// <include file="Docs.xml" path='*/Values/MakeOfThisElementType/*'/>
     public IValueProvider MakeOfThisElementType(MakeValueArgs args) => new T().MakeOfThisType(args);
 
+    /// <include file="Docs.xml" path='*/Values/MakeDefault/*'/>
     public IValueProvider MakeDefault() => Empty;
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     bool IOrigin.IsSet => !Name.IsNaNOrNull();
 
+    /// <include file="Docs.xml" path='*/Values/Type/*'/>
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public string Type => GetType().Name;
 
+    /// <include file="Docs.xml" path='*/Values/Count/*'/>
     public int Count => Expression.Arguments.Count;
 
+    /// <include file="Docs.xml" path='*/Values/PrimitiveString/*'/>
     public virtual string PrimitiveString => $"{Primitive:0.00}";
 
     IEnumerator IEnumerable.GetEnumerator() => Expression.Arguments.GetEnumerator();
@@ -85,6 +100,9 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
         Origin = ValueOriginType.Parameter;
     }
 
+    /// <include file="Docs.xml" path='*/Values/Accept/*'/>
+    public IValue Accept(ValueVisitor visitor) => ArgumentsVisitorInvoker.VisitArguments(this, visitor);
+
     internal static Values<T> ListOf(Expression<Func<T[]>> valuesFunc, [CallerMemberName] string fieldName = StringConstants.NaN)
     {
         List<T> collectionElements = [.. valuesFunc.Compile().Invoke()];
@@ -95,6 +113,4 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
     }
 
     private static string ComposeExpressionBody(int elementCount) => $"{typeof(T).Name}[{elementCount}]";
-
-    public IValue Accept(ValueVisitor visitor) => ArgumentsVisitorInvoker.VisitArguments(this, visitor);
 }
