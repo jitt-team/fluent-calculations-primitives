@@ -414,7 +414,7 @@
 			<param name="lambdaExpression">TBD</param>
 			<param name="name">TBD</param>
 			<param name="lambdaExpressionBody">TBD</param>
-			<returns></returns>			
+			<returns></returns>
 		</Evaluate>
 	</IEvaluationScope>
 	<IEvaluationScopeGeneric>
@@ -422,7 +422,7 @@
 			<summary>
 				TBD
 			</summary>
-			<typeparam name="T">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
 		</interface>
 		<ToResult>
 			<summary>
@@ -448,4 +448,26 @@
 			</summary>
 		</OfWithScope>
 	</Result>
+	<EvaluationOptions>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Default>
+			<summary>
+				TBD
+			</summary>
+		</Default>
+		<AlwaysReadNamesFromExpressions>
+			<summary>
+				TBD
+			</summary>
+		</AlwaysReadNamesFromExpressions>
+		<Scope>
+			<summary>
+				TBD
+			</summary>
+		</Scope>
+	</EvaluationOptions>
 </IntelliSense>
