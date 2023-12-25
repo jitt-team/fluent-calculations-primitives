@@ -261,6 +261,9 @@
 			<summary>
 				TBD
 			</summary>
+			<returns>
+				TBD
+			</returns>
 		</GetEnumerator>
 	</ArgumentsCollection>
 	<ArgumentsVisitorInvoker>
@@ -382,4 +385,19 @@
 			</summary>
 		</Arguments>
 	</ArgumentsDebugView>
+	<EvaluationScopeExtensions>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<GetScope>
+			<summary>
+				TBD
+			</summary>
+			<param name="obj">TBD</param>
+			<param name="scope">TBD</param>
+			<returns>TBD</returns>
+		</GetScope>
+	</EvaluationScopeExtensions>
 </IntelliSense>
