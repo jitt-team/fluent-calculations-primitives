@@ -400,4 +400,52 @@
 			<returns>TBD</returns>
 		</GetScope>
 	</EvaluationScopeExtensions>
+	<IEvaluationScope>
+		<interface>
+			<summary>
+				TBD
+			</summary>
+		</interface>
+		<Evaluate>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="lambdaExpression">TBD</param>
+			<param name="name">TBD</param>
+			<param name="lambdaExpressionBody">TBD</param>
+			<returns></returns>			
+		</Evaluate>
+	</IEvaluationScope>
+	<IEvaluationScopeGeneric>
+		<interface>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+		</interface>
+		<ToResult>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</ToResult>
+	</IEvaluationScopeGeneric>
+	<Result>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+		</Of>
+		<OfWithScope>
+			<summary>
+				TBD
+			</summary>
+		</OfWithScope>
+	</Result>
 </IntelliSense>
