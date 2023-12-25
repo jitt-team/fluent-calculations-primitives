@@ -374,13 +374,8 @@
 			<summary>
 				TBD
 			</summary>
-		</class>
-		<ctor-arguments>
-			<summary>
-				TBD
-			</summary>
 			<param name="arguments">TBD</param>
-		</ctor-arguments>
+		</class>
 		<Arguments>
 			<summary>
 				TBD
