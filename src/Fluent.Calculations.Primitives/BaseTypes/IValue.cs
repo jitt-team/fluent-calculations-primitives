@@ -2,7 +2,7 @@
 using Fluent.Calculations.Primitives.Expressions;
 using System.Text.Json.Serialization;
 
-/// <include file="Docs.xml" path='*/IValue/class/*'/>
+/// <include file="Docs.xml" path='*/IValue/interface/*'/>
 public interface IValue
 {
     /// <include file="Docs.xml" path='*/IValue/Type/*'/>

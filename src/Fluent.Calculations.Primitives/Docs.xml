@@ -74,6 +74,20 @@
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</method-Evaluate>
 	</EvaluationScopeGeneric>
+	<IEvaluationScopeGeneric>
+		<interface>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+		</interface>
+		<ToResult>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</ToResult>
+	</IEvaluationScopeGeneric>
 	<EvaluationScope>
 		<class>
 			<summary>
@@ -81,25 +95,102 @@
 			</summary>
 		</class>
 	</EvaluationScope>
+	<IEvaluationScope>
+		<interface>
+			<summary>
+				TBD
+			</summary>
+		</interface>
+		<Evaluate>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="lambdaExpression">TBD</param>
+			<param name="name">TBD</param>
+			<param name="lambdaExpressionBody">TBD</param>
+			<returns></returns>
+		</Evaluate>
+	</IEvaluationScope>
+	<EvaluationScopeExtensions>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<GetScope>
+			<summary>
+				TBD
+			</summary>
+			<param name="obj">TBD</param>
+			<param name="scope">TBD</param>
+			<returns>TBD</returns>
+		</GetScope>
+	</EvaluationScopeExtensions>
+	<Result>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+		</Of>
+		<OfWithScope>
+			<summary>
+				TBD
+			</summary>
+		</OfWithScope>
+	</Result>
+	<EvaluationOptions>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Default>
+			<summary>
+				TBD
+			</summary>
+		</Default>
+		<AlwaysReadNamesFromExpressions>
+			<summary>
+				TBD
+			</summary>
+		</AlwaysReadNamesFromExpressions>
+		<Scope>
+			<summary>
+				TBD
+			</summary>
+		</Scope>
+	</EvaluationOptions>
 	<Value>
 		<class>
 			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
 		</class>
-		<prop-name>
+		<Name>
 			<summary>Name of the variable</summary>
-		</prop-name>
-		<prop-expression>
+		</Name>
+		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
-		</prop-expression>
-		<prop-primitive>
+		</Expression>
+		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
-		</prop-primitive>
-		<prop-origin>
+		</Primitive>
+		<PrimitiveString>
+			<summary>.NET primitive representation of the value</summary>
+		</PrimitiveString>
+		<Origin>
 			<summary>Origin type of the value</summary>
-		</prop-origin>
-		<prop-tags>
+		</Origin>
+		<Tags>
 			<summary>Custom tags associated with the value</summary>
-		</prop-tags>
+		</Tags>
+		<Type>
+			<summary>TBD</summary>
+		</Type>
 		<ctor-value>
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
@@ -112,20 +203,20 @@
 			</summary>
 			<param name="createValueArgs">Arguments to create a new value</param>
 		</ctor-args>
-		<method-make>
+		<MakeOfThisType>
 			<summary>
 				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
 			</summary>
 			<param name="args">Arguments to create a new value</param>
 			<returns></returns>
-		</method-make>
-		<method-getdefault>
+		</MakeOfThisType>
+		<MakeDefault>
 			<summary>
 				Initializes a new instance with default values, equivalent to zero/null value.
 			</summary>
 			<returns>Instance of zero value</returns>
-		</method-getdefault>
-		<method-handlebinaryexpression>
+		</MakeDefault>
+		<HandleBinaryOperation>
 			<summary>
 				Handles math and comparison operations of underlying primitve values in derived types.
 			</summary>
@@ -135,54 +226,99 @@
 			<param name="expressionFunc">Expression representing operation in derived type</param>
 			<param name="operatorName">Operation name (ex. Add, Substract, LessThan)</param>
 			<returns>Result value of defined type containg input values as arguments</returns>
-		</method-handlebinaryexpression>
-		<method-equals-value>
+		</HandleBinaryOperation>
+		<Equals-value>
 			<summary>
 				TBD
 			</summary>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
-		</method-equals-value>
-		<method-equals-object>
+		</Equals-value>
+		<Equals-obj>
 			<summary>
 				TBD
 			</summary>
 			<param name="obj">TBD</param>
 			<returns>TBD</returns>
-		</method-equals-object>
-		<method-gethashcode>
+		</Equals-obj>
+		<GetHashCode>
 			<summary>
 				TBD
 			</summary>
 			<returns>TBD</returns>
-		</method-gethashcode>
-		<method-tostring>
+		</GetHashCode>
+		<ToString>
 			<summary>
 				TBD
 			</summary>
 			<returns>TBD</returns>
-		</method-tostring>
-		<method-valuetostring>
-			<summary>
-				TBD
-			</summary>
-			<returns>TBD</returns>
-		</method-valuetostring>
+		</ToString>
 	</Value>
 	<IValue>
-		<inteface>
+		<interface>
 			<summary>
 				TBD
 			</summary>
-		</inteface>
+		</interface>
+		<Name>
+			<summary>Name of the variable</summary>
+		</Name>
+		<Expression>
+			<summary>Expression that was used to calculate or define the value</summary>
+		</Expression>
+		<Primitive>
+			<summary>.NET primitive representation of the value</summary>
+		</Primitive>
+		<PrimitiveString>
+			<summary>.NET primitive representation of the value</summary>
+		</PrimitiveString>
+		<Origin>
+			<summary>Origin type of the value</summary>
+		</Origin>
+		<Tags>
+			<summary>Custom tags associated with the value</summary>
+		</Tags>
+		<Type>
+			<summary>TBD</summary>
+		</Type>
 	</IValue>
-	<IValueProvider>
-		<inteface>
+	<ValueOriginType>
+		<enum>
 			<summary>
 				TBD
 			</summary>
-		</inteface>
-	</IValueProvider>
+		</enum>
+		<NaN>
+			<summary>
+				TBD
+			</summary>
+		</NaN>
+		<Parameter>
+			<summary>
+				TBD
+			</summary>
+		</Parameter>
+		<Constant>
+			<summary>
+				TBD
+			</summary>
+		</Constant>
+		<Evaluation>
+			<summary>
+				TBD
+			</summary>
+		</Evaluation>
+		<Operation>
+			<summary>
+				TBD
+			</summary>
+		</Operation>
+		<Result>
+			<summary>
+				TBD
+			</summary>
+		</Result>
+	</ValueOriginType>
 	<MakeValueArgs>
 		<class>
 			<summary>
@@ -190,13 +326,234 @@
 			</summary>
 		</class>
 	</MakeValueArgs>
+	<ExpressionNode>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</ExpressionNode>
+	<ExpressionNodeType>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</ExpressionNodeType>
+	<IExpression>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</IExpression>
+	<ArgumentsCollection>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Count>
+			<summary>
+				TBD
+			</summary>
+		</Count>
+		<GetEnumerator>
+			<summary>
+				TBD
+			</summary>
+			<returns>
+				TBD
+			</returns>
+		</GetEnumerator>
+	</ArgumentsCollection>
+	<IArguments>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+		<Count>
+			<summary>
+				TBD
+			</summary>
+		</Count>
+	</IArguments>
+	<ArgumentsDebugView>
+		<class>
+			<summary>
+				TBD
+			</summary>
+			<param name="arguments">TBD</param>
+		</class>
+		<Arguments>
+			<summary>
+				TBD
+			</summary>
+		</Arguments>
+	</ArgumentsDebugView>
+	<ArgumentsVisitorInvoker>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<VisitArguments>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+			<param name="visitor">TBD</param>
+			<returns>TBD</returns>
+		</VisitArguments>
+	</ArgumentsVisitorInvoker>
+	<Tag>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Name>
+			<summary>
+				TBD
+			</summary>
+		</Name>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+		</ToString>
+		<Create>
+			<summary>
+				TBD
+			</summary>
+			<param name="name">
+				TBD
+			</param>
+		</Create>
+	</Tag>
+	<ITags>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</ITags>
+	<TagsCollection>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<Count>
+			<summary>
+				TBD
+			</summary>
+		</Count>
+		<GetEnumerator>
+			<summary>
+				TBD
+			</summary>
+		</GetEnumerator>
+	</TagsCollection>
+	<ValueVisitor>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+		<ctor-value>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+		</ctor-value>
+		<VisitArgument>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+		</VisitArgument>
+	</ValueVisitor>
+	<IValueProvider>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<Accept>
+			<summary>
+				TBD
+			</summary>
+			<param name="visitor">TBD</param>
+			<returns>TBD</returns>
+		</Accept>
+	</IValueProvider>
+	<Values>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</Values>
+	<IValuesProvider>
+		<inteface>
+			<summary>
+				TBD
+			</summary>
+		</inteface>
+	</IValuesProvider>
+	<ValuesDebugView>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</ValuesDebugView>
+	<ValuesLinqMathExtensions>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</ValuesLinqMathExtensions>
 	<Number>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+		</ctor>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+		</ToString>
 	</Number>
+	<Condition>
+		<class>
+			<summary>
+				TBD
+			</summary>
+		</class>
+	</Condition>
 	<Option>
 		<class>
 			<summary>
@@ -204,27 +561,6 @@
 			</summary>
 		</class>
 	</Option>
-	<Tag>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</Tag>
-	<TagsCollection>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</TagsCollection>
-	<ValueMath>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</ValueMath>
 	<ValueMath>
 		<class>
 			<summary>
@@ -291,118 +627,6 @@
 			<returns>TBD</returns>
 		</Round>
 	</ValueMath>
-	<ValueOriginType>
-		<enum>
-			<summary>
-				TBD
-			</summary>
-		</enum>
-		<NaN>
-			<summary>
-				TBD
-			</summary>
-		</NaN>
-		<Parameter>
-			<summary>
-				TBD
-			</summary>
-		</Parameter>
-		<Constant>
-			<summary>
-				TBD
-			</summary>
-		</Constant>
-		<Evaluation>
-			<summary>
-				TBD
-			</summary>
-		</Evaluation>
-		<Operation>
-			<summary>
-				TBD
-			</summary>
-		</Operation>
-		<Result>
-			<summary>
-				TBD
-			</summary>
-		</Result>
-	</ValueOriginType>
-	<ValueVisitor>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<ctor-value>
-			<summary>
-				TBD
-			</summary>
-			<param name="value">TBD</param>
-		</ctor-value>
-		<VisitArgument>
-			<summary>
-				TBD
-			</summary>
-			<param name="value">TBD</param>
-		</VisitArgument>
-	</ValueVisitor>
-	<ArgumentsCollection>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<Count>
-			<summary>
-				TBD
-			</summary>
-		</Count>
-		<GetEnumerator>
-			<summary>
-				TBD
-			</summary>
-			<returns>
-				TBD
-			</returns>
-		</GetEnumerator>
-	</ArgumentsCollection>
-	<ArgumentsVisitorInvoker>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<VisitArguments>
-			<summary>
-				TBD
-			</summary>
-			<param name="value">TBD</param>
-			<param name="visitor">TBD</param>
-			<returns>TBD</returns>
-		</VisitArguments>
-	</ArgumentsVisitorInvoker>
-	<Condition>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</Condition>
-	<IArguments>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-		</inteface>
-	</IArguments>
-	<ITags>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-		</inteface>
-	</ITags>
 	<NullExpressionResultException>
 		<class>
 			<summary>
@@ -410,27 +634,6 @@
 			</summary>
 		</class>
 	</NullExpressionResultException>
-	<ExpressionNode>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</ExpressionNode>
-	<ExpressionNodeType>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</ExpressionNodeType>
-	<IExpression>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-		</inteface>
-	</IExpression>
 	<JsonArgumentsReader>
 		<class>
 			<summary>
@@ -445,130 +648,4 @@
 			</summary>
 		</class>
 	</SwitchExpression>
-	<IValuesProvider>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-		</inteface>
-	</IValuesProvider>
-	<Values>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</Values>
-	<ValuesDebugView>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</ValuesDebugView>
-	<ValuesLinqMathExtensions>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-	</ValuesLinqMathExtensions>
-	<ArgumentsDebugView>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<param name="arguments">TBD</param>
-		</class>
-		<Arguments>
-			<summary>
-				TBD
-			</summary>
-		</Arguments>
-	</ArgumentsDebugView>
-	<EvaluationScopeExtensions>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<GetScope>
-			<summary>
-				TBD
-			</summary>
-			<param name="obj">TBD</param>
-			<param name="scope">TBD</param>
-			<returns>TBD</returns>
-		</GetScope>
-	</EvaluationScopeExtensions>
-	<IEvaluationScope>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-		</interface>
-		<Evaluate>
-			<summary>
-				TBD
-			</summary>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="lambdaExpression">TBD</param>
-			<param name="name">TBD</param>
-			<param name="lambdaExpressionBody">TBD</param>
-			<returns></returns>
-		</Evaluate>
-	</IEvaluationScope>
-	<IEvaluationScopeGeneric>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<typeparam name="T">TBD</typeparam>
-		</interface>
-		<ToResult>
-			<summary>
-				TBD
-			</summary>
-			<returns>TBD</returns>
-		</ToResult>
-	</IEvaluationScopeGeneric>
-	<Result>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<Of>
-			<summary>
-				TBD
-			</summary>
-		</Of>
-		<OfWithScope>
-			<summary>
-				TBD
-			</summary>
-		</OfWithScope>
-	</Result>
-	<EvaluationOptions>
-		<class>
-			<summary>
-				TBD
-			</summary>
-		</class>
-		<Default>
-			<summary>
-				TBD
-			</summary>
-		</Default>
-		<AlwaysReadNamesFromExpressions>
-			<summary>
-				TBD
-			</summary>
-		</AlwaysReadNamesFromExpressions>
-		<Scope>
-			<summary>
-				TBD
-			</summary>
-		</Scope>
-	</EvaluationOptions>
 </IntelliSense>
