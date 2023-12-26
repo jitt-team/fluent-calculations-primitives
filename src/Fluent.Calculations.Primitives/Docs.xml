@@ -231,6 +231,65 @@
 				TBD
 			</summary>
 		</class>
+		<Abs>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</Abs>
+		<Ceiling>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</Ceiling>
+		<Floor>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</Floor>
+		<Truncate>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</Truncate>
+		<Min>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Min>
+		<Max>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Max>
+		<Round>
+			<summary>
+				TBD
+			</summary>
+			<typeparam name="T">TBD</typeparam>
+			<param name="d">TBD</param>
+			<param name="decimals">TBD</param>
+			<returns>TBD</returns>
+		</Round>
 	</ValueMath>
 	<ValueOriginType>
 		<enum>
@@ -238,6 +297,36 @@
 				TBD
 			</summary>
 		</enum>
+		<NaN>
+			<summary>
+				TBD
+			</summary>
+		</NaN>
+		<Parameter>
+			<summary>
+				TBD
+			</summary>
+		</Parameter>
+		<Constant>
+			<summary>
+				TBD
+			</summary>
+		</Constant>
+		<Evaluation>
+			<summary>
+				TBD
+			</summary>
+		</Evaluation>
+		<Operation>
+			<summary>
+				TBD
+			</summary>
+		</Operation>
+		<Result>
+			<summary>
+				TBD
+			</summary>
+		</Result>
 	</ValueOriginType>
 	<ValueVisitor>
 		<class>
@@ -245,6 +334,18 @@
 				TBD
 			</summary>
 		</class>
+		<ctor-value>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+		</ctor-value>
+		<VisitArgument>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+		</VisitArgument>
 	</ValueVisitor>
 	<ArgumentsCollection>
 		<class>
@@ -422,7 +523,7 @@
 			<summary>
 				TBD
 			</summary>
-			<typeparam name="TValue">TBD</typeparam>
+			<typeparam name="T">TBD</typeparam>
 		</interface>
 		<ToResult>
 			<summary>

@@ -24,5 +24,5 @@ public static class ValueMath
     public static T Max<T>(T left, T right) where T : IValueProvider, new() => HandleWithTwoArguments<T>(left, right, Math.Max);
 
     /// <include file="Docs.xml" path='*/ValueMath/Round/*'/>
-    public static T Round<T>(T left, T right) where T : IValueProvider, new() => HandleWithTwoArgumentsInt<T>(left, right, Math.Round);
+    public static T Round<T>(T d, T decimals) where T : IValueProvider, new() => HandleWithTwoArgumentsInt<T>(d, decimals, Math.Round);
 }
