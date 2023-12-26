@@ -65,14 +65,9 @@
 			</summary>
 			<returns>Calculation result</returns>
 		</method-ToResult>
-		<method-Evaluate>
-			<summary>Evaluates an expression and captures it's arguments.</summary>
-			<typeparam name="TValue">Result value type</typeparam>
-			<param name="lambdaExpression">Math or logic expression</param>
-			<param name="name">Result name (captured by the compiler by default)</param>
-			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
-			<returns>Lambda expression result containing arguments and expression body.</returns>
-		</method-Evaluate>
+		<Return>
+			<summary>TBD</summary>
+		</Return>
 	</EvaluationScopeGeneric>
 	<IEvaluationScopeGeneric>
 		<interface>
@@ -94,6 +89,14 @@
 				TBD
 			</summary>
 		</class>
+		<Evaluate>
+			<summary>Evaluates an expression and captures it's arguments.</summary>
+			<typeparam name="TValue">Result value type</typeparam>
+			<param name="lambdaExpression">Math or logic expression</param>
+			<param name="name">Result name (captured by the compiler by default)</param>
+			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
+			<returns>Lambda expression result containing arguments and expression body.</returns>
+		</Evaluate>
 	</EvaluationScope>
 	<IEvaluationScope>
 		<interface>
@@ -421,6 +424,41 @@
 				TBD
 			</summary>
 		</class>
+		<None>
+			<summary>
+				TBD
+			</summary>
+		</None>
+		<Constant>
+			<summary>
+				TBD
+			</summary>
+		</Constant>
+		<Collection>
+			<summary>
+				TBD
+			</summary>
+		</Collection>
+		<Lambda>
+			<summary>
+				TBD
+			</summary>
+		</Lambda>
+		<Switch>
+			<summary>
+				TBD
+			</summary>
+		</Switch>
+		<BinaryExpression>
+			<summary>
+				TBD
+			</summary>
+		</BinaryExpression>
+		<MathExpression>
+			<summary>
+				TBD
+			</summary>
+		</MathExpression>
 	</ExpressionNodeType>
 	<IExpression>
 		<inteface>
@@ -428,6 +466,21 @@
 				TBD
 			</summary>
 		</inteface>
+		<Arguments>
+			<summary>
+				TBD
+			</summary>
+		</Arguments>
+		<Body>
+			<summary>
+				TBD
+			</summary>
+		</Body>
+		<Type>
+			<summary>
+				TBD
+			</summary>
+		</Type>
 	</IExpression>
 	<ArgumentsCollection>
 		<class>
@@ -693,6 +746,17 @@
 				TBD
 			</summary>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<param name="collectionValue">TBD</param>
+		</ctor>
+		<Items>
+			<summary>
+				TBD
+			</summary>
+		</Items>
 	</ValuesDebugView>
 	<ValuesLinqMathExtensions>
 		<class>
@@ -700,6 +764,34 @@
 				TBD
 			</summary>
 		</class>
+		<Sum>
+			<summary>
+				TBD
+			</summary>
+			<param name="source">TBD</param>
+			<returns>TBD</returns>
+		</Sum>
+		<Average>
+			<summary>
+				TBD
+			</summary>
+			<param name="source">TBD</param>
+			<returns>TBD</returns>
+		</Average>
+		<Min>
+			<summary>
+				TBD
+			</summary>
+			<param name="source">TBD</param>
+			<returns>TBD</returns>
+		</Min>
+		<Max>
+			<summary>
+				TBD
+			</summary>
+			<param name="source">TBD</param>
+			<returns>TBD</returns>
+		</Max>
 	</ValuesLinqMathExtensions>
 	<Number>
 		<class>
@@ -804,19 +896,53 @@
 				TBD
 			</summary>
 		</class>
-	</NullExpressionResultException>
-	<JsonArgumentsReader>
-		<class>
+		<ctor>
 			<summary>
 				TBD
 			</summary>
-		</class>
-	</JsonArgumentsReader>
+			<param name="expressionBody">TBD</param>
+		</ctor>
+	</NullExpressionResultException>
 	<SwitchExpression>
 		<class>
 			<summary>
 				TBD
 			</summary>
 		</class>
+		<For>
+			<summary>
+				TBD
+			</summary>
+			<param name="checkValue">TBD</param>
+			<returns>TBD</returns>
+		</For>
+		<SwitchBuilder>
+			<class>
+				<summary>
+					TBD
+				</summary>
+			</class>
+		</SwitchBuilder>
+		<ReturnBuilder>
+			<class>
+				<summary>
+					TBD
+				</summary>
+			</class>
+		</ReturnBuilder>
+		<CaseBuilder>
+			<class>
+				<summary>
+					TBD
+				</summary>
+			</class>
+		</CaseBuilder>
+		<ResultEvaluator>
+			<class>
+				<summary>
+					TBD
+				</summary>
+			</class>
+		</ResultEvaluator>
 	</SwitchExpression>
 </IntelliSense>
