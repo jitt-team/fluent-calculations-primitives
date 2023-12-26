@@ -7,4 +7,3 @@ public interface IValuesProvider<T> : IReadOnlyCollection<T>, IValueProvider whe
     /// <include file="Docs.xml" path='*/IValuesProvider/MakeOfThisElementType/*'/>
     IValueProvider MakeOfThisElementType(MakeValueArgs args);
 }
-

@@ -590,6 +590,88 @@
 				TBD
 			</summary>
 		</class>
+		<Name>
+			<summary>
+				TBD
+			</summary>
+		</Name>
+		<Primitive>
+			<summary>
+			</summary>
+		</Primitive>
+		<Origin>
+			<summary>
+				TBD
+			</summary>
+		</Origin>
+		<Expression>
+			<summary>
+				TBD
+			</summary>
+		</Expression>
+		<Tags>
+			<summary>
+				TBD
+			</summary>
+		</Tags>
+		<Scope>
+			<summary>
+				TBD
+			</summary>
+		</Scope>
+		<Type>
+			<summary>
+				TBD
+			</summary>
+		</Type>
+		<PrimitiveString>
+			<summary>
+				TBD
+			</summary>
+		</PrimitiveString>
+		<Accept>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</Accept>
+		<Count>
+			<summary>
+				TBD
+			</summary>
+		</Count>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<MakeOfThisElementType>
+			<summary>
+				TBD
+			</summary>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisElementType>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+		</ToString>
+		<Add>
+			<summary>
+				TBD
+			</summary>
+			<param name="value">TBD</param>
+			<param name="fieldName">TBD</param>
+		</Add>
 	</Values>
 	<IValuesProvider>
 		<inteface>
@@ -597,6 +679,13 @@
 				TBD
 			</summary>
 		</inteface>
+		<MakeOfThisElementType>
+			<summary>
+				TBD
+			</summary>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisElementType>
 	</IValuesProvider>
 	<ValuesDebugView>
 		<class>
