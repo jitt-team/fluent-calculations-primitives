@@ -12,7 +12,7 @@ public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
-    /// <include file="Docs.xml" path='*/SwitchExpression/SwitchExpression/For/*'/>
+    /// <include file="Docs.xml" path='*/SwitchExpression/For/*'/>
     public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, ReturnValue>());
 
     /// <include file="Docs.xml" path='*/SwitchExpression/SwitchBuilder/class/*'/>
