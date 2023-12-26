@@ -33,7 +33,7 @@ public class ExpressionNode : IExpression
     public virtual IArguments Arguments => arguments;
 
     /// <include file="Docs.xml" path='*/ExpressionNode/WithArguments/*'/>
-    public ExpressionNode WithArguments(IValue a, params IValue[] b) => WithArguments(new[] { a }.Concat(b));
+    public ExpressionNode WithArguments(IValue first, params IValue[] other) => WithArguments(new[] { first }.Concat(other));
 
     /// <include file="Docs.xml" path='*/ExpressionNode/WithArguments-enumerable/*'/>
     public ExpressionNode WithArguments(IEnumerable<IValue> arguments)

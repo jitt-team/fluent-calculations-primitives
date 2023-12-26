@@ -325,6 +325,48 @@
 				TBD
 			</summary>
 		</class>
+		<Name>
+			<summary>
+				TBD
+			</summary>
+		</Name>
+		<Expression>
+			<summary>
+				TBD
+			</summary>
+		</Expression>
+		<PrimitiveValue>
+			<summary>
+				TBD
+			</summary>
+		</PrimitiveValue>
+		<Origin>
+			<summary>
+				TBD
+			</summary>
+		</Origin>
+		<Arguments>
+			<summary>
+				TBD
+			</summary>
+		</Arguments>
+		<Tags>
+			<summary>
+				TBD
+			</summary>
+		</Tags>
+		<Scope>
+			<summary>
+				TBD
+			</summary>
+		</Scope>
+		<WithTags>
+			<summary>
+				TBD
+			</summary>
+			<param name="tags">TBD</param>
+			<returns>TBD</returns>
+		</WithTags>
 	</MakeValueArgs>
 	<ExpressionNode>
 		<class>
@@ -332,6 +374,46 @@
 				TBD
 			</summary>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+		</ctor>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+		</ToString>
+		<Body>
+			<summary>
+				TBD
+			</summary>
+		</Body>
+		<Type>
+			<summary>
+				TBD
+			</summary>
+		</Type>
+		<Arguments>
+			<summary>
+				TBD
+			</summary>
+		</Arguments>
+		<WithArguments>
+			<summary>
+				TBD
+			</summary>
+			<param name="first">TBD</param>
+			<param name="other">TBD</param>
+			<returns>TBD</returns>
+		</WithArguments>
+		<WithArguments-enumerable>
+			<summary>
+				TBD
+			</summary>
+			<param name="arguments">TBD</param>
+			<returns>TBD</returns>
+		</WithArguments-enumerable>
 	</ExpressionNode>
 	<ExpressionNodeType>
 		<class>
