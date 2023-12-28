@@ -1,7 +1,8 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-public interface IValuesCache
+/// <include file="Docs.xml" path='*/IValuesCache/interface/*'/>
+internal interface IValuesCache
 {
     void Add(IValueProvider value);
 

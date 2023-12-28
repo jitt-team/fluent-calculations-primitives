@@ -6,38 +6,22 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
+/// <include file="Docs.xml" path='*/ValueJsonConverter/class/*'/>
 public static class ValueJsonConverter
 {
-    public static string Serialize(IValue value, bool writeIndented = true)
-    {
-        JsonSerializerOptions options = new()
-        {
-            WriteIndented = writeIndented,
-            Converters = {
-                new JsonStringEnumConverter() },
-            TypeInfoResolver = new DefaultJsonTypeInfoResolver
-            {
-                Modifiers = {
-                    IgnoreEpmptyList<IValue, ITags, Tag>,
-                    IgnoreEpmptyList<IExpression, IArguments, IValue>
-                }
-            }
-        };
-        return JsonSerializer.Serialize(value, options);
-    }
+    private readonly static JsonSerializerOptions
+        IndentedSerializeOptions = CreateJsonSerializerOptions(true),
+        NotIndentedSerializeOptions = CreateJsonSerializerOptions(false),
+        DeserializerOptions = CreateJsonDeserializerOptions();
 
+    /// <include file="Docs.xml" path='*/ValueJsonConverter/Serialize/*'/>
+    public static string Serialize(IValue value, bool writeIndented = true) => JsonSerializer
+        .Serialize(value, writeIndented ? IndentedSerializeOptions : NotIndentedSerializeOptions);
+
+    /// <include file="Docs.xml" path='*/ValueJsonConverter/Deserialize/*'/>
     public static IValue Deserialize(string json)
     {
-        JsonSerializerOptions options = new()
-        {
-            Converters = {
-                new JsonStringEnumConverter(),
-                new JsonConverterInterfaceToClass<IExpression, ExpressionDto>(),
-                new JsonConverterInterfaceToClass<ITags, TagsDto>(),
-                new JsonArgumentsReader()
-            }
-        };
-        return JsonSerializer.Deserialize<ValueDto>(Enforce.IsNullOrWhiteSpace(json), options) ??
+        return JsonSerializer.Deserialize<ValueDto>(Enforce.IsNullOrWhiteSpace(json), DeserializerOptions) ??
         throw new ArgumentException("Provided Json string can not be deserialized.", nameof(json));
     }
 
@@ -52,4 +36,28 @@ public static class ValueJsonConverter
             propertyInfo.ShouldSerialize = static (obj, value) =>
                 value != null && ((TListType)value).Any();
     }
+
+    private static JsonSerializerOptions CreateJsonSerializerOptions(bool writeIndented) => new()
+    {
+        WriteIndented = writeIndented,
+        Converters = {
+                new JsonStringEnumConverter() },
+        TypeInfoResolver = new DefaultJsonTypeInfoResolver
+        {
+            Modifiers = {
+                    IgnoreEpmptyList<IValue, ITags, Tag>,
+                    IgnoreEpmptyList<IExpression, IArguments, IValue>
+                }
+        }
+    };
+
+    private static JsonSerializerOptions CreateJsonDeserializerOptions() => new()
+    {
+        Converters = {
+                new JsonStringEnumConverter(),
+                new JsonConverterInterfaceToClass<IExpression, ExpressionDto>(),
+                new JsonConverterInterfaceToClass<ITags, TagsDto>(),
+                new JsonArgumentsReader()
+            }
+    };
 }

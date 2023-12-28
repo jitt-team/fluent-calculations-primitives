@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+/// <include file="Docs.xml" path='*/SwitchExpression/class/*'/>
 public static class SwitchExpression<T, TReturn>
         where T : struct, Enum
         where TReturn : class, IValueProvider, new()
 {
+    /// <include file="Docs.xml" path='*/SwitchExpression/For/*'/>
     public static SwitchBuilder For(Option<T> checkValue) => new(checkValue, new Dictionary<T, ReturnValue>());
 
+    /// <include file="Docs.xml" path='*/SwitchExpression/SwitchBuilder/class/*'/>
     public sealed class SwitchBuilder
     {
         private readonly Option<T> checkValue;
@@ -30,10 +33,12 @@ public static class SwitchExpression<T, TReturn>
             this.switchCases = switchCases;
         }
 
+        /// <include file="Docs.xml" path='*/SwitchExpression/SwitchBuilder/Case/*'/>
         public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
             new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
     }
 
+    /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/class/*'/>
     public sealed class ReturnBuilder
     {
         private readonly Option<T> checkValue;
@@ -54,12 +59,15 @@ public static class SwitchExpression<T, TReturn>
             this.caseValues = caseValues;
         }
 
+        /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return-primitiveValue/*'/>
         public CaseBuilder Return(decimal primitiveValue, [CallerArgumentExpression(nameof(primitiveValue))] string valueBody = StringConstants.NaN) =>
             Return(new ReturnValue(primitiveValue, valueBody));
 
+        /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return-returnValueFunc/*'/>
         public CaseBuilder Return(Func<TReturn> returnValueFunc, [CallerArgumentExpression(nameof(returnValueFunc))] string funcBody = StringConstants.NaN) =>
             Return(new ReturnValue(returnValueFunc, funcBody));
 
+        /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return/*'/>
         private CaseBuilder Return(ReturnValue returnValue)
         {
             foreach (T caseValue in caseValues)
@@ -69,13 +77,11 @@ public static class SwitchExpression<T, TReturn>
         }
     }
 
+    /// <include file="Docs.xml" path='*/SwitchExpression/CaseBuilder/class/*'/>
     public sealed class CaseBuilder
     {
         private readonly Option<T> checkValue;
         private readonly IDictionary<T, ReturnValue> switchCases;
-
-        public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
-            new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
 
         private CaseBuilder()
         {
@@ -88,13 +94,21 @@ public static class SwitchExpression<T, TReturn>
             this.checkValue = checkValue;
             this.switchCases = switchCases;
         }
+
+        /// <include file="Docs.xml" path='*/SwitchExpression/CaseBuilder/Case/*'/>
+        public ReturnBuilder Case(T caseValue, params T[] otherCaseValues) =>
+            new(checkValue, switchCases, ArrayHelpers.Concat(caseValue, otherCaseValues));
+
+        /// <include file="Docs.xml" path='*/SwitchExpression/CaseBuilder/Default-primitiveValue/*'/>
         public ResultEvaluator Default(decimal primitiveValue, [CallerArgumentExpression(nameof(primitiveValue))] string valueBody = StringConstants.NaN) =>
             new(checkValue, switchCases, new ReturnValue(primitiveValue, valueBody));
 
-        public ResultEvaluator Default(Func<TReturn> defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string funcBody = StringConstants.NaN) =>
-            new(checkValue, switchCases, new ReturnValue(defaultValue, funcBody));
+        /// <include file="Docs.xml" path='*/SwitchExpression/CaseBuilder/Default-defaultValueFun/*'/>
+        public ResultEvaluator Default(Func<TReturn> defaultValueFun, [CallerArgumentExpression(nameof(defaultValueFun))] string funcBody = StringConstants.NaN) =>
+            new(checkValue, switchCases, new ReturnValue(defaultValueFun, funcBody));
     }
 
+    /// <include file="Docs.xml" path='*/SwitchExpression/ResultEvaluator/class/*'/>
     public sealed class ResultEvaluator
     {
         private readonly IDictionary<T, ReturnValue> switchCases;

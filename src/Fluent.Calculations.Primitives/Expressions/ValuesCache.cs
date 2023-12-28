@@ -1,13 +1,11 @@
 ﻿namespace Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.BaseTypes;
 
-internal class ValuesCache : IValuesCache
+internal class ValuesCache(IDictionary<string, IValueProvider> cache) : IValuesCache
 {
-    private readonly IDictionary<string, IValueProvider> cache;
+    private readonly IDictionary<string, IValueProvider> cache = cache;
 
     public ValuesCache() : this(new Dictionary<string, IValueProvider>(100)) { }
-
-    public ValuesCache(IDictionary<string, IValueProvider> cache) => this.cache = cache;
 
     public void Add(IValueProvider value) => cache.Add(value.Name, value);
 

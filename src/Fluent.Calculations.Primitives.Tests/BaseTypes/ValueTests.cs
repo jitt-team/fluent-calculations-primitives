@@ -21,9 +21,8 @@ public class ValueTests
     }
 }
 
-public class FakeInheritedValue : Value
+public class FakeInheritedValue(MakeValueArgs args) : Value(args)
 {
-    public FakeInheritedValue(MakeValueArgs args) : base(args) { }
     public override IValueProvider MakeDefault() => new FakeInheritedValue(MakeValueArgs.Compose(StringConstants.NaN, ExpressionNode.None, 0));
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new FakeInheritedValue(args);
 }
