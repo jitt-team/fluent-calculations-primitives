@@ -44,15 +44,14 @@
     <SdkLinkTarget>Top</SdkLinkTarget>
     <RootNamespaceTitle>Fluent.Calculations.Primitives</RootNamespaceTitle>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="(global)" isDocumented="False" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.BaseTypes" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Collections" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions (Group)" isGroup="True" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions.Capture" isDocumented="True" xmlns="" />
-      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True" xmlns="" />
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives" isDocumented="True">Contains fundamental classes and base classes used to create calculations</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.BaseTypes" isDocumented="True">Contains base types that represent arguments and results of your calculations and related metadata. Conains helper classes to enable basic math, logical operations and supported math functions.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Collections" isDocumented="True">Contains base types that represent collection arguments and results of your calculations and related metadata. Contains classes that provides supported operations with collections.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions (Group)" isGroup="True" isDocumented="True">Namespace containing classes related to handling of expressions.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions" isDocumented="True">Contains interfaces defining expressions metadata.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions.Capture" isDocumented="True">Contains expression evaluation exceptions.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True">Contains classes used to serialize and deserialize values and calculation results</NamespaceSummaryItem></NamespaceSummaries>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <MissingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>

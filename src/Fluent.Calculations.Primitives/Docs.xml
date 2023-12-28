@@ -44,6 +44,7 @@
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
 			</summary>
+			<remarks>TBD</remarks>
 		</ctor>
 		<ctor-options>
 			<summary>
@@ -74,12 +75,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 		</interface>
 		<ToResult>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</ToResult>
 	</IEvaluationScopeGeneric>
@@ -88,6 +91,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Evaluate>
 			<summary>Evaluates an expression and captures it's arguments.</summary>
@@ -103,11 +107,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</interface>
 		<Evaluate>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="TValue">TBD</typeparam>
 			<param name="lambdaExpression">TBD</param>
 			<param name="name">TBD</param>
@@ -120,6 +126,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<GetScope>
 			<summary>
@@ -376,6 +383,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
