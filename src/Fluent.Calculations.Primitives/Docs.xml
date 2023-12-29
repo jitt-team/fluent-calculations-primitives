@@ -95,12 +95,22 @@
 		</class>
 		<Evaluate>
 			<summary>Evaluates an expression and captures it's arguments.</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="TValue">Result value type</typeparam>
 			<param name="lambdaExpression">Math or logic expression</param>
 			<param name="name">Result name (captured by the compiler by default)</param>
 			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</Evaluate>
+		<Evaluate-switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TCase">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="getResultEvaluatorFunc">TBD</param>
+			<param name="name">TBD</param>
+			<returns></returns>
+		</Evaluate-switch>
 	</EvaluationScope>
 	<IEvaluationScope>
 		<interface>
@@ -120,6 +130,15 @@
 			<param name="lambdaExpressionBody">TBD</param>
 			<returns></returns>
 		</Evaluate>
+		<Evaluate-switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TCase">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="getResultEvaluatorFunc">TBD</param>
+			<param name="name">TBD</param>
+			<returns></returns>
+		</Evaluate-switch>	
 	</IEvaluationScope>
 	<EvaluationScopeExtensions>
 		<class>
@@ -132,6 +151,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="obj">TBD</param>
 			<param name="scope">TBD</param>
 			<returns>TBD</returns>
@@ -142,16 +162,19 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Of>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Of>
 		<OfWithScope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</OfWithScope>
 	</Result>
 	<EvaluationOptions>
@@ -159,26 +182,31 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Default>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Default>
 		<AlwaysReadNamesFromExpressions>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</AlwaysReadNamesFromExpressions>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Scope>
 	</EvaluationOptions>
 	<Value>
 		<class>
 			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>Name of the variable</summary>
@@ -269,6 +297,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</interface>
 		<Name>
 			<summary>Name of the variable</summary>
@@ -297,6 +326,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</enum>
 		<NaN>
 			<summary>
@@ -334,6 +364,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>
@@ -431,6 +462,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<None>
 			<summary>
@@ -473,6 +505,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<Arguments>
 			<summary>
@@ -495,6 +528,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Count>
 			<summary>
@@ -806,6 +840,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
@@ -823,6 +858,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 	</Condition>
 	<Option>
@@ -830,6 +866,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 	</Option>
 	<ValueMath>
@@ -837,6 +874,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Abs>
 			<summary>
@@ -916,6 +954,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<For>
 			<summary>
