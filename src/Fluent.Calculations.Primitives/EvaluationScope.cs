@@ -71,8 +71,8 @@ public class EvaluationScope : IEvaluationScope
         static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-    /// <include file="Docs.xml" path='*/EvaluationScope/ClearValuesCache/*'/>
-    protected void ClearValuesCache() => valuesCache.Clear();
+    /// <include file="Docs.xml" path='*/EvaluationScope/ClearCache/*'/>
+    protected void ClearCache() => valuesCache.Clear();
 
     private TValue EvaluateInternal<TValue>(
        Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)

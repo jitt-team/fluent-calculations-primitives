@@ -111,6 +111,16 @@
 			<param name="name">TBD</param>
 			<returns></returns>
 		</Evaluate-switch>
+		<ClearCache>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+		</ClearCache>
+		<Create>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<returns>TBD</returns>
+		</Create>
 	</EvaluationScope>
 	<IEvaluationScope>
 		<interface>
@@ -138,7 +148,7 @@
 			<param name="getResultEvaluatorFunc">TBD</param>
 			<param name="name">TBD</param>
 			<returns></returns>
-		</Evaluate-switch>	
+		</Evaluate-switch>
 	</IEvaluationScope>
 	<EvaluationScopeExtensions>
 		<class>
@@ -867,8 +877,99 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="T"></typeparam>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-option>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor-option>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor-makeValueArgs>
+		<implicit-option>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</implicit-option>
+		<implicit-T>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</implicit-T>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</MakeOfThisType>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</MakeDefault>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</GetHashCode>
+		<PrimitiveString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</PrimitiveString>
+		<operator-equal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</operator-equal>
+		<operator-not-equal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</operator-not-equal>
 	</Option>
+	<Option-static>
+		<class>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</class>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TEnum">TBD</typeparam>
+			<param name="primitiveValue">TBD</param>
+			<param name="fieldName">TBD</param>
+			<returns>TBD</returns>
+		</Of>
+	</Option-static>
 	<ValueMath>
 		<class>
 			<summary>

@@ -30,7 +30,7 @@ public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T :
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ToResult/*'/>
     public T ToResult()
     {
-        ClearValuesCache();
+        ClearCache();
 
         T result = calculationFunc != null ?
              calculationFunc.Invoke(this) :
