@@ -220,24 +220,43 @@
 		</class>
 		<Name>
 			<summary>Name of the variable</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>		
 		</Name>
 		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>		
 		</Expression>
 		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>		
 		</Primitive>
 		<PrimitiveString>
 			<summary>.NET primitive representation of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>		
 		</PrimitiveString>
 		<Origin>
 			<summary>Origin type of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>		
 		</Origin>
 		<Tags>
 			<summary>Custom tags associated with the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Tags>
+		<Scope>
+			<summary>Custom tags associated with the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
+		</Scope>
 		<Type>
 			<summary>TBD</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Type>
 		<ctor-value>
 			<summary>
@@ -559,11 +578,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Count>
 	</IArguments>
 	<ArgumentsDebugView>
@@ -571,6 +593,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="arguments">TBD</param>
 		</class>
 		<Arguments>
@@ -584,11 +607,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<VisitArguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<param name="visitor">TBD</param>
 			<returns>TBD</returns>
@@ -624,6 +649,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 	</ITags>
 	<TagsCollection>
