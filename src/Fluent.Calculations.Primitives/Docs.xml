@@ -205,12 +205,14 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</AlwaysReadNamesFromExpressions>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Scope>
 	</EvaluationOptions>
 	<Value>
@@ -221,27 +223,27 @@
 		<Name>
 			<summary>Name of the variable</summary>
 			<value>TBD</value>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</Name>
 		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
 			<value>TBD</value>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</Expression>
 		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
 			<value>TBD</value>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</Primitive>
 		<PrimitiveString>
 			<summary>.NET primitive representation of the value</summary>
 			<value>TBD</value>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</PrimitiveString>
 		<Origin>
 			<summary>Origin type of the value</summary>
 			<value>TBD</value>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</Origin>
 		<Tags>
 			<summary>Custom tags associated with the value</summary>
@@ -262,18 +264,21 @@
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">Value to copy</param>
 		</ctor-value>
 		<ctor-args>
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="createValueArgs">Arguments to create a new value</param>
 		</ctor-args>
 		<MakeOfThisType>
 			<summary>
 				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">Arguments to create a new value</param>
 			<returns></returns>
 		</MakeOfThisType>
@@ -281,12 +286,14 @@
 			<summary>
 				Initializes a new instance with default values, equivalent to zero/null value.
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>Instance of zero value</returns>
 		</MakeDefault>
 		<HandleBinaryOperation>
 			<summary>
 				Handles math and comparison operations of underlying primitve values in derived types.
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="ResultType">Operation result type</typeparam>
 			<typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
 			<param name="right">Right side value of operatoin</param>
@@ -298,6 +305,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
 		</Equals-value>
@@ -305,6 +313,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="obj">TBD</param>
 			<returns>TBD</returns>
 		</Equals-obj>
@@ -312,12 +321,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</GetHashCode>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</ToString>
 	</Value>
@@ -330,25 +341,44 @@
 		</interface>
 		<Name>
 			<summary>Name of the variable</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Expression>
 		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Primitive>
 		<PrimitiveString>
 			<summary>.NET primitive representation of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</PrimitiveString>
 		<Origin>
 			<summary>Origin type of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Origin>
 		<Tags>
 			<summary>Custom tags associated with the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Tags>
 		<Type>
 			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
+		<Scope>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</Scope>
 	</IValue>
 	<ValueOriginType>
 		<enum>
@@ -361,31 +391,37 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</NaN>
 		<Parameter>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Parameter>
 		<Constant>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Constant>
 		<Evaluation>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Evaluation>
 		<Operation>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Operation>
 		<Result>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Result>
 	</ValueOriginType>
 	<MakeValueArgs>
@@ -399,41 +435,56 @@
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Name>
 		<Expression>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Expression>
 		<PrimitiveValue>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</PrimitiveValue>
 		<Origin>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Origin>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Arguments>
 		<Tags>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Tags>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Scope>
 		<WithTags>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="tags">TBD</param>
 			<returns>TBD</returns>
 		</WithTags>
@@ -449,6 +500,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ctor>
 		<ToString>
 			<summary>
@@ -459,16 +511,22 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Body>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Arguments>
 		<WithArguments>
 			<summary>
@@ -540,16 +598,22 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Arguments>
 		<Body>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Body>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 	</IExpression>
 	<ArgumentsCollection>
@@ -563,6 +627,8 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<GetEnumerator>
 			<summary>
@@ -624,21 +690,27 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</ToString>
 		<Create>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="name">
 				TBD
 			</param>
@@ -657,16 +729,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<GetEnumerator>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</GetEnumerator>
 	</TagsCollection>
 	<ValueVisitor>
@@ -674,17 +750,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor-value>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 		</ctor-value>
 		<VisitArgument>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 		</VisitArgument>
 	</ValueVisitor>
@@ -693,17 +772,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<MakeDefault>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</MakeDefault>
 		<MakeOfThisType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
@@ -711,6 +793,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="visitor">TBD</param>
 			<returns>TBD</returns>
 		</Accept>
@@ -720,61 +803,82 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<Primitive>
 			<summary>
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Primitive>
 		<Origin>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Origin>
 		<Expression>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Expression>
 		<Tags>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Tags>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Scope>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 		<PrimitiveString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</PrimitiveString>
 		<Accept>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</Accept>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<MakeOfThisType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
@@ -782,6 +886,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisElementType>
@@ -789,17 +894,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</MakeDefault>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ToString>
 		<Add>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<param name="fieldName">TBD</param>
 		</Add>
@@ -809,11 +917,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<MakeOfThisElementType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisElementType>
@@ -823,17 +933,21 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="collectionValue">TBD</param>
 		</ctor>
 		<Items>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Items>
 	</ValuesDebugView>
 	<ValuesLinqMathExtensions>
@@ -841,11 +955,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Sum>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Sum>
@@ -853,6 +969,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Average>
@@ -860,6 +977,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Min>
@@ -867,6 +985,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Max>
@@ -882,11 +1001,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ctor>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ToString>
 	</Number>
 	<Condition>
@@ -1007,6 +1128,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -1015,6 +1137,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -1023,6 +1146,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -1031,6 +1155,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -1039,6 +1164,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
@@ -1048,6 +1174,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
@@ -1057,6 +1184,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="d">TBD</param>
 			<param name="decimals">TBD</param>
@@ -1068,11 +1196,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="expressionBody">TBD</param>
 		</ctor>
 	</NullExpressionResultException>
@@ -1082,11 +1212,14 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="T">TBD</typeparam>
+			<typeparam name="TReturn">TBD</typeparam>
 		</class>
 		<For>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="checkValue">TBD</param>
 			<returns>TBD</returns>
 		</For>
@@ -1095,6 +1228,7 @@
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
 		</SwitchBuilder>
 		<ReturnBuilder>
@@ -1102,6 +1236,7 @@
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
 		</ReturnBuilder>
 		<CaseBuilder>
@@ -1109,6 +1244,7 @@
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
 		</CaseBuilder>
 		<ResultEvaluator>
@@ -1116,6 +1252,7 @@
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
 		</ResultEvaluator>
 	</SwitchExpression>

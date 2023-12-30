@@ -20,6 +20,7 @@
     <Version>1.0.16-alpha</Version>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Configurations>Debug;Release;Sandcastle</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

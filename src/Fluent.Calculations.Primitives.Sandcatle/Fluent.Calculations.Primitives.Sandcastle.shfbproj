@@ -15,10 +15,10 @@
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
     <RootNamespace>Documentation</RootNamespace>
-    <Name>Documentation</Name>
+    <Name>Fluent.Calculations.Primitives.Sandcastle</Name>
     <!-- SHFB properties -->
     <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
-    <OutputPath>..\..\fluent-calculations-primitives-help-output\</OutputPath>
+    <OutputPath>..\..\..\fluent-calculations-primitives-help-output\</OutputPath>
     <HtmlHelpName>Fluent Calculations Primitives Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <HelpFileFormat>Website</HelpFileFormat>
@@ -31,7 +31,7 @@
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\src\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
+      <DocumentationSource sourceFile="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
     </DocumentationSources>
     <HelpTitle>Fluent Calculations Primitives Class Library Documentation</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
@@ -76,7 +76,7 @@
     <TransformComponentArguments>
       <Argument Key="RobotsMetadata" Value="" />
       <Argument Key="BibliographyDataFile" Value="" />
-      <Argument Key="RootBreadcrumbTitleText" Value="Home" />
+      <Argument Key="RootBreadcrumbTitleText" Value="Learn" />
       <Argument Key="ResizableTocColumn" Value="True" />
       <Argument Key="CollapsibleSections" Value="True" />
       <Argument Key="LogoFile" Value="fluent-calculations-logo-128x128.png" />
@@ -97,8 +97,8 @@
     </TransformComponentArguments>
     <WebsiteAdContent>JITT Team is an ad-hoc team of .NET practitioners.</WebsiteAdContent>
     <WarnOnMissingSourceContext>True</WarnOnMissingSourceContext>
-    <ComponentPath>..\src\</ComponentPath>
-    <SourceCodeBasePath>..\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\</SourceCodeBasePath>
+    <ComponentPath>..\</ComponentPath>
+    <SourceCodeBasePath>..\Fluent.Calculations.Primitives\</SourceCodeBasePath>
     <HeaderText>Test additional content header</HeaderText>
     <FooterText>Test additional content footer</FooterText>
     <CopyrightHref>https://github.com/jitt-team/fluent-calculations-primitives%3ftab=GPL-3.0-1-ov-file#readme</CopyrightHref>
@@ -135,6 +135,9 @@
     <PostBuildEvent>
     </PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Sandcastle' ">
+    <OutputPath>bin\Sandcastle\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="icons\" />
