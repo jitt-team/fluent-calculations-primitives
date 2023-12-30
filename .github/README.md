@@ -40,7 +40,12 @@ Fluent.Calculations can be installed using the Nuget package manager or the `dot
 ```
 dotnet add package Fluent.Calculations.Primitives
 ```
-    
+
+## API Browser
+
+- [Fluent Calculation Primitives API Browser](https://fcp-api-browser.jitt.me/)
+
+
 ## Usage/Examples
 
 ```c#
