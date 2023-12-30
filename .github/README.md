@@ -43,7 +43,7 @@ dotnet add package Fluent.Calculations.Primitives
 
 ## Documentation
 
-- [Project Website](https://jitt-team.github.io/fluent-calculations-primitives/)
+- [Project Website](https://fcp-project.jitt.me/)
 - [Class Library Documentation](https://fcp-api-browser.jitt.me/)
 
 
