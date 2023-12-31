@@ -1230,6 +1230,15 @@
 				</summary>
 				<remarks>TBD</remarks>
 			</class>
+			<Case>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="caseValue">TBD</param>
+				<param name="otherCaseValues">TBD</param>
+				<returns>TBD</returns>
+			</Case>
 		</SwitchBuilder>
 		<ReturnBuilder>
 			<class>
@@ -1238,6 +1247,32 @@
 				</summary>
 				<remarks>TBD</remarks>
 			</class>
+			<Return-primitiveValue>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="primitiveValue">TBD</param>
+				<param name="valueBody">TBD</param>
+				<returns>TBD</returns>
+			</Return-primitiveValue>
+			<Return-returnValueFunc>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="returnValueFunc">TBD</param>
+				<param name="funcBody">TBD</param>
+				<returns>TBD</returns>
+			</Return-returnValueFunc>
+			<Return>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="returnValue">TBD</param>
+				<returns>TBD</returns>
+			</Return>
 		</ReturnBuilder>
 		<CaseBuilder>
 			<class>
@@ -1246,6 +1281,33 @@
 				</summary>
 				<remarks>TBD</remarks>
 			</class>
+			<Case>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="caseValue">TBD</param>
+				<param name="otherCaseValues">TBD</param>
+				<returns>TBD</returns>
+			</Case>
+			<Default-primitiveValue>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="primitiveValue">TBD</param>
+				<param name="valueBody">TBD</param>
+				<returns>TBD</returns>
+			</Default-primitiveValue>
+			<Default-defaultValueFun>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="defaultValueFun">TBD</param>
+				<param name="funcBody">TBD</param>
+				<returns>TBD</returns>
+			</Default-defaultValueFun>
 		</CaseBuilder>
 		<ResultEvaluator>
 			<class>
