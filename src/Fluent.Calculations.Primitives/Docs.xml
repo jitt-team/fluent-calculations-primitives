@@ -150,14 +150,14 @@
 			<returns></returns>
 		</Evaluate-switch>
 	</IEvaluationScope>
-	<EvaluationScopeExtensions>
+	<Scope>
 		<class>
 			<summary>
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
-		<GetScope>
+		<CreateHere>
 			<summary>
 				TBD
 			</summary>
@@ -165,8 +165,8 @@
 			<param name="obj">TBD</param>
 			<param name="scope">TBD</param>
 			<returns>TBD</returns>
-		</GetScope>
-	</EvaluationScopeExtensions>
+		</CreateHere>
+	</Scope>
 	<Result>
 		<class>
 			<summary>

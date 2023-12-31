@@ -14,7 +14,7 @@ public class ComplexValueTypesTests
 
     private Money Return()
     {
-        var scope = this.GetScope();
+        var scope = Scope.CreateHere(this);
 
         Money
             MoneyOne = Number.Of(10).AsMoney().EUR,
