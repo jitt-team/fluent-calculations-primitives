@@ -1504,4 +1504,29 @@
 			</class>
 		</ResultEvaluator>
 	</SwitchExpression>
+	<ValueJsonConverter>
+		<class>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</class>
+		<Serialize>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<param name="writeIndented">TBD</param>
+			<returns>TBD</returns>
+		</Serialize>
+		<Deserialize>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="json">TBD</param>
+			<returns>TBD</returns>
+		</Deserialize>
+	</ValueJsonConverter>
 </IntelliSense>
