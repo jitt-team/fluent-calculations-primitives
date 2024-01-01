@@ -1017,6 +1017,185 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="makeValueArgs">TBD</param>
+		</ctor-makeValueArgs>
+		<PrimitiveString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</PrimitiveString>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</ToString>
+		<IsTrue>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</IsTrue>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<implicit_Bool>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+		</implicit_Bool>
+		<implicit_Condition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+		</implicit_Condition>
+		<op_True>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_True>
+		<op_False>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_False>
+		<True>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</True>
+		<False>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</False>
+		<True-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</True-scope>
+		<False-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</False-scope>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="obj">TBD</param>
+			<returns>TBD</returns>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</GetHashCode>
+		<op_And>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_And>
+		<op_Or>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Or>
+		<op_Equal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Equal>
+		<op_NotEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_NotEqual>
+		<op_ExlusiveOr>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_ExlusiveOr>
+		<op_OnesComplement>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</op_OnesComplement>
 	</Condition>
 	<Option>
 		<class>
