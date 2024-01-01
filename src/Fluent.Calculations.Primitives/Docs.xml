@@ -50,12 +50,14 @@
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="options">Options to be used to run the calculation</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="func">
 				Lambda expression using <see cref="IValue"/> types
 			</param>
@@ -64,10 +66,13 @@
 			<summary>
 				Exit method to return result from inherited calculation
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>Calculation result</returns>
 		</method-ToResult>
 		<Return>
 			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</Return>
 	</EvaluationScopeGeneric>
 	<IEvaluationScopeGeneric>
@@ -109,7 +114,7 @@
 			<typeparam name="TValue">TBD</typeparam>
 			<param name="getResultEvaluatorFunc">TBD</param>
 			<param name="name">TBD</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</Evaluate-switch>
 		<ClearCache>
 			<summary>TBD</summary>
@@ -1062,6 +1067,7 @@
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
+			<returns>TBD</returns>
 		</implicit_Bool>
 		<implicit_Condition>
 			<summary>
@@ -1069,6 +1075,7 @@
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="condition">TBD</param>
+			<returns>TBD</returns>
 		</implicit_Condition>
 		<op_True>
 			<summary>
