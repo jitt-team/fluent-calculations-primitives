@@ -43,46 +43,58 @@ public class Number : Value,
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue,
             ValueOriginType.Constant, scope));
 
-    /// <include file="Docs.xml" path='*/Number/operator-substract/*'/>
-    public static Number operator -(Number left, Number right) => left.Substract(right);
+    /// <include file="Docs.xml" path='*/Number/Subtraction/*'/>
+    public static Number operator -(Number left, Number right) => left.Subtraction(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-add/*'/>
-    public static Number operator +(Number left, Number right) => left.Add(right);
+    /// <include file="Docs.xml" path='*/Number/Addition/*'/>
+    public static Number operator +(Number left, Number right) => left.Addition(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-divide/*'/>
-    public static Number operator /(Number left, Number right) => left.Divide(right);
+    /// <include file="Docs.xml" path='*/Number/Division/*'/>
+    public static Number operator /(Number left, Number right) => left.Division(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-multiply/*'/>
+    /// <include file="Docs.xml" path='*/Number/Multiply/*'/>
     public static Number operator *(Number left, Number right) => left.Multiply(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-greater-than/*'/>
-    public static Condition operator >(Number left, Number right) => left.GreaterThan(right);
-
-    /// <include file="Docs.xml" path='*/Number/operator-less-than/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_LessThan/*'/>
     public static Condition operator <(Number left, Number right) => left.LessThan(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-greater-or-equal/*'/>
-    public static Condition operator >=(Number left, Number right) => left.GreaterThanOrEqual(right);
-
-    /// <include file="Docs.xml" path='*/Number/operator-less-or-equal/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_LessThanOrEqual/*'/>
     public static Condition operator <=(Number left, Number right) => left.LessThanOrEqual(right);
 
-    /// <include file="Docs.xml" path='*/Number/operator-equal/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_GreaterThan/*'/>
+    public static Condition operator >(Number left, Number right) => left.GreaterThan(right);
+
+    /// <include file="Docs.xml" path='*/Number/op_GreaterThanOrEqual/*'/>
+    public static Condition operator >=(Number left, Number right) => left.GreaterThanOrEqual(right);
+
+    /// <include file="Docs.xml" path='*/Number/op_Equality/*'/>    
     public static Condition operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right));
 
-    /// <include file="Docs.xml" path='*/Number/operator-not-equal/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_Inequality/*'/>
     public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right));
 
+    /// <include file="Docs.xml" path='*/Number/op_GreaterThan/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator >(Number left, Number right) => left.Primitive > right.Primitive;
 
+    /// <include file="Docs.xml" path='*/Number/op_GreaterThanOrEqual/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator >=(Number left, Number right) => left.Primitive >= right.Primitive;
 
+    /// <include file="Docs.xml" path='*/Number/op_LessThan/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator <(Number left, Number right) => left.Primitive < right.Primitive;
 
+    /// <include file="Docs.xml" path='*/Number/op_LessThanOrEqual/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator <=(Number left, Number right) => left.Primitive <= right.Primitive;
 
+    // <include file="Docs.xml" path='*/Number/op_Equality/*'/>
+    /// <summary>
+    /// TBD
+    /// </summary>
+    /// <param name="left">TBD</param>
+    /// <param name="right">TBD</param>
+    /// <returns>TBD</returns>
     static bool IEqualityOperators<Number, Number, bool>.operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right)).IsTrue;
 
+    /// <include file="Docs.xml" path='*/Number/op_Inequality/*'/>
     static bool IEqualityOperators<Number, Number, bool>.operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right)).IsTrue;
 
     /// <include file="Docs.xml" path='*/Number/MakeOfThisType/*'/>
@@ -97,29 +109,35 @@ public class Number : Value,
     /// <include file="Docs.xml" path='*/Number/GetHashCode/*'/>
     public override int GetHashCode() => base.GetHashCode();
 
-    /// <include file="Docs.xml" path='*/Number/Add/*'/>
-    protected Number Add(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
+    /// <include file="Docs.xml" path='*/Number/Addition/*'/>
+    protected Number Addition(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
 
-    /// <include file="Docs.xml" path='*/Number/Substract/*'/>
-    protected Number Substract(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
+    /// <include file="Docs.xml" path='*/Number/Subtraction/*'/>
+    protected Number Subtraction(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
 
     /// <include file="Docs.xml" path='*/Number/Multiply/*'/>
     protected Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
 
-    /// <include file="Docs.xml" path='*/Number/Divide/*'/>
-    protected Number Divide(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
+    /// <include file="Docs.xml" path='*/Number/Division/*'/>
+    protected Number Division(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
-    private Condition IsEqual(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
+    /// <include file="Docs.xml" path='*/Number/IsEqual/*'/>
+    protected Condition IsEqual(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
 
-    private Condition NotEqual(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
+    /// <include file="Docs.xml" path='*/Number/NotEqual/*'/>
+    protected Condition NotEqual(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
 
-    private Condition LessThan(Number right) => HandleComparisonOperation(right, (a, b) => a < b);
+    /// <include file="Docs.xml" path='*/Number/LessThan/*'/>
+    protected Condition LessThan(Number right) => HandleComparisonOperation(right, (a, b) => a < b);
 
-    private Condition GreaterThan(Number right) => HandleComparisonOperation(right, (a, b) => a > b);
+    /// <include file="Docs.xml" path='*/Number/GreaterThan/*'/>
+    protected Condition GreaterThan(Number right) => HandleComparisonOperation(right, (a, b) => a > b);
 
-    private Condition LessThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a <= b);
+    /// <include file="Docs.xml" path='*/Number/LessThanOrEqual/*'/>
+    protected Condition LessThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a <= b);
 
-    private Condition GreaterThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a >= b);
+    /// <include file="Docs.xml" path='*/Number/GreaterThanOrEqual/*'/>
+    protected Condition GreaterThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a >= b);
 
     private Condition HandleComparisonOperation(IValueProvider value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>
         HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);

@@ -53,7 +53,7 @@
       <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions.Capture" isDocumented="True">Contains expression evaluation exceptions.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True">Contains classes used to serialize and deserialize values and calculation results</NamespaceSummaryItem>
     </NamespaceSummaries>
-    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
+    <VisibleItems>Attributes, InheritedMembers, Protected, NonBrowsable</VisibleItems>
     <MissingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <BinaryTOC>True</BinaryTOC>
@@ -104,6 +104,8 @@
     <CopyrightHref>https://github.com/jitt-team/fluent-calculations-primitives%3ftab=GPL-3.0-1-ov-file#readme</CopyrightHref>
     <CopyrightText>JITT Team 2024</CopyrightText>
     <FeedbackEMailAddress>team%40jitt.me</FeedbackEMailAddress>
+    <ApiFilter>
+    </ApiFilter>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

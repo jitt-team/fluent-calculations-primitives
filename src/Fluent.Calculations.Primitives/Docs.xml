@@ -1015,12 +1015,138 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</ctor>
+		<ctor-number>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor-number>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor-makeValueArgs>
+		<implicit-int>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</implicit-int>
+		<implicit-decimal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</implicit-decimal>
+		<Zero>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Zero>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Of>
+		<Of-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Of-scope>
+		<Subtraction>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Subtraction>
+		<Addition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Addition>
+		<Division>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Division>
+		<Multiply>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Multiply>		
+		<op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_Equality>
+		<op_GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_GreaterThan>
+		<op_GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_GreaterThanOrEqual>
+		<op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_Inequality>
+		<op_LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_LessThan>
+		<op_LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</op_LessThanOrEqual>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
 		</ToString>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</MakeOfThisType>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</MakeDefault>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</GetHashCode>
 	</Number>
 	<Condition>
 		<class>
@@ -1055,6 +1181,34 @@
 			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</ToString>
+		<Addition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</Addition>
+		<Subtraction>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</Subtraction>
+		<Multiply>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</Multiply>
+		<Division>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</Division>
 		<IsTrue>
 			<summary>
 				TBD
@@ -1084,22 +1238,7 @@
 			<param name="condition">TBD</param>
 			<returns>TBD</returns>
 		</implicit_Condition>
-		<op_True>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="condition">TBD</param>
-			<returns>TBD</returns>
-		</op_True>
-		<op_False>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="condition">TBD</param>
-			<returns>TBD</returns>
-		</op_False>
+
 		<True>
 			<summary>
 				TBD
@@ -1157,6 +1296,22 @@
 			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</GetHashCode>
+		<op_True>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_True>
+		<op_False>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_False>
 		<op_And>
 			<summary>
 				TBD
@@ -1175,7 +1330,7 @@
 			<param name="right">TBD</param>
 			<returns>TBD</returns>
 		</op_Or>
-		<op_Equal>
+		<op_Equality>
 			<summary>
 				TBD
 			</summary>
@@ -1183,8 +1338,8 @@
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
 			<returns>TBD</returns>
-		</op_Equal>
-		<op_NotEqual>
+		</op_Equality>
+		<op_Inequality>
 			<summary>
 				TBD
 			</summary>
@@ -1192,7 +1347,7 @@
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
 			<returns>TBD</returns>
-		</op_NotEqual>
+		</op_Inequality>
 		<op_ExlusiveOr>
 			<summary>
 				TBD
@@ -1291,6 +1446,11 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</operator-not-equal>
+		<Switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</Switch>
 	</Option>
 	<Option-static>
 		<class>
