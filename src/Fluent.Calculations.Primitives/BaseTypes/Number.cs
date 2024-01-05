@@ -73,28 +73,22 @@ public class Number : Value,
     /// <include file="Docs.xml" path='*/Number/op_Inequality/*'/>
     public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right));
 
-    /// <include file="Docs.xml" path='*/Number/op_GreaterThan/*'/>
+    /// <include file="Docs.xml" path='*/Number/generic_op_GreaterThan/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator >(Number left, Number right) => left.Primitive > right.Primitive;
 
-    /// <include file="Docs.xml" path='*/Number/op_GreaterThanOrEqual/*'/>
+    /// <include file="Docs.xml" path='*/Number/generic_op_GreaterThanOrEqual/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator >=(Number left, Number right) => left.Primitive >= right.Primitive;
 
-    /// <include file="Docs.xml" path='*/Number/op_LessThan/*'/>
+    /// <include file="Docs.xml" path='*/Number/generic_op_LessThan/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator <(Number left, Number right) => left.Primitive < right.Primitive;
 
-    /// <include file="Docs.xml" path='*/Number/op_LessThanOrEqual/*'/>
+    /// <include file="Docs.xml" path='*/Number/generic_op_LessThanOrEqual/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator <=(Number left, Number right) => left.Primitive <= right.Primitive;
 
-    // <include file="Docs.xml" path='*/Number/op_Equality/*'/>
-    /// <summary>
-    /// TBD
-    /// </summary>
-    /// <param name="left">TBD</param>
-    /// <param name="right">TBD</param>
-    /// <returns>TBD</returns>
+    /// <include file="Docs.xml" path='*/Number/generic_op_Equality/*'/>
     static bool IEqualityOperators<Number, Number, bool>.operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right)).IsTrue;
 
-    /// <include file="Docs.xml" path='*/Number/op_Inequality/*'/>
+    /// <include file="Docs.xml" path='*/Number/generic_op_Inequality/*'/>
     static bool IEqualityOperators<Number, Number, bool>.operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right)).IsTrue;
 
     /// <include file="Docs.xml" path='*/Number/MakeOfThisType/*'/>
