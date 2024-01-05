@@ -65,7 +65,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
             string
                 expectedScope = string.Concat(GetType().Name, ".", Constant.TestEvaluationScope);
 
-            EvaluationScope scope = this.GetScope(Constant.TestEvaluationScope);
+            EvaluationScope scope = Scope.CreateHere(this, Constant.TestEvaluationScope);
 
             Number
                 NumberOne = Number.Of(2, nameof(NumberOne)),
@@ -103,7 +103,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
     {
         public Number Return()
         {
-            var scope = this.GetScope("MAIN-SCOPE");
+            var scope = Scope.CreateHere(this, "MAIN-SCOPE");
 
             Number
                 NumberOne = Number.Of(2, nameof(NumberOne)),
@@ -114,7 +114,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
         public Number DependencyCalculation()
         {
-            var scope = this.GetScope("CHILD-SCOPE");
+            var scope = Scope.CreateHere(this, "CHILD-SCOPE");
 
             Number
                 A = Number.Of(2, nameof(A)),

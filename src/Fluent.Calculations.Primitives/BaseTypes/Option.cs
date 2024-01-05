@@ -57,10 +57,10 @@ namespace Fluent.Calculations.Primitives.BaseTypes
             HandleBinaryOperation<Condition, bool>(value, (a, b) => compareFunc(a.Primitive, b.Primitive), operatorName);
     }
 
-    /// <include file="Docs.xml" path='*/Option/Option-static/class/*'/>
+    /// <include file="Docs.xml" path='*/Option-static/class/*'/>
     public static class Option
     {
-        /// <include file="Docs.xml" path='*/Option/Option-static/Of/*'/>
+        /// <include file="Docs.xml" path='*/Option-static/Of/*'/>
         public static Option<TEnum> Of<TEnum>(TEnum primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) where TEnum : struct, Enum
             => new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant),
                 Convert.ToDecimal((int)(object)primitiveValue)) /* explore if this cast can be optimized */);

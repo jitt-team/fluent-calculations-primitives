@@ -24,7 +24,7 @@ public static class ValueJsonConverter
         return JsonSerializer.Deserialize<ValueDto>(Enforce.IsNullOrWhiteSpace(json), DeserializerOptions) ??
         throw new ArgumentException("Provided Json string can not be deserialized.", nameof(json));
     }
-
+    
     private static void IgnoreEpmptyList<TContainingType, TListType, IElementType>(JsonTypeInfo typeInfo) where TListType : IEnumerable<IElementType>
     {
         if (typeInfo.Type != typeof(TContainingType))

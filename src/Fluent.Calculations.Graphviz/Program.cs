@@ -71,7 +71,7 @@ namespace Fluent.Calculations.Graphviz
     {
         public Number Calculate()
         {
-            var scope = this.GetScope();
+            var scope = Scope.CreateHere(this);
 
             Number
                 A = Number.Of(5),

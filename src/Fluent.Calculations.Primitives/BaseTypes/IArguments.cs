@@ -1,6 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 
-/// <include file="Docs.xml" path='*/IArguments/class/*'/>
+/// <include file="Docs.xml" path='*/IArguments/inteface/*'/>
 public interface IArguments : IEnumerable<IValue>
 {
     /// <include file="Docs.xml" path='*/IArguments/Count/*'/>

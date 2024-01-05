@@ -41,14 +41,14 @@ public class EvaluationScope : IEvaluationScope
      new(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = scope });
 
     /// <include file="Docs.xml" path='*/EvaluationScope/Evaluate-switch/*'/>
-    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getSwitchResultFunc, [CallerMemberName] string name = StringConstants.NaN)
+    public TValue Evaluate<TCase, TValue>(Func<SwitchExpression<TCase, TValue>.ResultEvaluator> getResultEvaluatorFunc, [CallerMemberName] string name = StringConstants.NaN)
             where TCase : struct, Enum
             where TValue : class, IValueProvider, new()
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);
-
-        return getSwitchResultFunc().GetResult(name);
+        
+        return getResultEvaluatorFunc().GetResult(name);
     }
 
     /// <include file="Docs.xml" path='*/EvaluationScope/Evaluate/*'/>
@@ -71,8 +71,8 @@ public class EvaluationScope : IEvaluationScope
         static string RemoveLambdaPrefix(string body) => body.Replace("() => ", "");
     }
 
-    /// <include file="Docs.xml" path='*/EvaluationScope/ClearValuesCache/*'/>
-    protected void ClearValuesCache() => valuesCache.Clear();
+    /// <include file="Docs.xml" path='*/EvaluationScope/ClearCache/*'/>
+    protected void ClearCache() => valuesCache.Clear();
 
     private TValue EvaluateInternal<TValue>(
        Expression<Func<TValue>> lambdaExpression, string name, string expressionBody)
