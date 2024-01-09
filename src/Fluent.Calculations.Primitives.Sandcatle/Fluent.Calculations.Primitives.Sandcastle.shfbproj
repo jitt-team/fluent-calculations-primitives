@@ -17,7 +17,7 @@
     <RootNamespace>Documentation</RootNamespace>
     <Name>Fluent.Calculations.Primitives.Sandcastle</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>..\..\..\fluent-calculations-primitives-help-output\</OutputPath>
     <HtmlHelpName>Fluent Calculations Primitives Documentation</HtmlHelpName>
     <Language>en-US</Language>

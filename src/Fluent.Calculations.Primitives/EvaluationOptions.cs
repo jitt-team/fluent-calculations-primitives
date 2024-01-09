@@ -3,6 +3,9 @@
 /// <include file="Docs.xml" path='*/EvaluationOptions/class/*'/>
 public class EvaluationOptions
 {
+    /// <include file="Docs.xml" path='*/EvaluationOptions/ctor/*'/>
+    public EvaluationOptions() { }
+
     /// <include file="Docs.xml" path='*/EvaluationOptions/Default/*'/>
     public static EvaluationOptions Default => new();
 

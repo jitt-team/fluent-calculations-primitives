@@ -1,6 +1,7 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
@@ -43,16 +44,16 @@ public class Number : Value,
         new(MakeValueArgs.Compose(fieldName, new ExpressionNode($"{primitiveValue}", ExpressionNodeType.Constant), primitiveValue,
             ValueOriginType.Constant, scope));
 
-    /// <include file="Docs.xml" path='*/Number/Subtraction/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_Subtraction/*'/>
     public static Number operator -(Number left, Number right) => left.Subtraction(right);
 
-    /// <include file="Docs.xml" path='*/Number/Addition/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_Addition/*'/>
     public static Number operator +(Number left, Number right) => left.Addition(right);
 
-    /// <include file="Docs.xml" path='*/Number/Division/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_Division/*'/>
     public static Number operator /(Number left, Number right) => left.Division(right);
 
-    /// <include file="Docs.xml" path='*/Number/Multiply/*'/>
+    /// <include file="Docs.xml" path='*/Number/op_Multiply/*'/>
     public static Number operator *(Number left, Number right) => left.Multiply(right);
 
     /// <include file="Docs.xml" path='*/Number/op_LessThan/*'/>
@@ -68,10 +69,10 @@ public class Number : Value,
     public static Condition operator >=(Number left, Number right) => left.GreaterThanOrEqual(right);
 
     /// <include file="Docs.xml" path='*/Number/op_Equality/*'/>    
-    public static Condition operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right));
+    public static Condition operator ==(Number? left, Number? right) => Enforce.NotNull(left).Equality(Enforce.NotNull(right));
 
     /// <include file="Docs.xml" path='*/Number/op_Inequality/*'/>
-    public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right));
+    public static Condition operator !=(Number? left, Number? right) => Enforce.NotNull(left).Inequality(Enforce.NotNull(right));
 
     /// <include file="Docs.xml" path='*/Number/generic_op_GreaterThan/*'/>
     static bool IComparisonOperators<Number, Number, bool>.operator >(Number left, Number right) => left.Primitive > right.Primitive;
@@ -86,10 +87,10 @@ public class Number : Value,
     static bool IComparisonOperators<Number, Number, bool>.operator <=(Number left, Number right) => left.Primitive <= right.Primitive;
 
     /// <include file="Docs.xml" path='*/Number/generic_op_Equality/*'/>
-    static bool IEqualityOperators<Number, Number, bool>.operator ==(Number? left, Number? right) => Enforce.NotNull(left).IsEqual(Enforce.NotNull(right)).IsTrue;
+    static bool IEqualityOperators<Number, Number, bool>.operator ==(Number? left, Number? right) => Enforce.NotNull(left).Equality(Enforce.NotNull(right)).IsTrue;
 
     /// <include file="Docs.xml" path='*/Number/generic_op_Inequality/*'/>
-    static bool IEqualityOperators<Number, Number, bool>.operator !=(Number? left, Number? right) => Enforce.NotNull(left).NotEqual(Enforce.NotNull(right)).IsTrue;
+    static bool IEqualityOperators<Number, Number, bool>.operator !=(Number? left, Number? right) => Enforce.NotNull(left).Inequality(Enforce.NotNull(right)).IsTrue;
 
     /// <include file="Docs.xml" path='*/Number/MakeOfThisType/*'/>
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Number(args);
@@ -115,11 +116,11 @@ public class Number : Value,
     /// <include file="Docs.xml" path='*/Number/Division/*'/>
     protected Number Division(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
-    /// <include file="Docs.xml" path='*/Number/IsEqual/*'/>
-    protected Condition IsEqual(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
+    /// <include file="Docs.xml" path='*/Number/Equality/*'/>
+    protected Condition Equality(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
 
-    /// <include file="Docs.xml" path='*/Number/NotEqual/*'/>
-    protected Condition NotEqual(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
+    /// <include file="Docs.xml" path='*/Number/Inequality/*'/>
+    protected Condition Inequality(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
 
     /// <include file="Docs.xml" path='*/Number/LessThan/*'/>
     protected Condition LessThan(Number right) => HandleComparisonOperation(right, (a, b) => a < b);
