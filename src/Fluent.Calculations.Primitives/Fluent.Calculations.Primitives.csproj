@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Fluent Calculations Primitives</Title>
-    <Authors>Fluent Calculations Team</Authors>
+    <Authors>JITT Team</Authors>
     <Company>JITT</Company>
     <Product>Fluent Calculations Primitives</Product>
     <Description>Fluent Calculations is a set of libraries for building traceable calculations and logic. Primitives library provides foundation for future domain specific implementations.</Description>

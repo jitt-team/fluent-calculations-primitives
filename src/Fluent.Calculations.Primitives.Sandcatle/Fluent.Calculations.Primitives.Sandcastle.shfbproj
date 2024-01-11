@@ -15,10 +15,10 @@
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
     <RootNamespace>Documentation</RootNamespace>
-    <Name>Documentation</Name>
+    <Name>Fluent.Calculations.Primitives.Sandcastle</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
-    <OutputPath>..\..\fluent-calculations-primitives-help-output\</OutputPath>
+    <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
+    <OutputPath>..\..\..\fluent-calculations-primitives-help-output\</OutputPath>
     <HtmlHelpName>Fluent Calculations Primitives Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <HelpFileFormat>Website</HelpFileFormat>
@@ -31,7 +31,7 @@
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\src\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
+      <DocumentationSource sourceFile="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
     </DocumentationSources>
     <HelpTitle>Fluent Calculations Primitives Class Library Documentation</HelpTitle>
     <HelpFileVersion>1.0.0.0</HelpFileVersion>
@@ -45,15 +45,16 @@
     <RootNamespaceTitle>Fluent.Calculations.Primitives</RootNamespaceTitle>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives" isDocumented="True">Contains fundamental classes and base classes used to create calculations</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.BaseTypes" isDocumented="True">Contains base types that represent arguments and results of your calculations and related metadata. Conains helper classes to enable basic math, logical operations and supported math functions.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Collections" isDocumented="True">Contains base types that represent collection arguments and results of your calculations and related metadata. Contains classes that provides supported operations with collections.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions (Group)" isGroup="True" isDocumented="True">Namespace containing classes related to handling of expressions.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions" isDocumented="True">Contains interfaces defining expressions metadata.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions.Capture" isDocumented="True">Contains expression evaluation exceptions.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True">Contains classes used to serialize and deserialize values and calculation results</NamespaceSummaryItem></NamespaceSummaries>
-    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
-    <MissingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives" isDocumented="True">Contains fundamental classes and base classes used to create calculations</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.BaseTypes" isDocumented="True">Contains base types that represent arguments and results of your calculations and related metadata. Conains helper classes to enable basic math, logical operations and supported math functions.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Collections" isDocumented="True">Contains base types that represent collection arguments and results of your calculations and related metadata. Contains classes that provides supported operations with collections.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions (Group)" isGroup="True" isDocumented="True">Namespace containing classes related to handling of expressions.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions" isDocumented="True">Contains interfaces defining expressions metadata.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Expressions.Capture" isDocumented="True">Contains expression evaluation exceptions.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True">Contains classes used to serialize and deserialize values and calculation results</NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <VisibleItems>Attributes, InheritedMembers, Protected, NonBrowsable</VisibleItems>
+    <MissingTags>AutoDocumentCtors, Namespace, AutoDocumentDispose</MissingTags>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <BinaryTOC>True</BinaryTOC>
     <IncludeFavorites>True</IncludeFavorites>
@@ -75,7 +76,7 @@
     <TransformComponentArguments>
       <Argument Key="RobotsMetadata" Value="" />
       <Argument Key="BibliographyDataFile" Value="" />
-      <Argument Key="RootBreadcrumbTitleText" Value="Home" />
+      <Argument Key="RootBreadcrumbTitleText" Value="Learn" />
       <Argument Key="ResizableTocColumn" Value="True" />
       <Argument Key="CollapsibleSections" Value="True" />
       <Argument Key="LogoFile" Value="fluent-calculations-logo-128x128.png" />
@@ -91,18 +92,20 @@
       <Argument Key="EnumMemberSortOrder" Value="Value" />
       <Argument Key="FlagsEnumValueFormat" Value="IntegerValue" />
       <Argument Key="FlagsEnumSeparatorSize" Value="0" />
-      <Argument Key="BaseSourceCodeUrl" Value="https://github.com/jitt-team/fluent-calculations-primitives/blob/main/src/Fluent.Calculations.Primitives" />
+      <Argument Key="BaseSourceCodeUrl" Value="https://github.com/jitt-team/fluent-calculations-primitives/blob/main/src/Fluent.Calculations.Primitives/" />
       <Argument Key="RequestExampleUrl" Value="" />
     </TransformComponentArguments>
     <WebsiteAdContent>JITT Team is an ad-hoc team of .NET practitioners.</WebsiteAdContent>
     <WarnOnMissingSourceContext>True</WarnOnMissingSourceContext>
-    <ComponentPath>..\src\</ComponentPath>
-    <SourceCodeBasePath>..\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\</SourceCodeBasePath>
+    <ComponentPath>..\</ComponentPath>
+    <SourceCodeBasePath>..\Fluent.Calculations.Primitives\</SourceCodeBasePath>
     <HeaderText>Test additional content header</HeaderText>
     <FooterText>Test additional content footer</FooterText>
     <CopyrightHref>https://github.com/jitt-team/fluent-calculations-primitives%3ftab=GPL-3.0-1-ov-file#readme</CopyrightHref>
     <CopyrightText>JITT Team 2024</CopyrightText>
     <FeedbackEMailAddress>team%40jitt.me</FeedbackEMailAddress>
+    <ApiFilter>
+    </ApiFilter>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
@@ -134,6 +137,9 @@
     <PostBuildEvent>
     </PostBuildEvent>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Sandcastle' ">
+    <OutputPath>bin\Sandcastle\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="icons\" />

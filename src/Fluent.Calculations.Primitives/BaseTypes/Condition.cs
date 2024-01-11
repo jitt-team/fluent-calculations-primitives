@@ -5,9 +5,13 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs.xml" path='*/Condition/class/*'/>
+/// <summary>
+/// TBD
+/// </summary>
+/// <remarks>TBD</remarks>
+/// <param name="makeValueArgs">TBD</param>
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
-public sealed class Condition : Value,
+public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
@@ -16,9 +20,6 @@ public sealed class Condition : Value,
 
     /// <include file="Docs.xml" path='*/Condition/PrimitiveString/*'/>
     public override string PrimitiveString => $"{IsTrue}";
-
-    /// <include file="Docs.xml" path='*/Condition/ctor-makeValueArgs/*'/>
-    public Condition(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     /// <include file="Docs.xml" path='*/Condition/ctor/*'/>
     public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0)) { }
@@ -29,17 +30,17 @@ public sealed class Condition : Value,
     /// <include file="Docs.xml" path='*/Condition/MakeDefault/*'/>
     public override IValueProvider MakeDefault() => False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit-bool/*'/>
-    public static implicit operator Condition(bool condition) => condition ? True() : False();
+    /// <include file="Docs.xml" path='*/Condition/implicit_Bool/*'/>
+    public static implicit operator Condition(bool value) => value ? True() : False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit-conditions/*'/>
+    /// <include file="Docs.xml" path='*/Condition/implicit_Condition/*'/>
+    public static implicit operator bool(Condition condition) => condition.IsTrue;
+
+    /// <include file="Docs.xml" path='*/Condition/op_True/*'/>
     public static bool operator true(Condition condition) => condition.IsTrue;
 
-    /// <include file="Docs.xml" path='*/Condition/operator-false/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_False/*'/>
     public static bool operator false(Condition condition) => !condition.IsTrue;
-
-    /// <include file="Docs.xml" path='*/Condition/operator-true/*'/>
-    public static implicit operator bool(Condition condition) => condition.IsTrue;
 
     /// <include file="Docs.xml" path='*/Condition/True/*'/>
     public static Condition True([CallerMemberName] string expressionName = "") => True(StringConstants.NaN, expressionName);
@@ -62,22 +63,22 @@ public sealed class Condition : Value,
     /// <include file="Docs.xml" path='*/Condition/GetHashCode/*'/>
     public override int GetHashCode() => base.GetHashCode();
 
-    /// <include file="Docs.xml" path='*/Condition/operator-and/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_And/*'/>
     public static Condition operator &(Condition left, Condition right) => left.And(right);
 
-    /// <include file="Docs.xml" path='*/Condition/operator-or/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_Or/*'/>
     public static Condition operator |(Condition left, Condition right) => left.Or(right);
 
-    /// <include file="Docs.xml" path='*/Condition/operator-equal/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_Equality/*'/>
     public static Condition operator ==(Condition? left, Condition? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
-    /// <include file="Docs.xml" path='*/Condition/operator-not-equal/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_Inequality/*'/>
     public static Condition operator !=(Condition? left, Condition? right) => Enforce.NotNull(left).NotEqualToRight(right);
 
-    /// <include file="Docs.xml" path='*/Condition/operator-exclusive-or/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_ExlusiveOr/*'/>
     public static Condition operator ^(Condition left, Condition right) => left.ExlusiveOr(right);
 
-    /// <include file="Docs.xml" path='*/Condition/operator-one-complement/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_OnesComplement/*'/>
     public static Condition operator ~(Condition value) => value.OnesComplement();
 
     private Condition OnesComplement() => throw new NotSupportedException();

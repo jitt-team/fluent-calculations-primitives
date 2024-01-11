@@ -50,24 +50,38 @@
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="options">Options to be used to run the calculation</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="func">
 				Lambda expression using <see cref="IValue"/> types
 			</param>
 		</ctor-func>
-		<method-ToResult>
+		<ctor-scope>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">
+				TBD
+			</param>
+		</ctor-scope>
+		<ToResult>
 			<summary>
 				Exit method to return result from inherited calculation
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>Calculation result</returns>
-		</method-ToResult>
+		</ToResult>
 		<Return>
 			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</Return>
 	</EvaluationScopeGeneric>
 	<IEvaluationScopeGeneric>
@@ -93,14 +107,63 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
+		<ctor>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-options>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="options">Options to be used to run the calculation</param>
+		</ctor-options>
+		<ctor-scope>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">
+				TBD
+			</param>
+		</ctor-scope>
 		<Evaluate>
 			<summary>Evaluates an expression and captures it's arguments.</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="TValue">Result value type</typeparam>
 			<param name="lambdaExpression">Math or logic expression</param>
 			<param name="name">Result name (captured by the compiler by default)</param>
 			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</Evaluate>
+		<Evaluate-switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TCase">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="getResultEvaluatorFunc">TBD</param>
+			<param name="name">TBD</param>
+			<returns>TBD</returns>
+		</Evaluate-switch>
+		<ClearCache>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+		</ClearCache>
+		<Create>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<returns>TBD</returns>
+		</Create>
+		<ToResult>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</ToResult>
 	</EvaluationScope>
 	<IEvaluationScope>
 		<interface>
@@ -118,40 +181,64 @@
 			<param name="lambdaExpression">TBD</param>
 			<param name="name">TBD</param>
 			<param name="lambdaExpressionBody">TBD</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</Evaluate>
+		<Evaluate-switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TCase">TBD</typeparam>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="getResultEvaluatorFunc">TBD</param>
+			<param name="name">TBD</param>
+			<returns>TBD</returns>
+		</Evaluate-switch>
 	</IEvaluationScope>
-	<EvaluationScopeExtensions>
+	<Scope>
 		<class>
 			<summary>
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
-		<GetScope>
+		<CreateHere>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="obj">TBD</param>
 			<param name="scope">TBD</param>
 			<returns>TBD</returns>
-		</GetScope>
-	</EvaluationScopeExtensions>
+		</CreateHere>
+	</Scope>
 	<Result>
 		<class>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Of>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="name">TBD</param>
+			<param name="lambdaExpression">TBD</param>
+			<param name="lambdaExpressionBody">TBD</param>
+			<returns>TBD</returns>
 		</Of>
 		<OfWithScope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TValue">TBD</typeparam>
+			<param name="name">TBD</param>
+			<param name="lambdaExpression">TBD</param>
+			<param name="lambdaExpressionBody">TBD</param>
+			<param name="scopeName">TBD</param>
+			<returns>TBD</returns>
 		</OfWithScope>
 	</Result>
 	<EvaluationOptions>
@@ -159,77 +246,115 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
 		<Default>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Default>
 		<AlwaysReadNamesFromExpressions>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</AlwaysReadNamesFromExpressions>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Scope>
 	</EvaluationOptions>
 	<Value>
 		<class>
 			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>Name of the variable</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Name>
 		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Expression>
 		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Primitive>
 		<PrimitiveString>
 			<summary>.NET primitive representation of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</PrimitiveString>
 		<Origin>
 			<summary>Origin type of the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Origin>
 		<Tags>
 			<summary>Custom tags associated with the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Tags>
+		<Scope>
+			<summary>Custom tags associated with the value</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
+		</Scope>
 		<Type>
 			<summary>TBD</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Type>
 		<ctor-value>
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">Value to copy</param>
 		</ctor-value>
-		<ctor-args>
+		<ctor-makeValueArgs>
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
 			</summary>
-			<param name="createValueArgs">Arguments to create a new value</param>
-		</ctor-args>
+			<remarks>TBD</remarks>
+			<param name="makeValueArgs">Arguments to create a new value</param>
+		</ctor-makeValueArgs>
 		<MakeOfThisType>
 			<summary>
 				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">Arguments to create a new value</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</MakeOfThisType>
 		<MakeDefault>
 			<summary>
 				Initializes a new instance with default values, equivalent to zero/null value.
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>Instance of zero value</returns>
 		</MakeDefault>
 		<HandleBinaryOperation>
 			<summary>
 				Handles math and comparison operations of underlying primitve values in derived types.
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="ResultType">Operation result type</typeparam>
 			<typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
 			<param name="right">Right side value of operatoin</param>
@@ -241,6 +366,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
 		</Equals-value>
@@ -248,6 +374,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="obj">TBD</param>
 			<returns>TBD</returns>
 		</Equals-obj>
@@ -255,12 +382,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</GetHashCode>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</ToString>
 	</Value>
@@ -269,64 +398,91 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</interface>
 		<Name>
 			<summary>Name of the variable</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<Expression>
 			<summary>Expression that was used to calculate or define the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Expression>
 		<Primitive>
 			<summary>.NET primitive representation of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Primitive>
 		<PrimitiveString>
 			<summary>.NET primitive representation of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</PrimitiveString>
 		<Origin>
 			<summary>Origin type of the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Origin>
 		<Tags>
 			<summary>Custom tags associated with the value</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Tags>
 		<Type>
 			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
+		<Scope>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</Scope>
 	</IValue>
 	<ValueOriginType>
 		<enum>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</enum>
 		<NaN>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</NaN>
 		<Parameter>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Parameter>
 		<Constant>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Constant>
 		<Evaluation>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Evaluation>
 		<Operation>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Operation>
 		<Result>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Result>
 	</ValueOriginType>
 	<MakeValueArgs>
@@ -334,46 +490,62 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Name>
 		<Expression>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Expression>
 		<PrimitiveValue>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</PrimitiveValue>
 		<Origin>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Origin>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Arguments>
 		<Tags>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Tags>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Scope>
 		<WithTags>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="tags">TBD</param>
 			<returns>TBD</returns>
 		</WithTags>
@@ -389,31 +561,41 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ctor>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</ToString>
 		<Body>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Body>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Arguments>
 		<WithArguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="first">TBD</param>
 			<param name="other">TBD</param>
 			<returns>TBD</returns>
@@ -422,6 +604,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="arguments">TBD</param>
 			<returns>TBD</returns>
 		</WithArguments-enumerable>
@@ -431,63 +614,78 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<None>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</None>
 		<Constant>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Constant>
 		<Collection>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Collection>
 		<Lambda>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Lambda>
 		<Switch>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</Switch>
-		<BinaryExpression>
+		<Binary>
 			<summary>
 				TBD
 			</summary>
-		</BinaryExpression>
-		<MathExpression>
+			<remarks>TBD</remarks>
+		</Binary>
+		<Math>
 			<summary>
 				TBD
 			</summary>
-		</MathExpression>
+			<remarks>TBD</remarks>
+		</Math>
 	</ExpressionNodeType>
 	<IExpression>
-		<inteface>
+		<interface>
 			<summary>
 				TBD
 			</summary>
-		</inteface>
+			<remarks>TBD</remarks>
+		</interface>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Arguments>
 		<Body>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Body>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 	</IExpression>
 	<ArgumentsCollection>
@@ -495,16 +693,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<GetEnumerator>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>
 				TBD
 			</returns>
@@ -515,11 +717,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<value>TBD</value>
+			<remarks>TBD</remarks>
 		</Count>
 	</IArguments>
 	<ArgumentsDebugView>
@@ -527,12 +732,15 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="arguments">TBD</param>
 		</class>
 		<Arguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Arguments>
 	</ArgumentsDebugView>
 	<ArgumentsVisitorInvoker>
@@ -540,11 +748,13 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<VisitArguments>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<param name="visitor">TBD</param>
 			<returns>TBD</returns>
@@ -555,24 +765,31 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Name>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</ToString>
 		<Create>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="name">
 				TBD
 			</param>
+			<returns>TBD</returns>
 		</Create>
 	</Tag>
 	<ITags>
@@ -580,6 +797,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 	</ITags>
 	<TagsCollection>
@@ -587,16 +805,21 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<GetEnumerator>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</GetEnumerator>
 	</TagsCollection>
 	<ValueVisitor>
@@ -604,17 +827,26 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
-		<ctor-value>
+		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<Visit>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
-		</ctor-value>
+		</Visit>
 		<VisitArgument>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 		</VisitArgument>
 	</ValueVisitor>
@@ -623,17 +855,20 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</inteface>
 		<MakeDefault>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</MakeDefault>
 		<MakeOfThisType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
@@ -641,6 +876,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="visitor">TBD</param>
 			<returns>TBD</returns>
 		</Accept>
@@ -650,61 +886,90 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="T">TBD</typeparam>
 		</class>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="makeValueArgs">TBD</param>
+		</ctor-makeValueArgs>
 		<Name>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Name>
 		<Primitive>
-			<summary>
-			</summary>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Primitive>
 		<Origin>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Origin>
 		<Expression>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Expression>
 		<Tags>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Tags>
 		<Scope>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Scope>
 		<Type>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Type>
 		<PrimitiveString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</PrimitiveString>
 		<Accept>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<param name="visitor">TBD</param>
 			<returns>TBD</returns>
 		</Accept>
 		<Count>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Count>
 		<MakeOfThisType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
@@ -712,6 +977,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisElementType>
@@ -719,31 +985,38 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<returns>TBD</returns>
 		</MakeDefault>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</ToString>
 		<Add>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
 			<param name="fieldName">TBD</param>
 		</Add>
 	</Values>
 	<IValuesProvider>
-		<inteface>
+		<interface>
 			<summary>
 				TBD
 			</summary>
-		</inteface>
+			<remarks>TBD</remarks>
+			<typeparam name="T">TBD</typeparam>
+		</interface>
 		<MakeOfThisElementType>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisElementType>
@@ -753,17 +1026,21 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="collectionValue">TBD</param>
 		</ctor>
 		<Items>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
 		</Items>
 	</ValuesDebugView>
 	<ValuesLinqMathExtensions>
@@ -771,11 +1048,14 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Sum>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Sum>
@@ -783,6 +1063,8 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Average>
@@ -790,6 +1072,8 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Min>
@@ -797,6 +1081,8 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Max>
@@ -806,42 +1092,683 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</ctor>
+		<ctor-number>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="number">TBD</param>
+		</ctor-number>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="makeValueArgs">TBD</param>
+		</ctor-makeValueArgs>
+		<implicit-int>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="primitiveValue">TBD</param>
+			<returns>TBD</returns>
+		</implicit-int>
+		<implicit-decimal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="primitiveValue">TBD</param>
+			<returns>TBD</returns>
+		</implicit-decimal>
+		<Zero>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</Zero>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="primitiveValue">TBD</param>
+			<param name="fieldName">TBD</param>
+			<returns>TBD</returns>
+		</Of>
+		<Of-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="primitiveValue">TBD</param>
+			<param name="scope">TBD</param>
+			<param name="fieldName">TBD</param>
+			<returns>TBD</returns>
+		</Of-scope>
+		<Subtraction>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Subtraction>
+		<Addition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Addition>
+		<Division>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Division>
+		<Multiply>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Multiply>
+		<Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Equality>
+		<Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</Inequality>
+		<LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</LessThan>
+		<LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</LessThanOrEqual>
+		<GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</GreaterThan>
+		<GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</GreaterThanOrEqual>
+		<op_Subtraction>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Subtraction>
+		<op_Addition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Addition>
+		<op_Division>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Division>
+		<op_Multiply>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Multiply>
+		<op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Equality>
+		<op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Inequality>
+		<op_LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_LessThan>
+		<op_LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_LessThanOrEqual>
+		<op_GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_GreaterThan>
+		<op_GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_GreaterThanOrEqual>
+		<op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_Equality>
+		<op_GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_GreaterThan>
+		<op_GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_GreaterThanOrEqual>
+		<op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_Inequality>
+		<op_LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_LessThan>
+		<op_LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</op_LessThanOrEqual>
+		<generic_op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_Equality>
+		<generic_op_GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_GreaterThan>
+		<generic_op_GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_GreaterThanOrEqual>
+		<generic_op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_Inequality>
+		<generic_op_LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_LessThan>
+		<generic_op_LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</generic_op_LessThanOrEqual>
 		<ToString>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</ToString>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="obj">TBD</param>
+			<returns>TBD</returns>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</GetHashCode>
 	</Number>
 	<Condition>
 		<class>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="makeValueArgs">TBD</param>
+		</ctor-makeValueArgs>
+		<PrimitiveString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</PrimitiveString>
+		<ToString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</ToString>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<implicit_Bool>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</implicit_Bool>
+		<implicit_Condition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</implicit_Condition>
+		<IsTrue>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</IsTrue>
+		<True>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</True>
+		<False>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</False>
+		<True-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</True-scope>
+		<False-scope>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">TBD</param>
+			<param name="expressionName">TBD</param>
+			<returns>TBD</returns>
+		</False-scope>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="obj">TBD</param>
+			<returns>TBD</returns>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</GetHashCode>
+		<op_True>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_True>
+		<op_False>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="condition">TBD</param>
+			<returns>TBD</returns>
+		</op_False>
+		<op_And>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_And>
+		<op_Or>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Or>
+		<op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Equality>
+		<op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Inequality>
+		<op_ExlusiveOr>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_ExlusiveOr>
+		<op_OnesComplement>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</op_OnesComplement>
 	</Condition>
 	<Option>
 		<class>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="T">TBD</typeparam>
 		</class>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-option>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="enumValue">TBD</param>
+		</ctor-option>
+		<ctor-makeValueArgs>
+			<summary>
+				TBD
+			</summary>
+			<param name="makeValueArgs">TBD</param>
+			<remarks>TBD</remarks>
+		</ctor-makeValueArgs>
+		<implicit-option>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</implicit-option>
+		<implicit-T>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<returns>TBD</returns>
+		</implicit-T>
+		<MakeOfThisType>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
+			<returns>TBD</returns>
+		</MakeOfThisType>
+		<MakeDefault>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</MakeDefault>
+		<Equals>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="obj">TBD</param>
+			<returns>TBD</returns>
+		</Equals>
+		<GetHashCode>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</GetHashCode>
+		<PrimitiveString>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<value>TBD</value>
+		</PrimitiveString>
+		<operator-equal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</operator-equal>
+		<operator-not-equal>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</operator-not-equal>
+		<Switch>
+			<summary>TBD</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TResult">TBD</typeparam>
+			<returns>TBD</returns>
+		</Switch>
 	</Option>
+	<Option-static>
+		<class>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</class>
+		<Of>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="TEnum">TBD</typeparam>
+			<param name="primitiveValue">TBD</param>
+			<param name="fieldName">TBD</param>
+			<returns>TBD</returns>
+		</Of>
+	</Option-static>
 	<ValueMath>
 		<class>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 		</class>
 		<Abs>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -850,6 +1777,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -858,6 +1786,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -866,6 +1795,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="value">TBD</param>
 			<returns>TBD</returns>
@@ -874,6 +1804,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
@@ -883,6 +1814,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="left">TBD</param>
 			<param name="right">TBD</param>
@@ -892,6 +1824,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<typeparam name="T">TBD</typeparam>
 			<param name="d">TBD</param>
 			<param name="decimals">TBD</param>
@@ -899,15 +1832,17 @@
 		</Round>
 	</ValueMath>
 	<NullExpressionResultException>
-		<class>
+		<exception>
 			<summary>
 				TBD
 			</summary>
-		</class>
+			<remarks>TBD</remarks>
+		</exception>
 		<ctor>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="expressionBody">TBD</param>
 		</ctor>
 	</NullExpressionResultException>
@@ -916,11 +1851,15 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
+			<typeparam name="T">TBD</typeparam>
+			<typeparam name="TReturn">TBD</typeparam>
 		</class>
 		<For>
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="checkValue">TBD</param>
 			<returns>TBD</returns>
 		</For>
@@ -929,28 +1868,119 @@
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
+			<Case>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="caseValue">TBD</param>
+				<param name="otherCaseValues">TBD</param>
+				<returns>TBD</returns>
+			</Case>
 		</SwitchBuilder>
 		<ReturnBuilder>
 			<class>
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
+			<Return-primitiveValue>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="primitiveValue">TBD</param>
+				<param name="valueBody">TBD</param>
+				<returns>TBD</returns>
+			</Return-primitiveValue>
+			<Return-returnValueFunc>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="returnValueFunc">TBD</param>
+				<param name="funcBody">TBD</param>
+				<returns>TBD</returns>
+			</Return-returnValueFunc>
+			<Return>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="returnValue">TBD</param>
+				<returns>TBD</returns>
+			</Return>
 		</ReturnBuilder>
 		<CaseBuilder>
 			<class>
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
+			<Case>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="caseValue">TBD</param>
+				<param name="otherCaseValues">TBD</param>
+				<returns>TBD</returns>
+			</Case>
+			<Default-primitiveValue>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="primitiveValue">TBD</param>
+				<param name="valueBody">TBD</param>
+				<returns>TBD</returns>
+			</Default-primitiveValue>
+			<Default-defaultValueFun>
+				<summary>
+					TBD
+				</summary>
+				<remarks>TBD</remarks>
+				<param name="defaultValueFun">TBD</param>
+				<param name="funcBody">TBD</param>
+				<returns>TBD</returns>
+			</Default-defaultValueFun>
 		</CaseBuilder>
 		<ResultEvaluator>
 			<class>
 				<summary>
 					TBD
 				</summary>
+				<remarks>TBD</remarks>
 			</class>
 		</ResultEvaluator>
 	</SwitchExpression>
+	<ValueJsonConverter>
+		<class>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</class>
+		<Serialize>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
+			<param name="writeIndented">TBD</param>
+			<returns>TBD</returns>
+		</Serialize>
+		<Deserialize>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="json">TBD</param>
+			<returns>TBD</returns>
+		</Deserialize>
+	</ValueJsonConverter>
 </IntelliSense>

@@ -4,6 +4,8 @@ using Fluent.Calculations.Primitives.Expressions;
 /// <include file="Docs.xml" path='*/MakeValueArgs/class/*'/>
 public class MakeValueArgs
 {
+    private MakeValueArgs() { }
+
     /// <include file="Docs.xml" path='*/MakeValueArgs/Name/*'/>
     public string Name { get; private set; } = StringConstants.NaN;
 

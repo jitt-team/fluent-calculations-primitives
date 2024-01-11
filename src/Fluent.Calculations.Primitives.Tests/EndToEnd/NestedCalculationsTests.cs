@@ -8,7 +8,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
         [Fact]
         public void Calculation_CallToOtherCalculation_WithArgument()
         {
-            var scope = this.GetScope();
+            var scope = Scope.CreateHere(this);
 
             Number
                 one = Number.Of(1),
@@ -27,7 +27,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
                 three = Number.Of(3, nameof(three)),
                 four = Number.Of(4, nameof(four));
 
-            return this.GetScope().Evaluate(() => four * three + input);
+            return Scope.CreateHere(this).Evaluate(() => four * three + input);
         }
     }
 }
