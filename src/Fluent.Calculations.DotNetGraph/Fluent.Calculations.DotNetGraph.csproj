@@ -15,7 +15,6 @@
     <Company>JITT</Company>
     <Description>A bridge between Fluent.Calculations.Primitives and DotNetGraph</Description>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
-    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
