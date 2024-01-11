@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\Fluent.Calculations.Primitives.Sandcastle.shfbproj" started="30.12.2023 18:07:49">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\Fluent.Calculations.Primitives.Sandcastle.shfbproj" started="11.01.2024 20:12:54">
 <buildStep step="Initializing">
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder&#39;
 Locating components in the following folder(s):
@@ -7,7 +7,7 @@ Locating components in the following folder(s):
     C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle
     C:\ProgramData\EWSoftware\Sandcastle Help File Builder\Components and Plug-Ins
     C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components
-Using framework reflection data for &#39;Cross-platform (.NET Core/.NET Standard)&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework&#39;
+Using framework reflection data for &#39;.NET Core/.NET Standard/.NET 5.0+&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NET&#39;
 Using presentation style &#39;Default2022&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022&#39;
 Loading and initializing plug-ins...
 Website Table of Contents Generator Version 2023.7.8.0
@@ -22,7 +22,6 @@ Source: C:\JITT\Software Development\Projects\Community\fluent-calculations-prim
 
 Parsing project files
     Found assembly &#39;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\Fluent.Calculations.Primitives.dll&#39; (.NETCoreApp 8.0)
-SHFB: Warning BE0007: A project with a different or higher framework version was found.  Changing project FrameworkVersion property from &#39;Cross-platform (.NET Core/.NET Standard)&#39; to &#39;.NET Core/.NET Standard/.NET 5.0+&#39; for the build.
 
 References to include:
     Microsoft.CSharp
@@ -194,18 +193,18 @@ Copying XML comments files
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0100
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-38153a01-eb39-4483-aea0-0ef6415eb16f.proj]
-Build started 30.12.2023 18:08:00.
+[C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-c5c80643-7f42-4c48-ac57-99a03758f4b3.proj]
+Build started 11.01.2024 20:13:01.
 
-Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-38153a01-eb39-4483-aea0-0ef6415eb16f.proj&quot; on node 1 (default targets).
+Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-c5c80643-7f42-4c48-ac57-99a03758f4b3.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
@@ -213,20 +212,20 @@ GenerateRefInfo:
   c Microsoft Corporation. All rights reserved.
   Found a current program database (PDB) file for &#39;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\Fluent.Calculations.Primitives.dll&#39;.
   Loaded 1 assemblies for reflection and 167 dependency assemblies.
-  Wrote information on 6 namespaces, 39 types, and 207 members
+  Wrote information on 6 namespaces, 39 types, and 211 members
   Merging duplicate type and member information
   Merged 0 duplicate type(s) and 0 duplicate member(s)
-Done Building Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-38153a01-eb39-4483-aea0-0ef6415eb16f.proj&quot; (default targets).
-    Last step completed in 00:00:01.5635
+Done Building Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-c5c80643-7f42-4c48-ac57-99a03758f4b3.proj&quot; (default targets).
+    Last step completed in 00:00:01.2977
 </buildStep>
 <buildStep step="ApplyDocumentModel">
 Applying document model to reflection output...
-    Last step completed in 00:00:00.0469
+    Last step completed in 00:00:00.0740
 </buildStep>
 <buildStep step="AddNamespaceGroups">
 Adding namespace group entries...
 Added 1 namespace group entries
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0250
 </buildStep>
 <buildStep step="AddApiTopicFilenames">
 Adding topic filenames to API members...
@@ -251,21 +250,21 @@ Adding topic filenames to API members...
     Unique name 319505BF generated for M:Fluent.Calculations.Primitives.BaseTypes.Value.#ctor(Fluent.Calculations.Primitives.BaseTypes.Value)
     Unique name A8186AC generated for M:Fluent.Calculations.Primitives.BaseTypes.Value.Equals(System.Object)
     Unique name F4A2C3BD generated for M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.WithArguments(System.Collections.Generic.IEnumerable{Fluent.Calculations.Primitives.BaseTypes.IValue})
-    Last step completed in 00:00:00.0313
+    Last step completed in 00:00:00.0350
 </buildStep>
 <buildStep step="GenerateApiTopicManifest">
 Generating API topic manifest...
-    Last step completed in 00:00:00.0312
+    Last step completed in 00:00:00.0100
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.7507
+    Last step completed in 00:00:00.6885
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\icons\favicon.ico -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\icons\favicon.ico
 C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\icons\fluent-calculations-logo-128x128.png -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\icons\fluent-calculations-logo-128x128.png
-    Last step completed in 00:00:00.0156
+    Last step completed in 00:00:00.0150
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
@@ -274,15 +273,15 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file for API content...
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.0312
+    Last step completed in 00:00:00.0350
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
-    Last step completed in 00:00:00.7817
+    Last step completed in 00:00:00.7146
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0100
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -290,7 +289,7 @@ C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-h
   Updating reference topic configurations.
     Replacing default configuration for &#39;Code Block Component&#39; with the custom configuration
   No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0080
+    Last step completed in 00:00:00.0300
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
@@ -298,447 +297,12 @@ Building help topics...
 Loading TOC info and adding unique IDs to parent nodes
 </plugIn>Loading configuration...
 Processing topics...
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationOptions.#ctor] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.EvaluationOptions.Default] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/EvaluationScope/ctor/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(Fluent.Calculations.Primitives.EvaluationOptions)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/EvaluationScope/ctor-options/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(Fluent.Calculations.Primitives.EvaluationOptions)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(Fluent.Calculations.Primitives.EvaluationOptions)] Missing &lt;param name=&quot;options&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/EvaluationScope/ctor-scope/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.#ctor(System.String)] Missing &lt;param name=&quot;scope&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope.Evaluate``2(System.Func{Fluent.Calculations.Primitives.SwitchExpression{``0,``1}.ResultEvaluator},System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.#ctor(Fluent.Calculations.Primitives.EvaluationOptions)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.#ctor(System.Func{Fluent.Calculations.Primitives.EvaluationScope{`0},`0})] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.#ctor(System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/EvaluationScopeGeneric/ctor-scope/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.#ctor(System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.#ctor(System.String)] Missing &lt;param name=&quot;scope&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.Return] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.Return] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.ToResult] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.ToResult] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/EvaluationScopeGeneric/ToResult/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.ToResult] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.EvaluationScope`1.ToResult] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.IEvaluationScope.Evaluate``2(System.Func{Fluent.Calculations.Primitives.SwitchExpression{``0,``1}.ResultEvaluator},System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.IEvaluationScope.Evaluate``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.Of``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;typeparam name=&quot;TValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.Of``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.Of``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;param name=&quot;lambdaExpression&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.Of``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.Of``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String)] Missing &lt;param name=&quot;lambdaExpressionBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;typeparam name=&quot;TValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;param name=&quot;lambdaExpression&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;param name=&quot;scopeName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Result.OfWithScope``1(System.Linq.Expressions.Expression{System.Func{``0}},System.String,System.String,System.String)] Missing &lt;param name=&quot;lambdaExpressionBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/CaseBuilder/Case/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;param name=&quot;caseValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Case(`0,`0[])] Missing &lt;param name=&quot;otherCaseValues&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/CaseBuilder/Default-primitiveValue/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Decimal,System.String)] Missing &lt;param name=&quot;valueBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/CaseBuilder/Default-defaultValueFun/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;param name=&quot;defaultValueFun&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.CaseBuilder.Default(System.Func{`1},System.String)] Missing &lt;param name=&quot;funcBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/ReturnBuilder/Return-primitiveValue/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Decimal,System.String)] Missing &lt;param name=&quot;valueBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/ReturnBuilder/Return-returnValueFunc/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;param name=&quot;returnValueFunc&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.ReturnBuilder.Return(System.Func{`1},System.String)] Missing &lt;param name=&quot;funcBody&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/SwitchExpression/SwitchBuilder/Case/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;param name=&quot;caseValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.SwitchExpression`2.SwitchBuilder.Case(`0,`0[])] Missing &lt;param name=&quot;otherCaseValues&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.ArgumentsCollection.GetEnumerator] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.ArgumentsDebugView.Arguments] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.ArgumentsDebugView.Arguments] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.#ctor] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/ctor/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.#ctor] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/ctor-makeValueArgs/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;makeValueArgs&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.Equals(System.Object)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.Equals(System.Object)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/Equals/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.Equals(System.Object)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.Equals(System.Object)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.Equals(System.Object)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/False/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String)] Missing &lt;param name=&quot;expressionName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/False-scope/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;param name=&quot;scope&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.False(System.String,System.String)] Missing &lt;param name=&quot;expressionName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.GetHashCode] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.GetHashCode] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/GetHashCode/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.GetHashCode] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.GetHashCode] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.IsTrue] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.IsTrue] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/IsTrue/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.IsTrue] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.IsTrue] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeDefault] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeDefault] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/MakeDefault/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeDefault] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeDefault] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/MakeOfThisType/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;args&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-and/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseAnd(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-or/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_BitwiseOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-exclusive-or/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_ExclusiveOr(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_False(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_False(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-false/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_False(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_False(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_False(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;condition&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Condition)~System.Boolean] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Condition)~System.Boolean] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-true/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Condition)~System.Boolean] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Condition)~System.Boolean] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Condition)~System.Boolean] Missing &lt;param name=&quot;condition&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(System.Boolean)~Fluent.Calculations.Primitives.BaseTypes.Condition] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(System.Boolean)~Fluent.Calculations.Primitives.BaseTypes.Condition] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/implicit-bool/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(System.Boolean)~Fluent.Calculations.Primitives.BaseTypes.Condition] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(System.Boolean)~Fluent.Calculations.Primitives.BaseTypes.Condition] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Implicit(System.Boolean)~Fluent.Calculations.Primitives.BaseTypes.Condition] Missing &lt;param name=&quot;condition&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-not-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Condition,Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_OnesComplement(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_OnesComplement(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/operator-one-complement/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_OnesComplement(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_OnesComplement(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_OnesComplement(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_True(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_True(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/implicit-conditions/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_True(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_True(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.op_True(Fluent.Calculations.Primitives.BaseTypes.Condition)] Missing &lt;param name=&quot;condition&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.PrimitiveString] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.PrimitiveString] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/PrimitiveString/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.PrimitiveString] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Condition.PrimitiveString] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.ToString] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.ToString] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/ToString/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.ToString] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.ToString] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/True/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String)] Missing &lt;param name=&quot;expressionName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Condition/True-scope/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;param name=&quot;scope&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Condition.True(System.String,System.String)] Missing &lt;param name=&quot;expressionName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs.#ctor] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/ctor-makeValueArgs/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;makeValueArgs&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/ctor-number/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.#ctor(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;number&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Add(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Add(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Add/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Add(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Add(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Add(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Divide(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Divide(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Divide/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Divide(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Divide(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Divide(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Equals(System.Object)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Equals(System.Object)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Equals/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Equals(System.Object)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Equals(System.Object)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Equals(System.Object)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.GetHashCode] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.GetHashCode] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/GetHashCode/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.GetHashCode] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.GetHashCode] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeDefault] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeDefault] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/MakeDefault/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeDefault] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeDefault] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/MakeOfThisType/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;args&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Multiply(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Multiply(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Multiply/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Multiply(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Multiply(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Multiply(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Of/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String)] Missing &lt;param name=&quot;fieldName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Of-scope/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;param name=&quot;scope&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Of(System.Decimal,System.String,System.String)] Missing &lt;param name=&quot;fieldName&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-add/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Addition(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-divide/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Division(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-greater-than/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-greater-or-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Decimal)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Decimal)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/implicit-decimal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Decimal)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Decimal)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Decimal)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Int32)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Int32)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/implicit-int/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Int32)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Int32)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Implicit(System.Int32)~Fluent.Calculations.Primitives.BaseTypes.Number] Missing &lt;param name=&quot;primitiveValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-not-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-less-than/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-less-or-equal/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-multiply/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Multiply(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/operator-substract/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.op_Subtraction(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_GreaterThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThan(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IComparisonOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_LessThanOrEqual(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.System.Numerics.IEqualityOperators&lt;Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number,System.Boolean&gt;.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Number,Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Substract(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Substract(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Substract/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Substract(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Substract(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.Substract(Fluent.Calculations.Primitives.BaseTypes.Number)] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Number.ToString] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Number.Zero] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Number.Zero] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Number/Zero/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Number.Zero] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Number.Zero] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;makeValueArgs&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.#ctor(Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;param name=&quot;enumValue&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Equals(System.Object)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Equals(System.Object)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.GetHashCode] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.MakeDefault] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;args&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Equality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Option{`0})~`0] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Implicit(Fluent.Calculations.Primitives.BaseTypes.Option{`0})~`0] Missing &lt;param name=&quot;value&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Implicit(`0)~Fluent.Calculations.Primitives.BaseTypes.Option{`0}] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Implicit(`0)~Fluent.Calculations.Primitives.BaseTypes.Option{`0}] Missing &lt;param name=&quot;value&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;param name=&quot;left&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Inequality(Fluent.Calculations.Primitives.BaseTypes.Option{`0},Fluent.Calculations.Primitives.BaseTypes.Option{`0})] Missing &lt;param name=&quot;right&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.BaseTypes.Option`1.PrimitiveString] Missing &lt;value&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Switch``1] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Switch``1] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Option/Switch/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Switch``1] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Switch``1] Missing &lt;typeparam name=&quot;TResult&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Option`1.Switch``1] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Tag.Create(System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Tag.ToString] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.TagsCollection.GetEnumerator] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Value.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Value/ctor-makeValueArgs/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Value.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Value.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;makeValueArgs&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.Value.MakeOfThisType(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.BaseTypes.ValueVisitor.#ctor] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Collections.IValuesProvider`1] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Collections.IValuesProvider`1] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/IValuesProvider/class/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Collections.IValuesProvider`1] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Collections.IValuesProvider`1] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Collections.Values`1] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.Values`1.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/Values/ctor-makeValueArgs/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.Values`1.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.Values`1.#ctor(Fluent.Calculations.Primitives.BaseTypes.MakeValueArgs)] Missing &lt;param name=&quot;makeValueArgs&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.Values`1.Accept(Fluent.Calculations.Primitives.BaseTypes.ValueVisitor)] Missing &lt;param name=&quot;visitor&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [P:Fluent.Calculations.Primitives.Collections.Values`1.Primitive] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.Values`1.ToString] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.ValuesLinqMathExtensions.Average``1(Fluent.Calculations.Primitives.Collections.IValuesProvider{``0})] Missing &lt;typeparam name=&quot;TSource&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.ValuesLinqMathExtensions.Max``1(Fluent.Calculations.Primitives.Collections.IValuesProvider{``0})] Missing &lt;typeparam name=&quot;TSource&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.ValuesLinqMathExtensions.Min``1(Fluent.Calculations.Primitives.Collections.IValuesProvider{``0})] Missing &lt;typeparam name=&quot;TSource&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Collections.ValuesLinqMathExtensions.Sum``1(Fluent.Calculations.Primitives.Collections.IValuesProvider{``0})] Missing &lt;typeparam name=&quot;TSource&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.#ctor(System.String,System.String)] Missing &lt;param name=&quot;body&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.#ctor(System.String,System.String)] Missing &lt;param name=&quot;type&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.ToString] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.ToString] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.WithArguments(Fluent.Calculations.Primitives.BaseTypes.IValue,Fluent.Calculations.Primitives.BaseTypes.IValue[])] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Expressions.ExpressionNode.WithArguments(System.Collections.Generic.IEnumerable{Fluent.Calculations.Primitives.BaseTypes.IValue})] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.BinaryExpression] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.BinaryExpression] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/ExpressionNodeType/Binary/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.BinaryExpression] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.Collection] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.Constant] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.Lambda] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.MathExpression] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.MathExpression] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/ExpressionNodeType/Math/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.MathExpression] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.None] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [F:Fluent.Calculations.Primitives.Expressions.ExpressionNodeType.Switch] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.IExpression] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.IExpression] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/IExpression/interface/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.IExpression] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.Capture.NullExpressionResultException] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.Capture.NullExpressionResultException] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/NullExpressionResultException/exception/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Expressions.Capture.NullExpressionResultException] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Json.ValueJsonConverter] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Json.ValueJsonConverter] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/ValueJsonConverter/class/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [T:Fluent.Calculations.Primitives.Json.ValueJsonConverter] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Deserialize(System.String)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Deserialize(System.String)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/ValueJsonConverter/Deserialize/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Deserialize(System.String)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Deserialize(System.String)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Deserialize(System.String)] Missing &lt;param name=&quot;json&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;summary&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;include&gt; target documentation.  File: &#39;Docs.xml&#39; Path: &#39;*/ValueJsonConverter/Serialize/*&#39;
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;remarks&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;returns&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
-SHFB: Warning BE0066: ShowMissingComponent: [M:Fluent.Calculations.Primitives.Json.ValueJsonConverter.Serialize(Fluent.Calculations.Primitives.BaseTypes.IValue,System.Boolean)] Missing &lt;param name=&quot;writeIndented&quot;/&gt; documentation
-Processed 328 topic(s)
-433 warning(s)
+Processed 323 topic(s)
 CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 6 of 15.
-CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 2 of 30.
-SaveComponent: Waiting for the document writer task to finish (7 Website API file(s) remaining)...
+CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
 <plugIn name="Website Table of Contents Generator" behavior="After" priority="1000">
 Generating TOC fragment files
-</plugIn>    Last step completed in 00:00:09.5512
+</plugIn>    Last step completed in 00:00:07.1270
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -773,27 +337,26 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Defaul
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.inc.php -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\SearchHelp.inc.php
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.php -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\SearchHelp.php
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\Web.Config -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\Web.Config
-    Last step completed in 00:00:00.1920
+    Last step completed in 00:00:00.1720
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
-    Last step completed in 00:00:00.2240
+    Last step completed in 00:00:00.1702
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
-Copied 500 files
-Copied 502 files for the website content
-    Last step completed in 00:00:00.5845
+Copied 493 files for the website content
+    Last step completed in 00:00:01.0059
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1597
+    Last step completed in 00:00:00.2426
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 30.12.2023 18:08:14.  Total time: 00:00:24.2201
+Build completed successfully at 11.01.2024 20:13:13.  Total time: 00:00:18.2307
 
 </buildStep>
 </shfbBuild>
