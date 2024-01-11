@@ -5,9 +5,13 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
-/// <include file="Docs.xml" path='*/Condition/class/*'/>
+/// <summary>
+/// TBD
+/// </summary>
+/// <remarks>TBD</remarks>
+/// <param name="makeValueArgs">TBD</param>
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
-public sealed class Condition : Value,
+public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
     IBitwiseOperators<Condition, Condition, Condition>
 {
@@ -16,9 +20,6 @@ public sealed class Condition : Value,
 
     /// <include file="Docs.xml" path='*/Condition/PrimitiveString/*'/>
     public override string PrimitiveString => $"{IsTrue}";
-
-    /// <include file="Docs.xml" path='*/Condition/ctor-makeValueArgs/*'/>
-    public Condition(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
     /// <include file="Docs.xml" path='*/Condition/ctor/*'/>
     public Condition() : this(MakeValueArgs.Compose(StringConstants.NaN, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0)) { }
@@ -68,10 +69,10 @@ public sealed class Condition : Value,
     /// <include file="Docs.xml" path='*/Condition/op_Or/*'/>
     public static Condition operator |(Condition left, Condition right) => left.Or(right);
 
-    /// <include file="Docs.xml" path='*/Condition/op_Equal/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_Equality/*'/>
     public static Condition operator ==(Condition? left, Condition? right) => Enforce.NotNull(left).IsEqualToRight(right);
 
-    /// <include file="Docs.xml" path='*/Condition/op_NotEqual/*'/>
+    /// <include file="Docs.xml" path='*/Condition/op_Inequality/*'/>
     public static Condition operator !=(Condition? left, Condition? right) => Enforce.NotNull(left).NotEqualToRight(right);
 
     /// <include file="Docs.xml" path='*/Condition/op_ExlusiveOr/*'/>

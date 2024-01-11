@@ -14,7 +14,7 @@ public class ExpressionNode : IExpression
     internal static ExpressionNode None => new(StringConstants.NaN, ExpressionNodeType.None);
 
     /// <include file="Docs.xml" path='*/ExpressionNode/ctor/*'/>
-    public ExpressionNode(string body, string type)
+    internal ExpressionNode(string body, string type)
     {
         int firstNewLineIndex = body.IndexOf(Environment.NewLine);
         FirstLineOfBody = firstNewLineIndex > 0 ? body[..firstNewLineIndex] : body;

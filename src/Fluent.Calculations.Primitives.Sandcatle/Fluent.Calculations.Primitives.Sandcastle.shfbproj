@@ -54,7 +54,7 @@
       <NamespaceSummaryItem name="Fluent.Calculations.Primitives.Json" isDocumented="True">Contains classes used to serialize and deserialize values and calculation results</NamespaceSummaryItem>
     </NamespaceSummaries>
     <VisibleItems>Attributes, InheritedMembers, Protected, NonBrowsable</VisibleItems>
-    <MissingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors, Namespace, TypeParameter, IncludeTargets, AutoDocumentDispose</MissingTags>
+    <MissingTags>AutoDocumentCtors, Namespace, AutoDocumentDispose</MissingTags>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <BinaryTOC>True</BinaryTOC>
     <IncludeFavorites>True</IncludeFavorites>

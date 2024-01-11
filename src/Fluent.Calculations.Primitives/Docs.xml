@@ -62,13 +62,22 @@
 				Lambda expression using <see cref="IValue"/> types
 			</param>
 		</ctor-func>
-		<method-ToResult>
+		<ctor-scope>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">
+				TBD
+			</param>
+		</ctor-scope>
+		<ToResult>
 			<summary>
 				Exit method to return result from inherited calculation
 			</summary>
 			<remarks>TBD</remarks>
 			<returns>Calculation result</returns>
-		</method-ToResult>
+		</ToResult>
 		<Return>
 			<summary>TBD</summary>
 			<remarks>TBD</remarks>
@@ -98,6 +107,28 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
+		<ctor>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<ctor-options>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="options">Options to be used to run the calculation</param>
+		</ctor-options>
+		<ctor-scope>
+			<summary>
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="scope">
+				TBD
+			</param>
+		</ctor-scope>
 		<Evaluate>
 			<summary>Evaluates an expression and captures it's arguments.</summary>
 			<remarks>TBD</remarks>
@@ -126,6 +157,13 @@
 			<param name="scope">TBD</param>
 			<returns>TBD</returns>
 		</Create>
+		<ToResult>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<returns>TBD</returns>
+		</ToResult>
 	</EvaluationScope>
 	<IEvaluationScope>
 		<interface>
@@ -143,7 +181,7 @@
 			<param name="lambdaExpression">TBD</param>
 			<param name="name">TBD</param>
 			<param name="lambdaExpressionBody">TBD</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</Evaluate>
 		<Evaluate-switch>
 			<summary>TBD</summary>
@@ -152,7 +190,7 @@
 			<typeparam name="TValue">TBD</typeparam>
 			<param name="getResultEvaluatorFunc">TBD</param>
 			<param name="name">TBD</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</Evaluate-switch>
 	</IEvaluationScope>
 	<Scope>
@@ -199,7 +237,7 @@
 			<param name="name">TBD</param>
 			<param name="lambdaExpression">TBD</param>
 			<param name="lambdaExpressionBody">TBD</param>
-			<param name="scopr">TBD</param>
+			<param name="scopeName">TBD</param>
 			<returns>TBD</returns>
 		</OfWithScope>
 	</Result>
@@ -214,7 +252,7 @@
 			<summary>
 				TBD
 			</summary>
-			<remarks>TBD</remarks>		
+			<remarks>TBD</remarks>
 		</ctor>
 		<Default>
 			<summary>
@@ -290,20 +328,20 @@
 			<remarks>TBD</remarks>
 			<param name="value">Value to copy</param>
 		</ctor-value>
-		<ctor-args>
+		<ctor-makeValueArgs>
 			<summary>
 				Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
 			</summary>
 			<remarks>TBD</remarks>
-			<param name="createValueArgs">Arguments to create a new value</param>
-		</ctor-args>
+			<param name="makeValueArgs">Arguments to create a new value</param>
+		</ctor-makeValueArgs>
 		<MakeOfThisType>
 			<summary>
 				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="args">Arguments to create a new value</param>
-			<returns></returns>
+			<returns>TBD</returns>
 		</MakeOfThisType>
 		<MakeDefault>
 			<summary>
@@ -530,7 +568,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
-			<return>TBD</return>
+			<returns>TBD</returns>
 		</ToString>
 		<Body>
 			<summary>
@@ -557,6 +595,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="first">TBD</param>
 			<param name="other">TBD</param>
 			<returns>TBD</returns>
@@ -565,6 +604,7 @@
 			<summary>
 				TBD
 			</summary>
+			<remarks>TBD</remarks>
 			<param name="arguments">TBD</param>
 			<returns>TBD</returns>
 		</WithArguments-enumerable>
@@ -739,7 +779,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
-			<value>TBD</value>
+			<returns>TBD</returns>
 		</ToString>
 		<Create>
 			<summary>
@@ -749,6 +789,7 @@
 			<param name="name">
 				TBD
 			</param>
+			<returns>TBD</returns>
 		</Create>
 	</Tag>
 	<ITags>
@@ -778,6 +819,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<returns>TBD</returns>
 		</GetEnumerator>
 	</TagsCollection>
 	<ValueVisitor>
@@ -787,13 +829,19 @@
 			</summary>
 			<remarks>TBD</remarks>
 		</class>
-		<ctor-value>
+		<ctor>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+		</ctor>
+		<Visit>
 			<summary>
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="value">TBD</param>
-		</ctor-value>
+		</Visit>
 		<VisitArgument>
 			<summary>
 				TBD
@@ -1007,6 +1055,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Sum>
@@ -1015,6 +1064,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Average>
@@ -1023,6 +1073,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Min>
@@ -1031,6 +1082,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="TSource">TBD</typeparam>
 			<param name="source">TBD</param>
 			<returns>TBD</returns>
 		</Max>
@@ -1068,6 +1120,7 @@
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="primitiveValue">TBD</param>
+			<returns>TBD</returns>
 		</implicit-int>
 		<implicit-decimal>
 			<summary>
@@ -1075,6 +1128,7 @@
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="primitiveValue">TBD</param>
+			<returns>TBD</returns>
 		</implicit-decimal>
 		<Zero>
 			<summary>
@@ -1182,6 +1236,96 @@
 			<param name="right">TBD</param>
 			<returns>TBD</returns>
 		</GreaterThanOrEqual>
+		<op_Subtraction>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Subtraction>
+		<op_Addition>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Addition>
+		<op_Division>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Division>
+		<op_Multiply>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Multiply>
+		<op_Equality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Equality>
+		<op_Inequality>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_Inequality>
+		<op_LessThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_LessThan>
+		<op_LessThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_LessThanOrEqual>
+		<op_GreaterThan>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_GreaterThan>
+		<op_GreaterThanOrEqual>
+			<summary>
+				TBD
+			</summary>
+			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
+			<returns>TBD</returns>
+		</op_GreaterThanOrEqual>
 		<op_Equality>
 			<summary>
 				TBD
@@ -1272,6 +1416,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
 		<MakeDefault>
@@ -1507,6 +1652,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="enumValue">TBD</param>
 		</ctor-option>
 		<ctor-makeValueArgs>
 			<summary>
@@ -1520,6 +1666,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
 			<returns>TBD</returns>
 		</implicit-option>
 		<implicit-T>
@@ -1527,6 +1674,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="value">TBD</param>
 			<returns>TBD</returns>
 		</implicit-T>
 		<MakeOfThisType>
@@ -1534,6 +1682,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="args">TBD</param>
 			<returns>TBD</returns>
 		</MakeOfThisType>
 		<MakeDefault>
@@ -1548,7 +1697,7 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
-			<param name="object">TBD</param>
+			<param name="obj">TBD</param>
 			<returns>TBD</returns>
 		</Equals>
 		<GetHashCode>
@@ -1570,6 +1719,8 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
 			<returns>TBD</returns>
 		</operator-equal>
 		<operator-not-equal>
@@ -1577,11 +1728,14 @@
 				TBD
 			</summary>
 			<remarks>TBD</remarks>
+			<param name="left">TBD</param>
+			<param name="right">TBD</param>
 			<returns>TBD</returns>
 		</operator-not-equal>
 		<Switch>
 			<summary>TBD</summary>
 			<remarks>TBD</remarks>
+			<typeparam name="TResult">TBD</typeparam>
 			<returns>TBD</returns>
 		</Switch>
 	</Option>
