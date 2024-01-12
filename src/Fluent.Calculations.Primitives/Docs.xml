@@ -7,32 +7,32 @@
 			</summary>
 			<remarks>
 				<para>
-					Use this class to define, run and retrieve a result of your calculations.
+					Create inhertited classes from this base class to define, run and retrieve a result of your calculations.
 				</para>
 				<list type="table">
 					<item>
 						<term>Calculation</term>
 						<description>
 							<para></para>
-							Class inheriting from EvaluationScope<![CDATA[<T>]]> is logical unit to compute desired result. It will containt lambda expressions,<br/>
-							input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/>.
+							Your class inheriting from EvaluationScope<![CDATA[<T>]]> is a logical unit to compute desired result. Place lambda expressions,<br/>
+							input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/> in your derived implementation.
 						</description>
 					</item>
 					<item>
 						<term>Examples</term>
 						<description>
-							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
+							<para>Inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type returned by ToResult() method.</para>
 							<code>
 								public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
 								{
-								public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-								public override Number Return() => Number.Of(0);
+								    public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+								    public override Number Return() => Number.Of(0);
 								}
 							</code>
 						</description>
 					</item>
 					<item>
-						<a href="https://github.com/jitt-team/fluent-calculations-primitives/wiki/">
+						<a href="https://fcp-project.jitt.me/docs/category/tutorial---basics/">
 							Learn more
 						</a>
 					</item>
@@ -44,20 +44,20 @@
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Default options will be applied</remarks>
 		</ctor>
 		<ctor-options>
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
 			</summary>
 			<remarks>TBD</remarks>
-			<param name="options">Options to be used to run the calculation</param>
+			<param name="options">Options to control the behavior during evaluation.</param>
 		</ctor-options>
 		<ctor-func>
 			<summary>
 				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Useful to capture small ad-hoc expressions for tests or experimentation purposes</remarks>
 			<param name="func">
 				Lambda expression using <see cref="IValue"/> types
 			</param>
@@ -73,15 +73,17 @@
 		</ctor-scope>
 		<ToResult>
 			<summary>
-				Exit method to return result from inherited calculation
+				Runs and return result from implemented calculation.
 			</summary>
-			<remarks>TBD</remarks>
-			<returns>Calculation result</returns>
+			<remarks>Calls Return() under the hood,</remarks>
+			<returns>Calculation result with captured arguments and expression tree.</returns>
 		</ToResult>
 		<Return>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
+			<summary>Override to implement the final calculation step</summary>
+			<remarks>
+				Used to clearly define the final calculation step, and ensure consistent retrieval of evaluation result. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>
+			</remarks>
+			<returns>Calculation result</returns>
 		</Return>
 	</EvaluationScopeGeneric>
 	<IEvaluationScopeGeneric>
