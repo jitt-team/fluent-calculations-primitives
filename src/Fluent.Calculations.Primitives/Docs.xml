@@ -64,7 +64,7 @@
 		</ctor-func>
 		<ctor-scope>
 			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.
 			</summary>
 			<remarks>TBD</remarks>
 			<param name="scope">
@@ -289,18 +289,18 @@
 			<remarks>TBD</remarks>
 		</Name>
 		<Expression>
-			<summary>Expression that was used to calculate or define the value</summary>
+			<summary>Metadata of expression that yielded this value</summary>
 			<value>TBD</value>
 			<remarks>TBD</remarks>
 		</Expression>
 		<Primitive>
-			<summary>.NET primitive representation of the value</summary>
+			<summary>Numeric primitive representation of the value</summary>
 			<value>TBD</value>
 			<remarks>TBD</remarks>
 		</Primitive>
 		<PrimitiveString>
-			<summary>.NET primitive representation of the value</summary>
-			<value>TBD</value>
+			<summary>Formatted string representation of the primitive value</summary>
+			<value>Implementing class is responsible of providing accurate formatting</value>
 			<remarks>TBD</remarks>
 		</PrimitiveString>
 		<Origin>
@@ -314,14 +314,14 @@
 			<remarks>TBD</remarks>
 		</Tags>
 		<Scope>
-			<summary>Custom tags associated with the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
+			<summary>Named scope that this value is part of</summary>
+			<remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+			<value>Scome name</value>
 		</Scope>
 		<Type>
-			<summary>TBD</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
+			<summary>Original type of the value implementation</summary>
+			<remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
+			<value>Name of type aka GetType().Name</value>
 		</Type>
 		<ctor-value>
 			<summary>
@@ -398,9 +398,9 @@
 	<IValue>
 		<interface>
 			<summary>
-				TBD
+				Lightweight interface that every value will implement
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Can be reliably used for calculation expression tree visualization, for example in form of Graph.</remarks>
 		</interface>
 		<Name>
 			<summary>Name of the variable</summary>
@@ -413,13 +413,13 @@
 			<value>TBD</value>
 		</Expression>
 		<Primitive>
-			<summary>.NET primitive representation of the value</summary>
+			<summary>Numeric primitive representation of the value</summary>
 			<remarks>TBD</remarks>
 			<value>TBD</value>
 		</Primitive>
 		<PrimitiveString>
-			<summary>.NET primitive representation of the value</summary>
-			<remarks>TBD</remarks>
+			<summary>Formatted string representation of the value</summary>
+			<remarks>Implementing class is responsible of providing accurate formatting</remarks>
 			<value>TBD</value>
 		</PrimitiveString>
 		<Origin>
@@ -433,58 +433,58 @@
 			<value>TBD</value>
 		</Tags>
 		<Type>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
+			<summary>Original type of the value implementation</summary>
+			<remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
+			<value>Name of type aka GetType().Name</value>
 		</Type>
 		<Scope>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
+			<summary>Named scope that this value is part of</summary>
+			<remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+			<value>Scome name</value>
 		</Scope>
 	</IValue>
 	<ValueOriginType>
 		<enum>
 			<summary>
-				TBD
+				Defines the origin of value in context of calculations
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Allows </remarks>
 		</enum>
 		<NaN>
 			<summary>
-				TBD
+				Represents default state when origin is not determinated or set
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Part of null object pattern, should not apper too often. Value with this origin might indicate some missing implementation.</remarks>
 		</NaN>
 		<Parameter>
 			<summary>
-				TBD
+				Represents input parameter of the calculation
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>This value will be applied to values that are not constants or evaluation results within calculation chain.</remarks>
 		</Parameter>
 		<Constant>
 			<summary>
-				TBD
+				Represents that value was declared as a numeric constant within calculation.
 			</summary>
 			<remarks>TBD</remarks>
 		</Constant>
 		<Evaluation>
 			<summary>
-				TBD
+				Represents a value that is a result of lambda expression evaluation result.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>Only Evaluate() method of EvaluationScope will return this type.</remarks>
 		</Evaluation>
 		<Operation>
 			<summary>
-				TBD
+				Represents intermediate results of basic binary or unary operations.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>These kind of values will typically be filtered out from evaluations. Neverless can be produced when Values are used for standalone operations without calling Evaluate() method.</remarks>
 		</Operation>
 		<Result>
 			<summary>
-				TBD
+				Represent the final result value when used in classes inherting from EcaluationScope.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>ToResult() will yield this type.</remarks>
 		</Result>
 	</ValueOriginType>
 	<MakeValueArgs>
@@ -1851,138 +1851,131 @@
 	<SwitchExpression>
 		<class>
 			<summary>
-				TBD
+				Provides support of swithc/case logic building using fluent builder pattern.
 			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<typeparam name="TReturn">TBD</typeparam>
+			<remarks>
+				Use the funtionality provided by this builder instead of native swithc/case statements as it's not supported in Expressions.
+			</remarks>
+			<typeparam name="T">Type of condition</typeparam>
+			<typeparam name="TReturn">Result type</typeparam>
 		</class>
 		<For>
 			<summary>
-				TBD
+				Specifies option variable to check
 			</summary>
 			<remarks>TBD</remarks>
-			<param name="checkValue">TBD</param>
-			<returns>TBD</returns>
+			<param name="checkValue">Value to check</param>
+			<returns>Swich part configurator</returns>
 		</For>
 		<SwitchBuilder>
 			<class>
 				<summary>
-					TBD
+					Switch case part builder 
 				</summary>
-				<remarks>TBD</remarks>
+				<remarks>Equivalent to 'case x :' in native C#</remarks>
 			</class>
 			<Case>
 				<summary>
-					TBD
+					Define a single or multiple cases to check
 				</summary>
 				<remarks>TBD</remarks>
-				<param name="caseValue">TBD</param>
-				<param name="otherCaseValues">TBD</param>
-				<returns>TBD</returns>
+				<param name="caseValue">Value of single case</param>
+				<param name="otherCaseValues">Other cases</param>
+				<returns>Return value builder</returns>
 			</Case>
 		</SwitchBuilder>
 		<ReturnBuilder>
 			<class>
 				<summary>
-					TBD
+					Case return part buider
 				</summary>
 				<remarks>TBD</remarks>
 			</class>
 			<Return-primitiveValue>
 				<summary>
-					TBD
+					Define a primitive numeric value as a result of case.
 				</summary>
-				<remarks>TBD</remarks>
-				<param name="primitiveValue">TBD</param>
-				<param name="valueBody">TBD</param>
-				<returns>TBD</returns>
+				<remarks>Use to define well-know numeric constants</remarks>
+				<param name="primitiveValue">Value to return when case is matched</param>
+				<returns>Next case builder</returns>
 			</Return-primitiveValue>
 			<Return-returnValueFunc>
 				<summary>
-					TBD
+					Define a function that returns <see cref="IValue"/> as a result of case
 				</summary>
 				<remarks>TBD</remarks>
-				<param name="returnValueFunc">TBD</param>
-				<param name="funcBody">TBD</param>
-				<returns>TBD</returns>
+				<param name="returnValueFunc">Function returning expected result</param>
+				<param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
+				<returns>Next case builder</returns>
 			</Return-returnValueFunc>
-			<Return>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="returnValue">TBD</param>
-				<returns>TBD</returns>
-			</Return>
 		</ReturnBuilder>
 		<CaseBuilder>
 			<class>
 				<summary>
-					TBD
+					Next or default case part builder
 				</summary>
-				<remarks>TBD</remarks>
+				<remarks>Build another case or end the daisy-chain with default case.</remarks>
 			</class>
 			<Case>
 				<summary>
-					TBD
+					Define a single or multiple cases to check
 				</summary>
 				<remarks>TBD</remarks>
-				<param name="caseValue">TBD</param>
-				<param name="otherCaseValues">TBD</param>
-				<returns>TBD</returns>
+				<param name="caseValue">Value of single case</param>
+				<param name="otherCaseValues">Other cases</param>
+				<returns>Return value builder</returns>
 			</Case>
 			<Default-primitiveValue>
 				<summary>
-					TBD
+					Define primitive numeric value as a default case result.
 				</summary>
 				<remarks>TBD</remarks>
 				<param name="primitiveValue">TBD</param>
 				<param name="valueBody">TBD</param>
-				<returns>TBD</returns>
+				<returns>Result evaluator</returns>
 			</Default-primitiveValue>
 			<Default-defaultValueFun>
 				<summary>
-					TBD
+					Define a function that returns <see cref="IValue"/> as a default case result.
 				</summary>
 				<remarks>TBD</remarks>
-				<param name="defaultValueFun">TBD</param>
-				<param name="funcBody">TBD</param>
-				<returns>TBD</returns>
+				<param name="defaultValueFun">Function returning expected result</param>
+				<param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
+				<returns>Result evaluator</returns>
 			</Default-defaultValueFun>
 		</CaseBuilder>
 		<ResultEvaluator>
 			<class>
 				<summary>
-					TBD
+					Class that will allow EvaluationContext to execute the configured Switch/Case expression.
 				</summary>
-				<remarks>TBD</remarks>
+				<remarks>Used as an input of Evalueate() overload of EvaluationScope class.</remarks>
 			</class>
 		</ResultEvaluator>
 	</SwitchExpression>
-	<ValueJsonConverter>
+	<ValueJsonSerializer>
 		<class>
 			<summary>
-				TBD
+				Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.
 			</summary>
-			<remarks>TBD</remarks>
+			<remarks>For more information, see "How to serialize and deserialize JSON." TODO : add link</remarks>
 		</class>
 		<Serialize>
 			<summary>
-				TBD
+				Converts the provided value into a String.
 			</summary>
 			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<param name="writeIndented">TBD</param>
-			<returns>TBD</returns>
+			<param name="value">The value to convert.</param>
+			<param name="writeIndented">Specifies whether JSON should use pretty printing. By default, JSON is serialized without any extra white space.</param>
+			<returns>A String representation of the value.</returns>
 		</Serialize>
 		<Deserialize>
 			<summary>
-				TBD
+				Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.
 			</summary>
-			<remarks>TBD</remarks>
-			<param name="json">TBD</param>
-			<returns>TBD</returns>
+			<remarks>Returned type and related arguments are not originally serialized types.</remarks>
+			<param name="json">JSON text to parse.</param>
+			<returns>A <see cref="IValue"/> representation of the JSON value.</returns>
 		</Deserialize>
-	</ValueJsonConverter>
+	</ValueJsonSerializer>
 </IntelliSense>

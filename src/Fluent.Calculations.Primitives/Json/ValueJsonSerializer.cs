@@ -6,19 +6,19 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
-/// <include file="Docs.xml" path='*/ValueJsonConverter/class/*'/>
-public static class ValueJsonConverter
+/// <include file="Docs.xml" path='*/ValueJsonSerializer/class/*'/>
+public static class ValueJsonSerializer
 {
     private readonly static JsonSerializerOptions
         IndentedSerializeOptions = CreateJsonSerializerOptions(true),
         NotIndentedSerializeOptions = CreateJsonSerializerOptions(false),
         DeserializerOptions = CreateJsonDeserializerOptions();
 
-    /// <include file="Docs.xml" path='*/ValueJsonConverter/Serialize/*'/>
+    /// <include file="Docs.xml" path='*/ValueJsonSerializer/Serialize/*'/>
     public static string Serialize(IValue value, bool writeIndented = true) => JsonSerializer
         .Serialize(value, writeIndented ? IndentedSerializeOptions : NotIndentedSerializeOptions);
 
-    /// <include file="Docs.xml" path='*/ValueJsonConverter/Deserialize/*'/>
+    /// <include file="Docs.xml" path='*/ValueJsonSerializer/Deserialize/*'/>
     public static IValue Deserialize(string json)
     {
         return JsonSerializer.Deserialize<ValueDto>(Enforce.IsNullOrWhiteSpace(json), DeserializerOptions) ??

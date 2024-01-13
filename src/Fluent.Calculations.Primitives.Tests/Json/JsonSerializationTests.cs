@@ -10,7 +10,7 @@ public class JsonSerializationTests
     public void SimpleValue_Serialized_ExpectedJson()
     {
         Number testValue = Number.Of(5, "TEST-SCOPE", nameof(testValue));
-        string json = ValueJsonConverter.Serialize(testValue, writeIndented: false);
+        string json = ValueJsonSerializer.Serialize(testValue, writeIndented: false);
         json.Should().NotBeNullOrEmpty();
         json.Should().Be(@"{""Type"":""Number"",""Name"":""testValue"",""Scope"":""TEST-SCOPE"",""Primitive"":5,""PrimitiveString"":""5.00"",""Origin"":""Constant"",""Expression"":{""Body"":""5"",""Type"":""Constant""}}");
     }
@@ -20,7 +20,7 @@ public class JsonSerializationTests
     {
         string json = @"{""Type"":""Number"",""Name"":""TEST-VALUE"",""Scope"":""TEST-SCOPE"",""Primitive"":5,""PrimitiveString"":""5.00"",""Origin"":""Constant"",""Expression"":{""Body"":""5"",""Type"":""Constant""}}";
 
-        IValue value = ValueJsonConverter.Deserialize(json);
+        IValue value = ValueJsonSerializer.Deserialize(json);
 
         value.Scope.Should().Be("TEST-SCOPE");
         value.Name.Should().Be("TEST-VALUE");
@@ -44,7 +44,7 @@ public class JsonSerializationTests
             valueTwo = Number.Of(2, scope,nameof(valueTwo)),
             resultTwo = Result.OfWithScope(() => valueOne + valueTwo, scope, nameof(resultTwo));
 
-        string json = ValueJsonConverter.Serialize(resultTwo, writeIndented: false);
+        string json = ValueJsonSerializer.Serialize(resultTwo, writeIndented: false);
         json.Should().NotBeNullOrEmpty();
         json.Should().Be(
             @"{""Type"":""Number"",""Name"":""resultTwo"",""Scope"":""TEST-SCOPE"",""Primitive"":3,""PrimitiveString"":""3.00"",""Origin"":""Result"",""Expression"":{""Arguments"":[{""Type"":""Number""," +
@@ -66,7 +66,7 @@ public class JsonSerializationTests
 
         Number finalResult = Result.OfWithScope(() => resultOne + valueTwo, scope, nameof(finalResult));
 
-        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(finalResult));
+        IValue deserialized = ValueJsonSerializer.Deserialize(ValueJsonSerializer.Serialize(finalResult));
 
         deserialized.Scope.Should().Be(scope);
         deserialized.Primitive.Should().Be(finalResult.Primitive);
@@ -90,7 +90,7 @@ public class JsonSerializationTests
 
         Number result = Result.Of(() => valuesCollection.Sum(), nameof(result));
 
-        IValue deserialized = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(result));
+        IValue deserialized = ValueJsonSerializer.Deserialize(ValueJsonSerializer.Serialize(result));
 
         deserialized.Name.Should().Be(nameof(result));
         deserialized.Primitive.Should().Be(10);

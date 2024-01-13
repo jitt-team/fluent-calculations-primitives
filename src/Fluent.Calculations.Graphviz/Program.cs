@@ -16,11 +16,11 @@ string
 Number resultValue = new DemoCalculation().ToResult();
 
 // Serialize to Json
-string resultAsJson = ValueJsonConverter.Serialize(resultValue);
+string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
 File.WriteAllText(jsonFileName, resultAsJson);
 
 // Deserialize from json
-IValue resultFromJson = ValueJsonConverter.Deserialize(resultAsJson);
+IValue resultFromJson = ValueJsonSerializer.Deserialize(resultAsJson);
 
 // Convert to graph
 DotGraph dotGraph = new DotGraphValueBuilder().Build(resultFromJson);
