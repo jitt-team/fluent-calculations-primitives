@@ -81,7 +81,7 @@
 		<Return>
 			<summary>Override to implement the final calculation step</summary>
 			<remarks>
-				Used to clearly define the final calculation step, and ensure consistent retrieval of evaluation result. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>
+				Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>
 			</remarks>
 			<returns>Calculation result</returns>
 		</Return>
@@ -141,30 +141,30 @@
 			<returns>Lambda expression result containing arguments and expression body.</returns>
 		</Evaluate>
 		<Evaluate-switch>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TCase">TBD</typeparam>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="getResultEvaluatorFunc">TBD</param>
-			<param name="name">TBD</param>
-			<returns>TBD</returns>
+			<summary>Evaluates switch expression and captures it's arguments</summary>
+			<remarks>Learn more about Option type and SwitchExpression</remarks>
+			<typeparam name="TCase">Type of case and evaluated value</typeparam>
+			<typeparam name="TValue">Case result return type</typeparam>
+			<param name="getResultEvaluatorFunc">Expression representing switch expression</param>
+			<param name="name">Name of evauation</param>
+			<returns>Switch expression case result</returns>
 		</Evaluate-switch>
 		<ClearCache>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
+			<summary>Force clearing cached evaluation results</summary>
+			<remarks>Experimental feature for resuable calculation classes.</remarks>
 		</ClearCache>
 		<Create>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">TBD</param>
-			<returns>TBD</returns>
+			<summary>Create a cope instance</summary>
+			<remarks>Used for standalone EvaluationScpes as opposed to inheritance approach</remarks>
+			<param name="scope">Name of the scope</param>
+			<returns>Named evaluation scope instance</returns>
 		</Create>
 		<ToResult>
 			<summary>
-				TBD
+				Runs calculations and returns result.
 			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
+			<remarks>Used when inheriting from EvaluationScope to have a consitent way to retrive results</remarks>
+			<returns>Final evaluation result</returns>
 		</ToResult>
 	</EvaluationScope>
 	<IEvaluationScope>
