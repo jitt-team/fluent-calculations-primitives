@@ -1092,9 +1092,9 @@
   <Number>
     <class>
       <summary>
-        TBD
+        Represents a native decimal value type, it supports arithmetic, comparison, and equality operators.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>Additionally this class implements Generic Math operators.</remarks>
     </class>
     <ctor>
       <summary>
@@ -1447,9 +1447,9 @@
   <Condition>
     <class>
       <summary>
-        TBD
+        Class that represents a Boolean value, which can be either true or false.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>Class provides same operators as System.Boolean and hence can be seamlessly used in typical logical expressions.</remarks>
     </class>
     <ctor>
       <summary>
@@ -1638,10 +1638,10 @@
   <Option>
     <class>
       <summary>
-        TBD
+        Class that is logical equivalent to native enum and used to define a set of constant options. 
       </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="T">TBD</typeparam>
+      <remarks>This class enables use of SwithcExpression swithc/case expression builder</remarks>
+      <typeparam name="T">Type of underlying Enum</typeparam>
     </class>
     <ctor>
       <summary>
