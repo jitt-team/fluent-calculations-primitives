@@ -885,11 +885,9 @@
   </IValueProvider>
   <Values>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="T">TBD</typeparam>
+      <summary>Represents both, a strongly typed read-ony list of Values, and a value that is Sum of all elements.</summary>
+      <remarks>Usefull keep track of same kind of values while ussing aggregate functions results in calculations.</remarks>
+      <typeparam name="T">Type of collection element</typeparam>
     </class>
     <ctor-makeValueArgs>
       <summary>
@@ -1008,11 +1006,9 @@
   </Values>
   <IValuesProvider>
     <interface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="T">TBD</typeparam>
+      <summary>Represents both, a strongly typed read-ony list of Values, and a value that is Sum of all elements.</summary>
+      <remarks>Usefull keep track of same kind of values while ussing aggregate functions results in calculations.</remarks>
+      <typeparam name="T">Type of collection element</typeparam>
     </interface>
     <MakeOfThisElementType>
       <summary>
@@ -1047,10 +1043,8 @@
   </ValuesDebugView>
   <ValuesLinqMathExtensions>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides static methods of common aggregate functions for types implementing IValuesProvider.</summary>
+      <remarks>This class is an wrapper of limited set of native Linq extension methods and enables the capturing collection elements as arguments.</remarks>
     </class>
     <Sum>
       <summary>
@@ -1761,9 +1755,7 @@
   </Option-static>
   <ValueMath>
     <class>
-      <summary>
-        Provides static methods for common mathematical functions for types implementing IValueProvider.
-      </summary>
+      <summary>Provides static methods for common mathematical functions for types implementing IValueProvider.</summary>
       <remarks>This class is an wrapper of native Math class in .NET Framework and enables the capturing of arguments. This library focuses on simpler business related calculations hence many trigonometric or logarithmic functions ar ommited at the moment.</remarks>
     </class>
     <Abs>
