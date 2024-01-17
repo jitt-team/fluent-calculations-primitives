@@ -47,8 +47,6 @@ internal class ReflectionProvider : IReflectionProvider
         throw new NotSupportedException($"Member type {memberInfo.MemberType} of [{memberInfo.Name}] is not supported.");
     }
 
-
-
     private object EnsureNotNull(object? obj, Expression body) => obj ?? throw new NullExpressionResultException(body.ToString());
 
     private static class ParameterAndEvaluationDefaultConvention

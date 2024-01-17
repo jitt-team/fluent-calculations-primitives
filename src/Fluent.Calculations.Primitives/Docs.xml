@@ -1737,15 +1737,11 @@
   </Option>
   <Option-static>
     <class>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </class>
     <Of>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <typeparam name="TEnum">TBD</typeparam>
       <param name="primitiveValue">TBD</param>
@@ -1815,24 +1811,13 @@
   </ValueMath>
   <NullExpressionResultException>
     <exception>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>The exception that is thrown when a some part of evaluation resulted in a null reference.</summary>
+      <remarks>Typically indicates that input parameter was not set.</remarks>
     </exception>
-    <ctor>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="expressionBody">TBD</param>
-    </ctor>
   </NullExpressionResultException>
   <SwitchExpression>
     <class>
-      <summary>
-        Provides support of swithc/case logic building using fluent builder pattern.
-      </summary>
+      <summary>Provides support of swithc/case logic building using fluent builder pattern.</summary>
       <remarks>
         Use the funtionality provided by this builder instead of native swithc/case statements as it's not supported in Expressions.
       </remarks>
@@ -1935,29 +1920,21 @@
   </SwitchExpression>
   <ValueJsonSerializer>
     <class>
-      <summary>
-        Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.
-      </summary>
+      <summary>Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.</summary>
       <remarks>For more information, see "How to serialize and deserialize JSON." TODO : add link</remarks>
     </class>
     <Serialize>
-      <summary>
-        Converts the provided value into a String.
-      </summary>
+      <summary>Converts the provided value into a String.</summary>
       <remarks>TBD</remarks>
       <param name="value">The value to convert.</param>
       <param name="writeIndented">Specifies whether JSON should use pretty printing. By default, JSON is serialized without any extra white space.</param>
       <returns>A String representation of the value.</returns>
     </Serialize>
     <Deserialize>
-      <summary>
-        Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.
-      </summary>
+      <summary>Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.</summary>
       <remarks>Returned type and related arguments are not originally serialized types.</remarks>
       <param name="json">JSON text to parse.</param>
-      <returns>
-        A <see cref="IValue"/> representation of the JSON value.
-      </returns>
+      <returns>A <see cref="IValue"/> representation of the JSON value.</returns>
     </Deserialize>
   </ValueJsonSerializer>
 </IntelliSense>
