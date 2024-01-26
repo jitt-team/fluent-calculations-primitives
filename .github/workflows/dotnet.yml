@@ -20,7 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: src
+        working-directory: . # root directory
 
     steps:
     - uses: actions/checkout@v3
