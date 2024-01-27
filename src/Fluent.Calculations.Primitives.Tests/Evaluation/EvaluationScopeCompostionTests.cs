@@ -130,7 +130,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
 
-            EvaluationScope<Number>
+            EvaluationScope
                 CalculationOne = new(options),
                 CalculationOther = new(options);
 
@@ -152,7 +152,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
         public static Number Return()
         {
             EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-            EvaluationScope<Number> scope = new(options);
+            EvaluationScope scope = new(options);
 
             Number
                 NumberOne = Number.Of(2),
@@ -176,7 +176,7 @@ namespace Fluent.Calculations.Primitives.Tests.Evaluation
 
     public class TestCalculationEncapsulated
     {
-        private readonly EvaluationScope<Number> scope = new();
+        private readonly EvaluationScope scope = new();
 
         readonly Number
             NumberOne = Number.Of(2),

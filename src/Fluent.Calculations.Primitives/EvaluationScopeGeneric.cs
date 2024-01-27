@@ -4,7 +4,7 @@ using Fluent.Calculations.Primitives.Expressions.Capture;
 using Fluent.Calculations.Primitives.Expressions;
 
 /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/class/*'/>
-public class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T : class, IValueProvider, new()
+public abstract class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T : class, IValueProvider, new()
 {
     private readonly Func<EvaluationScope<T>, T>? calculationFunc;
 
