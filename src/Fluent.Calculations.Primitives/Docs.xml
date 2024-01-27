@@ -80,110 +80,87 @@
   </IEvaluationScopeGeneric>
   <EvaluationScope>
     <class>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Class provides methods to write calculations and capture the results.</summary>
+      <remarks>This class provides a logical context of closely related expressions to calculate a result.</remarks>
     </class>
     <ctor>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope"/>.</summary>
+      <remarks>Default options will be applied.</remarks>
     </ctor>
     <ctor-options>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="options">Options to be used to run the calculation</param>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope"/> class with custom options.</summary>
+      <remarks>Learn more about evaluation behaviours.</remarks>
+      <param name="options">Options to be used to run the calculation.</param>
     </ctor-options>
     <ctor-scope>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="scope">
-        TBD
-      </param>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope"/> class with standalone lambda expression.</summary>
+      <remarks>This initalization method is mostly sseful for testing and prototyping.</remarks>
+      <param name="scope">Name of the scope</param>
     </ctor-scope>
     <Evaluate>
       <summary>Evaluates an expression and captures it's arguments.</summary>
       <remarks>TBD</remarks>
-      <typeparam name="TValue">Result value type</typeparam>
-      <param name="lambdaExpression">Math or logic expression</param>
-      <param name="name">Result name (captured by the compiler by default)</param>
-      <param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
+      <typeparam name="TValue">Result value type.</typeparam>
+      <param name="lambdaExpression">Math or logic expression.</param>
+      <param name="name">Result name (captured by the compiler by default).</param>
+      <param name="lambdaExpressionBody">Expression body (captured by the compiler by default).</param>
       <returns>Lambda expression result containing arguments and expression body.</returns>
     </Evaluate>
     <Evaluate-switch>
-      <summary>Evaluates switch expression and captures it's arguments</summary>
-      <remarks>Learn more about Option type and SwitchExpression</remarks>
-      <typeparam name="TCase">Type of case and evaluated value</typeparam>
-      <typeparam name="TValue">Case result return type</typeparam>
-      <param name="getResultEvaluatorFunc">Expression representing switch expression</param>
-      <param name="name">Name of evauation</param>
-      <returns>Switch expression case result</returns>
+      <summary>Evaluates switch expression and captures it's values as arguments.</summary>
+      <remarks>Learn more about Option type and SwitchExpression.</remarks>
+      <typeparam name="TCase">Type of case and evaluated value.</typeparam>
+      <typeparam name="TValue">Case result return type.</typeparam>
+      <param name="getResultEvaluatorFunc">Expression representing switch expression.</param>
+      <param name="name">Name of evauation.</param>
+      <returns>Switch expression case result.</returns>
     </Evaluate-switch>
     <ClearCache>
-      <summary>Force clearing cached evaluation results</summary>
+      <summary>Force clearing cached evaluation results.</summary>
       <remarks>Experimental feature for resuable calculation classes.</remarks>
     </ClearCache>
     <Create>
-      <summary>Create a cope instance</summary>
-      <remarks>Used for standalone EvaluationScpes as opposed to inheritance approach</remarks>
-      <param name="scope">Name of the scope</param>
-      <returns>Named evaluation scope instance</returns>
+      <summary>Create a cope instance.</summary>
+      <remarks>Used for standalone EvaluationScpes as opposed to inheritance approach.</remarks>
+      <param name="scope">Name of the scope.</param>
+      <returns>Named evaluation scope instance.</returns>
     </Create>
-    <ToResult>
-      <summary>
-        Runs calculations and returns result.
-      </summary>
-      <remarks>Used when inheriting from EvaluationScope to have a consitent way to retrive results</remarks>
-      <returns>Final evaluation result</returns>
-    </ToResult>
   </EvaluationScope>
   <IEvaluationScope>
     <interface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
+      <remarks>Useful for mocking, dependency injection or creating alternative implementations.</remarks>
     </interface>
     <Evaluate>
-      <summary>
-        TBD
-      </summary>
+      <summary>Evaluates an expression and captures it's arguments.</summary>
       <remarks>TBD</remarks>
-      <typeparam name="TValue">TBD</typeparam>
-      <param name="lambdaExpression">TBD</param>
-      <param name="name">TBD</param>
-      <param name="lambdaExpressionBody">TBD</param>
-      <returns>TBD</returns>
+      <typeparam name="TValue">Result value type.</typeparam>
+      <param name="lambdaExpression">Math or logic expression.</param>
+      <param name="name">Result name (captured by the compiler by default).</param>
+      <param name="lambdaExpressionBody">Expression body (captured by the compiler by default).</param>
+      <returns>Lambda expression result containing arguments and expression body.</returns>
     </Evaluate>
     <Evaluate-switch>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TCase">TBD</typeparam>
-      <typeparam name="TValue">TBD</typeparam>
-      <param name="getResultEvaluatorFunc">TBD</param>
-      <param name="name">TBD</param>
-      <returns>TBD</returns>
+      <summary>Evaluates switch expression and captures it's values as arguments.</summary>
+      <remarks>Learn more about Option type and SwitchExpression.</remarks>
+      <typeparam name="TCase">Type of case and evaluated value.</typeparam>
+      <typeparam name="TValue">Case result return type.</typeparam>
+      <param name="getResultEvaluatorFunc">Expression representing switch expression.</param>
+      <param name="name">Name of evauation.</param>
+      <returns>Switch expression case result.</returns>
     </Evaluate-switch>
   </IEvaluationScope>
   <Scope>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides static methods for quick <see cref="EvaluationScope"/> creation.</summary>
+      <remarks>Helper class to provide alternative ways to create an <see cref="EvaluationScope"/> instances.</remarks>
     </class>
     <CreateHere>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="obj">TBD</param>
-      <param name="scope">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope"/>.</summary>
+      <remarks>Typically one scope per method would be required to capture logical group of expressions.</remarks>
+      <param name="obj">Object where <see cref="EvaluationScope"/> to be crated. Class name will be used as a prefix of the scope name.</param>
+      <param name="scope">Scope name, by default calling method name will be captured.</param>
+      <returns>Inctance of <see cref="EvaluationScope"/>.</returns>
     </CreateHere>
   </Scope>
   <Result>
