@@ -2,13 +2,9 @@
 <IntelliSense>
   <EvaluationScopeGeneric>
     <class>
-      <summary>
-        Base class for implementing a calculation.
-      </summary>
+      <summary>Base class for implementing a calculation.</summary>
       <remarks>
-        <para>
-          Create inhertited classes from this base class to define, run and retrieve a result of your calculations.
-        </para>
+        <para>Create inhertited classes from this base class to define, run and retrieve a result of your calculations.</para>
         <list type="table">
           <item>
             <term>Calculation</term>
@@ -38,75 +34,53 @@
           </item>
         </list>
       </remarks>
-      <typeparam name="T">Type of the result value class</typeparam>
+      <typeparam name="T">Type of the result value class.</typeparam>
     </class>
     <ctor>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
-      </summary>
-      <remarks>Default options will be applied</remarks>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/>.</summary>
+      <remarks>Default options will be applied.</remarks>
     </ctor>
     <ctor-options>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.</summary>
+      <remarks>Learn more about evaluation behaviours.</remarks>
       <param name="options">Options to control the behavior during evaluation.</param>
     </ctor-options>
     <ctor-func>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
-      </summary>
-      <remarks>Useful to capture small ad-hoc expressions for tests or experimentation purposes</remarks>
-      <param name="func">
-        Lambda expression using <see cref="IValue"/> types
-      </param>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.</summary>
+      <remarks>Useful to capture small ad-hoc expressions for tests or experimentation purposes.</remarks>
+      <param name="func">Lambda expression using <see cref="IValue"/> types.</param>
     </ctor-func>
     <ctor-scope>
-      <summary>
-        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="scope">
-        TBD
-      </param>
+      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.</summary>
+      <remarks>This initalization method is mostly sseful for testing and prototyping.</remarks>
+      <param name="scope">Name of the scope</param>
     </ctor-scope>
     <ToResult>
-      <summary>
-        Runs and return result from implemented calculation.
-      </summary>
-      <remarks>Calls Return() under the hood,</remarks>
+      <summary>Runs and return result from implemented calculation.</summary>
+      <remarks>Calls Return() under the hood.</remarks>
       <returns>Calculation result with captured arguments and expression tree.</returns>
     </ToResult>
     <Return>
-      <summary>Override to implement the final calculation step</summary>
-      <remarks>
-        Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>
-      </remarks>
-      <returns>Calculation result</returns>
+      <summary>Override to implement the final calculation step.</summary>
+      <remarks>Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>.</remarks>
+      <returns>Calculation final result.</returns>
     </Return>
   </EvaluationScopeGeneric>
   <IEvaluationScopeGeneric>
     <interface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="T">TBD</typeparam>
+      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
+      <remarks>Useful when implementing a strategy pattern. Learn more about advanced use-cases.</remarks>
+      <typeparam name="T">Type of the result value class.</typeparam>
     </interface>
     <ToResult>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Runs and return result from implemented calculation.</summary>
+      <remarks>Calls Return() under the hood.</remarks>
+      <returns>Calculation result with captured arguments and expression tree.</returns>
     </ToResult>
   </IEvaluationScopeGeneric>
   <EvaluationScope>
     <class>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </class>
     <ctor>
@@ -489,15 +463,11 @@
   </ValueOriginType>
   <MakeValueArgs>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents set of standard arguments to initialize instance of a class inheriting from Value base clas</summary>
+      <remarks>Used in constructors of classes derived from Value class to initialize the base class</remarks>
     </class>
     <Name>
-      <summary>
-        TBD
-      </summary>
+      <summary>Name of the variable</summary>
       <value>TBD</value>
       <remarks>TBD</remarks>
     </Name>
@@ -692,22 +662,16 @@
   </IExpression>
   <ArgumentsCollection>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents read-only collection of IValue elements.</summary>
+      <remarks>Created and populated by the operation handlers or EvaluationScope during execution of implemented logic</remarks>
     </class>
     <Count>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
-      <value>TBD</value>
+      <value>Number of elements in a collection</value>
     </Count>
     <GetEnumerator>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>
         TBD
@@ -1737,14 +1701,14 @@
   </Option>
   <Option-static>
     <class>
-      <summary>TBD</summary>
+      <summary>Contains methods for typed Option instance creation.</summary>
       <remarks>TBD</remarks>
     </class>
     <Of>
-      <summary>TBD</summary>
+      <summary>Creates an instance of an Option prepresenting provided Enum value</summary>
       <remarks>TBD</remarks>
-      <typeparam name="TEnum">TBD</typeparam>
-      <param name="primitiveValue">TBD</param>
+      <typeparam name="TEnum">Underlying Enum type</typeparam>
+      <param name="primitiveValue">Value of the option</param>
       <param name="fieldName">TBD</param>
       <returns>TBD</returns>
     </Of>
