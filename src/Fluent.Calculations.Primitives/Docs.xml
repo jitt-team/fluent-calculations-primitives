@@ -165,66 +165,50 @@
   </Scope>
   <Result>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides methods to execute simple ad-hoc calculations.</summary>
+      <remarks>Useful for unit tests or prototyping.</remarks>
     </class>
     <Of>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TValue">TBD</typeparam>
-      <param name="name">TBD</param>
-      <param name="lambdaExpression">TBD</param>
-      <param name="lambdaExpressionBody">TBD</param>
-      <returns>TBD</returns>
+      <summary>Evaluates expression and captures it's arguments.</summary>
+      <remarks>Temporary EvaluationScope will be created to evaluate the expression.</remarks>
+      <typeparam name="TValue">Type of result.</typeparam>
+      <param name="name">Name of resulting value, set by default to calling method or property name.</param>
+      <param name="lambdaExpression">Expression to evaluate.</param>
+      <param name="lambdaExpressionBody">Expression body, autmatically captured.</param>
+      <returns>Evaluation result.</returns>
     </Of>
     <OfWithScope>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TValue">TBD</typeparam>
-      <param name="name">TBD</param>
-      <param name="lambdaExpression">TBD</param>
-      <param name="lambdaExpressionBody">TBD</param>
+      <summary>Provides methods to execute simple ad-hoc calculations.</summary>
+      <remarks>Temporary EvaluationScope will be created to evaluate the expression.</remarks>
+      <typeparam name="TValue">Type of result.</typeparam>
+      <param name="name">>Name of resulting value, set by default to calling method or property name.</param>
+      <param name="lambdaExpression">Expression to evaluate.</param>
+      <param name="lambdaExpressionBody">Expression body, autmatically captured</param>
       <param name="scopeName">TBD</param>
-      <returns>TBD</returns>
+      <returns>Evaluation result.</returns>
     </OfWithScope>
   </Result>
   <EvaluationOptions>
     <class>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </class>
     <ctor>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </ctor>
     <Default>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </Default>
     <AlwaysReadNamesFromExpressions>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </AlwaysReadNamesFromExpressions>
     <Scope>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </Scope>
