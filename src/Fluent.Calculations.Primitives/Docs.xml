@@ -37,22 +37,32 @@
       <typeparam name="T">Type of the result value class.</typeparam>
     </class>
     <ctor>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/>.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
+      </summary>
       <remarks>Default options will be applied.</remarks>
     </ctor>
     <ctor-options>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
+      </summary>
       <remarks>Learn more about evaluation behaviours.</remarks>
       <param name="options">Options to control the behavior during evaluation.</param>
     </ctor-options>
     <ctor-func>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+      </summary>
       <remarks>Useful to capture small ad-hoc expressions for tests or experimentation purposes.</remarks>
-      <param name="func">Lambda expression using <see cref="IValue"/> types.</param>
+      <param name="func">
+        Lambda expression using <see cref="IValue"/> types.
+      </param>
     </ctor-func>
     <ctor-scope>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.</summary>
-      <remarks>This initalization method is mostly sseful for testing and prototyping.</remarks>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.
+      </summary>
+      <remarks>This initalization method is mostly useful for testing and prototyping purposes.</remarks>
       <param name="scope">Name of the scope</param>
     </ctor-scope>
     <ToResult>
@@ -62,13 +72,17 @@
     </ToResult>
     <Return>
       <summary>Override to implement the final calculation step.</summary>
-      <remarks>Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>.</remarks>
+      <remarks>
+        Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>.
+      </remarks>
       <returns>Calculation final result.</returns>
     </Return>
   </EvaluationScopeGeneric>
   <IEvaluationScopeGeneric>
     <interface>
-      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
+      <summary>
+        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
+      </summary>
       <remarks>Useful when implementing a strategy pattern. Learn more about advanced use-cases.</remarks>
       <typeparam name="T">Type of the result value class.</typeparam>
     </interface>
@@ -84,22 +98,28 @@
       <remarks>This class provides a logical context of closely related expressions to calculate a result.</remarks>
     </class>
     <ctor>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope"/>.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/>.
+      </summary>
       <remarks>Default options will be applied.</remarks>
     </ctor>
     <ctor-options>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope"/> class with custom options.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/> class with custom options.
+      </summary>
       <remarks>Learn more about evaluation behaviours.</remarks>
       <param name="options">Options to be used to run the calculation.</param>
     </ctor-options>
     <ctor-scope>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope"/> class with standalone lambda expression.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/> class with standalone lambda expression.
+      </summary>
       <remarks>This initalization method is mostly sseful for testing and prototyping.</remarks>
       <param name="scope">Name of the scope</param>
     </ctor-scope>
     <Evaluate>
       <summary>Evaluates an expression and captures it's arguments.</summary>
-      <remarks>TBD</remarks>
+      <remarks>This is a primary method to define any intermediate calculations in your business logic.</remarks>
       <typeparam name="TValue">Result value type.</typeparam>
       <param name="lambdaExpression">Math or logic expression.</param>
       <param name="name">Result name (captured by the compiler by default).</param>
@@ -128,7 +148,9 @@
   </EvaluationScope>
   <IEvaluationScope>
     <interface>
-      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
+      <summary>
+        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
+      </summary>
       <remarks>Useful for mocking, dependency injection or creating alternative implementations.</remarks>
     </interface>
     <Evaluate>
@@ -152,15 +174,25 @@
   </IEvaluationScope>
   <Scope>
     <class>
-      <summary>Provides static methods for quick <see cref="EvaluationScope"/> creation.</summary>
-      <remarks>Helper class to provide alternative ways to create an <see cref="EvaluationScope"/> instances.</remarks>
+      <summary>
+        Provides static methods for quick <see cref="EvaluationScope"/> creation.
+      </summary>
+      <remarks>
+        Helper class to provide alternative ways to create an <see cref="EvaluationScope"/> instances.
+      </remarks>
     </class>
     <CreateHere>
-      <summary>Initializes a new instance of the <see cref="EvaluationScope"/>.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/>.
+      </summary>
       <remarks>Typically one scope per method would be required to capture logical group of expressions.</remarks>
-      <param name="obj">Object where <see cref="EvaluationScope"/> to be crated. Class name will be used as a prefix of the scope name.</param>
+      <param name="obj">
+        Object where <see cref="EvaluationScope"/> to be crated. Class name will be used as a prefix of the scope name.
+      </param>
       <param name="scope">Scope name, by default calling method name will be captured.</param>
-      <returns>Inctance of <see cref="EvaluationScope"/>.</returns>
+      <returns>
+        Inctance of <see cref="EvaluationScope"/>.
+      </returns>
     </CreateHere>
   </Scope>
   <Result>
@@ -190,63 +222,65 @@
   </Result>
   <EvaluationOptions>
     <class>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>
+        Provides options to be used with <see cref="EvaluationScope"/>.
+      </summary>
+      <remarks>Learn more about EvaluationScope behaviours.</remarks>
     </class>
     <ctor>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Initializes a new instance of the EvaluationOptions class.</summary>
+      <remarks></remarks>
     </ctor>
     <Default>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Constructs a new EvaluationOptions instance with a predefined set of defaults.</summary>
+      <remarks></remarks>
+      <value>Instance of EvaluationOptions class with default options.</value>
     </Default>
     <AlwaysReadNamesFromExpressions>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Instructs EvaluationScope to read argument names from Expression Tree.</summary>
+      <remarks>By default, when evaluations are implemented as methods or properties, name will be captured at compile time. When using local variables without providing custom name, enable this option to read arguemnt names from Expressions.</remarks>
+      <value>true: read names from expressions, false: keep default behaviour.</value>
     </AlwaysReadNamesFromExpressions>
     <Scope>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Get or sets scope name that will be applied to all values used with EvaluationScope.</summary>
+      <remarks>This is one of few ways to provide a scope name. Learn more about evaluation scopes.</remarks>
+      <value>Scope name</value>
     </Scope>
   </EvaluationOptions>
   <Value>
     <class>
-      <summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
-      <remarks>TBD</remarks>
+      <summary>Base building block for domain specific numer-like types, Number and Condition are built-in examples.</summary>
+      <remarks>Leverage this class to create new types specific to your domain. Learn more about implementing new tracable values.</remarks>
     </class>
     <Name>
-      <summary>Name of the variable</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Name of value</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
     </Name>
     <Expression>
-      <summary>Metadata of expression that yielded this value</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
     </Expression>
     <Primitive>
-      <summary>Numeric primitive representation of the value</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
     </Primitive>
     <PrimitiveString>
       <summary>Formatted string representation of the primitive value</summary>
-      <value>Implementing class is responsible of providing accurate formatting</value>
-      <remarks>TBD</remarks>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
     </PrimitiveString>
     <Origin>
-      <summary>Origin type of the value</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understand of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
     </Origin>
     <Tags>
-      <summary>Custom tags associated with the value</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
     </Tags>
     <Scope>
       <summary>Named scope that this value is part of</summary>
@@ -262,21 +296,21 @@
       <summary>
         Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This constructor is used in constructors of derived types based on a simpler types. For example Money type could based on Number.</remarks>
       <param name="value">Value to copy</param>
     </ctor-value>
     <ctor-makeValueArgs>
       <summary>
         Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
       <param name="makeValueArgs">Arguments to create a new value</param>
     </ctor-makeValueArgs>
     <MakeOfThisType>
       <summary>
         Initializes a new instance of the derived value class. Used by the framework to create expected result types.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This method is typically used to create a results of math or logical operations or calculation methods, build int ValueMath.Abs() would be an example.</remarks>
       <param name="args">Arguments to create a new value</param>
       <returns>TBD</returns>
     </MakeOfThisType>
@@ -284,14 +318,14 @@
       <summary>
         Initializes a new instance with default values, equivalent to zero/null value.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This framework avoids dealing with nullable types.</remarks>
       <returns>Instance of zero value</returns>
     </MakeDefault>
     <HandleBinaryOperation>
       <summary>
         Handles math and comparison operations of underlying primitve values in derived types.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>Examples are Number and Condition classes that are using this method.</remarks>
       <typeparam name="ResultType">Operation result type</typeparam>
       <typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
       <param name="right">Right side value of operatoin</param>
@@ -301,24 +335,22 @@
     </HandleBinaryOperation>
     <Equals-value>
       <summary>
-        TBD
+        Determines whether two Values are equal based on underlying primitive value.
       </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <returns>TBD</returns>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="value">Other value</param>
+      <returns>True if primitive values equal.</returns>
     </Equals-value>
     <Equals-obj>
       <summary>
-        TBD
+        Determines whether two Values are equal based on underlying primitive value.
       </summary>
-      <remarks>TBD</remarks>
-      <param name="obj">TBD</param>
-      <returns>TBD</returns>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other value</param>
+      <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
     </Equals-obj>
     <GetHashCode>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </GetHashCode>
@@ -1557,7 +1589,7 @@
   <Option>
     <class>
       <summary>
-        Class that is logical equivalent to native enum and used to define a set of constant options. 
+        Class that is logical equivalent to native enum and used to define a set of constant options.
       </summary>
       <remarks>This class enables use of SwithcExpression swithc/case expression builder</remarks>
       <typeparam name="T">Type of underlying Enum</typeparam>
@@ -1845,7 +1877,9 @@
   </SwitchExpression>
   <ValueJsonSerializer>
     <class>
-      <summary>Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.</summary>
+      <summary>
+        Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.
+      </summary>
       <remarks>For more information, see "How to serialize and deserialize JSON." TODO : add link</remarks>
     </class>
     <Serialize>
@@ -1856,10 +1890,14 @@
       <returns>A String representation of the value.</returns>
     </Serialize>
     <Deserialize>
-      <summary>Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.</summary>
+      <summary>
+        Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.
+      </summary>
       <remarks>Returned type and related arguments are not originally serialized types.</remarks>
       <param name="json">JSON text to parse.</param>
-      <returns>A <see cref="IValue"/> representation of the JSON value.</returns>
+      <returns>
+        A <see cref="IValue"/> representation of the JSON value.
+      </returns>
     </Deserialize>
   </ValueJsonSerializer>
 </IntelliSense>
