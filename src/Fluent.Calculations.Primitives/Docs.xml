@@ -274,7 +274,7 @@
     </PrimitiveString>
     <Origin>
       <summary>Origin type of the value.</summary>
-      <remarks>Provides an understand of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
       <value>Origin type.</value>
     </Origin>
     <Tags>
@@ -350,71 +350,67 @@
       <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
     </Equals-obj>
     <GetHashCode>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value</returns>
     </GetHashCode>
     <ToString>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns a string that represents the current value object.</summary>
+      <remarks>Derived types are responsible of implementating prefered string representation. Primary use case is readability in DebugView, to make user fiendly representation leverage PrimitiveString property.</remarks>
+      <returns>Return Name of value as a default implementation.</returns>
     </ToString>
   </Value>
   <IValue>
     <interface>
       <summary>
-        Lightweight interface that every value will implement
+        Lightweight interface that every value class will implement.
       </summary>
       <remarks>Can be reliably used for calculation expression tree visualization, for example in form of Graph.</remarks>
     </interface>
     <Name>
-      <summary>Name of the variable</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Name of value</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
     </Name>
     <Expression>
-      <summary>Expression that was used to calculate or define the value</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
     </Expression>
     <Primitive>
-      <summary>Numeric primitive representation of the value</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
     </Primitive>
     <PrimitiveString>
-      <summary>Formatted string representation of the value</summary>
-      <remarks>Implementing class is responsible of providing accurate formatting</remarks>
-      <value>TBD</value>
+      <summary>Formatted string representation of the primitive value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
     </PrimitiveString>
     <Origin>
-      <summary>Origin type of the value</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
     </Origin>
     <Tags>
-      <summary>Custom tags associated with the value</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
     </Tags>
-    <Type>
-      <summary>Original type of the value implementation</summary>
-      <remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
-      <value>Name of type aka GetType().Name</value>
-    </Type>
     <Scope>
       <summary>Named scope that this value is part of</summary>
       <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
       <value>Scome name</value>
     </Scope>
+    <Type>
+      <summary>Original type of the value implementation</summary>
+      <remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
+      <value>Name of type aka GetType().Name</value>
+    </Type>
   </IValue>
   <ValueOriginType>
     <enum>
-      <summary>
-        Defines the origin of value in context of calculations
-      </summary>
+      <summary>Defines the origin of value in context of calculations.</summary>
       <remarks>Allows </remarks>
     </enum>
     <NaN>
@@ -460,51 +456,34 @@
       <remarks>Used in constructors of classes derived from Value class to initialize the base class</remarks>
     </class>
     <Name>
-      <summary>Name of the variable</summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Name of value</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
     </Name>
     <Expression>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
     </Expression>
-    <PrimitiveValue>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
-    </PrimitiveValue>
+    <Primitive>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
+    </Primitive>
     <Origin>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
     </Origin>
-    <Arguments>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
-    </Arguments>
     <Tags>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
     </Tags>
     <Scope>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
     </Scope>
     <WithTags>
       <summary>

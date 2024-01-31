@@ -18,9 +18,6 @@ public class MakeValueArgs
     /// <include file="Docs.xml" path='*/MakeValueArgs/Origin/*'/>
     public ValueOriginType Origin { get; private set; }
 
-    /// <include file="Docs.xml" path='*/MakeValueArgs/Arguments/*'/>
-    public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
-
     /// <include file="Docs.xml" path='*/MakeValueArgs/Tags/*'/>
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
