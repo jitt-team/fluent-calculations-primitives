@@ -2,7 +2,7 @@
 <IntelliSense>
   <EvaluationScopeGeneric>
     <class>
-      <summary>Base class for implementing a calculation.</summary>
+      <summary>Provides the base class from which the use-case specific calculations classes can be derived.</summary>
       <remarks>
         <para>Create inhertited classes from this base class to define, run and retrieve a result of your calculations.</para>
         <list type="table">
@@ -249,8 +249,8 @@
   </EvaluationOptions>
   <Value>
     <class>
-      <summary>Base building block for domain specific numer-like types, Number and Condition are built-in examples.</summary>
-      <remarks>Leverage this class to create new types specific to your domain. Learn more about implementing new tracable values.</remarks>
+      <summary>Provides the base class from which the domain specific numer-like classes types can be derived.</summary>
+      <remarks>Number and Condition are built-in examples. Leverage this class to create other types specific to your domain. Learn more about implementing new tracable values.</remarks>
     </class>
     <Name>
       <summary>Name of value</summary>
@@ -365,7 +365,7 @@
       <summary>
         Lightweight interface that every value class will implement.
       </summary>
-      <remarks>Can be reliably used for calculation expression tree visualization, for example in form of Graph.</remarks>
+      <remarks>Visualizations can be base on this interface, ex. Graphs.</remarks>
     </interface>
     <Name>
       <summary>Name of value</summary>
@@ -485,41 +485,21 @@
       <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
       <value>Scome name</value>
     </Scope>
-    <WithTags>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="tags">TBD</param>
-      <returns>TBD</returns>
-    </WithTags>
   </MakeValueArgs>
   <ExpressionNode>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Class that is used to capture metadata and relationships of expression that produced the Values.</summary>
+      <remarks>This is central class to discover full calculation tree of any Value.</remarks>
     </class>
-    <ctor>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-    </ctor>
     <ToString>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns a string that represents the expression object.</summary>
+      <remarks>Output will depend on each function or operaor implementation.</remarks>
+      <returns>String containing Body of the expression.</returns>
     </ToString>
     <Body>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Body of the expression or operation.</summary>
+      <remarks>Exact body of expression will contain language operators and variable names used in original code.</remarks>
+      <value>Expression body</value>
     </Body>
     <Type>
       <summary>
@@ -1022,7 +1002,7 @@
   <Number>
     <class>
       <summary>
-        Represents a native decimal value type, it supports arithmetic, comparison, and equality operators.
+        Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.
       </summary>
       <remarks>Additionally this class implements Generic Math operators.</remarks>
     </class>
