@@ -1550,44 +1550,24 @@
       <summary>
         Class that is logical equivalent to native enum and used to define a set of constant options.
       </summary>
-      <remarks>This class enables use of SwithcExpression swithc/case expression builder</remarks>
-      <typeparam name="T">Type of underlying Enum</typeparam>
+      <remarks>This class enables use of SwithcExpression swithc/case expression builder.</remarks>
+      <typeparam name="T">Type of underlying the Enum.</typeparam>
     </class>
-    <ctor>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-    </ctor>
-    <ctor-option>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="enumValue">TBD</param>
-    </ctor-option>
-    <ctor-makeValueArgs>
-      <summary>
-        TBD
-      </summary>
-      <param name="makeValueArgs">TBD</param>
-      <remarks>TBD</remarks>
-    </ctor-makeValueArgs>
     <implicit-option>
       <summary>
-        TBD
+        Makes an implicit conversion from the Option to its underlying Enum type.
       </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <returns>TBD</returns>
+      <remarks></remarks>
+      <param name="value">Option value.</param>
+      <returns>Enum value.</returns>
     </implicit-option>
     <implicit-T>
       <summary>
-        TBD
+        Makes an implicit conversion from the Enum type to Option.
       </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <returns>TBD</returns>
+      <remarks></remarks>
+      <param name="value">Enum value.</param>
+      <returns>Option value.</returns>
     </implicit-T>
     <MakeOfThisType>
       <summary>
@@ -1654,15 +1634,15 @@
   <Option-static>
     <class>
       <summary>Contains methods for typed Option instance creation.</summary>
-      <remarks>TBD</remarks>
+      <remarks></remarks>
     </class>
     <Of>
-      <summary>Creates an instance of an Option prepresenting provided Enum value</summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TEnum">Underlying Enum type</typeparam>
-      <param name="primitiveValue">Value of the option</param>
-      <param name="fieldName">TBD</param>
-      <returns>TBD</returns>
+      <summary>Creates an instance of an Option prepresenting provided Enum value.</summary>
+      <remarks></remarks>
+      <typeparam name="TEnum">Underlying Enum type.</typeparam>
+      <param name="primitiveValue">Value of the option.</param>
+      <param name="fieldName">Automaically captured name of declaring property which will be used as a name of the Option.</param>
+      <returns>Option value instance.</returns>
     </Of>
   </Option-static>
   <ValueMath>
