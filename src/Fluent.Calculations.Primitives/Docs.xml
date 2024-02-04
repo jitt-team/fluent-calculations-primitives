@@ -536,39 +536,31 @@
   <ExpressionNodeType>
     <class>
       <summary>
-        TBD
+        Contains the classifiers representing Expression types.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This is a concise classification of the origin of a value. Usefull for troubleshooting and visualizations.</remarks>
     </class>
     <None>
       <summary>
-        TBD
+        Represents a standalone value or a default state not related to any EvaluationScope.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>Should not be encountered in typical use cases, should be considered equivalent to not initialized variable.</remarks>
     </None>
     <Constant>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents an inline constant or an input parameter.</summary>
+      <remarks>Constants are values that are not a result of any Evaluation or operation.</remarks>
     </Constant>
     <Collection>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents an immuatable collection of values of same type.</summary>
+      <remarks>Collection might be a result of a function handling collections, hard-coded collection of constants or an input parameter of a calculation.</remarks>
     </Collection>
     <Lambda>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents a result of lambda expression evaluation by Evaluate method of EvaluationScope.</summary>
+      <remarks>This type can only be a result of Evaluate() method.</remarks>
     </Lambda>
     <Switch>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Represents a special case evaluation where SwitchExpression class is being used.</summary>
+      <remarks>This type is logical equivalent to native switch/case statement.</remarks>
     </Switch>
     <Binary>
       <summary>
