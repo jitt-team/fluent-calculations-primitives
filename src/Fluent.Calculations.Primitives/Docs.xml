@@ -411,42 +411,30 @@
   <ValueOriginType>
     <enum>
       <summary>Defines the origin of value in context of calculations.</summary>
-      <remarks>Allows </remarks>
+      <remarks>TBD</remarks>
     </enum>
     <NaN>
-      <summary>
-        Represents default state when origin is not determinated or set
-      </summary>
+      <summary>Represents default state when origin is not determinated or set.</summary>
       <remarks>Part of null object pattern, should not apper too often. Value with this origin might indicate some missing implementation.</remarks>
     </NaN>
     <Parameter>
-      <summary>
-        Represents input parameter of the calculation
-      </summary>
+      <summary>Represents input parameter of the calculation.</summary>
       <remarks>This value will be applied to values that are not constants or evaluation results within calculation chain.</remarks>
     </Parameter>
     <Constant>
-      <summary>
-        Represents that value was declared as a numeric constant within calculation.
-      </summary>
+      <summary>Represents that value was declared as a numeric constant within calculation.</summary>
       <remarks>TBD</remarks>
     </Constant>
     <Evaluation>
-      <summary>
-        Represents a value that is a result of lambda expression evaluation result.
-      </summary>
+      <summary>Represents a value that is a result of lambda expression evaluation result.</summary>
       <remarks>Only Evaluate() method of EvaluationScope will return this type.</remarks>
     </Evaluation>
     <Operation>
-      <summary>
-        Represents intermediate results of basic binary or unary operations.
-      </summary>
+      <summary>Represents intermediate results of basic binary or unary operations.</summary>
       <remarks>These kind of values will typically be filtered out from evaluations. Neverless can be produced when Values are used for standalone operations without calling Evaluate() method.</remarks>
     </Operation>
     <Result>
-      <summary>
-        Represent the final result value when used in classes inherting from EcaluationScope.
-      </summary>
+      <summary>Represent the final result value when used in classes inherting from EcaluationScope.</summary>
       <remarks>ToResult() will yield this type.</remarks>
     </Result>
   </ValueOriginType>
@@ -535,15 +523,11 @@
   </ExpressionNode>
   <ExpressionNodeType>
     <class>
-      <summary>
-        Contains the classifiers representing Expression types.
-      </summary>
+      <summary>Contains the classifiers representing Expression types that produced the value.</summary>
       <remarks>This is a concise classification of the origin of a value. Usefull for troubleshooting and visualizations.</remarks>
     </class>
     <None>
-      <summary>
-        Represents a standalone value or a default state not related to any EvaluationScope.
-      </summary>
+      <summary>Represents a standalone value or a default state not related to any EvaluationScope.</summary>
       <remarks>Should not be encountered in typical use cases, should be considered equivalent to not initialized variable.</remarks>
     </None>
     <Constant>
@@ -563,15 +547,11 @@
       <remarks>This type is logical equivalent to native switch/case statement.</remarks>
     </Switch>
     <Binary>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </Binary>
     <Math>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </Math>
   </ExpressionNodeType>
