@@ -410,8 +410,8 @@
   </IValue>
   <ValueOriginType>
     <enum>
-      <summary>Defines the origin of value in context of calculations.</summary>
-      <remarks>TBD</remarks>
+      <summary>Defines the origin of value in context of a calculation.</summary>
+      <remarks>This enum allows quick understanding of the flow of the calculation.</remarks>
     </enum>
     <NaN>
       <summary>Represents default state when origin is not determinated or set.</summary>
@@ -422,8 +422,8 @@
       <remarks>This value will be applied to values that are not constants or evaluation results within calculation chain.</remarks>
     </Parameter>
     <Constant>
-      <summary>Represents that value was declared as a numeric constant within calculation.</summary>
-      <remarks>TBD</remarks>
+      <summary>Represents a constant values which do not change.</summary>
+      <remarks>Conceptually equal to native constant value.</remarks>
     </Constant>
     <Evaluation>
       <summary>Represents a value that is a result of lambda expression evaluation result.</summary>
@@ -490,56 +490,35 @@
       <value>Expression body</value>
     </Body>
     <Type>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Type of method how the value was obtained.</summary>
+      <remarks>Usefull for visualizations to customise the rendering of value nodes depending on the way they were produced.</remarks>
+      <value>Expression type.</value>
     </Type>
     <Arguments>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Links the result with the arguments of the expression.</summary>
+      <remarks>Arguments can be results of other Evaluaitons. In case of Constants and Input parameters this array will be empty.</remarks>
+      <value>List of arguments of the expression.</value>
     </Arguments>
-    <WithArguments>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="first">TBD</param>
-      <param name="other">TBD</param>
-      <returns>TBD</returns>
-    </WithArguments>
-    <WithArguments-enumerable>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="arguments">TBD</param>
-      <returns>TBD</returns>
-    </WithArguments-enumerable>
   </ExpressionNode>
   <ExpressionNodeType>
     <class>
       <summary>Contains the classifiers representing Expression types that produced the value.</summary>
-      <remarks>This is a concise classification of the origin of a value. Usefull for troubleshooting and visualizations.</remarks>
+      <remarks>This is a concise classification of way the value was obtained. This supplements the Origin enum to create a more granural understaning.</remarks>
     </class>
     <None>
       <summary>Represents a standalone value or a default state not related to any EvaluationScope.</summary>
       <remarks>Should not be encountered in typical use cases, should be considered equivalent to not initialized variable.</remarks>
     </None>
     <Constant>
-      <summary>Represents an inline constant or an input parameter.</summary>
+      <summary>Represents a definition of an inline constant or an input parameter.</summary>
       <remarks>Constants are values that are not a result of any Evaluation or operation.</remarks>
     </Constant>
     <Collection>
-      <summary>Represents an immuatable collection of values of same type.</summary>
+      <summary>Represents a creation of an immuatable collection of values of same type.</summary>
       <remarks>Collection might be a result of a function handling collections, hard-coded collection of constants or an input parameter of a calculation.</remarks>
     </Collection>
     <Lambda>
-      <summary>Represents a result of lambda expression evaluation by Evaluate method of EvaluationScope.</summary>
+      <summary>Represents a lambda expression evaluation by Evaluate method of EvaluationScope.</summary>
       <remarks>This type can only be a result of Evaluate() method.</remarks>
     </Lambda>
     <Switch>
@@ -547,12 +526,12 @@
       <remarks>This type is logical equivalent to native switch/case statement.</remarks>
     </Switch>
     <Binary>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Represents an binary or unary operation.</summary>
+      <remarks>Typically values of these types are intermediate results of longer lambda expressions or standalon operations with values.</remarks>
     </Binary>
     <Math>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Represents a ValueMath function call.</summary>
+      <remarks>Examples are functions like Min() or Max().</remarks>
     </Math>
   </ExpressionNodeType>
   <IExpression>
