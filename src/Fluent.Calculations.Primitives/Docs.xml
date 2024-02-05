@@ -1520,7 +1520,7 @@
   <Option>
     <class>
       <summary>
-        Class that is logical equivalent to native enum and used to define a set of constant options.
+        Class that is a logical equivalent to native enum and used to define a set of constant options.
       </summary>
       <remarks>This class enables use of SwithcExpression swithc/case expression builder.</remarks>
       <typeparam name="T">Type of underlying the Enum.</typeparam>
