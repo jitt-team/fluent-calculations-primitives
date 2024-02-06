@@ -536,66 +536,53 @@
   </ExpressionNodeType>
   <IExpression>
     <interface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides the interfact to retrieve expression metadata.</summary>
+      <remarks>This interface can be used for visualizations or any other output transformations.</remarks>
     </interface>
-    <Arguments>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
-    </Arguments>
     <Body>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Body of the expression or operation.</summary>
+      <remarks>Exact body of expression will contain language operators and variable names used in original code.</remarks>
+      <value>Expression body</value>
     </Body>
     <Type>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Type of method how the value was obtained.</summary>
+      <remarks>Usefull for visualizations to customise the rendering of value nodes depending on the way they were produced.</remarks>
+      <value>Expression type.</value>
     </Type>
+    <Arguments>
+      <summary>Links the result with the arguments of the expression.</summary>
+      <remarks>Arguments can be results of other Evaluaitons. In case of Constants and Input parameters this array will be empty.</remarks>
+      <value>List of arguments of the expression.</value>
+    </Arguments>
   </IExpression>
   <ArgumentsCollection>
     <class>
-      <summary>Represents read-only collection of IValue elements.</summary>
+      <summary>Represents read-only collection of IValue elements that are arguments of the expression.</summary>
       <remarks>Created and populated by the operation handlers or EvaluationScope during execution of implemented logic</remarks>
     </class>
     <Count>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Gets the number of elements contained in the arguments collection.</summary>
+      <remarks>Array will be empty for Constant value type.</remarks>
       <value>Number of elements in a collection</value>
     </Count>
     <GetEnumerator>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>
-        TBD
-      </returns>
+      <summary>Returns an enumerator that iterates through the ArgumentsCollection.</summary>
+      <remarks>Learn more about native GetEnumerator Method.</remarks>
+      <returns>A ArgumentsCollection.Enumerator for the ArgumentsCollection.</returns>
     </GetEnumerator>
   </ArgumentsCollection>
   <IArguments>
     <inteface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides the interfact to retrieve expression arguments.</summary>
+      <remarks>This interface can be used for visualizations or any other output transformations.</remarks>
     </inteface>
     <Count>
-      <summary>
-        TBD
-      </summary>
-      <value>TBD</value>
-      <remarks>TBD</remarks>
+      <summary>Gets the number of elements contained in the arguments collection.</summary>
+      <remarks>Array will be empty for Constant value type.</remarks>
+      <value>Number of elements in a collection</value>
     </Count>
   </IArguments>
+  
   <ArgumentsDebugView>
     <class>
       <summary>
@@ -1582,6 +1569,7 @@
       <returns>TBD</returns>
     </Switch>
   </Option>
+  
   <Option-static>
     <class>
       <summary>Contains methods for typed Option instance creation.</summary>
