@@ -582,40 +582,32 @@
       <value>Number of elements in a collection</value>
     </Count>
   </IArguments>
-  
   <ArgumentsDebugView>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="arguments">TBD</param>
+      <summary>Provides a simplified debug view of Expresion class Arguments property.</summary>
+      <remarks></remarks>
+      <param name="arguments">Arguments collection.</param>
     </class>
     <Arguments>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Use friendly list of expression arguments.</summary>
+      <remarks></remarks>
+      <value>Lis of arguments</value>
     </Arguments>
   </ArgumentsDebugView>
   <ArgumentsVisitorInvoker>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Contains methods that enables Visitor functionality of Values.</summary>
+      <remarks>Use this class when implementing new Value class in the implementation of Accept() method of IValueProvider.</remarks>
     </class>
     <VisitArguments>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <param name="visitor">TBD</param>
-      <returns>TBD</returns>
+      <summary>Invokes a supplied vistor.</summary>
+      <remarks>Visitor will will be invoked for every argument of the supplied value.</remarks>
+      <param name="value">Value to be visited.</param>
+      <param name="visitor">Vistor that will handle visited value.</param>
+      <returns>Returns same value that was supplied.</returns>
     </VisitArguments>
   </ArgumentsVisitorInvoker>
+  
   <Tag>
     <class>
       <summary>
