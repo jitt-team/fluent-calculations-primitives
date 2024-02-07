@@ -607,7 +607,35 @@
       <returns>Returns same value that was supplied.</returns>
     </VisitArguments>
   </ArgumentsVisitorInvoker>
-  
+
+  <ValueVisitor>
+    <class>
+      <summary>
+        TBD
+      </summary>
+      <remarks>TBD</remarks>
+    </class>
+    <ctor>
+      <summary>
+        TBD
+      </summary>
+      <remarks>TBD</remarks>
+    </ctor>
+    <Visit>
+      <summary>
+        TBD
+      </summary>
+      <remarks>TBD</remarks>
+      <param name="value">TBD</param>
+    </Visit>
+    <VisitArgument>
+      <summary>
+        TBD
+      </summary>
+      <remarks>TBD</remarks>
+      <param name="value">TBD</param>
+    </VisitArgument>
+  </ValueVisitor>
   <Tag>
     <class>
       <summary>
@@ -670,39 +698,9 @@
       <returns>TBD</returns>
     </GetEnumerator>
   </TagsCollection>
-  <ValueVisitor>
-    <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-    </class>
-    <ctor>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-    </ctor>
-    <Visit>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-    </Visit>
-    <VisitArgument>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-    </VisitArgument>
-  </ValueVisitor>
   <IValueProvider>
     <inteface>
-      <summary>
-        TBD
-      </summary>
+      <summary></summary>
       <remarks>TBD</remarks>
     </inteface>
     <MakeDefault>
