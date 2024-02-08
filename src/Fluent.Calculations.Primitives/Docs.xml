@@ -607,35 +607,29 @@
       <returns>Returns same value that was supplied.</returns>
     </VisitArguments>
   </ArgumentsVisitorInvoker>
-
   <ValueVisitor>
     <class>
       <summary>
-        TBD
+        Represents a read-only visitor for value arguments.
       </summary>
-      <remarks>TBD</remarks>
+      <remarks>This class is designed to be inherited to create more specialized classes whose functionality requires traversing, examining expression arguments.</remarks>
     </class>
     <ctor>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Initializes a new instance of the <see cref="ValueVisitor"/>.</summary>
+      <remarks></remarks>
     </ctor>
     <Visit>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
+      <summary>Dispatches the the list of arguments to VisitArgument method in this class.</summary>
+      <remarks>Initate this method with the value that should be visited, typically a calculation result.</remarks>
+      <param name="value">Value whose arguments should be visited.</param>
     </Visit>
     <VisitArgument>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
+      <summary>The argument value to visit.</summary>
+      <remarks>Override this method to implement custom value examination logic.</remarks>
+      <param name="value">Returns the original visited value.</param>
     </VisitArgument>
   </ValueVisitor>
+  
   <Tag>
     <class>
       <summary>
@@ -1498,55 +1492,41 @@
       <returns>Option value.</returns>
     </implicit-T>
     <MakeOfThisType>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="args">TBD</param>
       <returns>TBD</returns>
     </MakeOfThisType>
     <MakeDefault>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </MakeDefault>
     <Equals>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="obj">TBD</param>
       <returns>TBD</returns>
     </Equals>
     <GetHashCode>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </GetHashCode>
     <PrimitiveString>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </PrimitiveString>
     <operator-equal>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </operator-equal>
     <operator-not-equal>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
