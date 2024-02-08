@@ -1467,6 +1467,7 @@
       <returns>TBD</returns>
     </op_OnesComplement>
   </Condition>
+  
   <Option>
     <class>
       <summary>
@@ -1539,7 +1540,6 @@
       <returns>TBD</returns>
     </Switch>
   </Option>
-  
   <Option-static>
     <class>
       <summary>Contains methods for typed Option instance creation.</summary>
