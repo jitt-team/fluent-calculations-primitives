@@ -312,7 +312,7 @@
       </summary>
       <remarks>This method is typically used to create a results of math or logical operations or calculation methods, build int ValueMath.Abs() would be an example.</remarks>
       <param name="args">Arguments to create a new value</param>
-      <returns>TBD</returns>
+      <returns>New instance of same type.</returns>
     </MakeOfThisType>
     <MakeDefault>
       <summary>
@@ -342,9 +342,7 @@
       <returns>True if primitive values equal.</returns>
     </Equals-value>
     <Equals-obj>
-      <summary>
-        Determines whether two Values are equal based on underlying primitive value.
-      </summary>
+      <summary>Determines whether two Values are equal based on underlying primitive value.</summary>
       <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
       <param name="obj">Other value</param>
       <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
@@ -1493,51 +1491,51 @@
       <returns>Option value.</returns>
     </implicit-T>
     <MakeOfThisType>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of the Option class.</summary>
+      <remarks>Use when implementing functions handling Options to return new Option result.</remarks>
+      <param name="args">Arguments to create a new value</param>
+      <returns>New instance Option.</returns>
     </MakeOfThisType>
     <MakeDefault>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance with default values, equivalent to zero/null value.</summary>
+      <remarks>This framework avoids dealing with nullable types.</remarks>
+      <returns>Instance of deafault value</returns>
     </MakeDefault>
     <Equals>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="obj">TBD</param>
-      <returns>TBD</returns>
+      <summary>Determines whether two Values are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other option</param>
+      <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
     </Equals>
     <GetHashCode>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value</returns>
     </GetHashCode>
     <PrimitiveString>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Formatted string representation of the Option Enum value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>String representation of underlying Enum value.</value>
     </PrimitiveString>
     <operator-equal>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Compares two Options to determine equality.</summary>
+      <remarks>Comparision is based on underlying Enum value.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition instance that represents true if left is equal to right; otherwise, false.</returns>
     </operator-equal>
     <operator-not-equal>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Compares two Options to determine inequality.</summary>
+      <remarks>Comparision is based on underlying Enum value.</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <returns>Condition instance true if left is not equal to right; otherwise, false</returns>
     </operator-not-equal>
     <Switch>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Invokes Switch expression builder to be used in Evaluate() method of EvaluationScope.</summary>
+      <remarks>Current Option will be used to check cases defined by builder.</remarks>
       <typeparam name="TResult">TBD</typeparam>
-      <returns>TBD</returns>
+      <returns>Switch expression.</returns>
     </Switch>
   </Option>
   <Option-static>
