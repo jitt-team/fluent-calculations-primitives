@@ -148,9 +148,7 @@
   </EvaluationScope>
   <IEvaluationScope>
     <interface>
-      <summary>
-        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
-      </summary>
+      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
       <remarks>Useful for mocking, dependency injection or creating alternative implementations.</remarks>
     </interface>
     <Evaluate>
@@ -288,7 +286,7 @@
       <value>Scome name</value>
     </Scope>
     <Type>
-      <summary>Original type of the value implementation</summary>
+      <summary>Original type of the value implementation.</summary>
       <remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
       <value>Name of type aka GetType().Name</value>
     </Type>
@@ -301,10 +299,10 @@
     </ctor-value>
     <ctor-makeValueArgs>
       <summary>
-        Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
+        Initializes a new instance of the <see cref="Values"/> with provided values. Used in derived classes to initialize base class fields.
       </summary>
       <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
-      <param name="makeValueArgs">Arguments to create a new value</param>
+      <param name="makeValueArgs">Arguments to create a new value.</param>
     </ctor-makeValueArgs>
     <MakeOfThisType>
       <summary>
@@ -360,9 +358,7 @@
   </Value>
   <IValue>
     <interface>
-      <summary>
-        Lightweight interface that every value class will implement.
-      </summary>
+      <summary>Lightweight interface that every value class will implement providing access to common properties.</summary>
       <remarks>Visualizations can be base on this interface, ex. Graphs.</remarks>
     </interface>
     <Name>
@@ -438,11 +434,11 @@
   </ValueOriginType>
   <MakeValueArgs>
     <class>
-      <summary>Represents set of standard arguments to initialize instance of a class inheriting from Value base clas</summary>
-      <remarks>Used in constructors of classes derived from Value class to initialize the base class</remarks>
+      <summary>Represents set of standard arguments to initialize instance of a class inheriting from Value base class.</summary>
+      <remarks>Used in constructors of classes derived from Value class to initialize the base class.</remarks>
     </class>
     <Name>
-      <summary>Name of value</summary>
+      <summary>Name of value.</summary>
       <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
       <value>Sets or gets name, "NaN" when names wasn't set.</value>
     </Name>
@@ -626,97 +622,72 @@
       <remarks>Override this method to implement custom value examination logic.</remarks>
       <param name="value">Returns the original visited value.</param>
     </VisitArgument>
-  </ValueVisitor>
-  
+  </ValueVisitor>  
   <Tag>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Lightweight annotation of a Value.</summary>
+      <remarks>Used to provide an additinal context or details to values and calculation results.</remarks>
     </class>
     <Name>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Tag content.</summary>
+      <remarks>Tag max length is 255.</remarks>
+      <value>Annotation string value.</value>
     </Name>
     <ToString>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns a string that represents the Tag.</summary>
+      <remarks></remarks>
+      <returns>Equals to Name property.</returns>
     </ToString>
     <Create>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="name">
-        TBD
-      </param>
-      <returns>TBD</returns>
+      <summary>Creates new Tag.</summary>
+      <remarks></remarks>
+      <param name="name">Tag name.</param>
+      <returns>New instance of a Tag wit the provided name.</returns>
     </Create>
   </Tag>
   <ITags>
     <inteface>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Provides an iterface to access Tags collection.</summary>
+      <remarks></remarks>
     </inteface>
   </ITags>
   <TagsCollection>
     <class>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
+      <summary>Collection of Tag objects.</summary>
+      <remarks>Read-only collection of tags.</remarks>
     </class>
     <Count>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Gets the number of elements contained in the Tags collection.</summary>
+      <remarks></remarks>
+      <value>Number of elements in a collection.</value>
     </Count>
     <GetEnumerator>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns an enumerator that iterates through the TagsCollection.</summary>
+      <remarks>Learn more about native GetEnumerator Method.</remarks>
+      <returns>A TagsCollection.Enumerator for the TagsCollection.</returns>
     </GetEnumerator>
   </TagsCollection>
   <IValueProvider>
     <inteface>
-      <summary></summary>
-      <remarks>TBD</remarks>
+      <summary>Provides a standard interface for all Values that provides methods to support implementation of new operators and domain specific methods.</summary>
+      <remarks>Use this class to implement additional calculation functions or operators.</remarks>
     </inteface>
     <MakeDefault>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns the default value of underlying concrete value implementation.</summary>
+      <remarks>Casting to target type is responsibility of caller.</remarks>
+      <returns>Default value instance.</returns>
     </MakeDefault>
     <MakeOfThisType>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of the concrete type.</summary>
+      <remarks>Use when implementing new functions and return results of target value type. Returned value should be casted to final type.</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
     </MakeOfThisType>
     <Accept>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="visitor">TBD</param>
-      <returns>TBD</returns>
+      <summary>Accepts Arguments visitor.</summary>
+      <remarks>When value is inhertied from Value base class, doesn't need to be overriden.</remarks>
+      <param name="visitor">Arguments visitor.</param>
+      <returns>Returns self.</returns>
     </Accept>
   </IValueProvider>
   <Values>
@@ -727,152 +698,116 @@
     </class>
     <ctor-makeValueArgs>
       <summary>
-        TBD
+        Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
       </summary>
-      <remarks>TBD</remarks>
-      <param name="makeValueArgs">TBD</param>
+      <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
+      <param name="makeValueArgs">Arguments to create a new Collection of values.</param>
     </ctor-makeValueArgs>
     <Name>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Name of values collection</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
     </Name>
     <Primitive>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Numeric primitive representation of the sum of all Primitive values in the collection.</summary>
+      <remarks>Provides an opportunity for implementing operators so collection can be used in same manner as standalone value. Using Sum() method would be a default choice.</remarks>
+      <value>Primitive value of sum of all elements.</value>
     </Primitive>
     <Origin>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
     </Origin>
     <Expression>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
     </Expression>
     <Tags>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Custom tags associated with the collection.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
     </Tags>
     <Scope>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
     </Scope>
     <Type>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Original type of the the collection implementation.</summary>
+      <remarks>Can be used for more advance desrialization into concrete value types.</remarks>
+      <value>Name of type aka GetType().Name</value>
     </Type>
     <PrimitiveString>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Formatted string representation of the Primitive value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
     </PrimitiveString>
     <Accept>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="visitor">TBD</param>
-      <returns>TBD</returns>
+      <summary>Accepts Arguments visitor.</summary>
+      <remarks>When value is inhertied from Values collection base class, doesn't need to be overriden.</remarks>
+      <param name="visitor">Collection items visitor.</param>
+      <returns>Returns self.</returns>
     </Accept>
     <Count>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Gets the number of elements contained in the Values collection.</summary>
+      <remarks></remarks>
+      <value>Number of elements in a collection.</value>
     </Count>
     <MakeOfThisType>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of the concrete Values collection.</summary>
+      <remarks>Use when implementing new functions and return results of target value type. Returned value should be casted to final type. Use this method to implement filtering methods that return a subset or manipulated collecition.</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete collection.</returns>
     </MakeOfThisType>
     <MakeOfThisElementType>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of collection element type.</summary>
+      <remarks>Method is used to implement aggregate collection methods where the result is single value, examples are methods like Sum(), Min() or Max().</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
     </MakeOfThisElementType>
     <MakeDefault>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns the default value empty collection of a concrete type.</summary>
+      <remarks>Casting to target type is responsibility of caller.</remarks>
+      <returns>Default collection instance.</returns>
     </MakeDefault>
     <ToString>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns a string that represents the current collection object.</summary>
+      <remarks></remarks>
+      <returns>Return Name of value as a default implementation.</returns>
     </ToString>
     <Add>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <param name="fieldName">TBD</param>
+      <summary>Adds a value to the end of the Values collection.</summary>
+      <remarks>This method allows implicit collection initialization of a collection.</remarks>
+      <param name="value">Value to be added.</param>
     </Add>
   </Values>
   <IValuesProvider>
     <interface>
-      <summary>Represents both, a strongly typed read-ony list of Values, and a value that is Sum of all elements.</summary>
+      <summary>Provides a standard interface for all value collections that provides methods to support implementation of new operators and domain specific aggregate methods.</summary>
       <remarks>Usefull keep track of same kind of values while ussing aggregate functions results in calculations.</remarks>
       <typeparam name="T">Type of collection element</typeparam>
     </interface>
     <MakeOfThisElementType>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of collection element type.</summary>
+      <remarks>Method is used to implement aggregate collection methods where the result is single value, examples are methods like Sum(), Min() or Max().</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
     </MakeOfThisElementType>
   </IValuesProvider>
+  
   <ValuesDebugView>
     <class>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </class>
     <ctor>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="collectionValue">TBD</param>
     </ctor>
     <Items>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </Items>
@@ -919,6 +854,7 @@
       <returns>TBD</returns>
     </Max>
   </ValuesLinqMathExtensions>
+  
   <Number>
     <class>
       <summary>

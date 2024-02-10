@@ -22,15 +22,11 @@ public class Values<T> : IValuesProvider<T>, IOrigin where T : class, IValueProv
     private static readonly Values<T> Empty = [];
 
     /// <include file="Docs.xml" path='*/Values/Add/*'/>
-    public void Add(T value, [CallerMemberName] string fieldName = StringConstants.NaN)
+    public void Add(T value)
     {
         expression.AppendArgument(value);
         expression.SetBody(ComposeExpressionBody(Expression.Arguments.Count));
-
         Primitive += value.Primitive;
-        Name = fieldName;
-        Origin = value.Origin;
-        Scope = value.Scope;
     }
 
     /// <include file="Docs.xml" path='*/Values/ctor-makeValueArgs/*'/>
