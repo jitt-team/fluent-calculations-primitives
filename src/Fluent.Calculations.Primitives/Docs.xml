@@ -795,129 +795,102 @@
       <returns>New instance concrete value.</returns>
     </MakeOfThisElementType>
   </IValuesProvider>
-  
   <ValuesDebugView>
     <class>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>Provides a simplified debug view of Values collection class.</summary>
+      <remarks></remarks>
     </class>
     <ctor>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="collectionValue">TBD</param>
+      <summary>Initializes a new instance of the <see cref="ValuesDebugView"/>.</summary>
+      <remarks></remarks>
+      <param name="collectionValue">Values collection.</param>
     </ctor>
     <Items>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Use friendly list of values.</summary>
+      <remarks></remarks>
+      <value>Lsit of values.</value>
     </Items>
   </ValuesDebugView>
   <ValuesLinqMathExtensions>
     <class>
       <summary>Provides static methods of common aggregate functions for types implementing IValuesProvider.</summary>
-      <remarks>This class is an wrapper of limited set of native Linq extension methods and enables the capturing collection elements as arguments.</remarks>
+      <remarks>This class is an wrapper of limited set of native Linq extension methods and enables the capturing collection elements as arguments. Methods will allways return a new instance of value to maintain the relationship with the source collection.</remarks>
     </class>
     <Sum>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TSource">TBD</typeparam>
-      <param name="source">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the sum of a values in a collection.</summary>
+      <remarks>Computation is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to calculate the sum of.</param>
+      <returns>New value of TSource type representing the sum of the values in the sequence.</returns>
     </Sum>
     <Average>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TSource">TBD</typeparam>
-      <param name="source">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the average of a values in a collection.</summary>
+      <remarks>Computation is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to calculate the average of.</param>
+      <returns>New value of TSource type representing the avaerage of the values in the sequence.</returns>
     </Average>
     <Min>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TSource">TBD</typeparam>
-      <param name="source">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns the minimum of a values in a collection.</summary>
+      <remarks>Determination is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to determine the minimum value of.</param>
+      <returns>New value of TSource type representing the minimum of the values in the sequence.</returns>
     </Min>
     <Max>
-      <summary>
-        TBD
-      </summary>
-      <remarks>TBD</remarks>
-      <typeparam name="TSource">TBD</typeparam>
-      <param name="source">TBD</param>
-      <returns>TBD</returns>
-    </Max>
+      <summary>Returns the maximum of a values in a collection.</summary>
+      <remarks>Determination is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to determine the maximum value of.</param>
+      <returns>New value of TSource type representing the maximum of the values in the sequence.</returns>
+  </Max>
   </ValuesLinqMathExtensions>
   
   <Number>
     <class>
-      <summary>
-        Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.
-      </summary>
+      <summary>Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
       <remarks>Additionally this class implements Generic Math operators.</remarks>
     </class>
     <ctor>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </ctor>
     <ctor-number>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="number">TBD</param>
     </ctor-number>
     <ctor-makeValueArgs>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="makeValueArgs">TBD</param>
     </ctor-makeValueArgs>
     <implicit-int>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="primitiveValue">TBD</param>
       <returns>TBD</returns>
     </implicit-int>
     <implicit-decimal>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="primitiveValue">TBD</param>
       <returns>TBD</returns>
     </implicit-decimal>
     <Zero>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </Zero>
     <Of>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="primitiveValue">TBD</param>
       <param name="fieldName">TBD</param>
       <returns>TBD</returns>
     </Of>
     <Of-scope>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="primitiveValue">TBD</param>
       <param name="scope">TBD</param>
@@ -925,477 +898,355 @@
       <returns>TBD</returns>
     </Of-scope>
     <Subtraction>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Subtraction>
     <Addition>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Addition>
     <Division>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Division>
     <Multiply>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Multiply>
     <Equality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Equality>
     <Inequality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </Inequality>
     <LessThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </LessThan>
     <LessThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </LessThanOrEqual>
     <GreaterThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </GreaterThan>
     <GreaterThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </GreaterThanOrEqual>
     <op_Subtraction>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Subtraction>
     <op_Addition>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Addition>
     <op_Division>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Division>
     <op_Multiply>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Multiply>
     <op_Equality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Equality>
     <op_Inequality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Inequality>
     <op_LessThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_LessThan>
     <op_LessThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_LessThanOrEqual>
     <op_GreaterThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_GreaterThan>
     <op_GreaterThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_GreaterThanOrEqual>
     <op_Equality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_Equality>
     <op_GreaterThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_GreaterThan>
     <op_GreaterThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_GreaterThanOrEqual>
     <op_Inequality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_Inequality>
     <op_LessThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_LessThan>
     <op_LessThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </op_LessThanOrEqual>
     <generic_op_Equality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_Equality>
     <generic_op_GreaterThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_GreaterThan>
     <generic_op_GreaterThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_GreaterThanOrEqual>
     <generic_op_Inequality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_Inequality>
     <generic_op_LessThan>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_LessThan>
     <generic_op_LessThanOrEqual>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </generic_op_LessThanOrEqual>
     <ToString>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </ToString>
     <MakeOfThisType>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="args">TBD</param>
       <returns>TBD</returns>
     </MakeOfThisType>
     <MakeDefault>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </MakeDefault>
     <Equals>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="obj">TBD</param>
       <returns>TBD</returns>
     </Equals>
     <GetHashCode>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </GetHashCode>
   </Number>
   <Condition>
     <class>
-      <summary>
-        Class that represents a Boolean value, which can be either true or false.
-      </summary>
+      <summary>Class that represents a Boolean value, which can be either true or false.</summary>
       <remarks>Class provides same operators as System.Boolean and hence can be seamlessly used in typical logical expressions.</remarks>
     </class>
     <ctor>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
     </ctor>
     <ctor-makeValueArgs>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="makeValueArgs">TBD</param>
     </ctor-makeValueArgs>
     <PrimitiveString>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </PrimitiveString>
     <ToString>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </ToString>
     <MakeDefault>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </MakeDefault>
     <implicit_Bool>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="value">TBD</param>
       <returns>TBD</returns>
     </implicit_Bool>
     <implicit_Condition>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="condition">TBD</param>
       <returns>TBD</returns>
     </implicit_Condition>
     <IsTrue>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <value>TBD</value>
     </IsTrue>
     <True>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="expressionName">TBD</param>
       <returns>TBD</returns>
     </True>
     <False>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="expressionName">TBD</param>
       <returns>TBD</returns>
     </False>
     <True-scope>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="scope">TBD</param>
       <param name="expressionName">TBD</param>
       <returns>TBD</returns>
     </True-scope>
     <False-scope>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="scope">TBD</param>
       <param name="expressionName">TBD</param>
       <returns>TBD</returns>
     </False-scope>
     <MakeOfThisType>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="args">TBD</param>
       <returns>TBD</returns>
     </MakeOfThisType>
     <Equals>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="obj">TBD</param>
       <returns>TBD</returns>
     </Equals>
     <GetHashCode>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </GetHashCode>
     <op_True>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="condition">TBD</param>
       <returns>TBD</returns>
     </op_True>
     <op_False>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="condition">TBD</param>
       <returns>TBD</returns>
     </op_False>
     <op_And>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_And>
     <op_Or>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Or>
     <op_Equality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Equality>
     <op_Inequality>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_Inequality>
     <op_ExlusiveOr>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="left">TBD</param>
       <param name="right">TBD</param>
       <returns>TBD</returns>
     </op_ExlusiveOr>
     <op_OnesComplement>
-      <summary>
-        TBD
-      </summary>
+      <summary>TBD</summary>
       <remarks>TBD</remarks>
       <param name="value">TBD</param>
       <returns>TBD</returns>
