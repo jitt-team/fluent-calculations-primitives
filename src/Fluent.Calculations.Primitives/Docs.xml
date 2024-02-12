@@ -148,7 +148,9 @@
   </EvaluationScope>
   <IEvaluationScope>
     <interface>
-      <summary>Provides an interface to an <see cref="EvaluationScope{T}"/> object.</summary>
+      <summary>
+        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
+      </summary>
       <remarks>Useful for mocking, dependency injection or creating alternative implementations.</remarks>
     </interface>
     <Evaluate>
@@ -609,7 +611,9 @@
       <remarks>This class is designed to be inherited to create more specialized classes whose functionality requires traversing, examining expression arguments.</remarks>
     </class>
     <ctor>
-      <summary>Initializes a new instance of the <see cref="ValueVisitor"/>.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="ValueVisitor"/>.
+      </summary>
       <remarks></remarks>
     </ctor>
     <Visit>
@@ -622,7 +626,7 @@
       <remarks>Override this method to implement custom value examination logic.</remarks>
       <param name="value">Returns the original visited value.</param>
     </VisitArgument>
-  </ValueVisitor>  
+  </ValueVisitor>
   <Tag>
     <class>
       <summary>Lightweight annotation of a Value.</summary>
@@ -801,7 +805,9 @@
       <remarks></remarks>
     </class>
     <ctor>
-      <summary>Initializes a new instance of the <see cref="ValuesDebugView"/>.</summary>
+      <summary>
+        Initializes a new instance of the <see cref="ValuesDebugView"/>.
+      </summary>
       <remarks></remarks>
       <param name="collectionValue">Values collection.</param>
     </ctor>
@@ -843,59 +849,89 @@
       <typeparam name="TSource">Type of collection items.</typeparam>
       <param name="source">A sequence of values to determine the maximum value of.</param>
       <returns>New value of TSource type representing the maximum of the values in the sequence.</returns>
-  </Max>
+    </Max>
   </ValuesLinqMathExtensions>
-  
+
   <Number>
     <class>
       <summary>Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
       <remarks>Additionally this class implements Generic Math operators.</remarks>
     </class>
     <ctor>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/>
+      </summary>
+      <remarks>Equivalent to Zero.</remarks>
     </ctor>
     <ctor-number>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="number">TBD</param>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/> by making a deep copy of an existing value.
+      </summary>
+      <remarks>Useful to create results of derived types.</remarks>
+      <param name="number">Exisitng value.</param>
     </ctor-number>
     <ctor-makeValueArgs>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="makeValueArgs">TBD</param>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/> with provided values as arguments.
+      </summary>
+      <remarks>Used in derived classes to initialize base class fields.</remarks>
+      <param name="makeValueArgs">
+        Arguments for a new <see cref="Number"/> with.
+      </param>
     </ctor-makeValueArgs>
     <implicit-int>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="primitiveValue">TBD</param>
-      <returns>TBD</returns>
+      <summary>
+        Implicit converstion from int to <see cref="Number"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="primitiveValue">Integer value.</param>
+      <returns>
+        <see cref="Number"/> representing the int value.
+      </returns>
     </implicit-int>
     <implicit-decimal>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="primitiveValue">TBD</param>
-      <returns>TBD</returns>
+      <summary>
+        Implicit converstion from decimal to <see cref="Number"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="primitiveValue">Decimal value.</param>
+      <returns>
+        <see cref="Number"/> representing the int value.
+      </returns>
     </implicit-decimal>
     <Zero>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>
+        Returns an <see cref="Number"/> instance representing zero value.
+      </summary>
+      <remarks></remarks>
+      <value>Number representing Zero.</value>
     </Zero>
     <Of>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="primitiveValue">TBD</param>
-      <param name="fieldName">TBD</param>
-      <returns>TBD</returns>
+      <summary>
+        Creates a new named <see cref="Number"/> instance.
+      </summary>
+      <remarks>
+        This is one of prefered ways to create <see cref="Number"/> using a primitive value. Scope of the number will be updated during the evaluation.
+      </remarks>
+      <param name="primitiveValue">Constant or variable to be used as a Primitive of the new Number.</param>
+      <param name="fieldName">Name of the Number (automatically defined by at compile time)</param>
+      <returns>
+        <see cref="Number"/> instance representing the supplied numeric value.
+      </returns>
     </Of>
     <Of-scope>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="primitiveValue">TBD</param>
-      <param name="scope">TBD</param>
-      <param name="fieldName">TBD</param>
-      <returns>TBD</returns>
+      <summary>
+        Creates a new named <see cref="Number"/> instance with named scope.
+      </summary>
+      <remarks>
+        This is one of prefered ways to create <see cref="Number"/> using a primitive value.
+      </remarks>
+      <param name="primitiveValue">Constant or variable to be used as a Primitive of the new Number.</param>
+      <param name="fieldName">Name of the Number (automatically defined by at compile time)</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>
+        <see cref="Number"/> instance representing the supplied numeric value.
+      </returns>
     </Of-scope>
     <Subtraction>
       <summary>TBD</summary>
@@ -1252,7 +1288,7 @@
       <returns>TBD</returns>
     </op_OnesComplement>
   </Condition>
-  
+
   <Option>
     <class>
       <summary>

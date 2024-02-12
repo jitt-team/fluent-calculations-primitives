@@ -14,6 +14,8 @@ public class Number : Value,
     IComparisonOperators<Number, Number, Condition>,
     IComparisonOperators<Number, Number, bool>
 {
+    private static Number zeroInstance = new() { Origin = ValueOriginType.Constant };
+
     /// <include file="Docs.xml" path='*/Number/ToString/*'/>
     public override string ToString() => $"{Name}";
 
@@ -33,7 +35,7 @@ public class Number : Value,
     public static implicit operator Number(decimal primitiveValue) => Number.Of(primitiveValue);
 
     /// <include file="Docs.xml" path='*/Number/Zero/*'/>
-    public static Number Zero => new() { Origin = ValueOriginType.Constant };
+    public static Number Zero => zeroInstance;
 
     /// <include file="Docs.xml" path='*/Number/Of/*'/>
     public static Number Of(decimal primitiveValue, [CallerMemberName] string fieldName = StringConstants.NaN) =>
