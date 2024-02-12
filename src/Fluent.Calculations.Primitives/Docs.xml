@@ -851,7 +851,6 @@
       <returns>New value of TSource type representing the maximum of the values in the sequence.</returns>
     </Max>
   </ValuesLinqMathExtensions>
-
   <Number>
     <class>
       <summary>Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
