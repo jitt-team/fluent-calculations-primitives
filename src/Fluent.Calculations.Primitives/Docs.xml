@@ -933,40 +933,40 @@
       </returns>
     </Of-scope>
     <Subtraction>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Subtracts the specified Number value from this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The subtrahend.</param>
+      <returns>The result of subtracting right from this value.</returns>
     </Subtraction>
     <Addition>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Adds the specified Number value to this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">Value to add.</param>
+      <returns>The result of adding right to this value.</returns>
     </Addition>
     <Division>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Divides the this value by specified Number.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The divisior.</param>
+      <returns>The result of dividing this value by right.</returns>
     </Division>
     <Multiply>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Multiplies the specified Number value with this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The value to multiply.</param>
+      <returns>The result of multiplying right from this value.</returns>
     </Multiply>
     <Equality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a Condition that indicates whether this and specified value are different.</summary>
+      <remarks>Comparision is based on underlying Primitive value.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns>Condition representing if values are different.</returns>
     </Equality>
     <Inequality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a Condition that indicates whether this and specified value are equal.</summary>
+      <remarks>Comparision is based on underlying Primitive value.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns>Condition representing if values are equal.</returns>
     </Inequality>
     <LessThan>
       <summary>TBD</summary>
@@ -1287,7 +1287,6 @@
       <returns>TBD</returns>
     </op_OnesComplement>
   </Condition>
-
   <Option>
     <class>
       <summary>
