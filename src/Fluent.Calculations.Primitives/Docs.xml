@@ -969,28 +969,28 @@
       <returns>Condition representing if values are equal.</returns>
     </Inequality>
     <LessThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is less than specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is less than the specified value.</returns>
     </LessThan>
     <LessThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is less than or equal to specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is less than or equal to specified value.</returns>
     </LessThanOrEqual>
     <GreaterThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is greater than specified value.</returns>
     </GreaterThan>
     <GreaterThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than or equal to specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is greater than or equal to specified value.</returns>
     </GreaterThanOrEqual>
     <op_Subtraction>
       <summary>TBD</summary>
