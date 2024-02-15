@@ -100,7 +100,7 @@ public class Number : Value,
     /// <include file="Docs.xml" path='*/Number/MakeDefault/*'/>
     public override IValueProvider MakeDefault() => Zero;
 
-    /// <include file="Docs.xml" path='*/Number/Equals/*'/>
+    /// <include file="Docs.xml" path='*/Number/Equals-obj/*'/>
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     /// <include file="Docs.xml" path='*/Number/GetHashCode/*'/>

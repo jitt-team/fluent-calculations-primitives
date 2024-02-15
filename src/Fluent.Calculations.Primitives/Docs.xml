@@ -315,9 +315,7 @@
       <returns>New instance of same type.</returns>
     </MakeOfThisType>
     <MakeDefault>
-      <summary>
-        Initializes a new instance with default values, equivalent to zero/null value.
-      </summary>
+      <summary>Initializes a new instance with default values, equivalent to zero/null value.      </summary>
       <remarks>This framework avoids dealing with nullable types.</remarks>
       <returns>Instance of zero value</returns>
     </MakeDefault>
@@ -354,7 +352,7 @@
     </GetHashCode>
     <ToString>
       <summary>Returns a string that represents the current value object.</summary>
-      <remarks>Derived types are responsible of implementating prefered string representation. Primary use case is readability in DebugView, to make user fiendly representation leverage PrimitiveString property.</remarks>
+      <remarks>Derived types are responsible of implementating prefered string representation. Primary use case is readability in Debug View, to make user fiendly representation leverage PrimitiveString property.</remarks>
       <returns>Return Name of value as a default implementation.</returns>
     </ToString>
   </Value>
@@ -1117,31 +1115,31 @@
       <remarks>TBD</remarks>
     </generic_op_LessThanOrEqual>
     <ToString>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Returns a string that represents the current Number.</summary>
+      <remarks>Don't use for rendering results, use PrimitiveString property instead. This method support concise presentation in Debug View.</remarks>
+      <returns>Return Name of the Number.</returns>
     </ToString>
     <MakeOfThisType>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
+      <summary>Initializes a new instance of Number class.</summary>
+      <remarks>Use this method to create a results of math or logical operations or calculation methods.</remarks>
+      <param name="args">Arguments to create a new Number</param>
+      <returns>New instance of Number configured with values provided with specified args.</returns>
     </MakeOfThisType>
     <MakeDefault>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Initializes a new Number representing zero decimal.</summary>
+      <remarks>Value with all defaults.</remarks>
+      <returns>Instance of zero Number.</returns>
     </MakeDefault>
-    <Equals>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="obj">TBD</param>
-      <returns>TBD</returns>
-    </Equals>
+    <Equals-obj>
+      <summary>Determines whether two Numbers are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other Number</param>
+      <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
+    </Equals-obj>
     <GetHashCode>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value.</returns>
     </GetHashCode>
   </Number>
   <Condition>
