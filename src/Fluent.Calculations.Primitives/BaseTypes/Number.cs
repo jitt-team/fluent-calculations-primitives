@@ -106,34 +106,34 @@ public class Number : Value,
     /// <include file="Docs.xml" path='*/Number/GetHashCode/*'/>
     public override int GetHashCode() => base.GetHashCode();
 
-    /// <include file="Docs.xml" path='*/Number/Addition/*'/>
+    /// <include file="Docs.xml" path='*/Number/Addition-method/*'/>
     protected Number Addition(Number right) => HandleArithmeticOperation(right, (a, b) => a + b);
 
-    /// <include file="Docs.xml" path='*/Number/Subtraction/*'/>
+    /// <include file="Docs.xml" path='*/Number/Subtraction-method/*'/>
     protected Number Subtraction(Number right) => HandleArithmeticOperation(right, (a, b) => a - b);
 
-    /// <include file="Docs.xml" path='*/Number/Multiply/*'/>
+    /// <include file="Docs.xml" path='*/Number/Multiply-method/*'/>
     protected Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
 
-    /// <include file="Docs.xml" path='*/Number/Division/*'/>
+    /// <include file="Docs.xml" path='*/Number/Division-method/*'/>
     protected Number Division(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);
 
-    /// <include file="Docs.xml" path='*/Number/Equality/*'/>
+    /// <include file="Docs.xml" path='*/Number/Equality-method/*'/>
     protected Condition Equality(Number right) => HandleComparisonOperation(right, (a, b) => a == b);
 
-    /// <include file="Docs.xml" path='*/Number/Inequality/*'/>
+    /// <include file="Docs.xml" path='*/Number/Inequality-method/*'/>
     protected Condition Inequality(Number right) => HandleComparisonOperation(right, (a, b) => a != b);
 
-    /// <include file="Docs.xml" path='*/Number/LessThan/*'/>
+    /// <include file="Docs.xml" path='*/Number/LessThan-method/*'/>
     protected Condition LessThan(Number right) => HandleComparisonOperation(right, (a, b) => a < b);
 
-    /// <include file="Docs.xml" path='*/Number/GreaterThan/*'/>
+    /// <include file="Docs.xml" path='*/Number/GreaterThan-method/*'/>
     protected Condition GreaterThan(Number right) => HandleComparisonOperation(right, (a, b) => a > b);
 
-    /// <include file="Docs.xml" path='*/Number/LessThanOrEqual/*'/>
+    /// <include file="Docs.xml" path='*/Number/LessThanOrEqual-method/*'/>
     protected Condition LessThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a <= b);
 
-    /// <include file="Docs.xml" path='*/Number/GreaterThanOrEqual/*'/>
+    /// <include file="Docs.xml" path='*/Number/GreaterThanOrEqual-method/*'/>
     protected Condition GreaterThanOrEqual(Number right) => HandleComparisonOperation(right, (a, b) => a >= b);
 
     private Condition HandleComparisonOperation(IValueProvider value, Func<decimal, decimal, bool> compareFunc, [CallerMemberName] string operatorName = StringConstants.NaN) =>

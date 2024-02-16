@@ -851,12 +851,12 @@
   </ValuesLinqMathExtensions>
   <Number>
     <class>
-      <summary>Represents a a numerice type functionally close to native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
+      <summary>Represents a numeric type enclosing native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
       <remarks>Additionally this class implements Generic Math operators.</remarks>
     </class>
     <ctor>
       <summary>
-        Initializes a new instance of the <see cref="Number"/>
+        Initializes a new instance of the <see cref="Number"/>.
       </summary>
       <remarks>Equivalent to Zero.</remarks>
     </ctor>
@@ -930,66 +930,66 @@
         <see cref="Number"/> instance representing the supplied numeric value.
       </returns>
     </Of-scope>
-    <Subtraction>
+    <Subtraction-method>
       <summary>Subtracts the specified Number value from this value.</summary>
       <remarks>Use this method when building derived types.</remarks>
       <param name="right">The subtrahend.</param>
       <returns>The result of subtracting right from this value.</returns>
-    </Subtraction>
-    <Addition>
+    </Subtraction-method>
+    <Addition-method>
       <summary>Adds the specified Number value to this value.</summary>
       <remarks>Use this method when building derived types.</remarks>
       <param name="right">Value to add.</param>
       <returns>The result of adding right to this value.</returns>
-    </Addition>
-    <Division>
+    </Addition-method>
+    <Division-method>
       <summary>Divides the this value by specified Number.</summary>
       <remarks>Use this method when building derived types.</remarks>
       <param name="right">The divisior.</param>
       <returns>The result of dividing this value by right.</returns>
-    </Division>
-    <Multiply>
+    </Division-method>
+    <Multiply-method>
       <summary>Multiplies the specified Number value with this value.</summary>
       <remarks>Use this method when building derived types.</remarks>
       <param name="right">The value to multiply.</param>
       <returns>The result of multiplying right from this value.</returns>
-    </Multiply>
-    <Equality>
+    </Multiply-method>
+    <Equality-method>
       <summary>Returns a Condition that indicates whether this and specified value are different.</summary>
       <remarks>Comparision is based on underlying Primitive value.</remarks>
       <param name="right">Value to compare.</param>
       <returns>Condition representing if values are different.</returns>
-    </Equality>
-    <Inequality>
+    </Equality-method>
+    <Inequality-method>
       <summary>Returns a Condition that indicates whether this and specified value are equal.</summary>
       <remarks>Comparision is based on underlying Primitive value.</remarks>
       <param name="right">Value to compare.</param>
       <returns>Condition representing if values are equal.</returns>
-    </Inequality>
-    <LessThan>
+    </Inequality-method>
+    <LessThan-method>
       <summary>Returns a <see cref="Condition"/> that indicates whether this is less than specified value.</summary>
       <remarks>Comparision is based on the underlying Primitive values.</remarks>
       <param name="right">Value to compare.</param>
       <returns><see cref="Condition"/> representing if this value is less than the specified value.</returns>
-    </LessThan>
-    <LessThanOrEqual>
+    </LessThan-method>
+    <LessThanOrEqual-method>
       <summary>Returns a <see cref="Condition"/> that indicates whether this is less than or equal to specified value.</summary>
       <remarks>Comparision is based on the underlying Primitive values.</remarks>
       <param name="right">Value to compare.</param>
       <returns><see cref="Condition"/> representing if this value is less than or equal to specified value.</returns>
-    </LessThanOrEqual>
-    <GreaterThan>
+    </LessThanOrEqual-method>
+    <GreaterThan-method>
       <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than specified value.</summary>
       <remarks>Comparision is based on the underlying Primitive values.</remarks>
       <param name="right">Value to compare.</param>
       <returns><see cref="Condition"/> representing if this value is greater than specified value.</returns>
-    </GreaterThan>
-    <GreaterThanOrEqual>
+    </GreaterThan-method>
+    <GreaterThanOrEqual-method>
       <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than or equal to specified value.</summary>
       <remarks>Comparision is based on the underlying Primitive values.</remarks>
       <param name="right">Value to compare.</param>
       <returns><see cref="Condition"/> representing if this value is greater than or equal to specified value.</returns>
-    </GreaterThanOrEqual>
+    </GreaterThanOrEqual-method>
     <op_Subtraction>
       <summary>TBD</summary>
       <remarks>TBD</remarks>
