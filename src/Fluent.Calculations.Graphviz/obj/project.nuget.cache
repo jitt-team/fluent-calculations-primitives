@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "UQeyP9LHmv9svomMCZHcmbmzh+qYeI9xAgxFF8Mna2hh/pI6mTu6m9HMbAkDaNqcSWbV9B0gWcdEJd0oqWMSig==",
+  "success": true,
+  "projectFilePath": "C:\\JITT\\Software Development\\Projects\\Community\\fluent-calculations-primitives\\src\\Fluent.Calculations.Graphviz\\Fluent.Calculations.Graphviz.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edgarsp\\.nuget\\packages\\dotnetgraph\\3.0.0\\dotnetgraph.3.0.0.nupkg.sha512",
+    "C:\\Users\\edgarsp\\.nuget\\packages\\quikgraph\\2.5.0\\quikgraph.2.5.0.nupkg.sha512",
+    "C:\\Users\\edgarsp\\.nuget\\packages\\quikgraph.graphviz\\2.5.0\\quikgraph.graphviz.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9A5rJMVVAciajPuM07eoPvtjjqfpoX5yvfUwHj1YYMR/UxQ/bSND5nwAiNYuldJnOI031we3Wu6fshxLjW5tUA==",
+  "success": true,
+  "projectFilePath": "C:\\JITT\\Software Development\\Projects\\Community\\fluent-calculations-primitives\\src\\Fluent.Calculations.Primitives\\Fluent.Calculations.Primitives.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edgarsp\\.nuget\\packages\\minver\\4.3.0\\minver.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

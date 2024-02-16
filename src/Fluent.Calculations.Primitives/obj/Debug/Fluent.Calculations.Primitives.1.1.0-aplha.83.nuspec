@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Fluent.Calculations.Primitives</id>
+    <version>1.1.0-aplha.83</version>
+    <title>Fluent Calculations Primitives</title>
+    <authors>JITT Team</authors>
+    <license type="expression">GPL-3.0-only</license>
+    <licenseUrl>https://licenses.nuget.org/GPL-3.0-only</licenseUrl>
+    <icon>fluent-calculations-logo-128x128.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/jitt-team/fluent-calculations-primitives/wiki</projectUrl>
+    <description>Fluent Calculations is a set of libraries for building traceable calculations and logic. Primitives library provides foundation for future domain specific implementations.</description>
+    <copyright>JITT</copyright>
+    <repository type="git" url="https://github.com/jitt-team/fluent-calculations-primitives" commit="c80180ec10506068fc0b7b8bff6dc6d40f639e7b" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+    <contentFiles>
+      <files include="any/net8.0/fluent-calculations-icon.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\Fluent.Calculations.Primitives.dll" target="lib\net8.0\Fluent.Calculations.Primitives.dll" />
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\bin\Debug\net8.0\Fluent.Calculations.Primitives.xml" target="lib\net8.0\Fluent.Calculations.Primitives.xml" />
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\fluent-calculations-icon.ico" target="content\fluent-calculations-icon.ico" />
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives\fluent-calculations-icon.ico" target="contentFiles\any\net8.0\fluent-calculations-icon.ico" />
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\.github\README.md" target="\README.md" />
+    <file src="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\assets\fluent-calculations-logo-128x128.png" target="\fluent-calculations-logo-128x128.png" />
+  </files>
+</package>

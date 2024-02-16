@@ -1,0 +1,100 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Fluent.Calculations.Graphviz/1.0.0": {
+        "dependencies": {
+          "Fluent.Calculations.DotNetGraph": "1.0.16-alpha",
+          "Fluent.Calculations.Primitives": "1.0.16-alpha"
+        },
+        "runtime": {
+          "Fluent.Calculations.Graphviz.dll": {}
+        }
+      },
+      "DotNetGraph/3.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/DotNetGraph.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "QuikGraph/2.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/QuikGraph.dll": {
+            "assemblyVersion": "2.5.0.0",
+            "fileVersion": "2.5.0.0"
+          }
+        }
+      },
+      "QuikGraph.Graphviz/2.5.0": {
+        "dependencies": {
+          "QuikGraph": "2.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/QuikGraph.Graphviz.dll": {
+            "assemblyVersion": "2.5.0.0",
+            "fileVersion": "2.5.0.0"
+          }
+        }
+      },
+      "Fluent.Calculations.DotNetGraph/1.0.16-alpha": {
+        "dependencies": {
+          "DotNetGraph": "3.0.0",
+          "Fluent.Calculations.Primitives": "1.0.16-alpha",
+          "QuikGraph.Graphviz": "2.5.0"
+        },
+        "runtime": {
+          "Fluent.Calculations.DotNetGraph.dll": {}
+        }
+      },
+      "Fluent.Calculations.Primitives/1.0.16-alpha": {
+        "runtime": {
+          "Fluent.Calculations.Primitives.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Fluent.Calculations.Graphviz/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DotNetGraph/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QYCGstdHoGFxp4hlA76r6wZ6CUiI+liPOFUpfzHWksxYZKh6tSYHxw5JSNkdF6ecFwKfFoeNQTTXnyl0neTc+g==",
+      "path": "dotnetgraph/3.0.0",
+      "hashPath": "dotnetgraph.3.0.0.nupkg.sha512"
+    },
+    "QuikGraph/2.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sG+mrPpXwxlXknRK5VqWUGiOmDACa9X+3ftlkQIMgOZUqxVOQSe0+HIU9PTjwqazy0pqSf8MPDXYFGl0GYWcKw==",
+      "path": "quikgraph/2.5.0",
+      "hashPath": "quikgraph.2.5.0.nupkg.sha512"
+    },
+    "QuikGraph.Graphviz/2.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pCKpErtHGxUi72OT+2aIg1pdHdUqpqEM5J/i9rmVsEVDE4X0xb1HBPWdxv/FLZmbBjk0ZogZXZttUL3CnAPpNw==",
+      "path": "quikgraph.graphviz/2.5.0",
+      "hashPath": "quikgraph.graphviz.2.5.0.nupkg.sha512"
+    },
+    "Fluent.Calculations.DotNetGraph/1.0.16-alpha": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fluent.Calculations.Primitives/1.0.16-alpha": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

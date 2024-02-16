@@ -1,0 +1,17 @@
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.DotNetGraph.deps.json
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.DotNetGraph.dll
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.DotNetGraph.pdb
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.Primitives.dll
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.Primitives.pdb
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\bin\Debug\net8.0\Fluent.Calculations.Primitives.xml
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.csproj.AssemblyReference.cache
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.GeneratedMSBuildEditorConfig.editorconfig
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.AssemblyInfoInputs.cache
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.AssemblyInfo.cs
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.csproj.CoreCompileInputs.cache
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.sourcelink.json
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.csproj.CopyComplete
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.dll
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\refint\Fluent.Calculations.DotNetGraph.dll
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\Fluent.Calculations.DotNetGraph.pdb
+C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.DotNetGraph\obj\Debug\net8.0\ref\Fluent.Calculations.DotNetGraph.dll
