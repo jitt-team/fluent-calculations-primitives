@@ -998,98 +998,68 @@
       <returns>TBD</returns>
     </op_Subtraction>
     <op_Addition>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Adds two specified Number values.</summary>
+      <remarks>The Add method defines the operation of the addition operator for Number values.</remarks>
+      <param name="left">The first value to add.</param>
+      <param name="right">The second  value to add.</param>
+      <returns>The result of adding left and right.</returns>
     </op_Addition>
     <op_Division>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Divides two specified Number values.</summary>
+      <remarks>The Devide method defines the operation of the devision operator for Number values.</remarks>
+      <param name="left">The dividend.</param>
+      <param name="right">The divisor.</param>
+      <returns>The result of dividing left by right.</returns>
     </op_Division>
     <op_Multiply>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Multiplies two specified Number values.</summary>
+      <remarks>The Multiply method defines the operation of the multiplication operator for Number values.</remarks>
+      <param name="left">The multiplicand.</param>
+      <param name="right">The multiplier.</param>
+      <returns>The result of multiplying left and right.</returns>
     </op_Multiply>
     <op_Equality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value that indicates whether two Number values are equal.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left and right are equal.</returns>
     </op_Equality>
     <op_Inequality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value that indicates whether two Nummber objects have different values.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left and right are different.</returns>
     </op_Inequality>
     <op_LessThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value indicating whether a specified Number is less than another specified Number.</summary>
+      <remarks>The LessThan method defines the operation of the less than operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left is less than right.</returns>
     </op_LessThan>
     <op_LessThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value indicating whether a specified Number is less than or equal to another specified Number.</summary>
+      <remarks>The LessThanOrEqual method defines the operation of the less than or equal operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left is less than or equal to right.</returns>
     </op_LessThanOrEqual>
     <op_GreaterThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value indicating whether a specified Number is greater than another specified Number.</summary>
+      <remarks>The GreaterThan method defines the operation of the greater than operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left is greater than right.</returns>
     </op_GreaterThan>
     <op_GreaterThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value indicating whether a specified Number is greater than or equal to another specified Number.</summary>
+      <remarks>The GreaterThanOrEqual method defines the operation of the greater than or equal operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition represinting if left is greater than or equal to right.</returns>
     </op_GreaterThanOrEqual>
-    <op_Equality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_Equality>
-    <op_GreaterThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_GreaterThan>
-    <op_GreaterThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_GreaterThanOrEqual>
-    <op_Inequality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_Inequality>
-    <op_LessThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_LessThan>
-    <op_LessThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </op_LessThanOrEqual>
     <generic_op_Equality>
       <summary>TBD</summary>
       <remarks>TBD</remarks>
@@ -1171,6 +1141,23 @@
       <remarks>TBD</remarks>
       <returns>TBD</returns>
     </MakeDefault>
+    <MakeOfThisType>
+      <summary>TBD</summary>
+      <remarks>TBD</remarks>
+      <param name="args">TBD</param>
+      <returns>TBD</returns>
+    </MakeOfThisType>
+    <Equals>
+      <summary>TBD</summary>
+      <remarks>TBD</remarks>
+      <param name="obj">TBD</param>
+      <returns>TBD</returns>
+    </Equals>
+    <GetHashCode>
+      <summary>TBD</summary>
+      <remarks>TBD</remarks>
+      <returns>TBD</returns>
+    </GetHashCode>
     <implicit_Bool>
       <summary>TBD</summary>
       <remarks>TBD</remarks>
@@ -1214,23 +1201,6 @@
       <param name="expressionName">TBD</param>
       <returns>TBD</returns>
     </False-scope>
-    <MakeOfThisType>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="args">TBD</param>
-      <returns>TBD</returns>
-    </MakeOfThisType>
-    <Equals>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="obj">TBD</param>
-      <returns>TBD</returns>
-    </Equals>
-    <GetHashCode>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <returns>TBD</returns>
-    </GetHashCode>
     <op_True>
       <summary>TBD</summary>
       <remarks>TBD</remarks>
