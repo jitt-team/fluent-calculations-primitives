@@ -1061,28 +1061,28 @@
       <returns>Condition represinting if left is greater than or equal to right.</returns>
     </op_GreaterThanOrEqual>
     <generic_op_Equality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_Equality>
     <generic_op_GreaterThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_GreaterThan>
     <generic_op_GreaterThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_GreaterThanOrEqual>
     <generic_op_Inequality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_Inequality>
     <generic_op_LessThan>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_LessThan>
     <generic_op_LessThanOrEqual>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
     </generic_op_LessThanOrEqual>
     <ToString>
       <summary>Returns a string that represents the current Number.</summary>
