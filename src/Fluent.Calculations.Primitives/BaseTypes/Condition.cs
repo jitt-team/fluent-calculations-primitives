@@ -57,7 +57,7 @@ public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs
     /// <include file="Docs.xml" path='*/Condition/MakeOfThisType/*'/>
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
 
-    /// <include file="Docs.xml" path='*/Condition/Equals/*'/>
+    /// <include file="Docs.xml" path='*/Condition/Equals-obj/*'/>
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     /// <include file="Docs.xml" path='*/Condition/GetHashCode/*'/>
