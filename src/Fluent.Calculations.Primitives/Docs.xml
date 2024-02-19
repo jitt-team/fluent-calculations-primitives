@@ -1190,30 +1190,30 @@
       <value>True if the Condition is True.</value>
     </IsTrue>
     <True>
-      <summary>Gets an instance of Condtion representing True state.</summary>
+      <summary>Gets an instance of Conditon representing True state.</summary>
       <remarks>Usefule to define input parameters of calculations.</remarks>
-      <param name="expressionName">Name of the value.</param>
+      <param name="name">Name of the value.</param>
       <returns>Condition object representing True state.</returns>
     </True>
     <False>
-      <summary>Gets an instance of Condtion representing False state.</summary>
+      <summary>Gets an instance of Conditon representing False state.</summary>
       <remarks>Usefule to define input parameters of calculations.</remarks>
-      <param name="expressionName">Name of the value.</param>
+      <param name="name">Name of the value.</param>
       <returns>Condition object representing False state.</returns>
     </False>
     <True-scope>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="scope">TBD</param>
-      <param name="expressionName">TBD</param>
-      <returns>TBD</returns>
+      <summary>Gets an instance of Conditon representing True state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the Condition (automatically defined by at compile time).</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>Condition object representing True state.</returns>     
     </True-scope>
     <False-scope>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="scope">TBD</param>
-      <param name="expressionName">TBD</param>
-      <returns>TBD</returns>
+      <summary>Gets an instance of Conditon representing False state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the Condition (automatically defined by at compile time).</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>Condition object representing False state.</returns>
     </False-scope>
     <op_True>
       <summary>TBD</summary>

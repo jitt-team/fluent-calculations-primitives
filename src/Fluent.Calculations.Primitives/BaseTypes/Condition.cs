@@ -43,16 +43,16 @@ public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
     /// <include file="Docs.xml" path='*/Condition/True/*'/>
-    public static Condition True([CallerMemberName] string expressionName = "") => True(StringConstants.NaN, expressionName);
+    public static Condition True([CallerMemberName] string name = "") => True(StringConstants.NaN, name);
 
     /// <include file="Docs.xml" path='*/Condition/True-scope/*'/>
-    public static Condition True(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1, ValueOriginType.Constant, scope));
+    public static Condition True(string scope, [CallerMemberName] string name = "") => new(MakeValueArgs.Compose(name, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1, ValueOriginType.Constant, scope));
 
     /// <include file="Docs.xml" path='*/Condition/False/*'/>
-    public static Condition False([CallerMemberName] string expressionName = "") => False(StringConstants.NaN, expressionName);
+    public static Condition False([CallerMemberName] string name = "") => False(StringConstants.NaN, name);
 
     /// <include file="Docs.xml" path='*/Condition/False-scope/*'/>
-    public static Condition False(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0, ValueOriginType.Constant, scope));
+    public static Condition False(string scope, [CallerMemberName] string name = "") => new(MakeValueArgs.Compose(name, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0, ValueOriginType.Constant, scope));
 
     /// <include file="Docs.xml" path='*/Condition/MakeOfThisType/*'/>
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
