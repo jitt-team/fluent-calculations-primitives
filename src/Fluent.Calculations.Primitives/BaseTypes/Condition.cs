@@ -30,10 +30,10 @@ public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs
     /// <include file="Docs.xml" path='*/Condition/MakeDefault/*'/>
     public override IValueProvider MakeDefault() => False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit_Bool/*'/>
+    /// <include file="Docs.xml" path='*/Condition/implicit-bool/*'/>
     public static implicit operator Condition(bool value) => value ? True() : False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit_Condition/*'/>
+    /// <include file="Docs.xml" path='*/Condition/implicit-condition/*'/>
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
     /// <include file="Docs.xml" path='*/Condition/op_True/*'/>

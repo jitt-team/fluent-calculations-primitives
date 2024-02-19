@@ -1166,34 +1166,40 @@
       <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
       <returns>A hash code for the current Primitive value.</returns>
     </GetHashCode>
-    <implicit_Bool>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <returns>TBD</returns>
-    </implicit_Bool>
-    <implicit_Condition>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="condition">TBD</param>
-      <returns>TBD</returns>
-    </implicit_Condition>
+    <implicit-bool>
+      <summary>
+        Implicit converstion from Boolean to <see cref="Condition"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="value">Boolean value to cast.</param>
+      <returns>
+        <see cref="Condition"/> representing the specified Boolean value, either true or false.
+      </returns>
+    </implicit-bool>
+    <implicit-condition>
+      <summary>
+        Implicit converstion from <see cref="Condition"/> to native Boolean value.
+      </summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to cast.</param>
+      <returns>Boolean value, state of speciefied Condition.</returns>
+    </implicit-condition>
     <IsTrue>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <value>TBD</value>
+      <summary>Gets a boolean value representing if the Condition state is true.</summary>
+      <remarks></remarks>
+      <value>True if the Condition is True.</value>
     </IsTrue>
     <True>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="expressionName">TBD</param>
-      <returns>TBD</returns>
+      <summary>Gets an instance of Condtion representing True state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="expressionName">Name of the value.</param>
+      <returns>Condition object representing True state.</returns>
     </True>
     <False>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="expressionName">TBD</param>
-      <returns>TBD</returns>
+      <summary>Gets an instance of Condtion representing False state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="expressionName">Name of the value.</param>
+      <returns>Condition object representing False state.</returns>
     </False>
     <True-scope>
       <summary>TBD</summary>
