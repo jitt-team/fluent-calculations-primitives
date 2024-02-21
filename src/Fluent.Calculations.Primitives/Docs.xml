@@ -1023,42 +1023,42 @@
       <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left and right are equal.</returns>
+      <returns>Condition representing if left and right are equal.</returns>
     </op_Equality>
     <op_Inequality>
       <summary>Returns a value that indicates whether two Nummber objects have different values.</summary>
       <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left and right are different.</returns>
+      <returns>Condition representing if left and right are different.</returns>
     </op_Inequality>
     <op_LessThan>
       <summary>Returns a value indicating whether a specified Number is less than another specified Number.</summary>
       <remarks>The LessThan method defines the operation of the less than operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left is less than right.</returns>
+      <returns>Condition representing if left is less than right.</returns>
     </op_LessThan>
     <op_LessThanOrEqual>
       <summary>Returns a value indicating whether a specified Number is less than or equal to another specified Number.</summary>
       <remarks>The LessThanOrEqual method defines the operation of the less than or equal operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left is less than or equal to right.</returns>
+      <returns>Condition representing if left is less than or equal to right.</returns>
     </op_LessThanOrEqual>
     <op_GreaterThan>
       <summary>Returns a value indicating whether a specified Number is greater than another specified Number.</summary>
       <remarks>The GreaterThan method defines the operation of the greater than operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left is greater than right.</returns>
+      <returns>Condition representing if left is greater than right.</returns>
     </op_GreaterThan>
     <op_GreaterThanOrEqual>
       <summary>Returns a value indicating whether a specified Number is greater than or equal to another specified Number.</summary>
       <remarks>The GreaterThanOrEqual method defines the operation of the greater than or equal operator for Number values.</remarks>
       <param name="left">The first value to compare.</param>
       <param name="right">The second value to compare.</param>
-      <returns>Condition represinting if left is greater than or equal to right.</returns>
+      <returns>Condition representing if left is greater than or equal to right.</returns>
     </op_GreaterThanOrEqual>
     <generic_op_Equality>
       <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
@@ -1228,45 +1228,45 @@
       <returns>true if condition is false, othrwise true.</returns>
     </op_False>
     <op_And>
-      <summary>Computes the logical AND of specidified operands.</summary>
+      <summary>Computes the logical AND of specified operands.</summary>
       <remarks></remarks>
       <param name="left">First operand.</param>
       <param name="right">Second operand.</param>
       <returns>Condition object representing if left and right are true.</returns>
     </op_And>
     <op_Or>
-      <summary>Computes the logical OR of specidified operands.</summary>
+      <summary>Computes the logical OR of specified operands.</summary>
       <remarks></remarks>
       <param name="left">First operand.</param>
       <param name="right">Second operand.</param>
       <returns>Condition object representing if left, right or both are true.</returns>
     </op_Or>
     <op_Equality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value that indicates whether two Conditions values are equal.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Conditions values.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition representing if left and right are equal.</returns>
     </op_Equality>
     <op_Inequality>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns a value that indicates whether two Conditions have different values.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Conditions values.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition representing if left and right are different.</returns>
     </op_Inequality>
     <op_ExlusiveOr>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the exclusive-or of two values.</summary>
+      <remarks></remarks>
+      <param name="left">The value to xor with right.</param>
+      <param name="right">The value to xor with left.</param>
+      <returns>The exclusive-or of left and right.</returns>
     </op_ExlusiveOr>
     <op_OnesComplement>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="value">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the ones-complement representation of a given value.</summary>
+      <remarks></remarks>
+      <param name="value">The value for which to compute the ones-complement.</param>
+      <returns>The ones-complement of value.</returns>
     </op_OnesComplement>
   </Condition>
   <Option>
