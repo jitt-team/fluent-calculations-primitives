@@ -1216,30 +1216,30 @@
       <returns>Condition object representing False state.</returns>
     </False-scope>
     <op_True>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="condition">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns the bool value to indicate if the Condition states is true.</summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to evaluate.</param>
+      <returns>true if condition is true, othrwise false.</returns>
     </op_True>
     <op_False>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="condition">TBD</param>
-      <returns>TBD</returns>
+      <summary>Returns the bool value to indicate if the Condition states is false.</summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to evaluate.</param>
+      <returns>true if condition is false, othrwise true.</returns>
     </op_False>
     <op_And>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the logical AND of specidified operands.</summary>
+      <remarks></remarks>
+      <param name="left">First operand.</param>
+      <param name="right">Second operand.</param>
+      <returns>Condition object representing if left and right are true.</returns>
     </op_And>
     <op_Or>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Computes the logical OR of specidified operands.</summary>
+      <remarks></remarks>
+      <param name="left">First operand.</param>
+      <param name="right">Second operand.</param>
+      <returns>Condition object representing if left, right or both are true.</returns>
     </op_Or>
     <op_Equality>
       <summary>TBD</summary>
