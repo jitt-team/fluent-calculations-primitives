@@ -1330,14 +1330,14 @@
     <operator-not-equal>
       <summary>Compares two Options to determine inequality.</summary>
       <remarks>Comparision is based on underlying Enum value.</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
       <returns>Condition instance true if left is not equal to right; otherwise, false</returns>
     </operator-not-equal>
     <Switch>
       <summary>Invokes Switch expression builder to be used in Evaluate() method of EvaluationScope.</summary>
       <remarks>Current Option will be used to check cases defined by builder.</remarks>
-      <typeparam name="TResult">TBD</typeparam>
+      <typeparam name="TResult">Switch expression result value type.</typeparam>
       <returns>Switch expression.</returns>
     </Switch>
   </Option>
@@ -1424,102 +1424,82 @@
   <SwitchExpression>
     <class>
       <summary>Provides support of swithc/case logic building using fluent builder pattern.</summary>
-      <remarks>
-        Use the funtionality provided by this builder instead of native swithc/case statements as it's not supported in Expressions.
-      </remarks>
+      <remarks>Use the funtionality provided by this builder instead of native swithc/case statements as it's not supported in Expressions.</remarks>
       <typeparam name="T">Type of condition</typeparam>
       <typeparam name="TReturn">Result type</typeparam>
     </class>
     <For>
-      <summary>
-        Specifies option variable to check
-      </summary>
-      <remarks>TBD</remarks>
-      <param name="checkValue">Value to check</param>
-      <returns>Swich part configurator</returns>
+      <summary>Specifies option variable to check.</summary>
+      <remarks></remarks>
+      <param name="checkValue">Value to check.</param>
+      <returns>Swich part configurator.</returns>
     </For>
     <SwitchBuilder>
       <class>
-        <summary>
-          Switch case part builder
-        </summary>
-        <remarks>Equivalent to 'case x :' in native C#</remarks>
+        <summary>Switch case part builder.</summary>
+        <remarks>Equivalent to 'case x :' in native C#.</remarks>
       </class>
       <Case>
-        <summary>
-          Define a single or multiple cases to check
-        </summary>
-        <remarks>TBD</remarks>
-        <param name="caseValue">Value of single case</param>
-        <param name="otherCaseValues">Other cases</param>
-        <returns>Return value builder</returns>
+        <summary>Define a single or multiple cases to check.</summary>
+        <remarks></remarks>
+        <param name="caseValue">Value of single case.</param>
+        <param name="otherCaseValues">Other cases.</param>
+        <returns>Return value builder.</returns>
       </Case>
     </SwitchBuilder>
     <ReturnBuilder>
       <class>
-        <summary>
-          Case return part buider
-        </summary>
-        <remarks>TBD</remarks>
+        <summary>Case return part buider.</summary>
+        <remarks></remarks>
       </class>
       <Return-primitiveValue>
-        <summary>
-          Define a primitive numeric value as a result of case.
-        </summary>
-        <remarks>Use to define well-know numeric constants</remarks>
-        <param name="primitiveValue">Value to return when case is matched</param>
+        <summary>Define a primitive numeric value as a result of case.</summary>
+        <remarks>Use to define well-know numeric constants.</remarks>
+        <param name="primitiveValue">Value to return when case is matched,</param>
         <returns>Next case builder</returns>
       </Return-primitiveValue>
       <Return-returnValueFunc>
         <summary>
           Define a function that returns <see cref="IValue"/> as a result of case
         </summary>
-        <remarks>TBD</remarks>
-        <param name="returnValueFunc">Function returning expected result</param>
+        <remarks></remarks>
+        <param name="returnValueFunc">Function returning expected result.</param>
         <param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
         <returns>Next case builder</returns>
       </Return-returnValueFunc>
     </ReturnBuilder>
     <CaseBuilder>
       <class>
-        <summary>
-          Next or default case part builder
-        </summary>
+        <summary>Next or default case part builder.</summary>
         <remarks>Build another case or end the daisy-chain with default case.</remarks>
       </class>
       <Case>
-        <summary>
-          Define a single or multiple cases to check
-        </summary>
-        <remarks>TBD</remarks>
-        <param name="caseValue">Value of single case</param>
-        <param name="otherCaseValues">Other cases</param>
+        <summary>Define a single or multiple cases to check.</summary>
+        <remarks></remarks>
+        <param name="caseValue">Value of single case.</param>
+        <param name="otherCaseValues">Other cases.</param>
         <returns>Return value builder</returns>
       </Case>
       <Default-primitiveValue>
-        <summary>
-          Define primitive numeric value as a default case result.
-        </summary>
-        <remarks>TBD</remarks>
-        <param name="primitiveValue">TBD</param>
-        <param name="valueBody">TBD</param>
+        <summary>Defines primitive numeric value as a default case result.</summary>
+        <remarks></remarks>
+        <param name="primitiveValue">Default value.</param>
+        <param name="valueBody">Name of the value.</param>
         <returns>Result evaluator</returns>
       </Default-primitiveValue>
       <Default-defaultValueFun>
         <summary>
           Define a function that returns <see cref="IValue"/> as a default case result.
         </summary>
-        <remarks>TBD</remarks>
-        <param name="defaultValueFun">Function returning expected result</param>
+        <remarks></remarks>
+        <param name="defaultValueFun">Function returning expected result.</param>
         <param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
-        <returns>Result evaluator</returns>
+        <returns>Result evaluator.</returns>
       </Default-defaultValueFun>
     </CaseBuilder>
     <ResultEvaluator>
       <class>
-        <summary>
-          Class that will allow EvaluationContext to execute the configured Switch/Case expression.
-        </summary>
+        <summary>Class that will allow EvaluationContext to execute the configured Switch/Case expression.</summary>
         <remarks>Used as an input of Evalueate() overload of EvaluationScope class.</remarks>
       </class>
     </ResultEvaluator>
@@ -1533,7 +1513,7 @@
     </class>
     <Serialize>
       <summary>Converts the provided value into a String.</summary>
-      <remarks>TBD</remarks>
+      <remarks></remarks>
       <param name="value">The value to convert.</param>
       <param name="writeIndented">Specifies whether JSON should use pretty printing. By default, JSON is serialized without any extra white space.</param>
       <returns>A String representation of the value.</returns>
