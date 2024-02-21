@@ -155,7 +155,7 @@
     </interface>
     <Evaluate>
       <summary>Evaluates an expression and captures it's arguments.</summary>
-      <remarks>TBD</remarks>
+      <remarks>This is a primary method to define any intermediate calculations in your business logic.</remarks>
       <typeparam name="TValue">Result value type.</typeparam>
       <param name="lambdaExpression">Math or logic expression.</param>
       <param name="name">Result name (captured by the compiler by default).</param>
@@ -216,7 +216,7 @@
       <param name="name">>Name of resulting value, set by default to calling method or property name.</param>
       <param name="lambdaExpression">Expression to evaluate.</param>
       <param name="lambdaExpressionBody">Expression body, autmatically captured</param>
-      <param name="scopeName">TBD</param>
+      <param name="scopeName">Scope name, by default calling method name will be captured.</param>
       <returns>Evaluation result.</returns>
     </OfWithScope>
   </Result>
@@ -991,11 +991,11 @@
       <returns><see cref="Condition"/> representing if this value is greater than or equal to specified value.</returns>
     </GreaterThanOrEqual-method>
     <op_Subtraction>
-      <summary>TBD</summary>
-      <remarks>TBD</remarks>
-      <param name="left">TBD</param>
-      <param name="right">TBD</param>
-      <returns>TBD</returns>
+      <summary>Subtracts two values to compute their difference.</summary>
+      <remarks>The Subtract method defines the operation of the substraction operator for Number values.</remarks>
+      <param name="left">The value from which right is subtracted.</param>
+      <param name="right">The value which is subtracted from left.</param>
+      <returns>The difference of right subtracted from left.</returns>
     </op_Subtraction>
     <op_Addition>
       <summary>Adds two specified Number values.</summary>
