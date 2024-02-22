@@ -18,7 +18,7 @@ public static class Result
         [CallerMemberName] string name = StringConstants.NaN,
         [CallerArgumentExpression(nameof(lambdaExpression))] string lambdaExpressionBody = StringConstants.NaN) where TValue : class, IValueProvider, new()
     {
-        TValue result = new EvaluationScope<TValue>(scopeName).Evaluate(lambdaExpression, name, lambdaExpressionBody);
+        TValue result = new EvaluationScope(scopeName).Evaluate(lambdaExpression, name, lambdaExpressionBody);
         return (TValue)((IOrigin)result).AsResult();
     }
 }

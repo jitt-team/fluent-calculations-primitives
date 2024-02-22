@@ -21,7 +21,7 @@ namespace Fluent.Calculations.Primitives.Tests.DotNetGraph
             Number result = RunCalculation();
             DotGraph graphFromResult = new DotGraphValueBuilder().Build(result);
 
-            IValue valueFromJson = ValueJsonConverter.Deserialize(ValueJsonConverter.Serialize(result));            
+            IValue valueFromJson = ValueJsonSerializer.Deserialize(ValueJsonSerializer.Serialize(result));            
             DotGraph graphFromJson = new DotGraphValueBuilder().Build(valueFromJson);
 
             graphFromJson.Elements.Should().HaveCount(graphFromResult.Elements.Count);

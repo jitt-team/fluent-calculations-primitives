@@ -16,11 +16,11 @@ string
 Number resultValue = new DemoCalculation().ToResult();
 
 // Serialize to Json
-string resultAsJson = ValueJsonConverter.Serialize(resultValue);
+string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
 File.WriteAllText(jsonFileName, resultAsJson);
 
 // Deserialize from json
-IValue resultFromJson = ValueJsonConverter.Deserialize(resultAsJson);
+IValue resultFromJson = ValueJsonSerializer.Deserialize(resultAsJson);
 
 // Convert to graph
 DotGraph dotGraph = new DotGraphValueBuilder().Build(resultFromJson);
@@ -40,21 +40,21 @@ namespace Fluent.Calculations.Graphviz
     {
         public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = "DemoCalculation" }) { }
 
-        private readonly RelatedCalculation ChildCalculation = new();
+        readonly RelatedCalculation ChildCalculation = new();
 
-        private readonly Number
+        readonly Number
             ValueOne = Number.Of(30),
             ValueTwo = Number.Of(20);
 
-        private readonly Option<SomeOptions>
-            SomeChoice = Option.Of(SomeOptions.OptionOne),
-            OtherChoice = Option.Of(SomeOptions.OptionTwo);
+        readonly Option<SomeOptions>
+             SomeChoice = Option.Of(SomeOptions.OptionOne),
+             OtherChoice = Option.Of(SomeOptions.OptionTwo);
 
         Condition OptionsEqual => Evaluate(() => SomeChoice == OtherChoice);
 
         Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
 
-        Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ? 
+        Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ?
             ValueOne : ChildCalculation.Calculate());
 
         Number SwitchResult => Evaluate(() => SomeChoice.Switch<Number>()

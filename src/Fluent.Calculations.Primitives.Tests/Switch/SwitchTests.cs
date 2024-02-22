@@ -29,6 +29,23 @@ namespace Fluent.Calculations.Primitives.Tests.Switch
         {
             Option<TestEnum> TestOption = Option.Of(TestEnum.Third);
 
+            /*
+             age?
+             gender?
+             
+            myQuery
+
+            if(age != null)
+                myQyery.AddWhere()
+
+            myQuery.ToQueariab().To
+
+            db.Persons
+                .Where(p => age !null &  p.Age > inputAge)
+                .Where(p => p.Age > inputAge)
+
+             */
+
             Number SwitchResult = SwitchExpression<TestEnum, Number>.For(TestOption)
                 .Case(TestEnum.First).Return(10)
                 .Case(TestEnum.Second).Return(20)

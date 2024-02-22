@@ -10,14 +10,11 @@ namespace Fluent.Calculations.Primitives.BaseTypes
         IEqualityOperators<Option<T>, Option<T>, Condition>
         where T : struct, Enum
     {
-        /// <include file="Docs.xml" path='*/Option/ctor/*'/>
-        public Option() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Constant), 0)) { }
+        internal Option() : this(MakeValueArgs.Compose(StringConstants.Zero, new ExpressionNode(StringConstants.ZeroDigit, ExpressionNodeType.Constant), 0)) { }
 
-        /// <include file="Docs.xml" path='*/Option/ctor-option/*'/>
-        public Option(Option<T> enumValue) : base(enumValue) { }
+        internal Option(Option<T> enumValue) : base(enumValue) { }
 
-        /// <include file="Docs.xml" path='*/Option/ctor-makeValueArgs/*'/>
-        public Option(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
+        internal Option(MakeValueArgs makeValueArgs) : base(makeValueArgs) { }
 
         /// <include file="Docs.xml" path='*/Option/implicit-option/*'/>
         public static implicit operator T(Option<T> value) => (T)(object)Convert.ToInt32(value.Primitive);
