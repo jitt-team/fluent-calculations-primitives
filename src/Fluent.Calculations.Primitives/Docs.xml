@@ -1,1986 +1,1532 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <IntelliSense>
-	<EvaluationScopeGeneric>
-		<class>
-			<summary>
-				Base class for implementing a calculation.
-			</summary>
-			<remarks>
-				<para>
-					Use this class to define, run and retrieve a result of your calculations.
-				</para>
-				<list type="table">
-					<item>
-						<term>Calculation</term>
-						<description>
-							<para></para>
-							Class inheriting from EvaluationScope<![CDATA[<T>]]> is logical unit to compute desired result. It will containt lambda expressions,<br/>
-							input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/>.
-						</description>
-					</item>
-					<item>
-						<term>Examples</term>
-						<description>
-							<para>See below a class inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type.</para>
-							<code>
-								public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
-								{
-								public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
-								public override Number Return() => Number.Of(0);
-								}
-							</code>
-						</description>
-					</item>
-					<item>
-						<a href="https://github.com/jitt-team/fluent-calculations-primitives/wiki/">
-							Learn more
-						</a>
-					</item>
-				</list>
-			</remarks>
-			<typeparam name="T">Type of the result value class</typeparam>
-		</class>
-		<ctor>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ctor-options>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="options">Options to be used to run the calculation</param>
-		</ctor-options>
-		<ctor-func>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="func">
-				Lambda expression using <see cref="IValue"/> types
-			</param>
-		</ctor-func>
-		<ctor-scope>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">
-				TBD
-			</param>
-		</ctor-scope>
-		<ToResult>
-			<summary>
-				Exit method to return result from inherited calculation
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>Calculation result</returns>
-		</ToResult>
-		<Return>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</Return>
-	</EvaluationScopeGeneric>
-	<IEvaluationScopeGeneric>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-		</interface>
-		<ToResult>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToResult>
-	</IEvaluationScopeGeneric>
-	<EvaluationScope>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ctor-options>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="options">Options to be used to run the calculation</param>
-		</ctor-options>
-		<ctor-scope>
-			<summary>
-				Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">
-				TBD
-			</param>
-		</ctor-scope>
-		<Evaluate>
-			<summary>Evaluates an expression and captures it's arguments.</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TValue">Result value type</typeparam>
-			<param name="lambdaExpression">Math or logic expression</param>
-			<param name="name">Result name (captured by the compiler by default)</param>
-			<param name="lambdaExpressionBody">Expression body (captured by the compiler by default)</param>
-			<returns>Lambda expression result containing arguments and expression body.</returns>
-		</Evaluate>
-		<Evaluate-switch>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TCase">TBD</typeparam>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="getResultEvaluatorFunc">TBD</param>
-			<param name="name">TBD</param>
-			<returns>TBD</returns>
-		</Evaluate-switch>
-		<ClearCache>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-		</ClearCache>
-		<Create>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">TBD</param>
-			<returns>TBD</returns>
-		</Create>
-		<ToResult>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToResult>
-	</EvaluationScope>
-	<IEvaluationScope>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</interface>
-		<Evaluate>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="lambdaExpression">TBD</param>
-			<param name="name">TBD</param>
-			<param name="lambdaExpressionBody">TBD</param>
-			<returns>TBD</returns>
-		</Evaluate>
-		<Evaluate-switch>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TCase">TBD</typeparam>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="getResultEvaluatorFunc">TBD</param>
-			<param name="name">TBD</param>
-			<returns>TBD</returns>
-		</Evaluate-switch>
-	</IEvaluationScope>
-	<Scope>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<CreateHere>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="obj">TBD</param>
-			<param name="scope">TBD</param>
-			<returns>TBD</returns>
-		</CreateHere>
-	</Scope>
-	<Result>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Of>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="name">TBD</param>
-			<param name="lambdaExpression">TBD</param>
-			<param name="lambdaExpressionBody">TBD</param>
-			<returns>TBD</returns>
-		</Of>
-		<OfWithScope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TValue">TBD</typeparam>
-			<param name="name">TBD</param>
-			<param name="lambdaExpression">TBD</param>
-			<param name="lambdaExpressionBody">TBD</param>
-			<param name="scopeName">TBD</param>
-			<returns>TBD</returns>
-		</OfWithScope>
-	</Result>
-	<EvaluationOptions>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<Default>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Default>
-		<AlwaysReadNamesFromExpressions>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</AlwaysReadNamesFromExpressions>
-		<Scope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Scope>
-	</EvaluationOptions>
-	<Value>
-		<class>
-			<summary>Base building block for domain specific numer-like types, Number and Condition are examples</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Name>
-			<summary>Name of the variable</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Name>
-		<Expression>
-			<summary>Expression that was used to calculate or define the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Expression>
-		<Primitive>
-			<summary>.NET primitive representation of the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Primitive>
-		<PrimitiveString>
-			<summary>.NET primitive representation of the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</PrimitiveString>
-		<Origin>
-			<summary>Origin type of the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Origin>
-		<Tags>
-			<summary>Custom tags associated with the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Tags>
-		<Scope>
-			<summary>Custom tags associated with the value</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Scope>
-		<Type>
-			<summary>TBD</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Type>
-		<ctor-value>
-			<summary>
-				Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">Value to copy</param>
-		</ctor-value>
-		<ctor-makeValueArgs>
-			<summary>
-				Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="makeValueArgs">Arguments to create a new value</param>
-		</ctor-makeValueArgs>
-		<MakeOfThisType>
-			<summary>
-				Initializes a new instance of the derived value class. Used by the framework to create expected result types.
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">Arguments to create a new value</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<MakeDefault>
-			<summary>
-				Initializes a new instance with default values, equivalent to zero/null value.
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>Instance of zero value</returns>
-		</MakeDefault>
-		<HandleBinaryOperation>
-			<summary>
-				Handles math and comparison operations of underlying primitve values in derived types.
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="ResultType">Operation result type</typeparam>
-			<typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
-			<param name="right">Right side value of operatoin</param>
-			<param name="expressionFunc">Expression representing operation in derived type</param>
-			<param name="operatorName">Operation name (ex. Add, Substract, LessThan)</param>
-			<returns>Result value of defined type containg input values as arguments</returns>
-		</HandleBinaryOperation>
-		<Equals-value>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</Equals-value>
-		<Equals-obj>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="obj">TBD</param>
-			<returns>TBD</returns>
-		</Equals-obj>
-		<GetHashCode>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</GetHashCode>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-	</Value>
-	<IValue>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</interface>
-		<Name>
-			<summary>Name of the variable</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Name>
-		<Expression>
-			<summary>Expression that was used to calculate or define the value</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Expression>
-		<Primitive>
-			<summary>.NET primitive representation of the value</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Primitive>
-		<PrimitiveString>
-			<summary>.NET primitive representation of the value</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</PrimitiveString>
-		<Origin>
-			<summary>Origin type of the value</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Origin>
-		<Tags>
-			<summary>Custom tags associated with the value</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Tags>
-		<Type>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Type>
-		<Scope>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Scope>
-	</IValue>
-	<ValueOriginType>
-		<enum>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</enum>
-		<NaN>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</NaN>
-		<Parameter>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Parameter>
-		<Constant>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Constant>
-		<Evaluation>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Evaluation>
-		<Operation>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Operation>
-		<Result>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Result>
-	</ValueOriginType>
-	<MakeValueArgs>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Name>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Name>
-		<Expression>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Expression>
-		<PrimitiveValue>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</PrimitiveValue>
-		<Origin>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Origin>
-		<Arguments>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Arguments>
-		<Tags>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Tags>
-		<Scope>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Scope>
-		<WithTags>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="tags">TBD</param>
-			<returns>TBD</returns>
-		</WithTags>
-	</MakeValueArgs>
-	<ExpressionNode>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-		<Body>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Body>
-		<Type>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Type>
-		<Arguments>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Arguments>
-		<WithArguments>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="first">TBD</param>
-			<param name="other">TBD</param>
-			<returns>TBD</returns>
-		</WithArguments>
-		<WithArguments-enumerable>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="arguments">TBD</param>
-			<returns>TBD</returns>
-		</WithArguments-enumerable>
-	</ExpressionNode>
-	<ExpressionNodeType>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<None>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</None>
-		<Constant>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Constant>
-		<Collection>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Collection>
-		<Lambda>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Lambda>
-		<Switch>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Switch>
-		<Binary>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Binary>
-		<Math>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</Math>
-	</ExpressionNodeType>
-	<IExpression>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</interface>
-		<Arguments>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Arguments>
-		<Body>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Body>
-		<Type>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Type>
-	</IExpression>
-	<ArgumentsCollection>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Count>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Count>
-		<GetEnumerator>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>
-				TBD
-			</returns>
-		</GetEnumerator>
-	</ArgumentsCollection>
-	<IArguments>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</inteface>
-		<Count>
-			<summary>
-				TBD
-			</summary>
-			<value>TBD</value>
-			<remarks>TBD</remarks>
-		</Count>
-	</IArguments>
-	<ArgumentsDebugView>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="arguments">TBD</param>
-		</class>
-		<Arguments>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Arguments>
-	</ArgumentsDebugView>
-	<ArgumentsVisitorInvoker>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<VisitArguments>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<param name="visitor">TBD</param>
-			<returns>TBD</returns>
-		</VisitArguments>
-	</ArgumentsVisitorInvoker>
-	<Tag>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Name>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Name>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-		<Create>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="name">
-				TBD
-			</param>
-			<returns>TBD</returns>
-		</Create>
-	</Tag>
-	<ITags>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</inteface>
-	</ITags>
-	<TagsCollection>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Count>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Count>
-		<GetEnumerator>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</GetEnumerator>
-	</TagsCollection>
-	<ValueVisitor>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<Visit>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-		</Visit>
-		<VisitArgument>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-		</VisitArgument>
-	</ValueVisitor>
-	<IValueProvider>
-		<inteface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</inteface>
-		<MakeDefault>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</MakeDefault>
-		<MakeOfThisType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<Accept>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="visitor">TBD</param>
-			<returns>TBD</returns>
-		</Accept>
-	</IValueProvider>
-	<Values>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-		</class>
-		<ctor-makeValueArgs>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="makeValueArgs">TBD</param>
-		</ctor-makeValueArgs>
-		<Name>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Name>
-		<Primitive>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Primitive>
-		<Origin>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Origin>
-		<Expression>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Expression>
-		<Tags>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Tags>
-		<Scope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Scope>
-		<Type>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Type>
-		<PrimitiveString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</PrimitiveString>
-		<Accept>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="visitor">TBD</param>
-			<returns>TBD</returns>
-		</Accept>
-		<Count>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Count>
-		<MakeOfThisType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<MakeOfThisElementType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisElementType>
-		<MakeDefault>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</MakeDefault>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-		<Add>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<param name="fieldName">TBD</param>
-		</Add>
-	</Values>
-	<IValuesProvider>
-		<interface>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-		</interface>
-		<MakeOfThisElementType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisElementType>
-	</IValuesProvider>
-	<ValuesDebugView>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="collectionValue">TBD</param>
-		</ctor>
-		<Items>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Items>
-	</ValuesDebugView>
-	<ValuesLinqMathExtensions>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Sum>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TSource">TBD</typeparam>
-			<param name="source">TBD</param>
-			<returns>TBD</returns>
-		</Sum>
-		<Average>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TSource">TBD</typeparam>
-			<param name="source">TBD</param>
-			<returns>TBD</returns>
-		</Average>
-		<Min>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TSource">TBD</typeparam>
-			<param name="source">TBD</param>
-			<returns>TBD</returns>
-		</Min>
-		<Max>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TSource">TBD</typeparam>
-			<param name="source">TBD</param>
-			<returns>TBD</returns>
-		</Max>
-	</ValuesLinqMathExtensions>
-	<Number>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ctor-number>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="number">TBD</param>
-		</ctor-number>
-		<ctor-makeValueArgs>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="makeValueArgs">TBD</param>
-		</ctor-makeValueArgs>
-		<implicit-int>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="primitiveValue">TBD</param>
-			<returns>TBD</returns>
-		</implicit-int>
-		<implicit-decimal>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="primitiveValue">TBD</param>
-			<returns>TBD</returns>
-		</implicit-decimal>
-		<Zero>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</Zero>
-		<Of>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="primitiveValue">TBD</param>
-			<param name="fieldName">TBD</param>
-			<returns>TBD</returns>
-		</Of>
-		<Of-scope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="primitiveValue">TBD</param>
-			<param name="scope">TBD</param>
-			<param name="fieldName">TBD</param>
-			<returns>TBD</returns>
-		</Of-scope>
-		<Subtraction>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Subtraction>
-		<Addition>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Addition>
-		<Division>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Division>
-		<Multiply>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Multiply>
-		<Equality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Equality>
-		<Inequality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Inequality>
-		<LessThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</LessThan>
-		<LessThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</LessThanOrEqual>
-		<GreaterThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</GreaterThan>
-		<GreaterThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</GreaterThanOrEqual>
-		<op_Subtraction>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Subtraction>
-		<op_Addition>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Addition>
-		<op_Division>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Division>
-		<op_Multiply>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Multiply>
-		<op_Equality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Equality>
-		<op_Inequality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Inequality>
-		<op_LessThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_LessThan>
-		<op_LessThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_LessThanOrEqual>
-		<op_GreaterThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_GreaterThan>
-		<op_GreaterThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_GreaterThanOrEqual>
-		<op_Equality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_Equality>
-		<op_GreaterThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_GreaterThan>
-		<op_GreaterThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_GreaterThanOrEqual>
-		<op_Inequality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_Inequality>
-		<op_LessThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_LessThan>
-		<op_LessThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</op_LessThanOrEqual>
-		<generic_op_Equality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_Equality>
-		<generic_op_GreaterThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_GreaterThan>
-		<generic_op_GreaterThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_GreaterThanOrEqual>
-		<generic_op_Inequality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_Inequality>
-		<generic_op_LessThan>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_LessThan>
-		<generic_op_LessThanOrEqual>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</generic_op_LessThanOrEqual>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-		<MakeOfThisType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<MakeDefault>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</MakeDefault>
-		<Equals>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="obj">TBD</param>
-			<returns>TBD</returns>
-		</Equals>
-		<GetHashCode>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</GetHashCode>
-	</Number>
-	<Condition>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ctor-makeValueArgs>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="makeValueArgs">TBD</param>
-		</ctor-makeValueArgs>
-		<PrimitiveString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</PrimitiveString>
-		<ToString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</ToString>
-		<MakeDefault>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</MakeDefault>
-		<implicit_Bool>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</implicit_Bool>
-		<implicit_Condition>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="condition">TBD</param>
-			<returns>TBD</returns>
-		</implicit_Condition>
-		<IsTrue>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</IsTrue>
-		<True>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="expressionName">TBD</param>
-			<returns>TBD</returns>
-		</True>
-		<False>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="expressionName">TBD</param>
-			<returns>TBD</returns>
-		</False>
-		<True-scope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">TBD</param>
-			<param name="expressionName">TBD</param>
-			<returns>TBD</returns>
-		</True-scope>
-		<False-scope>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="scope">TBD</param>
-			<param name="expressionName">TBD</param>
-			<returns>TBD</returns>
-		</False-scope>
-		<MakeOfThisType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<Equals>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="obj">TBD</param>
-			<returns>TBD</returns>
-		</Equals>
-		<GetHashCode>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</GetHashCode>
-		<op_True>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="condition">TBD</param>
-			<returns>TBD</returns>
-		</op_True>
-		<op_False>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="condition">TBD</param>
-			<returns>TBD</returns>
-		</op_False>
-		<op_And>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_And>
-		<op_Or>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Or>
-		<op_Equality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Equality>
-		<op_Inequality>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_Inequality>
-		<op_ExlusiveOr>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</op_ExlusiveOr>
-		<op_OnesComplement>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</op_OnesComplement>
-	</Condition>
-	<Option>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-		</class>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</ctor>
-		<ctor-option>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="enumValue">TBD</param>
-		</ctor-option>
-		<ctor-makeValueArgs>
-			<summary>
-				TBD
-			</summary>
-			<param name="makeValueArgs">TBD</param>
-			<remarks>TBD</remarks>
-		</ctor-makeValueArgs>
-		<implicit-option>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</implicit-option>
-		<implicit-T>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</implicit-T>
-		<MakeOfThisType>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="args">TBD</param>
-			<returns>TBD</returns>
-		</MakeOfThisType>
-		<MakeDefault>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</MakeDefault>
-		<Equals>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="obj">TBD</param>
-			<returns>TBD</returns>
-		</Equals>
-		<GetHashCode>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<returns>TBD</returns>
-		</GetHashCode>
-		<PrimitiveString>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<value>TBD</value>
-		</PrimitiveString>
-		<operator-equal>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</operator-equal>
-		<operator-not-equal>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</operator-not-equal>
-		<Switch>
-			<summary>TBD</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TResult">TBD</typeparam>
-			<returns>TBD</returns>
-		</Switch>
-	</Option>
-	<Option-static>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Of>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="TEnum">TBD</typeparam>
-			<param name="primitiveValue">TBD</param>
-			<param name="fieldName">TBD</param>
-			<returns>TBD</returns>
-		</Of>
-	</Option-static>
-	<ValueMath>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Abs>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</Abs>
-		<Ceiling>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</Ceiling>
-		<Floor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</Floor>
-		<Truncate>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="value">TBD</param>
-			<returns>TBD</returns>
-		</Truncate>
-		<Min>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Min>
-		<Max>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="left">TBD</param>
-			<param name="right">TBD</param>
-			<returns>TBD</returns>
-		</Max>
-		<Round>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<param name="d">TBD</param>
-			<param name="decimals">TBD</param>
-			<returns>TBD</returns>
-		</Round>
-	</ValueMath>
-	<NullExpressionResultException>
-		<exception>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</exception>
-		<ctor>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="expressionBody">TBD</param>
-		</ctor>
-	</NullExpressionResultException>
-	<SwitchExpression>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<typeparam name="T">TBD</typeparam>
-			<typeparam name="TReturn">TBD</typeparam>
-		</class>
-		<For>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="checkValue">TBD</param>
-			<returns>TBD</returns>
-		</For>
-		<SwitchBuilder>
-			<class>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-			</class>
-			<Case>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="caseValue">TBD</param>
-				<param name="otherCaseValues">TBD</param>
-				<returns>TBD</returns>
-			</Case>
-		</SwitchBuilder>
-		<ReturnBuilder>
-			<class>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-			</class>
-			<Return-primitiveValue>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="primitiveValue">TBD</param>
-				<param name="valueBody">TBD</param>
-				<returns>TBD</returns>
-			</Return-primitiveValue>
-			<Return-returnValueFunc>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="returnValueFunc">TBD</param>
-				<param name="funcBody">TBD</param>
-				<returns>TBD</returns>
-			</Return-returnValueFunc>
-			<Return>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="returnValue">TBD</param>
-				<returns>TBD</returns>
-			</Return>
-		</ReturnBuilder>
-		<CaseBuilder>
-			<class>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-			</class>
-			<Case>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="caseValue">TBD</param>
-				<param name="otherCaseValues">TBD</param>
-				<returns>TBD</returns>
-			</Case>
-			<Default-primitiveValue>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="primitiveValue">TBD</param>
-				<param name="valueBody">TBD</param>
-				<returns>TBD</returns>
-			</Default-primitiveValue>
-			<Default-defaultValueFun>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-				<param name="defaultValueFun">TBD</param>
-				<param name="funcBody">TBD</param>
-				<returns>TBD</returns>
-			</Default-defaultValueFun>
-		</CaseBuilder>
-		<ResultEvaluator>
-			<class>
-				<summary>
-					TBD
-				</summary>
-				<remarks>TBD</remarks>
-			</class>
-		</ResultEvaluator>
-	</SwitchExpression>
-	<ValueJsonConverter>
-		<class>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-		</class>
-		<Serialize>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="value">TBD</param>
-			<param name="writeIndented">TBD</param>
-			<returns>TBD</returns>
-		</Serialize>
-		<Deserialize>
-			<summary>
-				TBD
-			</summary>
-			<remarks>TBD</remarks>
-			<param name="json">TBD</param>
-			<returns>TBD</returns>
-		</Deserialize>
-	</ValueJsonConverter>
+  <EvaluationScopeGeneric>
+    <class>
+      <summary>Provides the base class from which the use-case specific calculations classes can be derived.</summary>
+      <remarks>
+        <para>Create inhertited classes from this base class to define, run and retrieve a result of your calculations.</para>
+        <list type="table">
+          <item>
+            <term>Calculation</term>
+            <description>
+              <para></para>
+              Your class inheriting from EvaluationScope<![CDATA[<T>]]> is a logical unit to compute desired result. Place lambda expressions,<br/>
+              input parameters or constants of types derived from <see cref="Value"/> or <see cref="IValue"/> in your derived implementation.
+            </description>
+          </item>
+          <item>
+            <term>Examples</term>
+            <description>
+              <para>Inheriting from EvaluationScope<![CDATA[<T>]]>, where T is a result class type returned by ToResult() method.</para>
+              <code>
+                public class ExampleCalculation : EvaluationScope<![CDATA[<Number>]]>
+                {
+                public ExampleCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true }) { }
+                public override Number Return() => Number.Of(0);
+                }
+              </code>
+            </description>
+          </item>
+          <item>
+            <a href="https://fcp-project.jitt.me/docs/category/tutorial---basics/">
+              Learn more
+            </a>
+          </item>
+        </list>
+      </remarks>
+      <typeparam name="T">Type of the result value class.</typeparam>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/>.
+      </summary>
+      <remarks>Default options will be applied.</remarks>
+    </ctor>
+    <ctor-options>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with custom options.
+      </summary>
+      <remarks>Learn more about evaluation behaviours.</remarks>
+      <param name="options">Options to control the behavior during evaluation.</param>
+    </ctor-options>
+    <ctor-func>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone labda expression.
+      </summary>
+      <remarks>Useful to capture small ad-hoc expressions for tests or experimentation purposes.</remarks>
+      <param name="func">
+        Lambda expression using <see cref="IValue"/> types.
+      </param>
+    </ctor-func>
+    <ctor-scope>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope{T}"/> class with standalone lambda expression.
+      </summary>
+      <remarks>This initalization method is mostly useful for testing and prototyping purposes.</remarks>
+      <param name="scope">Name of the scope</param>
+    </ctor-scope>
+    <ToResult>
+      <summary>Runs and return result from implemented calculation.</summary>
+      <remarks>Calls Return() under the hood.</remarks>
+      <returns>Calculation result with captured arguments and expression tree.</returns>
+    </ToResult>
+    <Return>
+      <summary>Override to implement the final calculation step.</summary>
+      <remarks>
+        Used to explicitly define a final calculation result. Can be considered an equivalent of "return X" in a normal function. Will be executed on ToResult() call of <see cref="EvaluationScope{T}"/>.
+      </remarks>
+      <returns>Calculation final result.</returns>
+    </Return>
+  </EvaluationScopeGeneric>
+  <IEvaluationScopeGeneric>
+    <interface>
+      <summary>
+        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
+      </summary>
+      <remarks>Useful when implementing a strategy pattern. Learn more about advanced use-cases.</remarks>
+      <typeparam name="T">Type of the result value class.</typeparam>
+    </interface>
+    <ToResult>
+      <summary>Runs and return result from implemented calculation.</summary>
+      <remarks>Calls Return() under the hood.</remarks>
+      <returns>Calculation result with captured arguments and expression tree.</returns>
+    </ToResult>
+  </IEvaluationScopeGeneric>
+  <EvaluationScope>
+    <class>
+      <summary>Class provides methods to write calculations and capture the results.</summary>
+      <remarks>This class provides a logical context of closely related expressions to calculate a result.</remarks>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/>.
+      </summary>
+      <remarks>Default options will be applied.</remarks>
+    </ctor>
+    <ctor-options>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/> class with custom options.
+      </summary>
+      <remarks>Learn more about evaluation behaviours.</remarks>
+      <param name="options">Options to be used to run the calculation.</param>
+    </ctor-options>
+    <ctor-scope>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/> class with standalone lambda expression.
+      </summary>
+      <remarks>This initalization method is mostly sseful for testing and prototyping.</remarks>
+      <param name="scope">Name of the scope</param>
+    </ctor-scope>
+    <Evaluate>
+      <summary>Evaluates an expression and captures it's arguments.</summary>
+      <remarks>This is a primary method to define any intermediate calculations in your business logic.</remarks>
+      <typeparam name="TValue">Result value type.</typeparam>
+      <param name="lambdaExpression">Math or logic expression.</param>
+      <param name="name">Result name (captured by the compiler by default).</param>
+      <param name="lambdaExpressionBody">Expression body (captured by the compiler by default).</param>
+      <returns>Lambda expression result containing arguments and expression body.</returns>
+    </Evaluate>
+    <Evaluate-switch>
+      <summary>Evaluates switch expression and captures it's values as arguments.</summary>
+      <remarks>Learn more about Option type and SwitchExpression.</remarks>
+      <typeparam name="TCase">Type of case and evaluated value.</typeparam>
+      <typeparam name="TValue">Case result return type.</typeparam>
+      <param name="getResultEvaluatorFunc">Expression representing switch expression.</param>
+      <param name="name">Name of evauation.</param>
+      <returns>Switch expression case result.</returns>
+    </Evaluate-switch>
+    <ClearCache>
+      <summary>Force clearing cached evaluation results.</summary>
+      <remarks>Experimental feature for resuable calculation classes.</remarks>
+    </ClearCache>
+    <Create>
+      <summary>Create a cope instance.</summary>
+      <remarks>Used for standalone EvaluationScpes as opposed to inheritance approach.</remarks>
+      <param name="scope">Name of the scope.</param>
+      <returns>Named evaluation scope instance.</returns>
+    </Create>
+  </EvaluationScope>
+  <IEvaluationScope>
+    <interface>
+      <summary>
+        Provides an interface to an <see cref="EvaluationScope{T}"/> object.
+      </summary>
+      <remarks>Useful for mocking, dependency injection or creating alternative implementations.</remarks>
+    </interface>
+    <Evaluate>
+      <summary>Evaluates an expression and captures it's arguments.</summary>
+      <remarks>This is a primary method to define any intermediate calculations in your business logic.</remarks>
+      <typeparam name="TValue">Result value type.</typeparam>
+      <param name="lambdaExpression">Math or logic expression.</param>
+      <param name="name">Result name (captured by the compiler by default).</param>
+      <param name="lambdaExpressionBody">Expression body (captured by the compiler by default).</param>
+      <returns>Lambda expression result containing arguments and expression body.</returns>
+    </Evaluate>
+    <Evaluate-switch>
+      <summary>Evaluates switch expression and captures it's values as arguments.</summary>
+      <remarks>Learn more about Option type and SwitchExpression.</remarks>
+      <typeparam name="TCase">Type of case and evaluated value.</typeparam>
+      <typeparam name="TValue">Case result return type.</typeparam>
+      <param name="getResultEvaluatorFunc">Expression representing switch expression.</param>
+      <param name="name">Name of evauation.</param>
+      <returns>Switch expression case result.</returns>
+    </Evaluate-switch>
+  </IEvaluationScope>
+  <Scope>
+    <class>
+      <summary>
+        Provides static methods for quick <see cref="EvaluationScope"/> creation.
+      </summary>
+      <remarks>
+        Helper class to provide alternative ways to create an <see cref="EvaluationScope"/> instances.
+      </remarks>
+    </class>
+    <CreateHere>
+      <summary>
+        Initializes a new instance of the <see cref="EvaluationScope"/>.
+      </summary>
+      <remarks>Typically one scope per method would be required to capture logical group of expressions.</remarks>
+      <param name="obj">
+        Object where <see cref="EvaluationScope"/> to be crated. Class name will be used as a prefix of the scope name.
+      </param>
+      <param name="scope">Scope name, by default calling method name will be captured.</param>
+      <returns>
+        Inctance of <see cref="EvaluationScope"/>.
+      </returns>
+    </CreateHere>
+  </Scope>
+  <Result>
+    <class>
+      <summary>Provides methods to execute simple ad-hoc calculations.</summary>
+      <remarks>Useful for unit tests or prototyping.</remarks>
+    </class>
+    <Of>
+      <summary>Evaluates expression and captures it's arguments.</summary>
+      <remarks>Temporary EvaluationScope will be created to evaluate the expression.</remarks>
+      <typeparam name="TValue">Type of result.</typeparam>
+      <param name="name">Name of resulting value, set by default to calling method or property name.</param>
+      <param name="lambdaExpression">Expression to evaluate.</param>
+      <param name="lambdaExpressionBody">Expression body, autmatically captured.</param>
+      <returns>Evaluation result.</returns>
+    </Of>
+    <OfWithScope>
+      <summary>Provides methods to execute simple ad-hoc calculations.</summary>
+      <remarks>Temporary EvaluationScope will be created to evaluate the expression.</remarks>
+      <typeparam name="TValue">Type of result.</typeparam>
+      <param name="name">>Name of resulting value, set by default to calling method or property name.</param>
+      <param name="lambdaExpression">Expression to evaluate.</param>
+      <param name="lambdaExpressionBody">Expression body, autmatically captured</param>
+      <param name="scopeName">Scope name, by default calling method name will be captured.</param>
+      <returns>Evaluation result.</returns>
+    </OfWithScope>
+  </Result>
+  <EvaluationOptions>
+    <class>
+      <summary>
+        Provides options to be used with <see cref="EvaluationScope"/>.
+      </summary>
+      <remarks>Learn more about EvaluationScope behaviours.</remarks>
+    </class>
+    <ctor>
+      <summary>Initializes a new instance of the EvaluationOptions class.</summary>
+      <remarks></remarks>
+    </ctor>
+    <Default>
+      <summary>Constructs a new EvaluationOptions instance with a predefined set of defaults.</summary>
+      <remarks></remarks>
+      <value>Instance of EvaluationOptions class with default options.</value>
+    </Default>
+    <AlwaysReadNamesFromExpressions>
+      <summary>Instructs EvaluationScope to read argument names from Expression Tree.</summary>
+      <remarks>By default, when evaluations are implemented as methods or properties, name will be captured at compile time. When using local variables without providing custom name, enable this option to read arguemnt names from Expressions.</remarks>
+      <value>true: read names from expressions, false: keep default behaviour.</value>
+    </AlwaysReadNamesFromExpressions>
+    <Scope>
+      <summary>Get or sets scope name that will be applied to all values used with EvaluationScope.</summary>
+      <remarks>This is one of few ways to provide a scope name. Learn more about evaluation scopes.</remarks>
+      <value>Scope name</value>
+    </Scope>
+  </EvaluationOptions>
+  <Value>
+    <class>
+      <summary>Provides the base class from which the domain specific numer-like classes types can be derived.</summary>
+      <remarks>Number and Condition are built-in examples. Leverage this class to create other types specific to your domain. Learn more about implementing new tracable values.</remarks>
+    </class>
+    <Name>
+      <summary>Name of value</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
+    </Name>
+    <Expression>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
+    </Expression>
+    <Primitive>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
+    </Primitive>
+    <PrimitiveString>
+      <summary>Formatted string representation of the primitive value.</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of the value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
+    </PrimitiveString>
+    <Origin>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
+    </Origin>
+    <Tags>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
+    </Tags>
+    <Scope>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
+    </Scope>
+    <Type>
+      <summary>Original type of the value implementation.</summary>
+      <remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
+      <value>Name of type aka GetType().Name</value>
+    </Type>
+    <ctor-value>
+      <summary>
+        Initializes a new instance of the <see cref="Value"/> which is deep copy of the supplied value parameter.
+      </summary>
+      <remarks>This constructor is used in constructors of derived types based on a simpler types. For example Money type could based on Number.</remarks>
+      <param name="value">Value to copy</param>
+    </ctor-value>
+    <ctor-makeValueArgs>
+      <summary>
+        Initializes a new instance of the <see cref="Values"/> with provided values. Used in derived classes to initialize base class fields.
+      </summary>
+      <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
+      <param name="makeValueArgs">Arguments to create a new value.</param>
+    </ctor-makeValueArgs>
+    <MakeOfThisType>
+      <summary>
+        Initializes a new instance of the derived value class. Used by the framework to create expected result types.
+      </summary>
+      <remarks>This method is typically used to create a results of math or logical operations or calculation methods, build int ValueMath.Abs() would be an example.</remarks>
+      <param name="args">Arguments to create a new value</param>
+      <returns>New instance of same type.</returns>
+    </MakeOfThisType>
+    <MakeDefault>
+      <summary>Initializes a new instance with default values, equivalent to zero/null value.      </summary>
+      <remarks>This framework avoids dealing with nullable types.</remarks>
+      <returns>Instance of zero value</returns>
+    </MakeDefault>
+    <HandleBinaryOperation>
+      <summary>
+        Handles math and comparison operations of underlying primitve values in derived types.
+      </summary>
+      <remarks>Examples are Number and Condition classes that are using this method.</remarks>
+      <typeparam name="ResultType">Operation result type</typeparam>
+      <typeparam name="ResultPrimitiveType">.NET primitive value type (ex. decimal, boolean)</typeparam>
+      <param name="right">Right side value of operatoin</param>
+      <param name="expressionFunc">Expression representing operation in derived type</param>
+      <param name="operatorName">Operation name (ex. Add, Substract, LessThan)</param>
+      <returns>Result value of defined type containg input values as arguments</returns>
+    </HandleBinaryOperation>
+    <Equals-value>
+      <summary>
+        Determines whether two Values are equal based on underlying primitive value.
+      </summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="value">Other value</param>
+      <returns>True if primitive values equal.</returns>
+    </Equals-value>
+    <Equals-obj>
+      <summary>Determines whether two Values are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other value</param>
+      <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
+    </Equals-obj>
+    <GetHashCode>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value</returns>
+    </GetHashCode>
+    <ToString>
+      <summary>Returns a string that represents the current value.</summary>
+      <remarks>Derived types are responsible of implementating prefered string representation. Primary use case is readability in Debug View, to make user fiendly representation leverage PrimitiveString property.</remarks>
+      <returns>Returns Name of value as a default implementation.</returns>
+    </ToString>
+  </Value>
+  <IValue>
+    <interface>
+      <summary>Lightweight interface that every value class will implement providing access to common properties.</summary>
+      <remarks>Visualizations can be base on this interface, ex. Graphs.</remarks>
+    </interface>
+    <Name>
+      <summary>Name of value</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
+    </Name>
+    <Expression>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
+    </Expression>
+    <Primitive>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
+    </Primitive>
+    <PrimitiveString>
+      <summary>Formatted string representation of the primitive value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
+    </PrimitiveString>
+    <Origin>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
+    </Origin>
+    <Tags>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
+    </Tags>
+    <Scope>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
+    </Scope>
+    <Type>
+      <summary>Original type of the value implementation</summary>
+      <remarks>Can be used for more advance desrialization into concrete value types. Examples of names of built in value types are "Number" and "Condition"</remarks>
+      <value>Name of type aka GetType().Name</value>
+    </Type>
+  </IValue>
+  <ValueOriginType>
+    <enum>
+      <summary>Defines the origin of value in context of a calculation.</summary>
+      <remarks>This enum allows quick understanding of the flow of the calculation.</remarks>
+    </enum>
+    <NaN>
+      <summary>Represents default state when origin is not determinated or set.</summary>
+      <remarks>Part of null object pattern, should not apper too often. Value with this origin might indicate some missing implementation.</remarks>
+    </NaN>
+    <Parameter>
+      <summary>Represents input parameter of the calculation.</summary>
+      <remarks>This value will be applied to values that are not constants or evaluation results within calculation chain.</remarks>
+    </Parameter>
+    <Constant>
+      <summary>Represents a constant values which do not change.</summary>
+      <remarks>Conceptually equal to native constant value.</remarks>
+    </Constant>
+    <Evaluation>
+      <summary>Represents a value that is a result of lambda expression evaluation result.</summary>
+      <remarks>Only Evaluate() method of EvaluationScope will return this type.</remarks>
+    </Evaluation>
+    <Operation>
+      <summary>Represents intermediate results of basic binary or unary operations.</summary>
+      <remarks>These kind of values will typically be filtered out from evaluations. Neverless can be produced when Values are used for standalone operations without calling Evaluate() method.</remarks>
+    </Operation>
+    <Result>
+      <summary>Represent the final result value when used in classes inherting from EcaluationScope.</summary>
+      <remarks>ToResult() will yield this type.</remarks>
+    </Result>
+  </ValueOriginType>
+  <MakeValueArgs>
+    <class>
+      <summary>Represents set of standard arguments to initialize instance of a class inheriting from Value base class.</summary>
+      <remarks>Used in constructors of classes derived from Value class to initialize the base class.</remarks>
+    </class>
+    <Name>
+      <summary>Name of value.</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
+    </Name>
+    <Expression>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
+    </Expression>
+    <Primitive>
+      <summary>Numeric primitive representation of the value.</summary>
+      <remarks>Decimal is intentinal choice at this point as being most common number type for business related calculations.</remarks>
+      <value>Primitive value.</value>
+    </Primitive>
+    <Origin>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
+    </Origin>
+    <Tags>
+      <summary>Custom tags associated with the value.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
+    </Tags>
+    <Scope>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
+    </Scope>
+  </MakeValueArgs>
+  <ExpressionNode>
+    <class>
+      <summary>Class that is used to capture metadata and relationships of expression that produced the Values.</summary>
+      <remarks>This is central class to discover full calculation tree of any Value.</remarks>
+    </class>
+    <ToString>
+      <summary>Returns a string that represents the expression object.</summary>
+      <remarks>Output will depend on each function or operaor implementation.</remarks>
+      <returns>String containing Body of the expression.</returns>
+    </ToString>
+    <Body>
+      <summary>Body of the expression or operation.</summary>
+      <remarks>Exact body of expression will contain language operators and variable names used in original code.</remarks>
+      <value>Expression body</value>
+    </Body>
+    <Type>
+      <summary>Type of method how the value was obtained.</summary>
+      <remarks>Usefull for visualizations to customise the rendering of value nodes depending on the way they were produced.</remarks>
+      <value>Expression type.</value>
+    </Type>
+    <Arguments>
+      <summary>Links the result with the arguments of the expression.</summary>
+      <remarks>Arguments can be results of other Evaluaitons. In case of Constants and Input parameters this array will be empty.</remarks>
+      <value>List of arguments of the expression.</value>
+    </Arguments>
+  </ExpressionNode>
+  <ExpressionNodeType>
+    <class>
+      <summary>Contains the classifiers representing Expression types that produced the value.</summary>
+      <remarks>This is a concise classification of way the value was obtained. This supplements the Origin enum to create a more granural understaning.</remarks>
+    </class>
+    <None>
+      <summary>Represents a standalone value or a default state not related to any EvaluationScope.</summary>
+      <remarks>Should not be encountered in typical use cases, should be considered equivalent to not initialized variable.</remarks>
+    </None>
+    <Constant>
+      <summary>Represents a definition of an inline constant or an input parameter.</summary>
+      <remarks>Constants are values that are not a result of any Evaluation or operation.</remarks>
+    </Constant>
+    <Collection>
+      <summary>Represents a creation of an immuatable collection of values of same type.</summary>
+      <remarks>Collection might be a result of a function handling collections, hard-coded collection of constants or an input parameter of a calculation.</remarks>
+    </Collection>
+    <Lambda>
+      <summary>Represents a lambda expression evaluation by Evaluate method of EvaluationScope.</summary>
+      <remarks>This type can only be a result of Evaluate() method.</remarks>
+    </Lambda>
+    <Switch>
+      <summary>Represents a special case evaluation where SwitchExpression class is being used.</summary>
+      <remarks>This type is logical equivalent to native switch/case statement.</remarks>
+    </Switch>
+    <Binary>
+      <summary>Represents an binary or unary operation.</summary>
+      <remarks>Typically values of these types are intermediate results of longer lambda expressions or standalon operations with values.</remarks>
+    </Binary>
+    <Math>
+      <summary>Represents a ValueMath function call.</summary>
+      <remarks>Examples are functions like Min() or Max().</remarks>
+    </Math>
+  </ExpressionNodeType>
+  <IExpression>
+    <interface>
+      <summary>Provides the interfact to retrieve expression metadata.</summary>
+      <remarks>This interface can be used for visualizations or any other output transformations.</remarks>
+    </interface>
+    <Body>
+      <summary>Body of the expression or operation.</summary>
+      <remarks>Exact body of expression will contain language operators and variable names used in original code.</remarks>
+      <value>Expression body</value>
+    </Body>
+    <Type>
+      <summary>Type of method how the value was obtained.</summary>
+      <remarks>Usefull for visualizations to customise the rendering of value nodes depending on the way they were produced.</remarks>
+      <value>Expression type.</value>
+    </Type>
+    <Arguments>
+      <summary>Links the result with the arguments of the expression.</summary>
+      <remarks>Arguments can be results of other Evaluaitons. In case of Constants and Input parameters this array will be empty.</remarks>
+      <value>List of arguments of the expression.</value>
+    </Arguments>
+  </IExpression>
+  <ArgumentsCollection>
+    <class>
+      <summary>Represents read-only collection of IValue elements that are arguments of the expression.</summary>
+      <remarks>Created and populated by the operation handlers or EvaluationScope during execution of implemented logic</remarks>
+    </class>
+    <Count>
+      <summary>Gets the number of elements contained in the arguments collection.</summary>
+      <remarks>Array will be empty for Constant value type.</remarks>
+      <value>Number of elements in a collection</value>
+    </Count>
+    <GetEnumerator>
+      <summary>Returns an enumerator that iterates through the ArgumentsCollection.</summary>
+      <remarks>Learn more about native GetEnumerator Method.</remarks>
+      <returns>A ArgumentsCollection.Enumerator for the ArgumentsCollection.</returns>
+    </GetEnumerator>
+  </ArgumentsCollection>
+  <IArguments>
+    <inteface>
+      <summary>Provides the interfact to retrieve expression arguments.</summary>
+      <remarks>This interface can be used for visualizations or any other output transformations.</remarks>
+    </inteface>
+    <Count>
+      <summary>Gets the number of elements contained in the arguments collection.</summary>
+      <remarks>Array will be empty for Constant value type.</remarks>
+      <value>Number of elements in a collection</value>
+    </Count>
+  </IArguments>
+  <ArgumentsDebugView>
+    <class>
+      <summary>Provides a simplified debug view of Expresion class Arguments property.</summary>
+      <remarks></remarks>
+      <param name="arguments">Arguments collection.</param>
+    </class>
+    <Arguments>
+      <summary>Use friendly list of expression arguments.</summary>
+      <remarks></remarks>
+      <value>Lis of arguments</value>
+    </Arguments>
+  </ArgumentsDebugView>
+  <ArgumentsVisitorInvoker>
+    <class>
+      <summary>Contains methods that enables Visitor functionality of Values.</summary>
+      <remarks>Use this class when implementing new Value class in the implementation of Accept() method of IValueProvider.</remarks>
+    </class>
+    <VisitArguments>
+      <summary>Invokes a supplied vistor.</summary>
+      <remarks>Visitor will will be invoked for every argument of the supplied value.</remarks>
+      <param name="value">Value to be visited.</param>
+      <param name="visitor">Vistor that will handle visited value.</param>
+      <returns>Returns same value that was supplied.</returns>
+    </VisitArguments>
+  </ArgumentsVisitorInvoker>
+  <ValueVisitor>
+    <class>
+      <summary>
+        Represents a read-only visitor for value arguments.
+      </summary>
+      <remarks>This class is designed to be inherited to create more specialized classes whose functionality requires traversing, examining expression arguments.</remarks>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="ValueVisitor"/>.
+      </summary>
+      <remarks></remarks>
+    </ctor>
+    <Visit>
+      <summary>Dispatches the the list of arguments to VisitArgument method in this class.</summary>
+      <remarks>Initate this method with the value that should be visited, typically a calculation result.</remarks>
+      <param name="value">Value whose arguments should be visited.</param>
+    </Visit>
+    <VisitArgument>
+      <summary>The argument value to visit.</summary>
+      <remarks>Override this method to implement custom value examination logic.</remarks>
+      <param name="value">Returns the original visited value.</param>
+    </VisitArgument>
+  </ValueVisitor>
+  <Tag>
+    <class>
+      <summary>Lightweight annotation of a Value.</summary>
+      <remarks>Used to provide an additinal context or details to values and calculation results.</remarks>
+    </class>
+    <Name>
+      <summary>Tag content.</summary>
+      <remarks>Tag max length is 255.</remarks>
+      <value>Annotation string value.</value>
+    </Name>
+    <ToString>
+      <summary>Returns a string that represents the Tag.</summary>
+      <remarks></remarks>
+      <returns>Equals to Name property.</returns>
+    </ToString>
+    <Create>
+      <summary>Creates new Tag.</summary>
+      <remarks></remarks>
+      <param name="name">Tag name.</param>
+      <returns>New instance of a Tag wit the provided name.</returns>
+    </Create>
+  </Tag>
+  <ITags>
+    <inteface>
+      <summary>Provides an iterface to access Tags collection.</summary>
+      <remarks></remarks>
+    </inteface>
+  </ITags>
+  <TagsCollection>
+    <class>
+      <summary>Collection of Tag objects.</summary>
+      <remarks>Read-only collection of tags.</remarks>
+    </class>
+    <Count>
+      <summary>Gets the number of elements contained in the Tags collection.</summary>
+      <remarks></remarks>
+      <value>Number of elements in a collection.</value>
+    </Count>
+    <GetEnumerator>
+      <summary>Returns an enumerator that iterates through the TagsCollection.</summary>
+      <remarks>Learn more about native GetEnumerator Method.</remarks>
+      <returns>A TagsCollection.Enumerator for the TagsCollection.</returns>
+    </GetEnumerator>
+  </TagsCollection>
+  <IValueProvider>
+    <inteface>
+      <summary>Provides a standard interface for all Values that provides methods to support implementation of new operators and domain specific methods.</summary>
+      <remarks>Use this class to implement additional calculation functions or operators.</remarks>
+    </inteface>
+    <MakeDefault>
+      <summary>Returns the default value of underlying concrete value implementation.</summary>
+      <remarks>Casting to target type is responsibility of caller.</remarks>
+      <returns>Default value instance.</returns>
+    </MakeDefault>
+    <MakeOfThisType>
+      <summary>Initializes a new instance of the concrete type.</summary>
+      <remarks>Use when implementing new functions and return results of target value type. Returned value should be casted to final type.</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
+    </MakeOfThisType>
+    <Accept>
+      <summary>Accepts Arguments visitor.</summary>
+      <remarks>When value is inhertied from Value base class, doesn't need to be overriden.</remarks>
+      <param name="visitor">Arguments visitor.</param>
+      <returns>Returns self.</returns>
+    </Accept>
+  </IValueProvider>
+  <Values>
+    <class>
+      <summary>Represents both, a strongly typed read-ony list of Values, and a value that is Sum of all elements.</summary>
+      <remarks>Usefull keep track of same kind of values while ussing aggregate functions results in calculations.</remarks>
+      <typeparam name="T">Type of collection element</typeparam>
+    </class>
+    <ctor-makeValueArgs>
+      <summary>
+        Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
+      </summary>
+      <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
+      <param name="makeValueArgs">Arguments to create a new Collection of values.</param>
+    </ctor-makeValueArgs>
+    <Name>
+      <summary>Name of values collection</summary>
+      <remarks>Either custom name provided when declaring a value or automatically captured by compiler when using buil-in helper methods.</remarks>
+      <value>Sets or gets name, "NaN" when names wasn't set.</value>
+    </Name>
+    <Primitive>
+      <summary>Numeric primitive representation of the sum of all Primitive values in the collection.</summary>
+      <remarks>Provides an opportunity for implementing operators so collection can be used in same manner as standalone value. Using Sum() method would be a default choice.</remarks>
+      <value>Primitive value of sum of all elements.</value>
+    </Primitive>
+    <Origin>
+      <summary>Origin type of the value.</summary>
+      <remarks>Provides an understanding of the origin and classification of a value in respect to it's source and usage.</remarks>
+      <value>Origin type.</value>
+    </Origin>
+    <Expression>
+      <summary>Metadata of expression that yielded this value.</summary>
+      <remarks>Entire calculation tree can be discovered by visiting this property starting from final result instance.</remarks>
+      <value>Expression metadata.</value>
+    </Expression>
+    <Tags>
+      <summary>Custom tags associated with the collection.</summary>
+      <remarks>Simple mechanism to carry additional meta-data througout the calculation. Can be usefull to provide addtional grouping, identifiers or enything else to look up values.</remarks>
+      <value>Custom tag.</value>
+    </Tags>
+    <Scope>
+      <summary>Named scope that this value is part of</summary>
+      <remarks>Scope name can be used for visualizations to group related values and claculations</remarks>
+      <value>Scome name</value>
+    </Scope>
+    <Type>
+      <summary>Original type of the the collection implementation.</summary>
+      <remarks>Can be used for more advance desrialization into concrete value types.</remarks>
+      <value>Name of type aka GetType().Name</value>
+    </Type>
+    <PrimitiveString>
+      <summary>Formatted string representation of the Primitive value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>Inheriting class is responsible of providing an accurate formatting.</value>
+    </PrimitiveString>
+    <Accept>
+      <summary>Accepts Arguments visitor.</summary>
+      <remarks>When value is inhertied from Values collection base class, doesn't need to be overriden.</remarks>
+      <param name="visitor">Collection items visitor.</param>
+      <returns>Returns self.</returns>
+    </Accept>
+    <Count>
+      <summary>Gets the number of elements contained in the Values collection.</summary>
+      <remarks></remarks>
+      <value>Number of elements in a collection.</value>
+    </Count>
+    <MakeOfThisType>
+      <summary>Initializes a new instance of the concrete Values collection.</summary>
+      <remarks>Use when implementing new functions and return results of target value type. Returned value should be casted to final type. Use this method to implement filtering methods that return a subset or manipulated collecition.</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete collection.</returns>
+    </MakeOfThisType>
+    <MakeOfThisElementType>
+      <summary>Initializes a new instance of collection element type.</summary>
+      <remarks>Method is used to implement aggregate collection methods where the result is single value, examples are methods like Sum(), Min() or Max().</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
+    </MakeOfThisElementType>
+    <MakeDefault>
+      <summary>Returns the default value empty collection of a concrete type.</summary>
+      <remarks>Casting to target type is responsibility of caller.</remarks>
+      <returns>Default collection instance.</returns>
+    </MakeDefault>
+    <ToString>
+      <summary>Returns a string that represents the current collection object.</summary>
+      <remarks></remarks>
+      <returns>Return Name of value as a default implementation.</returns>
+    </ToString>
+    <Add>
+      <summary>Adds a value to the end of the Values collection.</summary>
+      <remarks>This method allows implicit collection initialization of a collection.</remarks>
+      <param name="value">Value to be added.</param>
+    </Add>
+  </Values>
+  <IValuesProvider>
+    <interface>
+      <summary>Provides a standard interface for all value collections that provides methods to support implementation of new operators and domain specific aggregate methods.</summary>
+      <remarks>Usefull keep track of same kind of values while ussing aggregate functions results in calculations.</remarks>
+      <typeparam name="T">Type of collection element</typeparam>
+    </interface>
+    <MakeOfThisElementType>
+      <summary>Initializes a new instance of collection element type.</summary>
+      <remarks>Method is used to implement aggregate collection methods where the result is single value, examples are methods like Sum(), Min() or Max().</remarks>
+      <param name="args">Arguments to create a new value.</param>
+      <returns>New instance concrete value.</returns>
+    </MakeOfThisElementType>
+  </IValuesProvider>
+  <ValuesDebugView>
+    <class>
+      <summary>Provides a simplified debug view of Values collection class.</summary>
+      <remarks></remarks>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="ValuesDebugView"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="collectionValue">Values collection.</param>
+    </ctor>
+    <Items>
+      <summary>Use friendly list of values.</summary>
+      <remarks></remarks>
+      <value>Lsit of values.</value>
+    </Items>
+  </ValuesDebugView>
+  <ValuesLinqMathExtensions>
+    <class>
+      <summary>Provides static methods of common aggregate functions for types implementing IValuesProvider.</summary>
+      <remarks>This class is an wrapper of limited set of native Linq extension methods and enables the capturing collection elements as arguments. Methods will allways return a new instance of value to maintain the relationship with the source collection.</remarks>
+    </class>
+    <Sum>
+      <summary>Computes the sum of a values in a collection.</summary>
+      <remarks>Computation is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to calculate the sum of.</param>
+      <returns>New value of TSource type representing the sum of the values in the sequence.</returns>
+    </Sum>
+    <Average>
+      <summary>Computes the average of a values in a collection.</summary>
+      <remarks>Computation is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to calculate the average of.</param>
+      <returns>New value of TSource type representing the avaerage of the values in the sequence.</returns>
+    </Average>
+    <Min>
+      <summary>Returns the minimum of a values in a collection.</summary>
+      <remarks>Determination is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to determine the minimum value of.</param>
+      <returns>New value of TSource type representing the minimum of the values in the sequence.</returns>
+    </Min>
+    <Max>
+      <summary>Returns the maximum of a values in a collection.</summary>
+      <remarks>Determination is based on Primitive property of the individual value objects.</remarks>
+      <typeparam name="TSource">Type of collection items.</typeparam>
+      <param name="source">A sequence of values to determine the maximum value of.</param>
+      <returns>New value of TSource type representing the maximum of the values in the sequence.</returns>
+    </Max>
+  </ValuesLinqMathExtensions>
+  <Number>
+    <class>
+      <summary>Represents a numeric type enclosing native decimal value type, it supports arithmetic, comparison, and equality operators.</summary>
+      <remarks>Additionally this class implements Generic Math operators.</remarks>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/>.
+      </summary>
+      <remarks>Equivalent to Zero.</remarks>
+    </ctor>
+    <ctor-number>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/> by making a deep copy of an existing value.
+      </summary>
+      <remarks>Useful to create results of derived types.</remarks>
+      <param name="number">Exisitng value.</param>
+    </ctor-number>
+    <ctor-makeValueArgs>
+      <summary>
+        Initializes a new instance of the <see cref="Number"/> with provided values as arguments.
+      </summary>
+      <remarks>Used in derived classes to initialize base class fields.</remarks>
+      <param name="makeValueArgs">
+        Arguments for a new <see cref="Number"/> with.
+      </param>
+    </ctor-makeValueArgs>
+    <implicit-int>
+      <summary>
+        Implicit converstion from int to <see cref="Number"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="primitiveValue">Integer value.</param>
+      <returns>
+        <see cref="Number"/> representing the int value.
+      </returns>
+    </implicit-int>
+    <implicit-decimal>
+      <summary>
+        Implicit converstion from decimal to <see cref="Number"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="primitiveValue">Decimal value.</param>
+      <returns>
+        <see cref="Number"/> representing the int value.
+      </returns>
+    </implicit-decimal>
+    <Zero>
+      <summary>
+        Returns an <see cref="Number"/> instance representing zero value.
+      </summary>
+      <remarks></remarks>
+      <value>Number representing Zero.</value>
+    </Zero>
+    <Of>
+      <summary>
+        Creates a new named <see cref="Number"/> instance.
+      </summary>
+      <remarks>
+        This is one of prefered ways to create <see cref="Number"/> using a primitive value. Scope of the number will be updated during the evaluation.
+      </remarks>
+      <param name="primitiveValue">Constant or variable to be used as a Primitive of the new Number.</param>
+      <param name="fieldName">Name of the Number (automatically defined by at compile time)</param>
+      <returns>
+        <see cref="Number"/> instance representing the supplied numeric value.
+      </returns>
+    </Of>
+    <Of-scope>
+      <summary>
+        Creates a new named <see cref="Number"/> instance with named scope.
+      </summary>
+      <remarks>
+        This is one of prefered ways to create <see cref="Number"/> using a primitive value.
+      </remarks>
+      <param name="primitiveValue">Constant or variable to be used as a Primitive of the new Number.</param>
+      <param name="fieldName">Name of the Number (automatically defined by at compile time)</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>
+        <see cref="Number"/> instance representing the supplied numeric value.
+      </returns>
+    </Of-scope>
+    <Subtraction-method>
+      <summary>Subtracts the specified Number value from this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The subtrahend.</param>
+      <returns>The result of subtracting right from this value.</returns>
+    </Subtraction-method>
+    <Addition-method>
+      <summary>Adds the specified Number value to this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">Value to add.</param>
+      <returns>The result of adding right to this value.</returns>
+    </Addition-method>
+    <Division-method>
+      <summary>Divides the this value by specified Number.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The divisior.</param>
+      <returns>The result of dividing this value by right.</returns>
+    </Division-method>
+    <Multiply-method>
+      <summary>Multiplies the specified Number value with this value.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">The value to multiply.</param>
+      <returns>The result of multiplying right from this value.</returns>
+    </Multiply-method>
+    <Equality-method>
+      <summary>Returns a Condition that indicates whether this and specified value are different.</summary>
+      <remarks>Comparision is based on underlying Primitive value.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns>Condition representing if values are different.</returns>
+    </Equality-method>
+    <Inequality-method>
+      <summary>Returns a Condition that indicates whether this and specified value are equal.</summary>
+      <remarks>Comparision is based on underlying Primitive value.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns>Condition representing if values are equal.</returns>
+    </Inequality-method>
+    <LessThan-method>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is less than specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is less than the specified value.</returns>
+    </LessThan-method>
+    <LessThanOrEqual-method>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is less than or equal to specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is less than or equal to specified value.</returns>
+    </LessThanOrEqual-method>
+    <GreaterThan-method>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is greater than specified value.</returns>
+    </GreaterThan-method>
+    <GreaterThanOrEqual-method>
+      <summary>Returns a <see cref="Condition"/> that indicates whether this is greater than or equal to specified value.</summary>
+      <remarks>Comparision is based on the underlying Primitive values.</remarks>
+      <param name="right">Value to compare.</param>
+      <returns><see cref="Condition"/> representing if this value is greater than or equal to specified value.</returns>
+    </GreaterThanOrEqual-method>
+    <op_Subtraction>
+      <summary>Subtracts two values to compute their difference.</summary>
+      <remarks>The Subtract method defines the operation of the substraction operator for Number values.</remarks>
+      <param name="left">The value from which right is subtracted.</param>
+      <param name="right">The value which is subtracted from left.</param>
+      <returns>The difference of right subtracted from left.</returns>
+    </op_Subtraction>
+    <op_Addition>
+      <summary>Adds two specified Number values.</summary>
+      <remarks>The Add method defines the operation of the addition operator for Number values.</remarks>
+      <param name="left">The first value to add.</param>
+      <param name="right">The second  value to add.</param>
+      <returns>The result of adding left and right.</returns>
+    </op_Addition>
+    <op_Division>
+      <summary>Divides two specified Number values.</summary>
+      <remarks>The Devide method defines the operation of the devision operator for Number values.</remarks>
+      <param name="left">The dividend.</param>
+      <param name="right">The divisor.</param>
+      <returns>The result of dividing left by right.</returns>
+    </op_Division>
+    <op_Multiply>
+      <summary>Multiplies two specified Number values.</summary>
+      <remarks>The Multiply method defines the operation of the multiplication operator for Number values.</remarks>
+      <param name="left">The multiplicand.</param>
+      <param name="right">The multiplier.</param>
+      <returns>The result of multiplying left and right.</returns>
+    </op_Multiply>
+    <op_Equality>
+      <summary>Returns a value that indicates whether two Number values are equal.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left and right are equal.</returns>
+    </op_Equality>
+    <op_Inequality>
+      <summary>Returns a value that indicates whether two Nummber objects have different values.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left and right are different.</returns>
+    </op_Inequality>
+    <op_LessThan>
+      <summary>Returns a value indicating whether a specified Number is less than another specified Number.</summary>
+      <remarks>The LessThan method defines the operation of the less than operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left is less than right.</returns>
+    </op_LessThan>
+    <op_LessThanOrEqual>
+      <summary>Returns a value indicating whether a specified Number is less than or equal to another specified Number.</summary>
+      <remarks>The LessThanOrEqual method defines the operation of the less than or equal operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left is less than or equal to right.</returns>
+    </op_LessThanOrEqual>
+    <op_GreaterThan>
+      <summary>Returns a value indicating whether a specified Number is greater than another specified Number.</summary>
+      <remarks>The GreaterThan method defines the operation of the greater than operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left is greater than right.</returns>
+    </op_GreaterThan>
+    <op_GreaterThanOrEqual>
+      <summary>Returns a value indicating whether a specified Number is greater than or equal to another specified Number.</summary>
+      <remarks>The GreaterThanOrEqual method defines the operation of the greater than or equal operator for Number values.</remarks>
+      <param name="left">The first value to compare.</param>
+      <param name="right">The second value to compare.</param>
+      <returns>Condition representing if left is greater than or equal to right.</returns>
+    </op_GreaterThanOrEqual>
+    <generic_op_Equality>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_Equality>
+    <generic_op_GreaterThan>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_GreaterThan>
+    <generic_op_GreaterThanOrEqual>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_GreaterThanOrEqual>
+    <generic_op_Inequality>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_Inequality>
+    <generic_op_LessThan>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_LessThan>
+    <generic_op_LessThanOrEqual>
+      <summary>WAIITNG FOR LATEST SANDCASTLE RELEASE.</summary>
+      <remarks>WAIITNG FOR LATEST SANDCASTLE RELEASE.</remarks>
+    </generic_op_LessThanOrEqual>
+    <ToString>
+      <summary>Returns a string that represents the current Number.</summary>
+      <remarks>Don't use for rendering results, use PrimitiveString property instead. This method support concise presentation in Debug View.</remarks>
+      <returns>Return Name of the Number.</returns>
+    </ToString>
+    <MakeOfThisType>
+      <summary>Initializes a new instance of Number class.</summary>
+      <remarks>Use this method to create a results of math or logical operations or calculation methods.</remarks>
+      <param name="args">Arguments to create a new Number.</param>
+      <returns>New instance of Number configured with values provided with specified args.</returns>
+    </MakeOfThisType>
+    <MakeDefault>
+      <summary>Initializes new Number representing zero decimal.</summary>
+      <remarks>Number object with all properties set their defaults.</remarks>
+      <returns>Instance of zero Number.</returns>
+    </MakeDefault>
+    <Equals-obj>
+      <summary>Determines whether two Numbers are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other Number</param>
+      <returns>True if primitive values are equal, False if obj is of incompatible type.</returns>
+    </Equals-obj>
+    <GetHashCode>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value.</returns>
+    </GetHashCode>
+  </Number>
+  <Condition>
+    <class>
+      <summary>Class that represents a Boolean value, which can be either true or false.</summary>
+      <remarks>Class provides same operators as System.Boolean and hence can be seamlessly used in typical logical expressions.</remarks>
+    </class>
+    <ctor>
+      <summary>
+        Initializes a new instance of the <see cref="Condition"/>.
+      </summary>
+      <remarks>Equivalent to False.</remarks>
+    </ctor>
+    <ctor-makeValueArgs>
+      <summary>
+        Initializes a new instance of the <see cref="Condition"/> with provided values as arguments.
+      </summary>
+      <remarks>Used in derived classes to initialize base class fields.</remarks>
+      <param name="makeValueArgs">
+        Arguments for a new <see cref="Condition"/> with.
+      </param>
+    </ctor-makeValueArgs>
+    <PrimitiveString>
+      <summary>Formatted string representation of underlying boolean value.</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of the value.</remarks>
+      <value>"True" if true, "False" if false.</value>
+    </PrimitiveString>
+    <ToString>
+      <summary>Returns a string that represents the name of the value.</summary>
+      <remarks>Derived types are responsible of implementating prefered string representation. Primary use case is readability in Debug View, to make user fiendly representation leverage PrimitiveString property.</remarks>
+      <returns>Name of value as a default implementation.</returns>
+    </ToString>
+    <MakeDefault>
+      <summary>
+        Initializes new instance of the <see cref="Condition"/> representing False condition.</summary>
+      <remarks>Condition object with all properties set their defaults.</remarks>
+      <returns>Instance of zero Number.</returns>
+    </MakeDefault>
+    <MakeOfThisType>
+      <summary>Initializes a new instance of <see cref="Condition"/> class.</summary>
+      <remarks>Use this method to create a results of math or logical operations or calculation methods.</remarks>
+      <param name="args">Arguments to create a new <see cref="Condition"/>.
+    </param>
+      <returns>New instance of Number configured with values provided with specified args.</returns>
+    </MakeOfThisType>
+    <Equals-obj>
+      <summary>Determines whether two Conditions are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other Condition</param>
+      <returns>True if primitive values are equal, False if obj is of incompatible type.</returns>
+    </Equals-obj>
+    <GetHashCode>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value.</returns>
+    </GetHashCode>
+    <implicit-bool>
+      <summary>
+        Implicit converstion from Boolean to <see cref="Condition"/>.
+      </summary>
+      <remarks></remarks>
+      <param name="value">Boolean value to cast.</param>
+      <returns>
+        <see cref="Condition"/> representing the specified Boolean value, either true or false.
+      </returns>
+    </implicit-bool>
+    <implicit-condition>
+      <summary>
+        Implicit converstion from <see cref="Condition"/> to native Boolean value.
+      </summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to cast.</param>
+      <returns>Boolean value, state of speciefied Condition.</returns>
+    </implicit-condition>
+    <IsTrue>
+      <summary>Gets a boolean value representing if the Condition state is true.</summary>
+      <remarks></remarks>
+      <value>True if the Condition is True.</value>
+    </IsTrue>
+    <True>
+      <summary>Gets an instance of Conditon representing True state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the value.</param>
+      <returns>Condition object representing True state.</returns>
+    </True>
+    <False>
+      <summary>Gets an instance of Conditon representing False state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the value.</param>
+      <returns>Condition object representing False state.</returns>
+    </False>
+    <True-scope>
+      <summary>Gets an instance of Conditon representing True state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the Condition (automatically defined by at compile time).</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>Condition object representing True state.</returns>     
+    </True-scope>
+    <False-scope>
+      <summary>Gets an instance of Conditon representing False state.</summary>
+      <remarks>Usefule to define input parameters of calculations.</remarks>
+      <param name="name">Name of the Condition (automatically defined by at compile time).</param>
+      <param name="scope">Target scope which the value will be part of.</param>
+      <returns>Condition object representing False state.</returns>
+    </False-scope>
+    <op_True>
+      <summary>Returns the bool value to indicate if the Condition states is true.</summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to evaluate.</param>
+      <returns>true if condition is true, othrwise false.</returns>
+    </op_True>
+    <op_False>
+      <summary>Returns the bool value to indicate if the Condition states is false.</summary>
+      <remarks></remarks>
+      <param name="condition">Condition object to evaluate.</param>
+      <returns>true if condition is false, othrwise true.</returns>
+    </op_False>
+    <op_And>
+      <summary>Computes the logical AND of specified operands.</summary>
+      <remarks></remarks>
+      <param name="left">First operand.</param>
+      <param name="right">Second operand.</param>
+      <returns>Condition object representing if left and right are true.</returns>
+    </op_And>
+    <op_Or>
+      <summary>Computes the logical OR of specified operands.</summary>
+      <remarks></remarks>
+      <param name="left">First operand.</param>
+      <param name="right">Second operand.</param>
+      <returns>Condition object representing if left, right or both are true.</returns>
+    </op_Or>
+    <op_Equality>
+      <summary>Returns a value that indicates whether two Conditions values are equal.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Conditions values.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition representing if left and right are equal.</returns>
+    </op_Equality>
+    <op_Inequality>
+      <summary>Returns a value that indicates whether two Conditions have different values.</summary>
+      <remarks>The Equality method defines the operation of the equality operator for Conditions values.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition representing if left and right are different.</returns>
+    </op_Inequality>
+    <op_ExlusiveOr>
+      <summary>Computes the exclusive-or of two values.</summary>
+      <remarks></remarks>
+      <param name="left">The value to xor with right.</param>
+      <param name="right">The value to xor with left.</param>
+      <returns>The exclusive-or of left and right.</returns>
+    </op_ExlusiveOr>
+    <op_OnesComplement>
+      <summary>Computes the ones-complement representation of a given value.</summary>
+      <remarks></remarks>
+      <param name="value">The value for which to compute the ones-complement.</param>
+      <returns>The ones-complement of value.</returns>
+    </op_OnesComplement>
+  </Condition>
+  <Option>
+    <class>
+      <summary>
+        Class that is a logical equivalent to native enum and used to define a set of constant options.
+      </summary>
+      <remarks>This class enables use of SwithcExpression swithc/case expression builder.</remarks>
+      <typeparam name="T">Type of underlying the Enum.</typeparam>
+    </class>
+    <implicit-option>
+      <summary>
+        Makes an implicit conversion from the Option to its underlying Enum type.
+      </summary>
+      <remarks></remarks>
+      <param name="value">Option value.</param>
+      <returns>Enum value.</returns>
+    </implicit-option>
+    <implicit-T>
+      <summary>
+        Makes an implicit conversion from the Enum type to Option.
+      </summary>
+      <remarks></remarks>
+      <param name="value">Enum value.</param>
+      <returns>Option value.</returns>
+    </implicit-T>
+    <MakeOfThisType>
+      <summary>Initializes a new instance of the Option class.</summary>
+      <remarks>Use when implementing functions handling Options to return new Option result.</remarks>
+      <param name="args">Arguments to create a new value</param>
+      <returns>New instance Option.</returns>
+    </MakeOfThisType>
+    <MakeDefault>
+      <summary>Initializes a new instance with default values, equivalent to zero/null value.</summary>
+      <remarks>This framework avoids dealing with nullable types.</remarks>
+      <returns>Instance of deafault value</returns>
+    </MakeDefault>
+    <Equals>
+      <summary>Determines whether two Values are equal based on underlying primitive value.</summary>
+      <remarks>This method is subject to future change. Use equality operator to have type specific equality check.</remarks>
+      <param name="obj">Other option</param>
+      <returns>True if primitive values equal, False if obj is of incompatible type.</returns>
+    </Equals>
+    <GetHashCode>
+      <summary>Serves as the default hash function, returns hash of the Primitive property value. This function is a subject to future change.</summary>
+      <remarks>Recommended to override in derived types to account for additional parameters.</remarks>
+      <returns>A hash code for the current Primitive value</returns>
+    </GetHashCode>
+    <PrimitiveString>
+      <summary>Formatted string representation of the Option Enum value</summary>
+      <remarks>Use this property for graph rendering purposes to have a consistent user-freindly representation of a value.</remarks>
+      <value>String representation of underlying Enum value.</value>
+    </PrimitiveString>
+    <operator-equal>
+      <summary>Compares two Options to determine equality.</summary>
+      <remarks>Comparision is based on underlying Enum value.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition instance that represents true if left is equal to right; otherwise, false.</returns>
+    </operator-equal>
+    <operator-not-equal>
+      <summary>Compares two Options to determine inequality.</summary>
+      <remarks>Comparision is based on underlying Enum value.</remarks>
+      <param name="left">The value to compare with right.</param>
+      <param name="right">The value to compare with left.</param>
+      <returns>Condition instance true if left is not equal to right; otherwise, false</returns>
+    </operator-not-equal>
+    <Switch>
+      <summary>Invokes Switch expression builder to be used in Evaluate() method of EvaluationScope.</summary>
+      <remarks>Current Option will be used to check cases defined by builder.</remarks>
+      <typeparam name="TResult">Switch expression result value type.</typeparam>
+      <returns>Switch expression.</returns>
+    </Switch>
+  </Option>
+  <Option-static>
+    <class>
+      <summary>Contains methods for typed Option instance creation.</summary>
+      <remarks></remarks>
+    </class>
+    <Of>
+      <summary>Creates an instance of an Option prepresenting provided Enum value.</summary>
+      <remarks></remarks>
+      <typeparam name="TEnum">Underlying Enum type.</typeparam>
+      <param name="primitiveValue">Value of the option.</param>
+      <param name="fieldName">Automaically captured name of declaring property which will be used as a name of the Option.</param>
+      <returns>Option value instance.</returns>
+    </Of>
+  </Option-static>
+  <ValueMath>
+    <class>
+      <summary>Provides static methods for common mathematical functions for types implementing IValueProvider.</summary>
+      <remarks>This class is an wrapper of native Math class in .NET Framework and enables the capturing of arguments. This library focuses on simpler business related calculations hence many trigonometric or logarithmic functions ar ommited at the moment.</remarks>
+    </class>
+    <Abs>
+      <summary>Returns the absolute value of a Value.</summary>
+      <remarks>Please refer to .NET Math.Abs(Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="value">Value to get Absolute for</param>
+      <returns>Value containing the primitive result, expression name and input value as an argument.</returns>
+    </Abs>
+    <Ceiling>
+      <summary>Returns the smallest integral value that is greater than or equal to the specified underlying decimal number.</summary>
+      <remarks>Please refer to .NET Math.Ceiling(Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="value">Value to get Ceiling for</param>
+      <returns>Value containing the primitive result, expression name and input value as an argument.</returns>
+    </Ceiling>
+    <Floor>
+      <summary>Returns the largest integral value less than or equal to the specified underlying decimal number.</summary>
+      <remarks>Please refer to .NET Math.Floor(Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="value">Value to get Floor for</param>
+      <returns>Value containing the primitive result, expression name and input value as an argument.</returns>
+    </Floor>
+    <Truncate>
+      <summary>Calculates the integral part of a specified underlying decimal number.</summary>
+      <remarks>Please refer to .NET Math.Truncate(Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="value">Value to Truncate</param>
+      <returns>Value containing the primitive result, expression name and input value as an argument.</returns>
+    </Truncate>
+    <Min>
+      <summary>Returns the smaller of two values.</summary>
+      <remarks>Please refer to .NET Math.Min(Decimal, Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="val1">The first of two numbers to compare</param>
+      <param name="val2">The second  of two numbers to compare</param>
+      <returns>New value of type T which has a primitive result of val1 or val2, whichever is smaller. It will also contain expression name and bith input parameters as arguments.</returns>
+    </Min>
+    <Max>
+      <summary>Returns the larger of two values.</summary>
+      <remarks>Please refer to .NET Math.Min(Decimal, Decimal) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="val1">The first of two numbers to compare</param>
+      <param name="val2">The second  of two numbers to compare</param>
+      <returns>New value of type T which has a primitive result of val1 or val2, whichever is larger. It will also contain expression name and bith input parameters as arguments.</returns>
+    </Max>
+    <Round>
+      <summary>
+        Rounds a decimal value to a specified underlying number of fractional digits, and rounds midpoint values to the nearest even number.
+      </summary>
+      <remarks>Please refer to .NET Math.Round(Decimal, Int32) documentation for more details.</remarks>
+      <typeparam name="T">Type of value</typeparam>
+      <param name="d">A number to be rounded.</param>
+      <param name="decimals">The number of decimal places in the return value.</param>
+      <returns>The value with the number nearest to d that contains a number of fractional digits equal to decimals, expression name and input value as an argument.</returns>
+    </Round>
+  </ValueMath>
+  <NullExpressionResultException>
+    <exception>
+      <summary>The exception that is thrown when a some part of evaluation resulted in a null reference.</summary>
+      <remarks>Typically indicates that input parameter was not set.</remarks>
+    </exception>
+  </NullExpressionResultException>
+  <SwitchExpression>
+    <class>
+      <summary>Provides support of swithc/case logic building using fluent builder pattern.</summary>
+      <remarks>Use the funtionality provided by this builder instead of native swithc/case statements as it's not supported in Expressions.</remarks>
+      <typeparam name="T">Type of condition</typeparam>
+      <typeparam name="TReturn">Result type</typeparam>
+    </class>
+    <For>
+      <summary>Specifies option variable to check.</summary>
+      <remarks></remarks>
+      <param name="checkValue">Value to check.</param>
+      <returns>Swich part configurator.</returns>
+    </For>
+    <SwitchBuilder>
+      <class>
+        <summary>Switch case part builder.</summary>
+        <remarks>Equivalent to 'case x :' in native C#.</remarks>
+      </class>
+      <Case>
+        <summary>Define a single or multiple cases to check.</summary>
+        <remarks></remarks>
+        <param name="caseValue">Value of single case.</param>
+        <param name="otherCaseValues">Other cases.</param>
+        <returns>Return value builder.</returns>
+      </Case>
+    </SwitchBuilder>
+    <ReturnBuilder>
+      <class>
+        <summary>Case return part buider.</summary>
+        <remarks></remarks>
+      </class>
+      <Return-primitiveValue>
+        <summary>Define a primitive numeric value as a result of case.</summary>
+        <remarks>Use to define well-know numeric constants.</remarks>
+        <param name="primitiveValue">Value to return when case is matched,</param>
+        <returns>Next case builder</returns>
+      </Return-primitiveValue>
+      <Return-returnValueFunc>
+        <summary>
+          Define a function that returns <see cref="IValue"/> as a result of case
+        </summary>
+        <remarks></remarks>
+        <param name="returnValueFunc">Function returning expected result.</param>
+        <param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
+        <returns>Next case builder</returns>
+      </Return-returnValueFunc>
+    </ReturnBuilder>
+    <CaseBuilder>
+      <class>
+        <summary>Next or default case part builder.</summary>
+        <remarks>Build another case or end the daisy-chain with default case.</remarks>
+      </class>
+      <Case>
+        <summary>Define a single or multiple cases to check.</summary>
+        <remarks></remarks>
+        <param name="caseValue">Value of single case.</param>
+        <param name="otherCaseValues">Other cases.</param>
+        <returns>Return value builder</returns>
+      </Case>
+      <Default-primitiveValue>
+        <summary>Defines primitive numeric value as a default case result.</summary>
+        <remarks></remarks>
+        <param name="primitiveValue">Default value.</param>
+        <param name="valueBody">Name of the value.</param>
+        <returns>Result evaluator</returns>
+      </Default-primitiveValue>
+      <Default-defaultValueFun>
+        <summary>
+          Define a function that returns <see cref="IValue"/> as a default case result.
+        </summary>
+        <remarks></remarks>
+        <param name="defaultValueFun">Function returning expected result.</param>
+        <param name="funcBody">Name of function will be automatically captured as a default. Can be manually overriden.</param>
+        <returns>Result evaluator.</returns>
+      </Default-defaultValueFun>
+    </CaseBuilder>
+    <ResultEvaluator>
+      <class>
+        <summary>Class that will allow EvaluationContext to execute the configured Switch/Case expression.</summary>
+        <remarks>Used as an input of Evalueate() overload of EvaluationScope class.</remarks>
+      </class>
+    </ResultEvaluator>
+  </SwitchExpression>
+  <ValueJsonSerializer>
+    <class>
+      <summary>
+        Provides functionality to serialize objects implementing <see cref="IValue"/> interface to JSON and to deserialize JSON into objects implementing <see cref="IValue"/> interface.
+      </summary>
+      <remarks>For more information, see "How to serialize and deserialize JSON." TODO : add link</remarks>
+    </class>
+    <Serialize>
+      <summary>Converts the provided value into a String.</summary>
+      <remarks></remarks>
+      <param name="value">The value to convert.</param>
+      <param name="writeIndented">Specifies whether JSON should use pretty printing. By default, JSON is serialized without any extra white space.</param>
+      <returns>A String representation of the value.</returns>
+    </Serialize>
+    <Deserialize>
+      <summary>
+        Parses the text representing a single JSON value into a universal ValueDto implementing <see cref="IValue"/>.
+      </summary>
+      <remarks>Returned type and related arguments are not originally serialized types.</remarks>
+      <param name="json">JSON text to parse.</param>
+      <returns>
+        A <see cref="IValue"/> representation of the JSON value.
+      </returns>
+    </Deserialize>
+  </ValueJsonSerializer>
 </IntelliSense>

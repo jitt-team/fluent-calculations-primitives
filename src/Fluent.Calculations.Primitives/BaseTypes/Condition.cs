@@ -6,10 +6,10 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 /// <summary>
-/// TBD
+/// Class that represents a Boolean value, which can be either true or false.
 /// </summary>
-/// <remarks>TBD</remarks>
-/// <param name="makeValueArgs">TBD</param>
+/// <remarks>Class provides same operators as System.Boolean and hence can be seamlessly used in typical logical expressions.</remarks>
+/// <param name="makeValueArgs">Arguments for a new <see cref="Condition"/> with.</param>
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
 public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
@@ -30,10 +30,10 @@ public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs
     /// <include file="Docs.xml" path='*/Condition/MakeDefault/*'/>
     public override IValueProvider MakeDefault() => False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit_Bool/*'/>
+    /// <include file="Docs.xml" path='*/Condition/implicit-bool/*'/>
     public static implicit operator Condition(bool value) => value ? True() : False();
 
-    /// <include file="Docs.xml" path='*/Condition/implicit_Condition/*'/>
+    /// <include file="Docs.xml" path='*/Condition/implicit-condition/*'/>
     public static implicit operator bool(Condition condition) => condition.IsTrue;
 
     /// <include file="Docs.xml" path='*/Condition/op_True/*'/>
@@ -43,21 +43,21 @@ public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs
     public static bool operator false(Condition condition) => !condition.IsTrue;
 
     /// <include file="Docs.xml" path='*/Condition/True/*'/>
-    public static Condition True([CallerMemberName] string expressionName = "") => True(StringConstants.NaN, expressionName);
+    public static Condition True([CallerMemberName] string name = "") => True(StringConstants.NaN, name);
 
     /// <include file="Docs.xml" path='*/Condition/True-scope/*'/>
-    public static Condition True(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1, ValueOriginType.Constant, scope));
+    public static Condition True(string scope, [CallerMemberName] string name = "") => new(MakeValueArgs.Compose(name, new ExpressionNode(true.ToString(), ExpressionNodeType.Constant), 1, ValueOriginType.Constant, scope));
 
     /// <include file="Docs.xml" path='*/Condition/False/*'/>
-    public static Condition False([CallerMemberName] string expressionName = "") => False(StringConstants.NaN, expressionName);
+    public static Condition False([CallerMemberName] string name = "") => False(StringConstants.NaN, name);
 
     /// <include file="Docs.xml" path='*/Condition/False-scope/*'/>
-    public static Condition False(string scope, [CallerMemberName] string expressionName = "") => new(MakeValueArgs.Compose(expressionName, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0, ValueOriginType.Constant, scope));
+    public static Condition False(string scope, [CallerMemberName] string name = "") => new(MakeValueArgs.Compose(name, new ExpressionNode(false.ToString(), ExpressionNodeType.Constant), 0, ValueOriginType.Constant, scope));
 
     /// <include file="Docs.xml" path='*/Condition/MakeOfThisType/*'/>
     public override IValueProvider MakeOfThisType(MakeValueArgs args) => new Condition(args);
 
-    /// <include file="Docs.xml" path='*/Condition/Equals/*'/>
+    /// <include file="Docs.xml" path='*/Condition/Equals-obj/*'/>
     public override bool Equals(object? obj) => Equals(obj as IValueProvider);
 
     /// <include file="Docs.xml" path='*/Condition/GetHashCode/*'/>

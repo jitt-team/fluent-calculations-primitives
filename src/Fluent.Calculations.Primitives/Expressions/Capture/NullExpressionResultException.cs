@@ -3,6 +3,5 @@
 /// <include file="Docs.xml" path='*/NullExpressionResultException/exception/*'/>
 public class NullExpressionResultException : Exception
 {
-    /// <include file="Docs.xml" path='*/NullExpressionResultException/ctor/*'/>
-    public NullExpressionResultException(string expressionBody) : base(@$"Expression ""{expressionBody}"" resulted in Null") { }
+    internal NullExpressionResultException(string expressionBody) : base(@$"Expression ""{expressionBody}"" resulted in Null") { }
 }

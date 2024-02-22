@@ -60,14 +60,13 @@ public static class SwitchExpression<T, TReturn>
         }
 
         /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return-primitiveValue/*'/>
-        public CaseBuilder Return(decimal primitiveValue, [CallerArgumentExpression(nameof(primitiveValue))] string valueBody = StringConstants.NaN) =>
-            Return(new ReturnValue(primitiveValue, valueBody));
+        public CaseBuilder Return(decimal primitiveValue) =>
+            Return(new ReturnValue(primitiveValue, StringConstants.NaN));
 
         /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return-returnValueFunc/*'/>
         public CaseBuilder Return(Func<TReturn> returnValueFunc, [CallerArgumentExpression(nameof(returnValueFunc))] string funcBody = StringConstants.NaN) =>
             Return(new ReturnValue(returnValueFunc, funcBody));
 
-        /// <include file="Docs.xml" path='*/SwitchExpression/ReturnBuilder/Return/*'/>
         private CaseBuilder Return(ReturnValue returnValue)
         {
             foreach (T caseValue in caseValues)

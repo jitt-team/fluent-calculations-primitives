@@ -18,21 +18,11 @@ public class MakeValueArgs
     /// <include file="Docs.xml" path='*/MakeValueArgs/Origin/*'/>
     public ValueOriginType Origin { get; private set; }
 
-    /// <include file="Docs.xml" path='*/MakeValueArgs/Arguments/*'/>
-    public ArgumentsCollection Arguments { get; private set; } = ArgumentsCollection.Empty;
-
     /// <include file="Docs.xml" path='*/MakeValueArgs/Tags/*'/>
     public TagsCollection Tags { get; private set; } = TagsCollection.Empty;
 
     /// <include file="Docs.xml" path='*/MakeValueArgs/Scope/*'/>
     public string Scope { get; private set; } = StringConstants.NaN;
-
-    /// <include file="Docs.xml" path='*/MakeValueArgs/WithTags/*'/>
-    public MakeValueArgs WithTags(params Tag[] tags)
-    {
-        Tags = new TagsCollection(tags);
-        return this;
-    }
 
     internal static MakeValueArgs Compose(string name, ExpressionNode expression, decimal primitiveValue) =>
         Compose(name, expression, primitiveValue, ValueOriginType.Constant, StringConstants.NaN);

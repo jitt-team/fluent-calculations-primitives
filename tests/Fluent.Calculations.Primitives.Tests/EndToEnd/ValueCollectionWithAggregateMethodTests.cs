@@ -34,7 +34,7 @@ namespace Fluent.Calculations.Primitives.Tests.EndToEnd
             public static Number Return()
             {
                 EvaluationOptions options = new() { AlwaysReadNamesFromExpressions = true };
-                EvaluationScope<Number> Calculation = new(options);
+                EvaluationScope Calculation = new(options);
 
                 Number
                     NumberOne = Number.Of(2, nameof(NumberOne)),
