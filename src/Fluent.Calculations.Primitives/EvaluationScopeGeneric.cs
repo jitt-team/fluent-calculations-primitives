@@ -8,9 +8,6 @@ public abstract class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> 
 {
     private readonly Func<EvaluationScope<T>, T>? calculationFunc;
 
-    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer) : base(valuesCache, memberCapturer)
-    { }
-
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor/*'/>
     protected EvaluationScope() : base() { }
 
@@ -19,10 +16,6 @@ public abstract class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> 
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor-scope/*'/>
     protected EvaluationScope(string scope) : base(scope) { }
-
-    internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector) :
-        base(valuesCache, memberCapturer, selector)
-    { }
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor-func/*'/>
     protected EvaluationScope(Func<EvaluationScope<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
