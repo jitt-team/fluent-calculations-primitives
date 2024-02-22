@@ -6,10 +6,10 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 /// <summary>
-/// TBD
+/// Class that represents a Boolean value, which can be either true or false.
 /// </summary>
-/// <remarks>TBD</remarks>
-/// <param name="makeValueArgs">TBD</param>
+/// <remarks>Class provides same operators as System.Boolean and hence can be seamlessly used in typical logical expressions.</remarks>
+/// <param name="makeValueArgs">Arguments for a new <see cref="Condition"/> with.</param>
 [DebuggerDisplay("Name = {Name}, Value = {IsTrue}")]
 public sealed class Condition(MakeValueArgs makeValueArgs) : Value(makeValueArgs),
     IEqualityOperators<Condition, Condition, Condition>,
