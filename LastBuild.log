@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\Fluent.Calculations.Primitives.Sandcastle.shfbproj" started="16.02.2024 21:42:32">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\Fluent.Calculations.Primitives.Sandcastle.shfbproj" started="22.02.2024 16:36:37">
 <buildStep step="Initializing">
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder&#39;
 Locating components in the following folder(s):
@@ -193,18 +193,18 @@ Copying XML comments files
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
-    Last step completed in 00:00:00.0070
+    Last step completed in 00:00:00.0020
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0089
+    Last step completed in 00:00:00.0010
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-a02bf6d5-6c7e-4432-a452-01890cd47548.proj]
-Build started 16.02.2024 21:42:39.
+[C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-172a81fb-315e-4ad5-8052-7a35bcd4f458.proj]
+Build started 22.02.2024 16:36:39.
 
-Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-a02bf6d5-6c7e-4432-a452-01890cd47548.proj&quot; on node 1 (default targets).
+Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-172a81fb-315e-4ad5-8052-7a35bcd4f458.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
@@ -215,17 +215,17 @@ GenerateRefInfo:
   Wrote information on 6 namespaces, 39 types, and 203 members
   Merging duplicate type and member information
   Merged 0 duplicate type(s) and 0 duplicate member(s)
-Done Building Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-a02bf6d5-6c7e-4432-a452-01890cd47548.proj&quot; (default targets).
-    Last step completed in 00:00:03.5918
+Done Building Project &quot;C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\GenerateRefInfo-172a81fb-315e-4ad5-8052-7a35bcd4f458.proj&quot; (default targets).
+    Last step completed in 00:00:01.3467
 </buildStep>
 <buildStep step="ApplyDocumentModel">
 Applying document model to reflection output...
-    Last step completed in 00:00:00.0848
+    Last step completed in 00:00:00.0269
 </buildStep>
 <buildStep step="AddNamespaceGroups">
 Adding namespace group entries...
 Added 1 namespace group entries
-    Last step completed in 00:00:00.0300
+    Last step completed in 00:00:00.0120
 </buildStep>
 <buildStep step="AddApiTopicFilenames">
 Adding topic filenames to API members...
@@ -247,21 +247,21 @@ Adding topic filenames to API members...
     Unique name 759CB31A generated for M:Fluent.Calculations.Primitives.BaseTypes.Option`1.op_Implicit(`0)~Fluent.Calculations.Primitives.BaseTypes.Option{`0}
     Unique name 319505BF generated for M:Fluent.Calculations.Primitives.BaseTypes.Value.#ctor(Fluent.Calculations.Primitives.BaseTypes.Value)
     Unique name A8186AC generated for M:Fluent.Calculations.Primitives.BaseTypes.Value.Equals(System.Object)
-    Last step completed in 00:00:00.0399
+    Last step completed in 00:00:00.0319
 </buildStep>
 <buildStep step="GenerateApiTopicManifest">
 Generating API topic manifest...
-    Last step completed in 00:00:00.0110
+    Last step completed in 00:00:00.0070
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.9410
+    Last step completed in 00:00:00.7300
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\icons\favicon.ico -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\icons\favicon.ico
 C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives\src\Fluent.Calculations.Primitives.Sandcatle\icons\fluent-calculations-logo-128x128.png -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\icons\fluent-calculations-logo-128x128.png
-    Last step completed in 00:00:00.0182
+    Last step completed in 00:00:00.0130
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
@@ -270,15 +270,15 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file for API content...
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.0419
+    Last step completed in 00:00:00.0180
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
-    Last step completed in 00:00:01.0188
+    Last step completed in 00:00:00.6749
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0509
+    Last step completed in 00:00:00.0010
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
@@ -286,7 +286,7 @@ C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-h
   Updating reference topic configurations.
     Replacing default configuration for &#39;Code Block Component&#39; with the custom configuration
   No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0468
+    Last step completed in 00:00:00.0060
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
@@ -306,7 +306,7 @@ CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 6 o
 CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
 <plugIn name="Website Table of Contents Generator" behavior="After" priority="1000">
 Generating TOC fragment files
-</plugIn>    Last step completed in 00:00:08.4159
+</plugIn>    Last step completed in 00:00:07.3549
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -341,26 +341,26 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Defaul
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.inc.php -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\SearchHelp.inc.php
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.php -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\SearchHelp.php
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\Web.Config -&gt; C:\JITT\Software Development\Projects\Community\fluent-calculations-primitives-help-output\Working\Output\Website\Web.Config
-    Last step completed in 00:00:00.1763
+    Last step completed in 00:00:00.1698
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
-    Last step completed in 00:00:00.2580
+    Last step completed in 00:00:00.1576
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
-Copied 481 files for the website content
-    Last step completed in 00:00:00.9562
+Copied 482 files for the website content
+    Last step completed in 00:00:00.5356
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.2052
+    Last step completed in 00:00:00.1816
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 16.02.2024 21:42:54.  Total time: 00:00:22.3863
+Build completed successfully at 22.02.2024 16:36:50.  Total time: 00:00:13.8443
 
 </buildStep>
 </shfbBuild>
