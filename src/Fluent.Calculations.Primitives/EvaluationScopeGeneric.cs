@@ -12,20 +12,20 @@ public abstract class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> 
     { }
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor/*'/>
-    public EvaluationScope() : base() { }
+    protected EvaluationScope() : base() { }
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor-options/*'/>
-    public EvaluationScope(EvaluationOptions options) : base(options) { }
+    protected EvaluationScope(EvaluationOptions options) : base(options) { }
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor-scope/*'/>
-    public EvaluationScope(string scope) : base(scope) { }
+    protected EvaluationScope(string scope) : base(scope) { }
 
     internal EvaluationScope(IValuesCache valuesCache, IMemberExpressionValueCapturer memberCapturer, IValueArgumentsSelector selector) :
         base(valuesCache, memberCapturer, selector)
     { }
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ctor-func/*'/>
-    public EvaluationScope(Func<EvaluationScope<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
+    protected EvaluationScope(Func<EvaluationScope<T>, T> func) : base(EvaluationOptions.Default) => calculationFunc = func;
 
     /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/ToResult/*'/>
     public T ToResult()
