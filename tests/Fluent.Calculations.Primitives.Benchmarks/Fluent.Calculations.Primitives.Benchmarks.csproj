@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
+    <ProjectReference Include="..\..\src\Fluent.Calculations.Primitives\Fluent.Calculations.Primitives.csproj" />
   </ItemGroup>
 
 </Project>
