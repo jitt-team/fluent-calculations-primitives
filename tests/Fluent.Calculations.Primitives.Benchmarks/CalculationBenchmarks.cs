@@ -31,20 +31,31 @@ namespace Fluent.Calculations.Primitives.Tests.Benchmarks
     public class BasicAdditionWithContext : EvaluationScope<Number>
     {
         public BasicAdditionWithContext() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = false }) { }
-        public Number
-            ConstantOne = Number.Zero,
-            ConstantTwo = Number.Zero,
-            ConstantThree = Number.Zero,
-            ConstantFour = Number.Zero;
+
+        public Number ConstantOne { get; set; } = Number.Zero;
+
+        public Number ConstantTwo { get; set; } = Number.Zero;
+
+        public Number ConstantThree { get; set; } = Number.Zero;
+
+        public Number ConstantFour { get; set; } = Number.Zero;
 
         public Condition ConstantOneGreaterThanTwo => Evaluate(() => ConstantTwo > ConstantThree);
+
         public Number ConstantOneTimesTwo => Evaluate(() => ConstantOne * ConstantTwo);
+
         public Number WhenTrueThenValue => Evaluate(() => ConstantOneGreaterThanTwo ? ConstantOneTimesTwo : Number.Zero);
+
         public Number ConstantFourPlusWhenTrue => Evaluate(() => ConstantFour + WhenTrueThenValue * ConstantOne);
+
         public Number ConstantFourPlusWhenTrue2 => Evaluate(() => ConstantFourPlusWhenTrue + WhenTrueThenValue / ConstantThree);
+
         public Number ConstantFourPlusWhenTrue3 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue2 * ConstantTwo / ConstantFourPlusWhenTrue);
+
         public Number ConstantFourPlusWhenTrue4 => Evaluate(() => ConstantFourPlusWhenTrue3 + WhenTrueThenValue);
+
         public Number ConstantFourPlusWhenTrue5 => Evaluate(() => ConstantFour + ConstantFourPlusWhenTrue4);
+
         public override Number Return() => ConstantFourPlusWhenTrue5;
     }
 
