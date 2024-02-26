@@ -13,7 +13,7 @@ string
     pngFileName = $"{dotFileName}.png";
 
 // Run the calculation
-Number resultValue = new DemoCalculation().ToResult();
+Number resultValue = new BodyMassIndexCalculation().ToResult();
 
 // Serialize to Json
 string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
@@ -89,5 +89,17 @@ namespace Fluent.Calculations.Graphviz
         OptionOne = 2,
         OptionTwo = 3,
         OptionThree = 4,
+    }
+
+    public class BodyMassIndexCalculation : EvaluationScope<Number>
+    {
+        Number
+            WeightKilograms = Number.Of(80),
+            HeightMeters = Number.Of(1.80m),
+            Square = Number.Of(2);
+
+        Number BMI => Evaluate(() => WeightKilograms / (HeightMeters ^ Square));
+
+        public override Number Return() => BMI;
     }
 }
