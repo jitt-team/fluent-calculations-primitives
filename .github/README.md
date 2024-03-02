@@ -22,15 +22,28 @@
 
 Fluent Calculations is a set of libraries for building traceable calculations and logic.
 
+## Project state & disclaimer
+
+Currently this is an experimental project, authors are exploring it's technical viability and the value proposition.
+
+## What's being solved?
+
+Working on line of business applications projects authors have observed a typical 
+difficuty in communicating the details of implementations of more complex business logic. 
+Validating the correctness of financial calculations like taxes involves a lot of effort on analyst or tester side. 
+Pinpointing problems from only final results is mostly impossible, thus requiring manual debugging. 
+TDD falls short of communicating more complex test cases to business people and it's. 
+Splitting up some algorithms is not always a good option due to loss of original conciseness. 
+Troubleshooting calculations happening in a production environment is impossinle without deploying 
+some manual logging that makes code noisy and less readable.
 
 ## Features
 
-- Number and Boolean datatypes are supported
-- Seamlessly use C# math and logic operators
-- Build isolated calculation components
-- Close to no boilerplate code
-- Generate DOT graph output of your calculations
-
+- Number and Boolean datatypes are supported,
+- Seamlessly use C# math and logic operators,
+- Build isolated calculation components,
+- Close to no boilerplate code,
+- Generate DOT graph output of your calculations.
 
 
 ## Get Started
@@ -67,8 +80,14 @@ dotnet add package Fluent.Calculations.Primitives
 
 
 ## Roadmap & TODOs
-- Explore new static member interfaces for operator overloads
-  - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-11.0/static-abstracts-in-interfaces#interfaces-as-type-arguments
+- Explore ways to intorduce concept of units.
+- Expand a list of supported operations and math functions.
+- Explore ways to optimize lambda expression compilation.
+- Explore a ways to reuse existing calculations and attempt to benefit from :
+-- cached compiled expressions,
+-- cached evaluation results,
+-- partiall execution depending on changed parameters.
+- Explore thread-safety aspects.
  
 ## License
 
