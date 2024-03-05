@@ -5,7 +5,6 @@ using Fluent.Calculations.DotNetGraph.Shared;
 using Fluent.Calculations.Primitives.BaseTypes;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Xml.Linq;
 namespace Fluent.Calculations.DotNetGraph.Styles;
 
 internal class GraphStyleMonochrome : IGraphStyle

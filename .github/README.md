@@ -26,16 +26,20 @@ Fluent Calculations is a set of libraries for building traceable calculations an
 
 Currently this is an experimental project, authors are exploring it's technical viability and the value proposition.
 
-## What's being solved?
+## Burning need
 
-Working on line of business applications projects authors have observed a typical 
-difficuty in communicating the details of implementations of more complex business logic. 
-Validating the correctness of financial calculations like taxes involves a lot of effort on analyst or tester side. 
-Pinpointing problems from only final results is mostly impossible, thus requiring manual debugging. 
-TDD falls short of communicating more complex test cases to business people and it's. 
-Splitting up some algorithms is not always a good option due to loss of original conciseness. 
-Troubleshooting calculations happening in a production environment is impossinle without deploying 
+Having worked on many line of business applications authors have observed a common 
+difficuty in having a common understading withing team and users when dealing with of non-trivial business logic or calculations. 
+Validating the correctness of financial calculations like taxes as an example involves a lot of effort on analyst or tester side. 
+Pinpointing problems from just the final result is rather challanging, thus often developer resort to manual debugging of the test cases.
+TDD falls short of communicating more complex test cases to business people as it relies on quite granular decompostion. 
+Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. 
+Troubleshooting calculations happening in a production environment is impossible without deploying 
 some manual logging that makes code noisy and less readable.
+
+## Value proposition
+
+Same amount of code, save thousands of hours in debugging.
 
 ## Features
 

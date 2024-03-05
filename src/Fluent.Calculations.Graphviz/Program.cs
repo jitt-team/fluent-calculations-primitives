@@ -13,7 +13,7 @@ string
     pngFileName = $"{dotFileName}.png";
 
 // Run the calculation
-Number resultValue = new BodyMassIndexCalculation().ToResult();
+Condition resultValue = new IsHealthyBodyMassIndex().ToResult();
 
 // Serialize to Json
 string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
@@ -91,15 +91,21 @@ namespace Fluent.Calculations.Graphviz
         OptionThree = 4,
     }
 
-    public class BodyMassIndexCalculation : EvaluationScope<Number>
+    public class IsHealthyBodyMassIndex : EvaluationScope<Condition>
     {
         Number
-            WeightKilograms = Number.Of(80),
-            HeightMeters = Number.Of(1.80m),
+            Weight = Number.Of(80),
+            Height = Number.Of(1.80m),
             Square = Number.Of(2);
 
-        Number BMI => Evaluate(() => WeightKilograms / (HeightMeters ^ Square));
+        Number
+            HealthyRangeFrom = Number.Of(20),
+            HealthyRangeTo = Number.Of(30);
 
-        public override Number Return() => BMI;
+        Number BMI => Evaluate(() => Weight / (Height ^ Square));
+
+        Condition IsHealthy => Evaluate(() => HealthyRangeFrom <= BMI && BMI <= HealthyRangeTo);
+
+        public override Condition Return() => IsHealthy;
     }
 }

@@ -15,7 +15,8 @@ public class EvaluationScope : IEvaluationScope
     private readonly IValueArgumentsSelector valueArgumentsSelector;
 
     /// <include file="Docs.xml" path='*/EvaluationScope/ctor/*'/>
-    public EvaluationScope() : this(EvaluationOptions.Default) { }
+    public EvaluationScope() : this(new ValuesCache(), new MemberExpressionValueCapturer()) =>
+        options = new EvaluationOptions { Scope = GetType().Name };
 
     /// <include file="Docs.xml" path='*/EvaluationScope/ctor-options/*'/>
     public EvaluationScope(EvaluationOptions options) :
@@ -47,7 +48,7 @@ public class EvaluationScope : IEvaluationScope
     {
         if (!name.Equals(StringConstants.NaN) && valuesCache.ContainsKey(name))
             return (TValue)valuesCache.GetByKey(name);
-        
+
         return getResultEvaluatorFunc().GetResult(name);
     }
 
