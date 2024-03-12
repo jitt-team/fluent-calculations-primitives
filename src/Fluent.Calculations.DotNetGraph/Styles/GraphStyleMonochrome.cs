@@ -101,6 +101,18 @@ internal class GraphStyleMonochrome : IGraphStyle
 
     private static string Html(string value) => HttpUtility.HtmlEncode(value).Replace(Environment.NewLine, @"<br align=""left""/>");
 
-    private static string Humanize(string cammelCaseText) => Regex.Replace(cammelCaseText, @"(\B[A-Z])", " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+    private static string Humanize(string cammelCaseText)
+    {
+        string 
+            wordEndPattern = @"(?<=[a-z])(\B[A-Z])",
+            wordStartPattern = @"(\B[A-Z])(?=[a-z])";
 
+        string
+            firstPass = InsertSpaceByRegex(cammelCaseText, wordEndPattern),
+            secondPass = InsertSpaceByRegex(firstPass, wordStartPattern);
+
+        return secondPass;
+
+        static string InsertSpaceByRegex(string text, string regex) => Regex.Replace(text, regex, " $1", RegexOptions.Compiled, TimeSpan.FromSeconds(1)).Trim();
+    }
 }
