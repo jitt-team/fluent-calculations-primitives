@@ -34,78 +34,20 @@ Graphviz.ConvertToPNG(dotFileName);
 Console.WriteLine($@"Result file name ""{pngFileName}""");
 
 // Demo calculation
-namespace Fluent.Calculations.Graphviz
+public class IsHealthyBodyMassIndex : EvaluationScope<Condition>
 {
-    public class DemoCalculation : EvaluationScope<Number>
-    {
-        public DemoCalculation() : base(new EvaluationOptions { AlwaysReadNamesFromExpressions = true, Scope = "DemoCalculation" }) { }
+    Number
+        WeightKg = Number.Of(80),
+        HeightMeters = Number.Of(1.80m),
+        Square = Number.Of(2);
 
-        readonly RelatedCalculation ChildCalculation = new();
+    Number
+        HealthyBMIFrom = Number.Of(20),
+        HealthyBMITo = Number.Of(30);
 
-        readonly Number
-            ValueOne = Number.Of(30),
-            ValueTwo = Number.Of(20);
+    Number BMI => Evaluate(() => WeightKg / (HeightMeters ^ Square));
 
-        readonly Option<SomeOptions>
-             SomeChoice = Option.Of(SomeOptions.OptionOne),
-             OtherChoice = Option.Of(SomeOptions.OptionTwo);
+    Condition IsWithinHealthyBMIRange => Evaluate(() => HealthyBMIFrom <= BMI && BMI <= HealthyBMITo);
 
-        Condition OptionsEqual => Evaluate(() => SomeChoice == OtherChoice);
-
-        Condition FirstIsGreaterThanTwo => Evaluate(() => ValueOne > ValueTwo);
-
-        Number ResultOne() => Evaluate(() => FirstIsGreaterThanTwo && OptionsEqual ?
-            ValueOne : ChildCalculation.Calculate());
-
-        Number SwitchResult => Evaluate(() => SomeChoice.Switch<Number>()
-                .Case(SomeOptions.OptionOne, SomeOptions.OptionTwo)
-                    .Return(ResultOne)
-                .Case(SomeOptions.OptionThree)
-                    .Return(10)
-                    .Default(100));
-
-        public override Number Return() => SwitchResult;
-    }
-
-    public class RelatedCalculation
-    {
-        public Number Calculate()
-        {
-            var scope = Scope.CreateHere(this);
-
-            Number
-                A = Number.Of(5),
-                B = Number.Of(3);
-
-            var result = scope.Evaluate(() => A * B);
-
-            return result;
-        }
-    }
-
-    public enum SomeOptions
-    {
-        NotSet = 1,
-        OptionOne = 2,
-        OptionTwo = 3,
-        OptionThree = 4,
-    }
-
-    public class IsHealthyBodyMassIndex : EvaluationScope<Condition>
-    {
-        Number
-            Weight = Number.Of(80),
-            Height = Number.Of(1.80m),
-            Square = Number.Of(2);
-
-        Number
-            HealthyRangeFrom = Number.Of(20),
-            HealthyRangeTo = Number.Of(30);
-
-        Number BMI => Evaluate(() => Weight / (Height ^ Square));
-
-        Condition IsHealthy => Evaluate(() => HealthyRangeFrom <= BMI && BMI <= HealthyRangeTo);
-
-        public override Condition Return() => IsHealthy;
-    }
+    public override Condition Return() => IsWithinHealthyBMIRange;
 }
