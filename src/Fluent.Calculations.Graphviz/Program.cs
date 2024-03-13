@@ -7,7 +7,7 @@ using Fluent.Calculations.Primitives.Json;
 
 // File names
 string
-    fileName = "fluent-calculation-demo",
+    fileName = "fluent-calculations-demo",
     jsonFileName = $"{fileName}.json",
     dotFileName = $"{fileName}.dot",
     pngFileName = $"{dotFileName}.png";
