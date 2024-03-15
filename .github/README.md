@@ -87,7 +87,7 @@ public class IsHealthyBodyMassIndexCalculation : EvaluationScope<Condition>
 Condition isHealthyBMI = new IsHealthyBodyMassIndexCalculation().ToResult();
 ```
 
-Calculation result can be visually rendered.
+Calculation result can be visualized using [Graphviz](https://graphviz.org/).
 
 ![BMI calculation visualization](../assets/example/fluent-calculation-demo.dot.png)
 
