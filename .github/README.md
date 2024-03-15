@@ -15,7 +15,7 @@
 # Fluent Calculations
 > One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
-Following this principle and by using Fluent Calculations library let's us write readable calculations and logic at design time, as well as get insights into logic at run-time or later after it was executed.
+Following this principle and by using Fluent Calculations library we gain an ability to write readable calculations and logic, as well as get insights into logic later after it was executed with actual data.
 
 ## Motivation
 Having worked on many line of business applications authors have observed a common difficulty in having a common understating withing team and users when dealing with of non-trivial business logic or calculations. 
