@@ -17,20 +17,21 @@
 > One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
 <div align="justify">
-Following this principle and by using Fluent Calculations library we gain an ability to write readable calculations and logic, as well as get insights into logic later after it was executed with actual data.
-some manual logging that makes code noisy and less readable.
+By following this principle together wit Fluent Calculations library we gain an ability to write readable calculations and logic as well as get insights later after the logics was executed during a run-time.
 </div>
 
 ## Motivation
 <div align="justify">
+<p>
 Having worked on many line of business applications authors have observed a common difficulty in having a common understating withing team and users when dealing with of non-trivial business logic or calculations. 
-
+</p><p>
 Validating the correctness of financial calculations like taxes as an example involves a lot of effort on analyst or tester side. Pinpointing problems from just the final result is rather challenging, thus often developer resort to manual debugging of the test cases.
-
+</p><p>
 TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. 
 Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. 
 Troubleshooting calculations happening in a production environment is impossible without deploying 
 some manual logging that makes code noisy and less readable.
+</p>
 </div>
 
 ## The Goal
