@@ -13,38 +13,33 @@
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/license/gpl-3-0/)
 
 # Fluent Calculations
-
-Fluent Calculations is a set of libraries for building traceable calculations and logic.
-
 > One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
+Following this principle and by using Fluent Calculations library let's us write readable calculations and logic at design time, as well as get insights into logic at run-time or later after it was executed.
 
-## Disclaimers
+## Motivation
+Having worked on many line of business applications authors have observed a common difficulty in having a common understating withing team and users when dealing with of non-trivial business logic or calculations. 
 
-The project is and experiment, authors are exploring a technical viability and the value proposition.
+Validating the correctness of financial calculations like taxes as an example involves a lot of effort on analyst or tester side. Pinpointing problems from just the final result is rather challenging, thus often developer resort to manual debugging of the test cases.
 
-## Burning need
-
-Having worked on many line of business applications authors have observed a common 
-difficuty in having a common understading withing team and users when dealing with of non-trivial business logic or calculations. 
-Validating the correctness of financial calculations like taxes as an example involves a lot of effort on analyst or tester side. 
-Pinpointing problems from just the final result is rather challanging, thus often developer resort to manual debugging of the test cases.
-TDD falls short of communicating more complex test cases to business people as it relies on quite granular decompostion. 
+TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. 
 Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. 
 Troubleshooting calculations happening in a production environment is impossible without deploying 
 some manual logging that makes code noisy and less readable.
 
-## Value proposition
+## The Goal
 
-Same amount of code, save thousands of hours in debugging.
+Almost same amount of code, hundreds of hours saved in debugging.
 
 ## Features
 
-- Number and Boolean datatypes are supported,
+- Number (Decimal) and Condition (Boolean) datatype are supported,
 - Seamlessly use C# math and logic operators,
 - Build isolated calculation components,
 - Close to no boilerplate code,
-- Generate DOT graph output of your calculations.
+- Transform calculation tree as Json,
+- Generate DOT graph output of your calculations,
+- Visualize DOT graph calculations with Graphwiz.
 
 
 ## Get Started
@@ -93,13 +88,13 @@ Calculation result can be visualized using [Graphviz](https://graphviz.org/).
 
 
 ## Roadmap & TODOs
-- Explore ways to intorduce concept of units.
+- Explore ways to introduce concept of units (Meters, Kilograms, etc.).
 - Expand a list of supported operations and math functions.
 - Explore ways to optimize lambda expression compilation.
 - Explore a ways to reuse existing calculations and attempt to benefit from :
--- cached compiled expressions,
--- cached evaluation results,
--- partiall execution depending on changed parameters.
+   - cached compiled expressions,
+   - cached evaluation results,
+   - partial execution depending on changed parameters.
 - Explore thread-safety aspects.
  
 ## License
@@ -113,5 +108,5 @@ Calculation result can be visualized using [Graphviz](https://graphviz.org/).
 - [@artur-karbone](https://www.github.com/arturkarbone)
 
 ## 🚀 About The Team
-We are bunch of .NET practitioners allways looking for ways to make code great.
+We are bunch of .NET practitioners always looking for ways to make code great.
 
