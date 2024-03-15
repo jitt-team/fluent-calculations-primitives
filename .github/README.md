@@ -10,21 +10,18 @@
 ![Nuget](https://img.shields.io/nuget/v/Fluent.Calculations.Primitives)
 ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Fluent.Calculations.Primitives)
 ![Nuget](https://img.shields.io/nuget/dt/Fluent.Calculations.Primitives)
-
-
-
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/license/gpl-3-0/)
-
-
-
 
 # Fluent Calculations
 
 Fluent Calculations is a set of libraries for building traceable calculations and logic.
 
-## Project state & disclaimer
+> One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
-Currently this is an experimental project, authors are exploring it's technical viability and the value proposition.
+
+## Disclaimers
+
+The project is and experiment, authors are exploring a technical viability and the value proposition.
 
 ## Burning need
 
@@ -66,21 +63,33 @@ dotnet add package Fluent.Calculations.Primitives
 
 ## Usage/Examples
 
+Below is as hypothetical BMI calculation.
+
 ```c#
-    internal class MyCalculation : EvaluationContext<Number>
-    {
-        public Number
-            ConstantOne = Number.Of(2),
-            ConstantTwo = Number.Of(3);
+public class IsHealthyBodyMassIndexCalculation : EvaluationScope<Condition>
+{
+    Number
+        WeightKg = Number.Of(80),
+        HeightMeters = Number.Of(1.80m),
+        Square = Number.Of(2);
 
-        public Condition
-            MyCondition = Condition.True();
+    Number
+        HealthyBMIFrom = Number.Of(20),
+        HealthyBMITo = Number.Of(30);
 
-        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
+    Number BMI => Evaluate(() => WeightKg / (HeightMeters ^ Square));
 
-        public override Number Return() => MyResult;
-    }
+    Condition IsWithinHealthyBMIRange => Evaluate(() => HealthyBMIFrom <= BMI && BMI <= HealthyBMITo);
+
+    public override Condition Return() => IsWithinHealthyBMIRange;
+}
+
+Condition isHealthyBMI = new IsHealthyBodyMassIndexCalculation().ToResult();
 ```
+
+Calculation result can be visually rendered.
+
+![BMI calculation visualization](../assets/example/fluent-calculation-demo.dot.png)
 
 
 ## Roadmap & TODOs
