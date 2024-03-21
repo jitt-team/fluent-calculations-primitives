@@ -44,10 +44,9 @@ Spend minutes of programming to save hours of debugging and testing.
 - Seamlessly use C# math and logic operators,
 - Build isolated calculation components,
 - Close to no boilerplate code,
-- Transform calculation tree as Json,
+- Serialize calculation tree to JSON,
 - Generate DOT graph output of your calculations,
-- Visualize DOT graph calculations with Graphwiz.
-
+- Render graph as an image.
 
 ## Get Started
 
