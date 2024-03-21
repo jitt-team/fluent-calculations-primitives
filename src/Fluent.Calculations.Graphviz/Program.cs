@@ -1,7 +1,6 @@
 ﻿using DotNetGraph.Core;
 using Fluent.Calculations.DotNetGraph;
 using Fluent.Calculations.Graphviz;
-using Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Json;
 
@@ -13,7 +12,7 @@ string
     pngFileName = $"{dotFileName}.png";
 
 // Run the calculation
-Number resultValue = new Demo().ToResult();
+Number resultValue = new DemoCalculation().ToResult();
 
 // Serialize to Json
 string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
@@ -31,19 +30,4 @@ await new DotGraphToFileWriter().SaveToDot(dotGraph, dotFileName);
 // Convert .dot graph to PNG image using Graphviz tool
 Graphviz.ConvertToPNG(dotFileName);
 
-Console.WriteLine($@"Result file name ""{pngFileName}""");
-
-// Demo calculation
-public class Demo : EvaluationScope<Number>
-{
-    Number
-        A = Number.Of(1),
-        B = Number.Of(2),
-        C = Number.Of(3);
-
-    Number D => Evaluate(() => A + B);
-
-    Number E => Evaluate(() => D * C);
-
-    public override Number Return() => E;
-}
+Console.WriteLine($@"Result file name: ""{pngFileName}""");
