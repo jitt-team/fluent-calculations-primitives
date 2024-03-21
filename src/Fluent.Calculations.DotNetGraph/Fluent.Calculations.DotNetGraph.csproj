@@ -11,13 +11,21 @@
     <RepositoryUrl>https://github.com/jitt-team/fluent-calculations-primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>JITT</Copyright>
-    <Authors>Fluent Calculations Team</Authors>
+    <Authors>JITT Team</Authors>
     <Company>JITT</Company>
     <Description>A bridge between Fluent.Calculations.Primitives and DotNetGraph</Description>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Product>Fluent Calculations Primitives DotNetGraph</Product>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Fluent Calculations Primitives DotNetGraph</Title>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\.github\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\..\assets\fluent-calculations-logo-128x128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
