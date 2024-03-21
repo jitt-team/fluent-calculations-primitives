@@ -301,7 +301,7 @@
     </ctor-value>
     <ctor-makeValueArgs>
       <summary>
-        Initializes a new instance of the <see cref="Values"/> with provided values. Used in derived classes to initialize base class fields.
+        Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
       </summary>
       <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
       <param name="makeValueArgs">Arguments to create a new value.</param>
