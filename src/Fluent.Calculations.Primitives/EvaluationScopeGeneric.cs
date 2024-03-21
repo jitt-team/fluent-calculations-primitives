@@ -1,7 +1,5 @@
 ﻿namespace Fluent.Calculations.Primitives;
 using Fluent.Calculations.Primitives.BaseTypes;
-using Fluent.Calculations.Primitives.Expressions.Capture;
-using Fluent.Calculations.Primitives.Expressions;
 
 /// <include file="Docs.xml" path='*/EvaluationScopeGeneric/class/*'/>
 public abstract class EvaluationScope<T> : EvaluationScope, IEvaluationScope<T> where T : class, IValueProvider, new()

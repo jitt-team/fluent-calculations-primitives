@@ -10,7 +10,7 @@ public class EvaluationOptions
     public static EvaluationOptions Default => new();
 
     /// <include file="Docs.xml" path='*/EvaluationOptions/AlwaysReadNamesFromExpressions/*'/>
-    public bool AlwaysReadNamesFromExpressions { get; init; }
+    public bool AlwaysReadNamesFromExpressions { get; init; } = true;
 
     /// <include file="Docs.xml" path='*/EvaluationOptions/Scope/*'/>
     public string Scope { get; init; } = StringConstants.NaN;

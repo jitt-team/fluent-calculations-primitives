@@ -10,28 +10,43 @@
 ![Nuget](https://img.shields.io/nuget/v/Fluent.Calculations.Primitives)
 ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Fluent.Calculations.Primitives)
 ![Nuget](https://img.shields.io/nuget/dt/Fluent.Calculations.Primitives)
-
-
-
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/license/gpl-3-0/)
-
-
-
 
 # Fluent Calculations
 
-Fluent Calculations is a set of libraries for building traceable calculations and logic.
+> One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
+<div align="justify">
+By following this principle together wit Fluent Calculations library we gain an ability to write readable calculations as well as get insights at runtime.
+</div>
+
+## Motivation
+<div align="justify">
+<p>
+Having worked on many line of business and some finance  applications authors have observed a common difficulty of understating and communicating non-trivial business logic or calculations. 
+</p><p>
+Validating the correctness of financial calculations, like tax calculations for example, involves a lot of effort on analyst or tester side. For a developer pinpointing problems from just the final result is challenging, thus often we resort to manual debugging.
+</p><p>
+TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. Troubleshooting calculations happening in a production environment is impossible without deploying some manual logging that makes code noisy and less readable.
+</p>
+<p>
+This project attempts to provide a clean way to get an "X-ray" of calculations or business logic.
+</p>
+</div>
+
+## The Goal
+
+Spend minutes of programming to save hours of debugging and testing.
 
 ## Features
 
-- Number and Boolean datatypes are supported
-- Seamlessly use C# math and logic operators
-- Build isolated calculation components
-- Close to no boilerplate code
-- Generate DOT graph output of your calculations
-
-
+- Number (Decimal) and Condition (Boolean) datatype are supported,
+- Seamlessly use C# math and logic operators,
+- Build isolated calculation components,
+- Close to no boilerplate code,
+- Serialize calculation tree to JSON,
+- Generate DOT graph output of your calculations,
+- Render graph as an image.
 
 ## Get Started
 
@@ -48,27 +63,42 @@ dotnet add package Fluent.Calculations.Primitives
 
 
 ## Usage/Examples
+Basic demo calculation:
 
 ```c#
-    internal class MyCalculation : EvaluationContext<Number>
-    {
-        public Number
-            ConstantOne = Number.Of(2),
-            ConstantTwo = Number.Of(3);
+public class Demo : EvaluationScope<Number>
+{
+    Number
+        A = Number.Of(1),
+        B = Number.Of(2),
+        C = Number.Of(3);
 
-        public Condition
-            MyCondition = Condition.True();
+    Number D => Evaluate(() => A + B);
 
-        Number MyResult => Evaluate(() => MyCondition ? ConstantOne : ConstantTwo);
+    Number E => Evaluate(() => D * C);
 
-        public override Number Return() => MyResult;
-    }
+    public override Number Return() => E;
+}
+
+Number result = new Demo().ToResult();
 ```
 
+The `result` value can be : 
+- Serialized to [JSON](https://www.json.org/json-en.html) (example: [fluent-calculation-demo.json](../assets/example/fluent-calculation-demo.json)),
+- Converted to [DOT Language](https://graphviz.org/doc/info/lang.html) (example:  [fluent-calculations-demo.dot](../assets/example/fluent-calculations-demo.dot)),
+- Rendered using [DOT rendering programs and utilities](https://graphviz.org/doc/info/command.html).
 
-## Roadmap & TODOs
-- Explore new static member interfaces for operator overloads
-  - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-11.0/static-abstracts-in-interfaces#interfaces-as-type-arguments
+<img src="../assets/example/fluent-calculations-demo.dot.png" alt="Demo calculation graph rendering" width="280" height="auto">
+
+## Challenges
+- Explore ways to introduce concept of units (Meters, Kilograms, etc.).
+- Expand a list of supported operations and math functions.
+- Explore ways to optimize lambda expression compilation.
+- Explore a ways to reuse existing calculations and attempt to benefit from :
+   - Cache compiled expressions,
+   - Cache evaluation results,
+   - Partial execution depending on changed parameters.
+- Explore thread-safety aspects.
  
 ## License
 
@@ -81,5 +111,5 @@ dotnet add package Fluent.Calculations.Primitives
 - [@artur-karbone](https://www.github.com/arturkarbone)
 
 ## 🚀 About The Team
-We are bunch of .NET practitioners allways looking for ways to make code great.
+We are bunch of .NET practitioners always looking for ways to make code great.
 

@@ -1,7 +1,6 @@
 ﻿namespace Fluent.Calculations.Primitives.BaseTypes;
 using Fluent.Calculations.Primitives.Expressions;
 using Fluent.Calculations.Primitives.Utils;
-using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
@@ -57,6 +56,9 @@ public class Number : Value,
 
     /// <include file="Docs.xml" path='*/Number/op_Multiply/*'/>
     public static Number operator *(Number left, Number right) => left.Multiply(right);
+
+    /// <include file="Docs.xml" path='*/Number/op_Power/*'/>
+    public static Number operator ^(Number left, Number right) => left.Power(right);
 
     /// <include file="Docs.xml" path='*/Number/op_LessThan/*'/>
     public static Condition operator <(Number left, Number right) => left.LessThan(right);
@@ -114,6 +116,9 @@ public class Number : Value,
 
     /// <include file="Docs.xml" path='*/Number/Multiply-method/*'/>
     protected Number Multiply(Number right) => HandleArithmeticOperation(right, (a, b) => a * b);
+
+    /// <include file="Docs.xml" path='*/Number/Power-method/*'/>
+    protected Number Power(Number right) => HandleArithmeticOperation(right, (a, b) => Convert.ToDecimal(Math.Pow((double)a, (double)b)));
 
     /// <include file="Docs.xml" path='*/Number/Division-method/*'/>
     protected Number Division(Number right) => HandleArithmeticOperation(right, (a, b) => a / b);

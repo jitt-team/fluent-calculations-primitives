@@ -301,7 +301,7 @@
     </ctor-value>
     <ctor-makeValueArgs>
       <summary>
-        Initializes a new instance of the <see cref="Values"/> with provided values. Used in derived classes to initialize base class fields.
+        Initializes a new instance of the <see cref="Value"/> with provided values. Used in derived classes to initialize base class fields.
       </summary>
       <remarks>This constructor is complements MakeOfThisType() method to create results of operations and methods handling primitive value calculations.</remarks>
       <param name="makeValueArgs">Arguments to create a new value.</param>
@@ -952,8 +952,14 @@
       <summary>Multiplies the specified Number value with this value.</summary>
       <remarks>Use this method when building derived types.</remarks>
       <param name="right">The value to multiply.</param>
-      <returns>The result of multiplying right from this value.</returns>
+      <returns>The result of multiplying right with this value.</returns>
     </Multiply-method>
+    <Power-method>
+      <summary>Used to raise a number to the power of an exponent.</summary>
+      <remarks>Use this method when building derived types.</remarks>
+      <param name="right">Powee of an exponent.</param>
+      <returns>The result of raising a number to the power of an exponent.</returns>
+    </Power-method>
     <Equality-method>
       <summary>Returns a Condition that indicates whether this and specified value are different.</summary>
       <remarks>Comparision is based on underlying Primitive value.</remarks>
@@ -1018,6 +1024,13 @@
       <param name="right">The multiplier.</param>
       <returns>The result of multiplying left and right.</returns>
     </op_Multiply>
+    <op_Power>
+      <summary>Used to raise a number to the power of an exponent.</summary>
+      <remarks></remarks>
+      <param name="left">Number.</param>
+      <param name="right">Exponent.</param>
+      <returns>The result raising a left to the power of an right exponent.</returns>
+    </op_Power>
     <op_Equality>
       <summary>Returns a value that indicates whether two Number values are equal.</summary>
       <remarks>The Equality method defines the operation of the equality operator for Number values.</remarks>

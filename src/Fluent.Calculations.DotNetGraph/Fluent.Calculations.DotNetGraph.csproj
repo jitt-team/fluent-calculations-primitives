@@ -4,17 +4,22 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.16-alpha</Version>
+    <Version>1.1.0-alpha</Version>
     <PackageProjectUrl>https://github.com/jitt-team/fluent-calculations-primitives</PackageProjectUrl>
     <PackageIcon>fluent-calculations-logo-128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/jitt-team/fluent-calculations-primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>JITT</Copyright>
-    <Authors>Fluent Calculations Team</Authors>
+    <Authors>JITT Team</Authors>
     <Company>JITT</Company>
     <Description>A bridge between Fluent.Calculations.Primitives and DotNetGraph</Description>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Product>Fluent Calculations Primitives DotNetGraph</Product>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Fluent Calculations Primitives DotNetGraph</Title>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
