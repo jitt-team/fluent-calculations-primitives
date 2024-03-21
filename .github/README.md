@@ -90,7 +90,7 @@ The `result` can be :
 - Converted to [DOT Language](https://graphviz.org/doc/info/lang.html) (example:  [fluent-calculations-demo.dot](../assets/example/fluent-calculations-demo.dot)),
 - Rendered using [DOT rendering programs and utilities](https://graphviz.org/doc/info/command.html).
 
-<img src="../assets/example/fluent-calculations-demo.dot.png" alt="Demo calculation graph rendering" width="264" height="auto">
+<img src="../assets/example/fluent-calculations-demo.dot.png" alt="Demo calculation graph rendering" width="200" height="auto">
 
 ## Challenges
 - Explore ways to introduce concept of units (Meters, Kilograms, etc.).
