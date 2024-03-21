@@ -64,8 +64,7 @@ dotnet add package Fluent.Calculations.Primitives
 
 
 ## Usage/Examples
-
-Below is as demo calculation.
+Basic demo calculation:
 
 ```c#
 public class Demo : EvaluationScope<Number>
@@ -85,7 +84,7 @@ public class Demo : EvaluationScope<Number>
 Number result = new Demo().ToResult();
 ```
 
-The `result` can be : 
+The `result` value can be : 
 - Serialized to [JSON](https://www.json.org/json-en.html) (example: [fluent-calculation-demo.json](../assets/example/fluent-calculation-demo.json)),
 - Converted to [DOT Language](https://graphviz.org/doc/info/lang.html) (example:  [fluent-calculations-demo.dot](../assets/example/fluent-calculations-demo.dot)),
 - Rendered using [DOT rendering programs and utilities](https://graphviz.org/doc/info/command.html).
