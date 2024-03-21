@@ -18,10 +18,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\.github\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Include="..\..\assets\fluent-calculations-logo-128x128.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

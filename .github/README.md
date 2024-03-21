@@ -65,35 +65,32 @@ dotnet add package Fluent.Calculations.Primitives
 
 ## Usage/Examples
 
-Below is as hypothetical BMI calculation.
+Below is as demo calculation.
 
 ```c#
-public class IsHealthyBodyMassIndexCalculation : EvaluationScope<Condition>
+public class Demo : EvaluationScope<Number>
 {
     Number
-        WeightKg = Number.Of(80),
-        HeightMeters = Number.Of(1.80m),
-        Square = Number.Of(2);
+        A = Number.Of(1),
+        B = Number.Of(2),
+        C = Number.Of(3);
 
-    Number
-        HealthyBMIFrom = Number.Of(20),
-        HealthyBMITo = Number.Of(30);
+    Number D => Evaluate(() => A + B);
 
-    Number BMI => 
-        Evaluate(() => WeightKg / (HeightMeters ^ Square));
+    Number E => Evaluate(() => D * C);
 
-    Condition IsWithinHealthyBMIRange => 
-        Evaluate(() => HealthyBMIFrom <= BMI && BMI <= HealthyBMITo);
-
-    public override Condition Return() => IsWithinHealthyBMIRange;
+    public override Number Return() => E;
 }
 
-Condition isHealthyBMI = new IsHealthyBodyMassIndexCalculation().ToResult();
+Number result = new Demo().ToResult();
 ```
 
-Calculation result can be visualized using [Graphviz](https://graphviz.org/).
+The `result` can be : 
+- Serialized to Json,
+- Converted to DOT graph language,
+- Visualized using [Graphviz](https://graphviz.org/).
 
-![BMI calculation visualization](../assets/example/fluent-calculation-demo.dot.png)
+![BMI calculation visualization](../assets/example/fluent-calculations-demo.dot.png)
 
 
 ## Roadmap & TODOs
@@ -101,9 +98,9 @@ Calculation result can be visualized using [Graphviz](https://graphviz.org/).
 - Expand a list of supported operations and math functions.
 - Explore ways to optimize lambda expression compilation.
 - Explore a ways to reuse existing calculations and attempt to benefit from :
-   - cached compiled expressions,
-   - cached evaluation results,
-   - partial execution depending on changed parameters.
+   - Cache compiled expressions,
+   - Cache evaluation results,
+   - Partial execution depending on changed parameters.
 - Explore thread-safety aspects.
  
 ## License

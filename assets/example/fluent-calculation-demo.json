@@ -1,0 +1,88 @@
+{
+  "Type": "Condition",
+  "Name": "IsWithinHealthyBMIRange",
+  "Scope": "IsHealthyBodyMassIndex",
+  "Primitive": 1,
+  "PrimitiveString": "True",
+  "Origin": "Result",
+  "Expression": {
+    "Arguments": [
+      {
+        "Type": "Number",
+        "Name": "HealthyBMIFrom",
+        "Scope": "IsHealthyBodyMassIndex",
+        "Primitive": 20,
+        "PrimitiveString": "20.00",
+        "Origin": "Constant",
+        "Expression": {
+          "Body": "20",
+          "Type": "Constant"
+        }
+      },
+      {
+        "Type": "Number",
+        "Name": "HealthyBMITo",
+        "Scope": "IsHealthyBodyMassIndex",
+        "Primitive": 30,
+        "PrimitiveString": "30.00",
+        "Origin": "Constant",
+        "Expression": {
+          "Body": "30",
+          "Type": "Constant"
+        }
+      },
+      {
+        "Type": "Number",
+        "Name": "BMI",
+        "Scope": "IsHealthyBodyMassIndex",
+        "Primitive": 24.691358024691358024691358025,
+        "PrimitiveString": "24.69",
+        "Origin": "Evaluation",
+        "Expression": {
+          "Arguments": [
+            {
+              "Type": "Number",
+              "Name": "WeightKg",
+              "Scope": "IsHealthyBodyMassIndex",
+              "Primitive": 80,
+              "PrimitiveString": "80.00",
+              "Origin": "Constant",
+              "Expression": {
+                "Body": "80",
+                "Type": "Constant"
+              }
+            },
+            {
+              "Type": "Number",
+              "Name": "HeightMeters",
+              "Scope": "IsHealthyBodyMassIndex",
+              "Primitive": 1.80,
+              "PrimitiveString": "1.80",
+              "Origin": "Constant",
+              "Expression": {
+                "Body": "1.80",
+                "Type": "Constant"
+              }
+            },
+            {
+              "Type": "Number",
+              "Name": "Square",
+              "Scope": "IsHealthyBodyMassIndex",
+              "Primitive": 2,
+              "PrimitiveString": "2.00",
+              "Origin": "Constant",
+              "Expression": {
+                "Body": "2",
+                "Type": "Constant"
+              }
+            }
+          ],
+          "Body": "WeightKg / (HeightMeters ^ Square)",
+          "Type": "Lambda"
+        }
+      }
+    ],
+    "Body": "HealthyBMIFrom \u003C= BMI \u0026\u0026 BMI \u003C= HealthyBMITo",
+    "Type": "Lambda"
+  }
+}

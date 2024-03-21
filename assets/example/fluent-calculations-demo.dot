@@ -1,0 +1,208 @@
+digraph FluentCalculations {
+	subgraph cluster_0 {
+		"label"="Demo"
+		"color"="#808080"
+		"style"="dashed, rounded"
+		"penwidth"="1"
+		"fontname"="Courier New"
+		E_value [
+			"penwidth"=1.00
+			"fillcolor"="#FFFFFF"
+			"shape"="Mrecord"
+			"style"="filled"
+			"fontname"="Courier New"
+			"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">E</font></td>
+                </tr>
+                 <tr>
+                <td align="left" port="r1">D * C : </td>
+                <td bgcolor="grey" align="center">9.00</td>
+            </tr>
+            </table>>
+		]
+		E_value [
+			"penwidth"=1.00
+			"fillcolor"="#FFFFFF"
+			"shape"="Mrecord"
+			"style"="filled"
+			"fontname"="Courier New"
+			"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">E</font></td>
+                </tr>
+                 <tr>
+                <td align="left" port="r1">D * C : </td>
+                <td bgcolor="grey" align="center">9.00</td>
+            </tr>
+            </table>>
+		]
+		subgraph cluster_0 {
+			"label"="Parameters"
+			"color"="#D3D3D3"
+			"style"="filled, solid"
+			"penwidth"="1"
+			"fontname"="Courier New"
+			C_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">C</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">3</td>
+            </tr>
+            </table>>
+			]
+			C_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">C</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">3</td>
+            </tr>
+            </table>>
+			]
+			A_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">A</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">1</td>
+            </tr>
+            </table>>
+			]
+			A_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">A</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">1</td>
+            </tr>
+            </table>>
+			]
+			B_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">B</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">2</td>
+            </tr>
+            </table>>
+			]
+			B_value [
+				"penwidth"=1.00
+				"fillcolor"="#FFFFFF"
+				"shape"="Mrecord"
+				"style"="filled"
+				"fontname"="Courier New"
+				"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">B</font></td>
+                </tr>
+                 <tr>
+                <td align="center" port="r1">2</td>
+            </tr>
+            </table>>
+			]
+		}
+		D_value [
+			"penwidth"=1.00
+			"fillcolor"="#FFFFFF"
+			"shape"="Mrecord"
+			"style"="filled"
+			"fontname"="Courier New"
+			"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">D</font></td>
+                </tr>
+                 <tr>
+                <td align="left" port="r1">A + B : </td>
+                <td bgcolor="grey" align="center">3.00</td>
+            </tr>
+            </table>>
+		]
+		D_value [
+			"penwidth"=1.00
+			"fillcolor"="#FFFFFF"
+			"shape"="Mrecord"
+			"style"="filled"
+			"fontname"="Courier New"
+			"label"=<
+            <table border="0" cellborder="0" cellpadding="3" bgcolor="white">
+                <tr>
+                    <td bgcolor="black" align="center" colspan="2"><font color="white">D</font></td>
+                </tr>
+                 <tr>
+                <td align="left" port="r1">A + B : </td>
+                <td bgcolor="grey" align="center">3.00</td>
+            </tr>
+            </table>>
+		]
+	}
+	C_value -> E_value [
+		"style"="solid"
+		"arrowhead"="normal"
+	]
+	A_value -> D_value [
+		"style"="solid"
+		"arrowhead"="normal"
+	]
+	B_value -> D_value [
+		"style"="solid"
+		"arrowhead"="normal"
+	]
+	D_value -> E_value [
+		"style"="solid"
+		"arrowhead"="normal"
+	]
+	E_result [
+		"penwidth"=1.00
+		"fillcolor"="#D3D3D3"
+		"shape"="circle"
+		"style"="filled"
+		"label"="9.00"
+		"fontname"="Courier New"
+	]
+	E_value -> E_result [
+		"style"="solid"
+		"arrowhead"="normal"
+	]
+}

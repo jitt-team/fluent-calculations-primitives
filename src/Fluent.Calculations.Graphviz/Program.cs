@@ -13,7 +13,7 @@ string
     pngFileName = $"{dotFileName}.png";
 
 // Run the calculation
-Condition resultValue = new IsHealthyBodyMassIndex().ToResult();
+Number resultValue = new Demo().ToResult();
 
 // Serialize to Json
 string resultAsJson = ValueJsonSerializer.Serialize(resultValue);
@@ -34,20 +34,16 @@ Graphviz.ConvertToPNG(dotFileName);
 Console.WriteLine($@"Result file name ""{pngFileName}""");
 
 // Demo calculation
-public class IsHealthyBodyMassIndex : EvaluationScope<Condition>
+public class Demo : EvaluationScope<Number>
 {
     Number
-        WeightKg = Number.Of(80),
-        HeightMeters = Number.Of(1.80m),
-        Square = Number.Of(2);
+        A = Number.Of(1),
+        B = Number.Of(2),
+        C = Number.Of(3);
 
-    Number
-        HealthyBMIFrom = Number.Of(20),
-        HealthyBMITo = Number.Of(30);
+    Number D => Evaluate(() => A + B);
 
-    Number BMI => Evaluate(() => WeightKg / (HeightMeters ^ Square));
+    Number E => Evaluate(() => D * C);
 
-    Condition IsWithinHealthyBMIRange => Evaluate(() => HealthyBMIFrom <= BMI && BMI <= HealthyBMITo);
-
-    public override Condition Return() => IsWithinHealthyBMIRange;
+    public override Number Return() => E;
 }
