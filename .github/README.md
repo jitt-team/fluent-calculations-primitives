@@ -17,26 +17,26 @@
 > One of the more powerful ways to make a program readable is to break the calculations up into intermediate values that are held in variables with meaningful names. - _Robert C. Martin, Clean Code, A Handbook of Agile Craftsmanship_
 
 <div align="justify">
-By following this principle together wit Fluent Calculations library we gain an ability to write readable calculations and logic as well as get insights later after the logics was executed during a run-time.
+By following this principle together wit Fluent Calculations library we gain an ability to write readable calculations as well as get insights at runtime.
 </div>
 
 ## Motivation
 <div align="justify">
 <p>
-Having worked on many line of business applications authors have observed a common difficulty in having a common understating withing team and users when dealing with of non-trivial business logic or calculations. 
+Having worked on many line of business and some finance  applications authors have observed a common difficulty of understating and communicating non-trivial business logic or calculations. 
 </p><p>
-Validating the correctness of financial calculations like taxes as an example involves a lot of effort on analyst or tester side. Pinpointing problems from just the final result is rather challenging, thus often developer resort to manual debugging of the test cases.
+Validating the correctness of financial calculations, like tax calculations for example, involves a lot of effort on analyst or tester side. For a developer pinpointing problems from just the final result is challenging, thus often we resort to manual debugging.
 </p><p>
-TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. 
-Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. 
-Troubleshooting calculations happening in a production environment is impossible without deploying 
-some manual logging that makes code noisy and less readable.
+TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. Troubleshooting calculations happening in a production environment is impossible without deploying some manual logging that makes code noisy and less readable.
+</p>
+<p>
+This project attempts to provide a clean way to get an "X-ray" of calculations or business logic.
 </p>
 </div>
 
 ## The Goal
 
-Almost same amount of code, hundreds of hours saved in debugging.
+Spend minutes of programming to save hours of debugging and testing.
 
 ## Features
 
@@ -86,14 +86,13 @@ Number result = new Demo().ToResult();
 ```
 
 The `result` can be : 
-- Serialized to Json,
-- Converted to DOT graph language,
-- Visualized using [Graphviz](https://graphviz.org/).
+- Serialized to [JSON](https://www.json.org/json-en.html) (example: [fluent-calculation-demo.json](../assets/example/fluent-calculation-demo.json)),
+- Converted to [DOT Language](https://graphviz.org/doc/info/lang.html) (example:  [fluent-calculations-demo.dot](../assets/example/fluent-calculations-demo.dot)),
+- Rendered using [DOT rendering programs and utilities](https://graphviz.org/doc/info/command.html).
+  - ![BMI calculation visualization](../assets/example/fluent-calculations-demo.dot.png)
 
-![BMI calculation visualization](../assets/example/fluent-calculations-demo.dot.png)
 
-
-## Roadmap & TODOs
+## Challenges
 - Explore ways to introduce concept of units (Meters, Kilograms, etc.).
 - Expand a list of supported operations and math functions.
 - Explore ways to optimize lambda expression compilation.
