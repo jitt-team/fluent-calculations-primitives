@@ -20,6 +20,7 @@
     <Version>1.1.0-alpha</Version>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
