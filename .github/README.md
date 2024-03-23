@@ -30,7 +30,7 @@ Validating the correctness of financial calculations, like tax calculations for 
 TDD falls short of communicating more complex test cases to business people as it relies on quite granular decomposition. Splitting up some algorithms is not always a good option too, due to loss of the original conciseness. Troubleshooting calculations happening in a production environment is impossible without deploying some manual logging that makes code noisy and less readable.
 </p>
 <p>
-This project attempts to provide a clean way to get an **"X-ray"** of calculations or business logic.
+This project attempts to provide a clean way to get an <b>"X-ray"</b> of calculations or business logic.
 </p>
 </div>
 
