@@ -38,6 +38,10 @@ This project attempts to provide a clean way to get an "X-ray" of calculations o
 
 Spend minutes of programming to save hours of debugging and testing.
 
+# Give it a star ⭐
+
+Loving it? Show your support by giving this project a star!
+
 ## Features
 
 - Number (Decimal) and Condition (Boolean) datatype are supported,
