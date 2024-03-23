@@ -38,10 +38,6 @@ This project attempts to provide a clean way to get an "X-ray" of calculations o
 
 Spend minutes of programming to save hours of debugging and testing.
 
-## Give it a star ⭐
-
-Loving it? Show your support by giving this project a star!
-
 ## Features
 
 - Number (Decimal) and Condition (Boolean) datatype are supported,
@@ -117,3 +113,6 @@ The `result` value can be :
 ## 🚀 About The Team
 We are bunch of .NET practitioners always looking for ways to make code great.
 
+## Give it a star ⭐
+
+Loving it? Show your support by giving this project a star!
