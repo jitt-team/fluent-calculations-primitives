@@ -113,3 +113,6 @@ The `result` value can be :
 ## 🚀 About The Team
 We are bunch of .NET practitioners always looking for ways to make code great.
 
+## Give it a star ⭐
+
+Loving it? Show your support by giving this project a star!
