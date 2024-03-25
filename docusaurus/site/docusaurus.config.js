@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Fluent Calcluations',
-  tagline: 'Create tracable calculations',
+  title: 'Fluent Calculations',
+  tagline: 'Create traceable calculations',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
